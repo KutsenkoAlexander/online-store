@@ -1,0 +1,72 @@
+<div ng-show="editableGoodsState || isCategoryAdd">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title" ng-show="editableGoodsState">Редактирование товара</h3>
+            <h3 class="panel-title" ng-show="newGood">Добавление нового товара</h3>
+            <h3 class="panel-title" ng-show="isCategoryAdd">Добавление новой категории</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row wrapper_panel_body_content">
+                <table style="width: 100%;">
+                    <tr>
+                        <td class="col-xs-4">
+                            <p>Родительская категория</p>
+                        </td>
+                        <td class="col-xs-8">
+                            <select ng-model="category"
+                                    name="parentId"
+                                    class="form-control admin_category_select"
+                                    style="padding: 4px 0;"
+                                    ng-options="parentCategory.name for parentCategory in parenCategories | orderBy: 'name' track by parentCategory.idCategory">
+                                <option value="">Выбрать</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr ng-show="category">
+                        <td class="col-xs-4">
+                            <p>Введите название дочерней категории</p>
+                        </td>
+                        <td class="col-xs-8">
+                            <input type="text" ng-model="name_category" name="name" class="form-control admin_add_input" placeholder="Введите название дочерней категории"/>
+                        </td>
+                    </tr>
+                    <tr ng-show="category">
+                        <td class="col-xs-4">
+                            <p>Изображение категории</p>
+                        </td>
+                        <td class="col-xs-8">
+                            <!--<input type="file" nv-file-select uploader="uploader"/><br/>-->
+                            <ul>
+                                <li ng-repeat="item in uploader.queue">
+                                    Name: <span ng-bind="item.file.name"></span><br/>
+                                    <button ng-click="item.upload()">upload</button>
+                                </li>
+                            </ul>
+                            <button type="file"
+                                    ngf-select="uploadFiles($file, $invalidFiles)"
+                                    accept="image/*"
+                                    ngf-max-height="1000"
+                                    ngf-max-size="1MB">Select File</button>
+                            <br><br>
+                            File:
+                            <div style="font-size: 14px;">
+                                {{f.name}}
+                                {{errFile.name}}
+                                {{errFile.$error}}
+                                {{errFile.$errorParam}}
+                              <span class="progress" ng-show="f.progress >= 0">
+                                  <div style="width:{{f.progress}}%" ng-bind="f.progress + '%'"></div>
+                              </span>
+                            </div>
+                            {{errorMsg}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-success admin_save_edit_btn" ng-click="saveCategory(name_category, category.idCategory, files)">
+        Сохранить
+    </button>
+    <button class="btn btn-default admin_cancel_edit_btn" ng-click="cancelAddCategory()">Отмена</button>
+</div>

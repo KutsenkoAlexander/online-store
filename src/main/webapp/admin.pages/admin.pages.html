@@ -1,0 +1,30 @@
+<h1 class="page-header">Управление страницами</h1>
+<div class="table-responsive">
+    <table class="table table-striped" ng-if="!isEditable">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Описание страницы</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="page in dataPage">
+            <td>{{$index+1}}</td>
+            <td>{{page.description}}</td>
+            <td><img src="../static/img/edit.jpg"
+                     class="edit_page_btn"
+                     alt="Редактировать"
+                     title="Редактировать"
+                     ng-click="editPage(page.id)"/></td>
+        </tr>
+        </tbody>
+    </table>
+    <div ng-if="isEditable">
+        <div text-angular ng-model="page_content"></div>
+        <button class="btn btn-success admin_save_edit_btn" ng-click="savePage(selectedPage.id, page_content)">
+            Сохранить
+        </button>
+        <button class="btn btn-default admin_cancel_edit_btn" ng-click="cancelPage()">Отмена</button>
+    </div>
+</div>

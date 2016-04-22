@@ -1,0 +1,96 @@
+#content {
+    min-width: 1020px;
+    max-width: 1020px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.page_content{
+    margin: 10px 0;
+}
+
+.div_dop_info {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    position: relative;
+    height: 150px;
+    top: -75px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background-color: #e6e6e6;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.dop_info_border_radius_right {
+    -webkit-border-radius: 0 10px 10px 0;
+    -moz-border-radius: 0 10px 10px 0;
+    border-radius: 0 10px 10px 0;
+}
+
+.dop_info_border_radius_left {
+    -webkit-border-radius: 10px 0 0 10px;
+    -moz-border-radius: 10px 0 0 10px;
+    border-radius: 10px 0 0 10px;
+}
+
+.dop_info {
+    background-color: #e6e6e6;
+    border-right: 1px solid #c0c0c0;
+    border-left: 1px solid #FFFFFF;
+    padding: 40px 0;
+}
+
+div.div_dop_info a {
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+div.dop_info h1 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 5px 0;
+}
+
+div.dop_info p {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 100;
+    padding: 5px 0;
+}
+
+#main_content {
+    position: relative;
+    word-wrap: break-word; /* Перенос слов */
+    min-height: 544px;
+}
+
+/* content */
+#mainContent {
+    position: relative;
+    word-wrap: break-word;
+    top: -45px;
+    margin: auto;
+    padding: 0 0 180px 0;
+}
+
+.digits{
+    margin: auto;
+    max-width: 1200px;
+}
+
+.content {
+    margin-right: 0;
+}
+
+.createBackGround{
+    background-color: #0081B5;
+    opacity: 0.3;
+    top: -330px;
+    position: relative;
+    height: 336px;
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html ng-app="monolitApp">
+<head lang = "ru">
+    <base href="/"/>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title ng-bind="pageTitle"></title>
+    <link rel="shortcut icon" href="static/img/icon.png" type="image/png"/>
+    <link href="static/css/bootstrap.css" rel="stylesheet"/>
+    <link href="static/css/style.css" rel="stylesheet"/>
+    <link rel="stylesheet" href='static/bower_components/textAngular/dist/textAngular.css'/>
+    <link rel="stylesheet" href="static/bower_components/font-awesome/css/font-awesome.min.css"/>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body ng-controller="mainCtrl">
+    <div class="container-fluid" id="main_container">
+        <div ng-if=" currentPath === '/admin' ||
+                     currentPath === '/login' ||
+                     currentPath === '/goods' ||
+                     currentPath === '/pages' ||
+                     currentPath === '/slider'">
+            <div ui-view="content"></div>
+        </div>
+        <div class="row" id="row_container"
+             ng-hide=" currentPath === '/admin' ||
+                       currentPath === '/login' ||
+                       currentPath === '/goods' ||
+                       currentPath === '/pages' ||
+                       currentPath === '/slider'">
+            <div class="col-xs-12" id="wrapper_header_nav" ng-controller="breadcrumbsCtrl">
+                <div ng-include="'navigation/navigation.html'"></div>
+                <div class="row" ng-class="(currentPath === '/')?'main_header':'head'">
+                    <div class="row, head">
+                        <div class="col-xs-1"></div>
+                        <div class="col-xs-10 float_none">
+                            <div ng-include="'../search-logo/search-logo.html'"></div>
+                            <div ng-show="currentPath === '/'" ng-include="'../slider/slider.html'"></div>
+                        </div>
+                        <div class="col-xs-1"></div>
+                    </div>
+                </div>
+                    <div ng-show="currentPath === '/'" ng-include="'../maindigits/maindigits.html'"></div>
+                <div class="row content" id="mainContent">
+                    <div class="col-xs-12">
+                        <div class="row set_margin_zero">
+                            <div class="col-xs-1"></div>
+                            <div class="col-xs-10 float_none max_width">
+                                <div class="row main_category">
+                                    <ul ng-hide="currentPath === '/'"
+                                        ng-include="'../breadcrumbs/breadcrumbs.html'"
+                                        class="navigation nav_margin_bottom breadcrumb"
+                                        ng-if="stateNavigation.length > 1">
+                                    </ul>
+                                    <div ng-if=" currentPath !== '/admin' ||
+                                                 currentPath !== '/login' ||
+                                                 currentPath !== '/goods' ||
+                                                 currentPath !== '/pages' ||
+                                                 currentPath !== '/slider'"
+                                         ui-view="content"></div>
+                                </div>
+                            </div>
+                            <div class="col-xs-1"></div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-include="'footer/footer.html'"></div>
+            </div>
+        </div>
+    </div>
+    <script src="static/bower_components/jquery/jquery.min.js"></script>
+    <script src="static/bower_components/angular/angular.min.js"></script>
+    <script src="static/bower_components/angular-ui-router/angular-ui-router.min.js"></script>
+    <script src="static/bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src='static/bower_components/angular-ui-bootstrap/angular-ui-bootstrap.min.js'></script>
+    <script src='static/bower_components/angular-filter/angular-filter.min.js'></script>
+    <script src="static/bower_components/angucomplete/angucomplete.js"></script>
+    <script src="static/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="static/bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
+    <script src="static/bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+    <script src='static/bower_components/textAngular/dist/textAngular-rangy.min.js'></script>
+    <script src='static/bower_components/textAngular/dist/textAngular-sanitize.min.js'></script>
+    <script src='static/bower_components/textAngular/dist/textAngular.min.js'></script>
+    <script src="static/bower_components/lodash/lodash-full.js"></script>
+    <script src="app.js"></script>
+    <script src="slider/slider.js"></script>
+    <script src="sale/sale.js"></script>
+    <script src="home/home.js"></script>
+    <script src="career/career.js"></script>
+    <script src="catalog/catalog.js"></script>
+    <script src="category/category.js"></script>
+    <script src="product-list/product-list.js"></script>
+    <script src="product/product.js"></script>
+    <script src="contacts/contacts.js"></script>
+    <script src="customers/customers.js"></script>
+    <script src="delivery/delivery.js"></script>
+    <script src="breadcrumbs/breadcrumbs.js"></script>
+    <script src="about/about.js"></script>
+    <script src="sort/sort.js"></script>
+    <script src="navigation/navigation.js"></script>
+    <script src="pagination/pagination.js"></script>
+    <script src="admin/admin.js"></script>
+    <script src="admin.pages/admin.pages.js"></script>
+    <script src="admin.goods/admin.goods.js"></script>
+    <script src="admin.slider/admin.slider.js"></script>
+    <script src="admin.categories/admin.categories.js"></script>
+</body>
+</html>

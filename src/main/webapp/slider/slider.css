@@ -1,0 +1,23 @@
+#slides_control > div{
+    height: 200px;
+}
+img{
+    margin:auto;
+    width: 400px;
+}
+#slides_control {
+    position: absolute;
+    width: 780px;
+    height: 300px;
+}
+.carousel {
+    position: relative;
+    height: 300px;
+}
+#carousel {
+    height: 300px;
+    width: 780px;
+    margin: 0 auto;
+    position: relative;
+    top: -15px;
+}

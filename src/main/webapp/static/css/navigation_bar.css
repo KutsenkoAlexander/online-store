@@ -1,0 +1,112 @@
+.sub_nav_object {
+    position: absolute;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    top: -10px;
+}
+
+.navigation{
+    position: relative;
+    top: 7px;
+    max-width: 1200px;
+    min-width: 750px;
+}
+
+.navigation_white{
+    padding-top: 10px;
+}
+
+.navigation_bar {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+.first {
+    color: #0d3653;
+    font-size: 15px;
+    display: inline-block;
+    opacity: 1;
+}
+
+.first:hover{
+    color: #ff5c43;
+    text-decoration: none;
+}
+
+.middle {
+    color: #0d3653;
+    padding: 0 9px 0 4px;
+    font-size: 15px;
+    display: inline-block;
+    opacity: 1;
+}
+
+.middle:hover{
+    color: #ff5c43;
+    text-decoration: none;
+}
+
+.last {
+    color: #444444;
+    font-size: 15px;
+    display: inline-block;
+    position: relative;
+    top: -1px;
+}
+
+.last_2 {
+    color: #444444;
+    font-size: 15px;
+    display: inline-block;
+    position: relative;
+    top: -6px;
+}
+
+.arrow {
+    height: 22px;
+    position: relative;
+    top: 4px;
+}
+
+.navigation_bar a {
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    top: -1px;
+}
+
+.navigation_bar a:hover{
+    color: #ff5c43;
+}
+
+.navigation_bar a span {
+    position: relative;
+    display: inline-block;
+    -webkit-transition: -webkit-transform 0.3s;
+    -moz-transition: -moz-transform 0.3s;
+    transition: transform 0.3s;
+}
+
+.navigation_bar a span::before {
+    position: absolute;
+    top: 100%;
+    content: attr(data-hover);
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+.navigation_bar a:hover span,
+.navigation_bar a:focus span {
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+    transform: translateY(-100%);
+}
+
+.main_nav_object{
+    position: relative;
+    top: 200px;
+}

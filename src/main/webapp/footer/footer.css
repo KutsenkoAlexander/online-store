@@ -1,0 +1,13 @@
+.footer {
+    width: 100%;
+    height: 200px;
+    background-color: #CCCCCC;
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+}
+
+#footer {
+    max-width: 1200px;
+    margin: auto;
+}

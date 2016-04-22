@@ -1,0 +1,71 @@
+<!--Sub navigation bar-->
+<div ng-hide="currentPath === '/' || currentPath === '/admin' || currentPath === '/login'"
+     class="sub_navigate_bar sub_nav_object row wrapnav"
+     sub-navigation="sub-navigation"
+     ng-if="stateNavigation.length > 1">
+    <div class="col-xs-1"/>
+    <div class="col-xs-10 float_none max_width">
+        <ul class="navigation_white breadcrumb"
+            ng-include="'../breadcrumbs/breadcrumbs.html'">
+        </ul>
+    </div>
+    <div class="col-xs-1"/>
+</div>
+<!--Main navigation -->
+<div ng-hide="currentPath === '/admin' || currentPath === '/login'"
+     class="row wrapnav header_color">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-10 float_none max_width">
+        <img src="../static/img/icon.png" class="img_nav"/>
+        <nav>
+            <div class="nav_menu">
+                <ul>
+                    <a ui-sref-active="nav_active"
+                       ui-sref="home"
+                       title="Главная">
+                        <li><p>Главная</p></li>
+                    </a>
+                </ul>
+                <ul>
+                    <a ui-sref="catalog"
+                       title="Каталог"
+                       ng-class="{'nav_active':(state == 'category' ||
+                                                state == 'catalog' ||
+                                                state == 'productList' ||
+                                                state == 'productId')}">
+                        <li><p>Каталог</p></li>
+                    </a>
+                </ul>
+                <ul>
+                    <a ui-sref-active="nav_active"
+                       ui-sref="customers"
+                       title="Покупателям">
+                        <li><p>Покупателям</p></li>
+                    </a>
+                </ul>
+                <ul>
+                    <a ui-sref-active="nav_active"
+                       ui-sref="career"
+                       title="Вакансии">
+                        <li><p>Вакансии</p></li>
+                    </a>
+                </ul>
+                <ul>
+                    <a ui-sref-active="nav_active"
+                       ui-sref="delivery"
+                       title="Доставка">
+                        <li><p>Доставка</p></li>
+                    </a>
+                </ul>
+                <ul>
+                    <a ui-sref-active="nav_active"
+                       ui-sref="contacts"
+                       title="Контакты">
+                        <li><p>Контакты</p></li>
+                    </a>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="col-xs-1"></div>
+</div>

@@ -1,0 +1,49 @@
+<div class="filter_products"
+     ng-controller="sortCtrl"
+     ng-show="sortConsumers.length > 0">
+    <div>
+        <p>Производитель</p>
+        <select ng-model="consumer"
+                ng-change="selectedConsumer(consumer.idConsumer)"
+                ng-options="consumer.name for consumer in sortConsumers | orderBy: 'name' track by consumer.idConsumer">
+            <option value="">Выбрать</option>
+        </select>
+    </div>
+    <div>
+        <p>Тип продукции</p>
+        <select ng-model="type"
+                ng-change="selectedType(type.idSprType)"
+                ng-options="type.name for type in sortTypes | orderBy: 'name' track by type.idSprType">
+            <option value="">Выбрать</option>
+        </select>
+    </div>
+    <div>
+        <p>Размер</p>
+        <select ng-model="size"
+                ng-change="selectedSize(size.idSprSize)"
+                ng-options="size.name for size in sortSizes | orderBy: 'name' track by size.idSprSize">
+            <option value="">Выбрать</option>
+        </select>
+    </div>
+    <div>
+        <p>Цвет</p>
+        <select ng-model="color"
+                ng-change="selectedColor(color.idSprColors)"
+                ng-options="color.name for color in sortColors | orderBy: 'name' track by color.idSprColors">
+            <option value="">Выбрать</option>
+        </select>
+    </div>
+    <div>
+        <p>Сначала</p>
+        <select ng-model="price"
+                ng-change="selectedPrice(price.value)"
+                ng-options="price.name for price in sortPrice | orderBy: 'name' track by price.value">
+            <option value="">Выбрать</option>
+        </select>
+    </div>
+    <label><input type="checkbox" class="chk" ng-model="exist" ng-change="isExist(exist)"/> В наличии</label>
+    <button class="btn"
+            id="cancelFilter"
+            ng-click="resetFilter()"
+            ng-show="consumer || type || size || color || price || exist">Сбросить все фильтры</button>
+</div>

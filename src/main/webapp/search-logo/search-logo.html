@@ -1,0 +1,23 @@
+    <div class="row digits logo_search_phone_div">
+        <div class="col-xs-4">
+            <img id="logo" src="../static/img/MonolitLogo.png" alt="Монолит" title="Монолит"/>
+        </div>
+        <div class="col-xs-4 float_none">
+            <div ng-class="(currentPath !== '/')?'search_form_next':''" class="search_form">
+                <angucomplete type="search"
+                              class="inpt_search"
+                              id="search"
+                              placeholder="Введите название товара..."
+                              pause="200"
+                              selectedobject="object"
+                              url="/product/search?name="
+                              titlefield="title"
+                              inputclass="form-control form-control-small"/>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <p ng-class="(currentPath === '/')?'phone_index':''" class="phone" title="Контактный телефон">тел. <span>+38(011)444-45-55</span>
+            </p>
+        </div>
+    </div>
+</div>

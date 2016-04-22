@@ -1,0 +1,244 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+    padding-top: 50px;
+}
+
+/*
+ * Global add-ons
+ */
+
+.sub-header {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar {
+    display: none;
+}
+@media (min-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 51px;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+        display: block;
+        padding: 20px;
+        overflow-x: hidden;
+        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+        background-color: #f5f5f5;
+        border-right: 1px solid #eee;
+    }
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+    margin-right: -21px; /* 20px padding + 1px border */
+    margin-bottom: 20px;
+    margin-left: -20px;
+}
+.nav-sidebar > li > a {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+.nav-sidebar > .active > a {
+    color: #fff;
+    background-color: #ff5c43;
+}
+
+.nav-sidebar > .active > a:hover, .nav-sidebar > .active > a:focus  {
+    color: #fff;
+    background-color: #ff5c43;
+}
+
+
+/*
+ * Main content
+ */
+
+.main {
+    padding: 20px;
+}
+@media (min-width: 768px) {
+    .main {
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+}
+
+.main .page-header {
+    margin-top: 40px;
+    margin-bottom: 0;
+    font-size: 30px;
+    /*padding-bottom: 0 !important;*/
+}
+
+
+/*
+ * Placeholder dashboard ideas
+ */
+
+.placeholders {
+    margin-bottom: 30px;
+    text-align: center;
+}
+.placeholders h4 {
+    margin-bottom: 0;
+}
+.placeholder {
+    margin-bottom: 20px;
+}
+.placeholder img {
+    display: inline-block;
+    border-radius: 50%;
+}
+ .new_container-fluid{
+     margin-left: 15px;
+     margin-right: 15px;
+ }
+
+ .exit{
+     margin-right: 25px;
+ }
+
+ .page_content_admin{
+     margin: 50px auto;
+ }
+
+ .edit_page_btn{
+     float: right; width: 25px; cursor: pointer; margin: 0; padding: 0;
+ }
+
+tbody > tr.editable_goods > td{
+    vertical-align: middle;
+}
+
+tbody > tr.editable_goods:hover{
+    cursor: pointer;
+    background-color: #E2E2E2;
+}
+
+tbody > tr.editable_goods > td > input {
+    width: auto;
+    padding: 3px 9px;
+    margin: 0;
+    border: 1px solid #c2c2c2;
+}
+
+tbody > tr.editable_goods > td > input:focus {
+    border: 1px solid #c2c2c2;
+}
+
+.fast_edit_btn{
+    padding: 2px 3px;
+    margin: 0;
+}
+
+.width_input_fast_edit{
+    min-width: 80px;
+    max-width: 80px;
+}
+
+.search_admin {
+    margin: 0 0 0 9%;
+    width: 100%;
+    height: 37px;
+    padding: 0 8px 0 8px;
+    vertical-align: middle;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    border: 3px solid #e2e2e2;
+    box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.5);
+    background-color: #FFFFFF;
+}
+
+.goods_search{
+    position: relative;
+    top: -11px;
+    padding: 0;
+    margin: 0 5px;
+}
+
+.goods_dropdown{
+    margin: 0;
+}
+
+.wrapper_search_admin{
+    width: 45% !important;
+    display: inline-block;
+}
+
+.admin_table_edit_text_center{
+    text-align: center;
+}
+
+.admin_save_edit_btn{
+    float: right;
+}
+
+.admin_cancel_edit_btn{
+    float: right;
+    margin-right: 5px;
+}
+
+.admin_add_new_good{
+    float: right;
+}
+
+
+.admin_logo{
+    width: 200px;
+    position: relative;
+    top: -5px;
+    left: -20px;
+}
+
+.admin_sub_header{
+    width: auto;
+    display: inline-block;
+    position: relative;
+    top: -7px;
+}
+
+.admin_category_select{
+    width: auto;
+    padding: 4px 3px;
+    border: 1px solid #d2d2d2;
+}
+
+.admin_category_select:focus{
+    border: 1px solid #d2d2d2;
+}
+
+.admin_add_category_btn{
+    padding: 4px 3px;
+}
+
+.wrapper_panel_body_content{
+    padding: 0 15px;
+}
+
+.admin_add_input{
+    border: 1px solid #d2d2d2;
+    padding: 3px 7px;
+    width: 100%;
+}
+
+.admin_add_input:focus{
+    border: 1px solid #d2d2d2;
+}
+
+.admin_area{
+    height: 80px !important;
+}
+
+.admin_page_header{
+    padding-bottom: 0;
+}

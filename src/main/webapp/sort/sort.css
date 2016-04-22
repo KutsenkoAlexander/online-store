@@ -1,0 +1,19 @@
+.chk{
+    position: relative;
+    top: 2px;
+}
+
+#cancelFilter{
+    color:#0d3653;
+    position: relative;
+    top: -1px;
+    right: 0;
+    background-color: #f8f8f8;
+    padding: 2px 3px;
+}
+
+#cancelFilter:hover{
+    cursor: pointer;
+    background-color: #ff5c43;
+    color: #fff;
+}

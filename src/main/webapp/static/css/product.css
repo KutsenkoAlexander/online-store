@@ -1,0 +1,11 @@
+/*ONE PRODUCT SELECT*/
+.single_product_img{
+    float: left;
+    min-width: 150px;
+    max-width: 150px;
+    margin: 0 20px 0 0;
+}
+
+.single_product{
+    margin-top: 20px;
+}

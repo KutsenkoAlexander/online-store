@@ -1,0 +1,15 @@
+<li ng-repeat="state in stateNavigation" class="ng-cloak navigation_bar">
+    <a ng-if="$first && stateNavigation.length > 1"
+       href="{{state.url}}"
+       class="first"
+       title="{{state.name}}">
+        <span data-hover="{{state.name}}"> {{state.name}}</span>
+    </a>
+    <a ng-if="$middle && stateNavigation.length > 1"
+       href="{{state.url}}"
+       class="middle"
+       title="{{state.name}}">
+        <span data-hover="{{state.name}}">{{state.name}}</span>
+    </a>
+    <span class="last" ng-class="{ last_2 : (stateNavigation.length > 1) }" ng-show="$last">{{state.name}}</span>
+</li>

@@ -1,0 +1,82 @@
+@import "header.css";
+@import "content.css";
+@import "../../footer/footer.css";
+@import "navigation_bar.css";
+@import "products.css";
+@import "product.css";
+@import "categories.css";
+@import "../../slider/slider.css";
+@import "bootstrap-theme.css";
+@import "../../navigation/navigation.css";
+@import "../../sort/sort.css";
+@import "../../search-logo/search-logo.css";
+@import "../bower_components/angucomplete/angucomplete.css";
+@import "admin.css";
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+html{
+    height: 100%;
+}
+
+body{
+    height: 100%;
+    background-color: #f8f8f8;
+}
+
+#row_container{
+    margin: 0;
+    height: 100%;
+}
+
+#main_container{
+    min-width: 950px;
+    height: 100%;
+}
+
+.float_none{
+    float: none;
+    margin: auto;
+}
+
+.max_width{
+    max-width: 1200px;
+    min-width: 750px;
+}
+
+.set_margin_zero{
+    margin: 0;
+}
+
+.set_font_weight_bold{
+    font-weight: bold;
+}
+
+.set_font_weight_100{
+    font-weight: 100;
+}
+
+.set_width_100px{
+    width: 100px;
+    padding-right: 10px;
+}

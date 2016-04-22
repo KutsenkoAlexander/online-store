@@ -1,0 +1,132 @@
+<div ng-show="editableGoodsState || newGood">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title" ng-show="editableGoodsState">Редактирование товара</h3>
+            <h3 class="panel-title" ng-show="newGood">Добавление нового товара</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row wrapper_panel_body_content">
+                <div>
+                    <div class="col-xs-2">
+                        <p>Изображение</p>
+                    </div>
+                    <div class="col-xs-10">
+                        <input type="file" class="form-control"/>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-xs-2">
+                        <p>Категория</p>
+                    </div>
+                    <div class="col-xs-10">
+                        <select ng-model="type"
+                                class="form-control admin_category_select"
+                                ng-options="category.name for category in categories | orderBy: 'name' track by category.idCategory">
+                            <option value="">Выбрать</option>
+                        </select>
+                        <button class="btn btn-default admin_add_category_btn" ng-click="addCategory()">Добавить категорию</button>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-xs-2">
+                        <p>Код продукта</p>
+                    </div>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control admin_add_input"/>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-xs-2">
+                        <p>Наименование</p>
+                    </div>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control admin_add_input"/>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-xs-2">
+                        <p>Описание</p>
+                    </div>
+                    <div class="col-xs-10">
+                        <textarea class="form-control admin_add_input admin_area"></textarea>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-xs-2">
+                        <p>Цена</p>
+                    </div>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control admin_add_input"/>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-xs-2">
+                        <p>Наличие</p>
+                    </div>
+                    <div class="col-xs-10">
+                        <label style="font-size: 14px; font-weight: 100;">
+                            <input type="checkbox" class="form-control" style="width: auto; margin-left: 5px; position: relative; top: 2px;"/>
+                            В наличии
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-xs-2">
+                        <p>Производитель</p>
+                    </div>
+                    <div class="col-xs-10">
+                        <select ng-model="type"
+                                class="form-control admin_category_select"
+                                ng-options="type.name for type in sortTypes | orderBy: 'name' track by type.idSprType">
+                            <option value="">Выбрать</option>
+                        </select>
+                        <button class="btn btn-default admin_add_category_btn">Добавить производителя</button>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-xs-2">
+                        <p>Цвет</p>
+                    </div>
+                    <div class="col-xs-10">
+                        <select ng-model="type"
+                                class="form-control admin_category_select"
+                                ng-options="type.name for type in sortTypes | orderBy: 'name' track by type.idSprType">
+                            <option value="">Выбрать</option>
+                        </select>
+                        <button class="btn btn-default admin_add_category_btn">Добавить цвет</button>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-xs-2">
+                        <p>Тип</p>
+                    </div>
+                    <div class="col-xs-10">
+                        <select ng-model="type"
+                                class="form-control admin_category_select"
+                                ng-options="type.name for type in sortTypes | orderBy: 'name' track by type.idSprType">
+                            <option value="">Выбрать</option>
+                        </select>
+                        <button class="btn btn-default admin_add_category_btn">Добавить тип</button>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-xs-2">
+                        <p>Размер</p>
+                    </div>
+                    <div class="col-xs-10">
+                        <select ng-model="type"
+                                class="form-control admin_category_select"
+                                ng-options="type.name for type in sortTypes | orderBy: 'name' track by type.idSprType">
+                            <option value="">Выбрать</option>
+                        </select>
+                        <button class="btn btn-default admin_add_category_btn">Добавить размер</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-success admin_save_edit_btn" ng-click="saveGood(cancelEditGood)">
+        Сохранить
+    </button>
+    <button class="btn btn-default admin_cancel_edit_btn" ng-click="cancelEditGood()">Отмена</button>
+</div>
