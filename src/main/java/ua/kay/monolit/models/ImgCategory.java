@@ -19,8 +19,8 @@ public class ImgCategory implements Serializable {
     private long idImgCategory;
 
     @Basic
-    @Column(name = "images")
-    private byte[] images;
+    @Column(name = "image")
+    private byte[] image;
 
     @Basic
     @Column(name = "category_id")
@@ -38,12 +38,12 @@ public class ImgCategory implements Serializable {
         this.idImgCategory = idImgCategory;
     }
 
-    public byte[] getImages() {
-        return images;
+    public byte[] getImage() {
+        return image;
     }
 
-    public void setImages(byte[] images) {
-        this.images = images;
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     public int getCategoryId() {
@@ -71,7 +71,7 @@ public class ImgCategory implements Serializable {
 
         if (idImgCategory != that.idImgCategory) return false;
         if (categoryId != that.categoryId) return false;
-        if (!Arrays.equals(images, that.images)) return false;
+        if (!Arrays.equals(image, that.image)) return false;
 
         return true;
     }
@@ -80,7 +80,7 @@ public class ImgCategory implements Serializable {
     public int hashCode() {
         int result = (int) (idImgCategory ^ (idImgCategory >>> 32));
         result = 31 * result + categoryId;
-        result = 31 * result + (images != null ? Arrays.hashCode(images) : 0);
+        result = 31 * result + (image != null ? Arrays.hashCode(image) : 0);
         return result;
     }
 

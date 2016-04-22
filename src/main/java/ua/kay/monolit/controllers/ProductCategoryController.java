@@ -2,6 +2,7 @@ package ua.kay.monolit.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ua.kay.monolit.models.ImgCategory;
 import ua.kay.monolit.models.SprCategory;
 import ua.kay.monolit.repositories.ProductCategoryRepository;
 
@@ -24,11 +25,11 @@ public class ProductCategoryController {
         return productCategoryRepository.findByParentIdOrderByNameAsc(id);
     }
 
-//    @RequestMapping("/name/{id}")
-//    public SprCategory getCategoryById(@PathVariable("id") Integer id) {
-//        SprCategory sprCategory = productCategoryRepository.findByIdCategory(id);
-//        return sprCategory;
-//    }
+    @RequestMapping("/name/{id}")
+    public SprCategory getCategoryById(@PathVariable("id") Integer id) {
+        SprCategory sprCategory = productCategoryRepository.findByIdCategory(id);
+        return sprCategory;
+    }
 
     @RequestMapping("/child")
     public List<SprCategory> findCategoryByParentId(){
@@ -47,4 +48,8 @@ public class ProductCategoryController {
         return productCategoryRepository.save(category);
     }
 
+    @RequestMapping("/parent_with_img")
+    public List<ImgCategory> findAllImgCategoryJoinCategory(){
+        return productCategoryRepository.findCategoryByParentIdWithImg(0);
+    }
 }
