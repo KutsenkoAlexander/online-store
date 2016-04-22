@@ -19,7 +19,15 @@ public interface ProductCategoryRepository extends JpaRepository<SprCategory, In
     List<SprCategory> findByParentIdNotOrderByNameAsc(Integer parentId);
 
     @Async
-    @Query("SELECT i FROM ImgCategory i JOIN FETCH i.sprCategoryByCategoryId where i.sprCategoryByCategoryId.parentId = ?1")
-    List<ImgCategory> findCategoryByParentIdWithImg(Integer parentId);
+    @Query("select i from ImgCategory i join fetch i.sprCategoryByCategoryId " +
+            "where i.sprCategoryByCategoryId.parentId = ?1 " +
+            "order by i.sprCategoryByCategoryId.name")
+    List<ImgCategory> findParentCategoryWithImg(Integer parentId);
+
+    @Async
+    @Query("select i from ImgCategory i join fetch i.sprCategoryByCategoryId " +
+            "where i.sprCategoryByCategoryId.parentId <> ?1 " +
+            "order by i.sprCategoryByCategoryId.name")
+    List<ImgCategory> findChildCategoryWithImg(Integer parentId);
 
 }

@@ -31,16 +31,26 @@ public class ProductCategoryController {
         return sprCategory;
     }
 
+    @RequestMapping("/parent")
+    public List<SprCategory> findParentCategory(){
+        List<SprCategory> sprCategories = productCategoryRepository.findByParentIdOrderByNameAsc(0);
+        return sprCategories;
+    }
+
+    @RequestMapping("/parent_with_img")
+    public List<ImgCategory> findParentCategoryWithImage(){
+        return productCategoryRepository.findParentCategoryWithImg(0);
+    }
+
     @RequestMapping("/child")
     public List<SprCategory> findCategoryByParentId(){
         List<SprCategory> sprCategories = productCategoryRepository.findByParentIdNotOrderByNameAsc(0);
         return sprCategories;
     }
 
-    @RequestMapping("/parent")
-    public List<SprCategory> findParentCategory(){
-        List<SprCategory> sprCategories = productCategoryRepository.findByParentIdOrderByNameAsc(0);
-        return sprCategories;
+    @RequestMapping("/child_with_img")
+    public List<ImgCategory> findChildCategoryWithImage(){
+        return productCategoryRepository.findChildCategoryWithImg(0);
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -48,8 +58,4 @@ public class ProductCategoryController {
         return productCategoryRepository.save(category);
     }
 
-    @RequestMapping("/parent_with_img")
-    public List<ImgCategory> findAllImgCategoryJoinCategory(){
-        return productCategoryRepository.findCategoryByParentIdWithImg(0);
-    }
 }
