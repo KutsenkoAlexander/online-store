@@ -46,9 +46,9 @@
                                     ngf-select="uploadFiles($file, $invalidFiles)"
                                     accept="image/*"
                                     ngf-max-height="1000"
-                                    ngf-max-size="1MB">Select File</button>
+                                    ngf-max-size="1MB">Выберите изображение</button>
                             <br><br>
-                            File:
+                            Файл:
                             <div style="font-size: 14px;">
                                 {{f.name}}
                                 {{errFile.name}}
@@ -58,6 +58,7 @@
                                   <div style="width:{{f.progress}}%" ng-bind="f.progress + '%'"></div>
                               </span>
                             </div>
+                            {{savedIdCategoryImg}}
                             {{errorMsg}}
                         </td>
                     </tr>

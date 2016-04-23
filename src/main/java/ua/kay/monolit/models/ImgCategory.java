@@ -1,11 +1,15 @@
 package ua.kay.monolit.models;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Arrays;
 
+@Component
+@Scope("prototype")
 @Entity
 @Table(name = "img_category", schema = "", catalog = "monolit")
 public class ImgCategory implements Serializable {

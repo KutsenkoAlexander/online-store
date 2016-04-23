@@ -29,6 +29,7 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
                 });
 
                 file.upload.then(function (response) {
+                    $scope.savedIdCategoryImg = response;
                     $timeout(function () {
                         file.result = response.data;
                     });
