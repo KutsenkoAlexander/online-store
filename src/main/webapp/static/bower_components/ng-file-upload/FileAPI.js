@@ -1307,7 +1307,6 @@
 						queue.inc();
 
 						file.toData(function (err, image){
-							// @todo: error
 							filename = filename || (new Date).getTime()+'.png';
 
 							_addFile(image);
@@ -2198,8 +2197,6 @@
 			}
 		}
 
-
-		// @todo: Оло-ло, нужно рефакторить это место
 		if( file.width ){
 			_transform(false, file);
 		} else {
@@ -3976,7 +3973,7 @@
 										api.log('FlashAPI.upload.'+type);
 
 										if( type == 'progress' ){
-											evt.loaded = Math.min(evt.loaded, evt.total); // @todo fixme
+											evt.loaded = Math.min(evt.loaded, evt.total);
 											evt.lengthComputable = true;
 											options.progress(evt);
 										}
