@@ -18,7 +18,7 @@ angular.module('monolitApp.category', ['ui.router', 'ngResource'])
     })
 
     .factory('categoryFactory', function ($resource) {
-        return $resource('/catalog/category/:id', {id: '@id'});
+        return $resource('/catalog/category/child_with_img/:id', {id: '@id'});
     })
     
     .factory('categoryCacheFactory', function ($cacheFactory) {

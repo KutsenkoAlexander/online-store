@@ -26,7 +26,7 @@ public interface ProductCategoryRepository extends JpaRepository<SprCategory, In
 
     @Async
     @Query("select i from ImgCategory i join fetch i.sprCategoryByCategoryId " +
-            "where i.sprCategoryByCategoryId.parentId <> ?1 " +
+            "where i.sprCategoryByCategoryId.parentId = ?1 " +
             "order by i.sprCategoryByCategoryId.name")
     List<ImgCategory> findChildCategoryWithImg(Integer parentId);
 

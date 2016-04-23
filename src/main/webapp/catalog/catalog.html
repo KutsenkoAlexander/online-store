@@ -1,9 +1,8 @@
 <div ng-repeat="category in catalog">
-    <a ui-sref="category({category : category.idCategory})"
-       ng-if="category.parentId === 0"
+    <a ui-sref="category({category : category.categoryId})"
        class="ng-cloak col-xs-4 parent_category"
-       title="{{category.name}}">
-        <img data-ng-src="data:image/jpg;base64,{{category.img}}"/>
-        <h2 ng-bind="category.name"></h2>
+       title="{{category.sprCategoryByCategoryId.name}}">
+        <img data-ng-src="data:image/jpg;base64,{{category.image    }}"/>
+        <h2 ng-bind="category.sprCategoryByCategoryId.name"></h2>
     </a>
 </div>

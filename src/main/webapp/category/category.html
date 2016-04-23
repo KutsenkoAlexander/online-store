@@ -1,13 +1,11 @@
 <div class="row main_category">
     <div ng-repeat="category in categories">
-        <a ng-if="category.parentId !== 0"
-           ui-sref="productList({productList : category.idCategory})"
+        <a ui-sref="productList({productList : category.sprCategoryByCategoryId.idCategory})"
            sub-category="sub-category"
            class="ng-cloak col-xs-4 child_category"
-           title="{{category.name}}">
-            <img data-ng-src="data:image/*;base64,{{category.img}}"/>
-            <!--<img data-ng-src="data:image/*;base64,{{base64.decode(category.img)}}"/>-->
-            <h2 ng-bind="category.name"></h2>
+           title="{{category.sprCategoryByCategoryId.name}}">
+            <img data-ng-src="data:image/*;base64,{{category.image}}"/>
+            <h2 ng-bind="category.sprCategoryByCategoryId.name"></h2>
         </a>
     </div>
 </div>

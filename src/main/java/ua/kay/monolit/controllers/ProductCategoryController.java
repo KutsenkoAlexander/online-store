@@ -12,13 +12,10 @@ import java.util.List;
 @RequestMapping("/catalog/category")
 public class ProductCategoryController {
 
+    private static final int PARENT_ID = 0;
+
     @Autowired
     ProductCategoryRepository productCategoryRepository;
-
-    @RequestMapping
-    public List<SprCategory> getAll() {
-        return productCategoryRepository.findByParentIdOrderByNameAsc(0);
-    }
 
     @RequestMapping("/{id}")
     public List<SprCategory> getByParentIdOrderByNameAsc(@PathVariable("id") Integer id) {
@@ -33,24 +30,24 @@ public class ProductCategoryController {
 
     @RequestMapping("/parent")
     public List<SprCategory> findParentCategory(){
-        List<SprCategory> sprCategories = productCategoryRepository.findByParentIdOrderByNameAsc(0);
+        List<SprCategory> sprCategories = productCategoryRepository.findByParentIdOrderByNameAsc(PARENT_ID);
         return sprCategories;
     }
 
     @RequestMapping("/parent_with_img")
     public List<ImgCategory> findParentCategoryWithImage(){
-        return productCategoryRepository.findParentCategoryWithImg(0);
+        return productCategoryRepository.findParentCategoryWithImg(PARENT_ID);
     }
 
     @RequestMapping("/child")
     public List<SprCategory> findCategoryByParentId(){
-        List<SprCategory> sprCategories = productCategoryRepository.findByParentIdNotOrderByNameAsc(0);
+        List<SprCategory> sprCategories = productCategoryRepository.findByParentIdNotOrderByNameAsc(PARENT_ID);
         return sprCategories;
     }
 
-    @RequestMapping("/child_with_img")
-    public List<ImgCategory> findChildCategoryWithImage(){
-        return productCategoryRepository.findChildCategoryWithImg(0);
+    @RequestMapping("/child_with_img/{id}")
+    public List<ImgCategory> findChildCategoryWithImage(@PathVariable("id") Integer id){
+        return productCategoryRepository.findChildCategoryWithImg(id);
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
