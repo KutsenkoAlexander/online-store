@@ -19,7 +19,7 @@ public class ImgProduct implements Serializable {
     private long idImgProduct;
 
     @Basic
-    @Column(name = "image")
+    @Column(name = "image", nullable = true)
     private byte[] image;
 
     @Basic

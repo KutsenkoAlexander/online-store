@@ -8,7 +8,7 @@ angular.module('monolitApp.breadcrumbs', ['monolitApp.sort'])
         return $cacheFactory('breadcrumbsCache', {});
     })
     
-    .controller('breadcrumbsCtrl', function ($scope, $filter) {
+    .controller('breadcrumbsCtrl', function ($scope) {
         $scope.$on('page', function (event, data) {
             $scope.stateNavigation = [];
             if(data.currentUrl !== '/') {

@@ -17,7 +17,7 @@ public class Product implements Serializable {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id_product", nullable = false, insertable = true, updatable = true)
-    private Long idProduct;
+    private long idProduct;
 
     @Basic
     @Column(name = "product_code", nullable = false, insertable = true, updatable = true)
@@ -83,11 +83,11 @@ public class Product implements Serializable {
     @JoinColumn(name = "type_id", referencedColumnName = "id_spr_type", nullable = false, insertable = false, updatable = false)
     private SprType sprTypeByTypeId;
 
-    public Long getIdProduct() {
+    public long getIdProduct() {
         return idProduct;
     }
 
-    public void setIdProduct(Long idProduct) {
+    public void setIdProduct(long idProduct) {
         this.idProduct = idProduct;
     }
 

@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.PagedResources;
 import org.springframework.web.bind.annotation.*;
+import ua.kay.monolit.models.ImgProduct;
 import ua.kay.monolit.models.Product;
 import ua.kay.monolit.repositories.ProductRepository;
 
@@ -21,7 +22,7 @@ public class ProductController {
     ProductRepository productRepository;
 
     @RequestMapping("/product_id/{id}")
-    public Product findByIdProduct(@PathVariable("id") Long id) {
+    public ImgProduct findByIdProduct(@PathVariable("id") Long id) {
         return productRepository.findByIdProduct(id);
     }
 
