@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.Collection;
+import java.util.Set;
 
 @Component
 @Scope("prototype")
@@ -29,13 +29,20 @@ public class Image implements Serializable {
     private byte[] image;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "imageByImageId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Collection<FullCategory> fullCategoriesByIdImage;
+    @OneToMany(mappedBy = "image", fetch = FetchType.LAZY)
+    private Set<SprCategory> sprCategories;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "imageByImageId" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Collection<FullProduct> fullProductsByIdImage;
+    @OneToMany(mappedBy = "image", fetch = FetchType.LAZY)
+    private Set<Product> product;
 
+    public Set<SprCategory> getSprCategories() {
+        return sprCategories;
+    }
+
+    public void setSprCategories(Set<SprCategory> sprCategories) {
+        this.sprCategories = sprCategories;
+    }
 
     public long getIdImage() {
         return idImage;
@@ -52,22 +59,6 @@ public class Image implements Serializable {
 
     public void setImage(byte[] image) {
         this.image = image;
-    }
-
-    public Collection<FullCategory> getFullCategoriesByIdImage() {
-        return fullCategoriesByIdImage;
-    }
-
-    public void setFullCategoriesByIdImage(Collection<FullCategory> fullCategoriesByIdImage) {
-        this.fullCategoriesByIdImage = fullCategoriesByIdImage;
-    }
-
-    public Collection<FullProduct> getFullProductsByIdImage() {
-        return fullProductsByIdImage;
-    }
-
-    public void setFullProductsByIdImage(Collection<FullProduct> fullProductsByIdImage) {
-        this.fullProductsByIdImage = fullProductsByIdImage;
     }
 
     @Override

@@ -1,11 +1,10 @@
 package ua.kay.monolit.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Product", schema = "", catalog = "monolit")
@@ -19,23 +18,15 @@ public class Product implements Serializable {
     @Column(name = "id_product", nullable = false, insertable = true, updatable = true)
     private long idProduct;
 
-    @Basic
     @Column(name = "product_code")
     private long productCode;
 
-    @Basic
-    @Column(name = "category_id")
-    private int categoryId;
-
-    @Basic
     @Column(name = "title")
     private String title;
 
-    @Basic
     @Column(name = "description")
     private String description;
 
-    @Basic
     @Column(name = "price")
     private double price;
 
@@ -43,45 +34,29 @@ public class Product implements Serializable {
     @Column(name = "exist")
     private byte exist;
 
-    @Basic
-    @Column(name = "consumer_id")
-    private Long consumerId;
-
-    @Basic
-    @Column(name = "color_id")
-    private Integer colorId;
-
-    @Basic
-    @Column(name = "type_id")
-    private Integer typeId;
-
-    @Basic
-    @Column(name = "size_id")
-    private Integer sizeId;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "productByProductId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Collection<FullProduct> fullProductsByIdProduct;
+    @ManyToOne
+    @JoinColumn(name = "image_id", nullable = true)
+    private Image image;
 
     @ManyToOne
-    @JoinColumn(name = "category_id", referencedColumnName = "id_category", nullable = false, updatable = false, insertable = false)
-    private SprCategory sprCategoryByCategoryId;
+    @JoinColumn(name = "category_id", nullable = false)
+    private SprCategory sprCategory;
 
     @ManyToOne
-    @JoinColumn(name = "color_id", referencedColumnName = "id_spr_colors", nullable = false, updatable = false, insertable = false)
-    private SprColor sprColorByColorId;
+    @JoinColumn(name = "color_id", nullable = true)
+    private SprColor sprColor;
 
     @ManyToOne
-    @JoinColumn(name = "consumer_id", referencedColumnName = "id_consumer", nullable = false, updatable = false, insertable = false)
-    private SprConsumer sprConsumerByConsumerId;
+    @JoinColumn(name = "consumer_id", nullable = true)
+    private SprConsumer sprConsumer;
 
     @ManyToOne
-    @JoinColumn(name = "size_id", referencedColumnName = "id_spr_size", nullable = false, updatable = false, insertable = false)
-    private SprSize sprSizeBySizeId;
+    @JoinColumn(name = "size_id", nullable = true)
+    private SprSize sprSize;
 
     @ManyToOne
-    @JoinColumn(name = "type_id", referencedColumnName = "id_spr_type", nullable = false, updatable = false, insertable = false)
-    private SprType sprTypeByTypeId;
+    @JoinColumn(name = "type_id", nullable = true)
+    private SprType sprType;
 
     public long getIdProduct() {
         return idProduct;
@@ -97,14 +72,6 @@ public class Product implements Serializable {
 
     public void setProductCode(long productCode) {
         this.productCode = productCode;
-    }
-
-    public int getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
     }
 
     public String getTitle() {
@@ -139,125 +106,79 @@ public class Product implements Serializable {
         this.exist = exist;
     }
 
-    public Long getConsumerId() {
-        return consumerId;
+    public Image getImage() {
+        return image;
     }
 
-    public void setConsumerId(Long consumerId) {
-        this.consumerId = consumerId;
+    public void setImage(Image image) {
+        this.image = image;
     }
 
-    public Integer getColorId() {
-        return colorId;
+    public SprCategory getSprCategory() {
+        return sprCategory;
     }
 
-    public void setColorId(Integer colorId) {
-        this.colorId = colorId;
+    public void setSprCategory(SprCategory sprCategory) {
+        this.sprCategory = sprCategory;
     }
 
-    public Integer getTypeId() {
-        return typeId;
+    public SprColor getSprColor() {
+        return sprColor;
     }
 
-    public void setTypeId(Integer typeId) {
-        this.typeId = typeId;
+    public void setSprColor(SprColor sprColor) {
+        this.sprColor = sprColor;
     }
 
-    public Integer getSizeId() {
-        return sizeId;
+    public SprConsumer getSprConsumer() {
+        return sprConsumer;
     }
 
-    public void setSizeId(Integer sizeId) {
-        this.sizeId = sizeId;
+    public void setSprConsumer(SprConsumer sprConsumer) {
+        this.sprConsumer = sprConsumer;
     }
 
-    public Collection<FullProduct> getFullProductsByIdProduct() {
-        return fullProductsByIdProduct;
+    public SprSize getSprSize() {
+        return sprSize;
     }
 
-    public void setFullProductsByIdProduct(Collection<FullProduct> fullProductsByIdProduct) {
-        this.fullProductsByIdProduct = fullProductsByIdProduct;
+    public void setSprSize(SprSize sprSize) {
+        this.sprSize = sprSize;
     }
 
-    public SprCategory getSprCategoryByCategoryId() {
-        return sprCategoryByCategoryId;
+    public SprType getSprType() {
+        return sprType;
     }
 
-    public void setSprCategoryByCategoryId(SprCategory sprCategoryByCategoryId) {
-        this.sprCategoryByCategoryId = sprCategoryByCategoryId;
-    }
-
-    public SprColor getSprColorByColorId() {
-        return sprColorByColorId;
-    }
-
-    public void setSprColorByColorId(SprColor sprColorByColorId) {
-        this.sprColorByColorId = sprColorByColorId;
-    }
-
-    public SprConsumer getSprConsumerByConsumerId() {
-        return sprConsumerByConsumerId;
-    }
-
-    public void setSprConsumerByConsumerId(SprConsumer sprConsumerByConsumerId) {
-        this.sprConsumerByConsumerId = sprConsumerByConsumerId;
-    }
-
-    public SprSize getSprSizeBySizeId() {
-        return sprSizeBySizeId;
-    }
-
-    public void setSprSizeBySizeId(SprSize sprSizeBySizeId) {
-        this.sprSizeBySizeId = sprSizeBySizeId;
-    }
-
-    public SprType getSprTypeByTypeId() {
-        return sprTypeByTypeId;
-    }
-
-    public void setSprTypeByTypeId(SprType sprTypeByTypeId) {
-        this.sprTypeByTypeId = sprTypeByTypeId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Product product = (Product) o;
-
-        if (idProduct != product.idProduct) return false;
-        if (productCode != product.productCode) return false;
-        if (categoryId != product.categoryId) return false;
-        if (Double.compare(product.price, price) != 0) return false;
-        if (exist != product.exist) return false;
-        if (title != null ? !title.equals(product.title) : product.title != null) return false;
-        if (description != null ? !description.equals(product.description) : product.description != null) return false;
-        if (consumerId != null ? !consumerId.equals(product.consumerId) : product.consumerId != null) return false;
-        if (colorId != null ? !colorId.equals(product.colorId) : product.colorId != null) return false;
-        if (typeId != null ? !typeId.equals(product.typeId) : product.typeId != null) return false;
-        if (sizeId != null ? !sizeId.equals(product.sizeId) : product.sizeId != null) return false;
-
-        return true;
+    public void setSprType(SprType sprType) {
+        this.sprType = sprType;
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = (int) (idProduct ^ (idProduct >>> 32));
-        result = 31 * result + (int) (productCode ^ (productCode >>> 32));
-        result = 31 * result + categoryId;
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        temp = Double.doubleToLongBits(price);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (int) exist;
-        result = 31 * result + (consumerId != null ? consumerId.hashCode() : 0);
-        result = 31 * result + (colorId != null ? colorId.hashCode() : 0);
-        result = 31 * result + (typeId != null ? typeId.hashCode() : 0);
-        result = 31 * result + (sizeId != null ? sizeId.hashCode() : 0);
-        return result;
+        return Objects.hash(idProduct, productCode, title, description, price, exist, image, sprCategory, sprColor, sprConsumer, sprSize, sprType);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final Product other = (Product) obj;
+        return Objects.equals(this.idProduct, other.idProduct)
+                && Objects.equals(this.productCode, other.productCode)
+                && Objects.equals(this.title, other.title)
+                && Objects.equals(this.description, other.description)
+                && Objects.equals(this.price, other.price)
+                && Objects.equals(this.exist, other.exist)
+                && Objects.equals(this.image, other.image)
+                && Objects.equals(this.sprCategory, other.sprCategory)
+                && Objects.equals(this.sprColor, other.sprColor)
+                && Objects.equals(this.sprConsumer, other.sprConsumer)
+                && Objects.equals(this.sprSize, other.sprSize)
+                && Objects.equals(this.sprType, other.sprType);
+    }
 }

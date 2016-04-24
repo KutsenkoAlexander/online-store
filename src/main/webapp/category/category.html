@@ -1,11 +1,11 @@
 <div class="row main_category">
     <div ng-repeat="category in categories">
-        <a ui-sref="productList({productList : category.sprCategoryByCategoryId.idCategory})"
+        <a ui-sref="productList({productList : category.idCategory})"
            sub-category="sub-category"
            class="ng-cloak col-xs-4 child_category"
-           title="{{category.sprCategoryByCategoryId.name}}">
-            <img data-ng-src="data:image/*;base64,{{category.imageByImageId.image}}"/>
-            <h2 ng-bind="category.sprCategoryByCategoryId.name"></h2>
+           title="{{category.name}}">
+            <img data-ng-src="data:image/*;base64,{{category.image.image}}"/>
+            <h2 ng-bind="category.name"></h2>
         </a>
     </div>
 </div>

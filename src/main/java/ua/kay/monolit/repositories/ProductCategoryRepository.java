@@ -12,8 +12,4 @@ public interface ProductCategoryRepository extends JpaRepository<SprCategory, In
 
     @Async
     SprCategory findByIdCategory(Integer id);
-
-    @Async
-    List<SprCategory> findByParentIdNotOrderByNameAsc(Integer parentId);
-
 }

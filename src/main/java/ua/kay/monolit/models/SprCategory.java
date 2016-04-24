@@ -5,7 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Table(name = "spr_category", schema = "", catalog = "monolit")
@@ -17,7 +17,7 @@ public class SprCategory implements Serializable {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id_category", nullable = false, insertable = true, updatable = true)
-    private int idCategory;
+    private Integer idCategory;
 
     @Basic
     @Column(name = "name")
@@ -27,19 +27,19 @@ public class SprCategory implements Serializable {
     @Column(name = "parent_id")
     private int parentId;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "sprCategoryByCategoryId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Collection<FullCategory> fullCategoriesByIdCategory;
+    @ManyToOne
+    @JoinColumn(name = "image_id", nullable = true)
+    private Image image;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "sprCategoryByCategoryId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Collection<Product> productsByIdCategory;
+    @OneToMany(mappedBy = "sprCategory", fetch = FetchType.LAZY)
+    private Set<Product> products;
 
-    public int getIdCategory() {
+    public Integer getIdCategory() {
         return idCategory;
     }
 
-    public void setIdCategory(int idCategory) {
+    public void setIdCategory(Integer idCategory) {
         this.idCategory = idCategory;
     }
 
@@ -59,20 +59,20 @@ public class SprCategory implements Serializable {
         this.parentId = parentId;
     }
 
-    public Collection<FullCategory> getFullCategoriesByIdCategory() {
-        return fullCategoriesByIdCategory;
+    public Image getImage() {
+        return image;
     }
 
-    public void setFullCategoriesByIdCategory(Collection<FullCategory> fullCategoriesByIdCategory) {
-        this.fullCategoriesByIdCategory = fullCategoriesByIdCategory;
+    public void setImage(Image image) {
+        this.image = image;
     }
 
-    public Collection<Product> getProductsByIdCategory() {
-        return productsByIdCategory;
+    public Set<Product> getProducts() {
+        return products;
     }
 
-    public void setProductsByIdCategory(Collection<Product> productsByIdCategory) {
-        this.productsByIdCategory = productsByIdCategory;
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 
     @Override

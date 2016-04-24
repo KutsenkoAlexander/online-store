@@ -5,7 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Table(name = "spr_consumer", schema = "", catalog = "monolit")
@@ -24,8 +24,8 @@ public class SprConsumer implements Serializable {
     private String name;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "sprConsumerByConsumerId")
-    private Collection<Product> productsByIdConsumer;
+    @OneToMany(mappedBy = "sprConsumer", fetch = FetchType.LAZY)
+    private Set<Product> products;
 
     public long getIdConsumer() {
         return idConsumer;
@@ -43,12 +43,12 @@ public class SprConsumer implements Serializable {
         this.name = name;
     }
 
-    public Collection<Product> getProductsByIdConsumer() {
-        return productsByIdConsumer;
+    public Set<Product> getProducts() {
+        return products;
     }
 
-    public void setProductsByIdConsumer(Collection<Product> productsByIdConsumer) {
-        this.productsByIdConsumer = productsByIdConsumer;
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 
     @Override
