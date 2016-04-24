@@ -58,7 +58,6 @@
                                   <div style="width:{{f.progress}}%" ng-bind="f.progress + '%'"></div>
                               </span>
                             </div>
-                            {{savedIdCategoryImg}}
                             {{errorMsg}}
                         </td>
                     </tr>
@@ -66,7 +65,7 @@
             </div>
         </div>
     </div>
-    <button class="btn btn-success admin_save_edit_btn" ng-click="saveCategory(name_category, category.idCategory, files)">
+    <button class="btn btn-success admin_save_edit_btn" ng-click="saveCategory(name_category, category.idCategory)">
         Сохранить
     </button>
     <button class="btn btn-default admin_cancel_edit_btn" ng-click="cancelAddCategory()">Отмена</button>

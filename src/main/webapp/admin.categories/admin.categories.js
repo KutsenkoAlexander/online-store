@@ -4,10 +4,15 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
         return $resource('/catalog/category/save', {},{'save': {method:'POST'}});
     })
 
-    .controller('adminCategoryCtrl', function($scope,
+    .factory('saveFullCategoryFactory', function($resource){
+        return $resource('/full_category/save', {},{'save': {method:'POST'}});
+    })
+
+    .controller('adminCategoryCtrl', function($scope, $http,
                                               allParentCategoryFactory,
                                               allChildCategoryFactory,
                                               saveCategoryFactory,
+                                              saveFullCategoryFactory,
                                               Upload, $timeout){
 
         $scope.files = [];
@@ -48,18 +53,15 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
             $scope.newGood = true;
         };
 
-        $scope.saveCategory = function(name, parentId, img){
+        $scope.saveCategory = function(name, parentId){
             $scope.isCategoryAdd = false;
             $scope.newGood = true;
             var category = {
                 "name": name,
-                "parentId": parentId,
-                "img": img[0]
+                "parentId": parentId
             };
-            saveCategoryFactory.save(category);
-            angular.forEach($scope.blobFiles, function(data){
-                $scope.fileMy = data;
-            });
+            saveFullCategoryFactory.save(category);
+
             $scope.categories = allChildCategoryFactory.query();
         }
     });

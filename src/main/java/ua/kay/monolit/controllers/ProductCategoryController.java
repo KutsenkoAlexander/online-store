@@ -45,8 +45,9 @@ public class ProductCategoryController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public SprCategory saveCategory(@RequestBody SprCategory category){
-        return productCategoryRepository.save(category);
+    public Integer saveCategory(@RequestBody SprCategory category){
+        SprCategory savedSprCategory = productCategoryRepository.save(category);
+        return savedSprCategory.getIdCategory();
     }
 
     @RequestMapping("/parent_with_img")

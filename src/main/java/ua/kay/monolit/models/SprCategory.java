@@ -17,7 +17,7 @@ public class SprCategory implements Serializable {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id_category", nullable = false, insertable = true, updatable = true)
-    private Integer idCategory;
+    private int idCategory;
 
     @Basic
     @Column(name = "name")
