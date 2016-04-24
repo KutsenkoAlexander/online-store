@@ -2,8 +2,6 @@ package ua.kay.monolit.controllers;
 
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,7 +11,6 @@ import ua.kay.monolit.models.Image;
 import ua.kay.monolit.repositories.ImageRepository;
 
 import java.io.IOException;
-import java.util.List;
 
 @RestController
 public class ImageController {
