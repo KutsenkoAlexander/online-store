@@ -220,10 +220,10 @@ angular.module('monolitApp.sort', ['ui.router', 'ngResource'])
                     paramsFactory.id = $stateParams.productList;
                     switch (item.value){
                         case 1:
-                            paramsFactory.sort = 'price,asc';
+                            paramsFactory.sort = 'productByProductId.price,asc';
                             break;
                         case 2:
-                            paramsFactory.sort = 'price,desc';
+                            paramsFactory.sort = 'productByProductId.price,desc';
                             break;
                         default:
                             paramsFactory.sort = null;
@@ -240,11 +240,11 @@ angular.module('monolitApp.sort', ['ui.router', 'ngResource'])
             paramsFactory.id = $stateParams.productList;
             switch (price){
                 case 1:
-                    paramsFactory.sort = 'price,asc';
+                    paramsFactory.sort = 'productByProductId.price,asc';
                     getResultSortQuery(paramsFactory);
                     break;
                 case 2:
-                    paramsFactory.sort = 'price,desc';
+                    paramsFactory.sort = 'productByProductId.price,desc';
                     getResultSortQuery(paramsFactory);
                     break;
                 default:

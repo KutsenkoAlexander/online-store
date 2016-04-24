@@ -24,12 +24,12 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
             $scope.errFile = errFiles && errFiles[0];
             if (file) {
                 file.upload = Upload.upload({
-                    url: '/img_category/save',
+                    url: '/image/save',
                     data: {file: file}
                 });
 
                 file.upload.then(function (response) {
-                    $scope.savedIdCategoryImg = response;
+                    $scope.savedIdCategoryImg = response.data;
                     $timeout(function () {
                         file.result = response.data;
                     });

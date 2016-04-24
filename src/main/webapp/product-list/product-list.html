@@ -11,8 +11,8 @@
             <!--img-->
             <div class="col-xs-6 set_text_align_center">
                 <a ui-sref="productId({productId : product.productByProductId.idProduct})">
-                    <img ng-show="product.image" ng-src='data:image/jpeg; base64,{{product.image}}'/>
-                    <img ng-hide="product.image" ng-src="../static/img/no-image.png" type="image/png">
+                    <img ng-show="product.imageByImageId.image" ng-src='data:image/jpeg; base64,{{product.imageByImageId.image}}'/>
+                    <img ng-hide="product.imageByImageId.image" ng-src="../static/img/no-image.png" type="image/png">
                 </a>
             </div>
             <!--product digits-->

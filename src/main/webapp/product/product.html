@@ -1,7 +1,7 @@
 <div class="ng-cloak main_category">
     <div ng-hide="!product" class="single_product">
-        <img ng-show="product.image" ng-src='data:image/jpeg; base64,{{product.image}}' class="single_product_img"/>
-        <img ng-hide="product.image" src="../static/img/no-image.png" type="image/jpeg" class="single_product_img"/>
+        <img ng-src="data:image/jpeg; base64,{{product.imageByImageId.image}}" class="single_product_img"/>
+        <img ng-show="!product.imageByImageId.image" src="../static/img/no-image.png" type="image/jpeg" class="single_product_img"/>
         <div class="describe_product">
             <h1>{{product.productByProductId.title}}</h1>
             <table>

@@ -20,67 +20,67 @@ public class Product implements Serializable {
     private long idProduct;
 
     @Basic
-    @Column(name = "product_code", nullable = false, insertable = true, updatable = true)
-    private Long productCode;
+    @Column(name = "product_code")
+    private long productCode;
 
     @Basic
-    @Column(name = "category_id", nullable = false, insertable = true, updatable = true)
-    private Integer categoryId;
+    @Column(name = "category_id")
+    private int categoryId;
 
     @Basic
-    @Column(name = "title", nullable = false, insertable = true, updatable = true, length = 255)
+    @Column(name = "title")
     private String title;
 
     @Basic
-    @Column(name = "description", nullable = false, insertable = true, updatable = true, length = 2147483647)
+    @Column(name = "description")
     private String description;
 
     @Basic
-    @Column(name = "price", nullable = false, insertable = true, updatable = true, precision = 0)
-    private Double price;
+    @Column(name = "price")
+    private double price;
 
     @Basic
-    @Column(name = "exist", nullable = false, insertable = true, updatable = true)
-    private Byte exist;
+    @Column(name = "exist")
+    private byte exist;
 
     @Basic
-    @Column(name = "consumer_id", nullable = false, insertable = true, updatable = true)
+    @Column(name = "consumer_id")
     private Long consumerId;
 
     @Basic
-    @Column(name = "color_id", nullable = false, insertable = true, updatable = true)
+    @Column(name = "color_id")
     private Integer colorId;
 
     @Basic
-    @Column(name = "type_id", nullable = false, insertable = true, updatable = true)
+    @Column(name = "type_id")
     private Integer typeId;
 
     @Basic
-    @Column(name = "size_id", nullable = false, insertable = true, updatable = true)
+    @Column(name = "size_id")
     private Integer sizeId;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "productByProductId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Collection<ImgProduct> imgProductsByIdProduct;
+    @OneToMany(mappedBy = "productByProductId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Collection<FullProduct> fullProductsByIdProduct;
 
     @ManyToOne
-    @JoinColumn(name = "category_id", referencedColumnName = "id_category", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "category_id", referencedColumnName = "id_category", nullable = false, updatable = false, insertable = false)
     private SprCategory sprCategoryByCategoryId;
 
     @ManyToOne
-    @JoinColumn(name = "color_id", referencedColumnName = "id_spr_colors", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "color_id", referencedColumnName = "id_spr_colors", nullable = false, updatable = false, insertable = false)
     private SprColor sprColorByColorId;
 
     @ManyToOne
-    @JoinColumn(name = "consumer_id", referencedColumnName = "id_consumer", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "consumer_id", referencedColumnName = "id_consumer", nullable = false, updatable = false, insertable = false)
     private SprConsumer sprConsumerByConsumerId;
 
     @ManyToOne
-    @JoinColumn(name = "size_id", referencedColumnName = "id_spr_size", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "size_id", referencedColumnName = "id_spr_size", nullable = false, updatable = false, insertable = false)
     private SprSize sprSizeBySizeId;
 
     @ManyToOne
-    @JoinColumn(name = "type_id", referencedColumnName = "id_spr_type", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "type_id", referencedColumnName = "id_spr_type", nullable = false, updatable = false, insertable = false)
     private SprType sprTypeByTypeId;
 
     public long getIdProduct() {
@@ -91,19 +91,19 @@ public class Product implements Serializable {
         this.idProduct = idProduct;
     }
 
-    public Long getProductCode() {
+    public long getProductCode() {
         return productCode;
     }
 
-    public void setProductCode(Long productCode) {
+    public void setProductCode(long productCode) {
         this.productCode = productCode;
     }
 
-    public Integer getCategoryId() {
+    public int getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(Integer categoryId) {
+    public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
     }
 
@@ -123,19 +123,19 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public Byte getExist() {
+    public byte getExist() {
         return exist;
     }
 
-    public void setExist(Byte exist) {
+    public void setExist(byte exist) {
         this.exist = exist;
     }
 
@@ -171,12 +171,12 @@ public class Product implements Serializable {
         this.sizeId = sizeId;
     }
 
-    public Collection<ImgProduct> getImgProductsByIdProduct() {
-        return imgProductsByIdProduct;
+    public Collection<FullProduct> getFullProductsByIdProduct() {
+        return fullProductsByIdProduct;
     }
 
-    public void setImgProductsByIdProduct(Collection<ImgProduct> imgProductsByIdProduct) {
-        this.imgProductsByIdProduct = imgProductsByIdProduct;
+    public void setFullProductsByIdProduct(Collection<FullProduct> fullProductsByIdProduct) {
+        this.fullProductsByIdProduct = fullProductsByIdProduct;
     }
 
     public SprCategory getSprCategoryByCategoryId() {
@@ -231,12 +231,12 @@ public class Product implements Serializable {
         if (categoryId != product.categoryId) return false;
         if (Double.compare(product.price, price) != 0) return false;
         if (exist != product.exist) return false;
-        if (consumerId != product.consumerId) return false;
-        if (colorId != product.colorId) return false;
-        if (typeId != product.typeId) return false;
-        if (sizeId != product.sizeId) return false;
         if (title != null ? !title.equals(product.title) : product.title != null) return false;
         if (description != null ? !description.equals(product.description) : product.description != null) return false;
+        if (consumerId != null ? !consumerId.equals(product.consumerId) : product.consumerId != null) return false;
+        if (colorId != null ? !colorId.equals(product.colorId) : product.colorId != null) return false;
+        if (typeId != null ? !typeId.equals(product.typeId) : product.typeId != null) return false;
+        if (sizeId != null ? !sizeId.equals(product.sizeId) : product.sizeId != null) return false;
 
         return true;
     }
@@ -253,10 +253,10 @@ public class Product implements Serializable {
         temp = Double.doubleToLongBits(price);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (int) exist;
-        result = 31 * result + (int) (consumerId ^ (consumerId >>> 32));
-        result = 31 * result + colorId;
-        result = 31 * result + typeId;
-        result = 31 * result + sizeId;
+        result = 31 * result + (consumerId != null ? consumerId.hashCode() : 0);
+        result = 31 * result + (colorId != null ? colorId.hashCode() : 0);
+        result = 31 * result + (typeId != null ? typeId.hashCode() : 0);
+        result = 31 * result + (sizeId != null ? sizeId.hashCode() : 0);
         return result;
     }
 

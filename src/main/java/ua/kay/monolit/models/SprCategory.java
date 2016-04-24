@@ -20,26 +20,26 @@ public class SprCategory implements Serializable {
     private Integer idCategory;
 
     @Basic
-    @Column(name = "name", nullable = false, insertable = true, updatable = true, length = 255)
+    @Column(name = "name")
     private String name;
 
     @Basic
-    @Column(name = "parent_id", nullable = false, insertable = true, updatable = true)
+    @Column(name = "parent_id")
     private int parentId;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "sprCategoryByCategoryId",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Collection<ImgCategory> imgCategoriesByIdCategory;
+    @OneToMany(mappedBy = "sprCategoryByCategoryId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Collection<FullCategory> fullCategoriesByIdCategory;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "sprCategoryByCategoryId",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Collection<Product> productsByIdProductCategory;
+    @OneToMany(mappedBy = "sprCategoryByCategoryId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Collection<Product> productsByIdCategory;
 
-    public Integer getIdCategory() {
+    public int getIdCategory() {
         return idCategory;
     }
 
-    public void setIdCategory(Integer idCategory) {
+    public void setIdCategory(int idCategory) {
         this.idCategory = idCategory;
     }
 
@@ -59,20 +59,20 @@ public class SprCategory implements Serializable {
         this.parentId = parentId;
     }
 
-    public Collection<ImgCategory> getImgCategoriesByIdCategory() {
-        return imgCategoriesByIdCategory;
+    public Collection<FullCategory> getFullCategoriesByIdCategory() {
+        return fullCategoriesByIdCategory;
     }
 
-    public void setImgCategoriesByIdCategory(Collection<ImgCategory> imgCategoriesByIdCategory) {
-        this.imgCategoriesByIdCategory = imgCategoriesByIdCategory;
+    public void setFullCategoriesByIdCategory(Collection<FullCategory> fullCategoriesByIdCategory) {
+        this.fullCategoriesByIdCategory = fullCategoriesByIdCategory;
     }
 
-    public Collection<Product> getProductsByIdProductCategory() {
-        return productsByIdProductCategory;
+    public Collection<Product> getProductsByIdCategory() {
+        return productsByIdCategory;
     }
 
-    public void setProductsByIdProductCategory(Collection<Product> productsByIdProductCategory) {
-        this.productsByIdProductCategory = productsByIdProductCategory;
+    public void setProductsByIdCategory(Collection<Product> productsByIdCategory) {
+        this.productsByIdCategory = productsByIdCategory;
     }
 
     @Override

@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.PagedResources;
 import org.springframework.web.bind.annotation.*;
-import ua.kay.monolit.models.ImgProduct;
+import ua.kay.monolit.models.FullProduct;
 import ua.kay.monolit.models.Product;
 import ua.kay.monolit.repositories.ProductRepository;
 
@@ -22,13 +22,13 @@ public class ProductController {
     ProductRepository productRepository;
 
     @RequestMapping("/product_id/{id}")
-    public ImgProduct findByIdProduct(@PathVariable("id") Long id) {
+    public FullProduct findByIdProduct(@PathVariable("id") Long id) {
         return productRepository.findByIdProduct(id);
     }
 
     @RequestMapping(value = "/category/{id}", method = RequestMethod.GET, produces = {"application/json"})
     public PagedResources<Product> getProducts(@PathVariable("id") Integer id, Pageable pageable, PagedResourcesAssembler assembler) {
-        Page<Product> products = productRepository.findByCategoryId(id, pageable);
+        Page<FullProduct> products = productRepository.findByCategoryId(id, pageable);
         return assembler.toResource(products);
     }
 
@@ -63,7 +63,7 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/sort/{categoryId}", method = RequestMethod.GET, produces = {"application/json"})
-    public PagedResources<Product> sortProduct(@PathVariable("categoryId") Integer categoryId,
+    public PagedResources<FullProduct> sortProduct(@PathVariable("categoryId") Integer categoryId,
                                      @PathParam("consumerId") Long consumerId,
                                      @PathParam("typeId") Integer typeId,
                                      @PathParam("sizeId") Integer sizeId,
@@ -71,7 +71,7 @@ public class ProductController {
                                      @PathParam("exist") Byte exist,
                                      Pageable pageable,
                                      PagedResourcesAssembler assembler) {
-        Page<Product> products =  productRepository.sortProduct(categoryId, consumerId, typeId, sizeId, colorId, exist, pageable);
+        Page<FullProduct> products =  productRepository.sortProduct(categoryId, consumerId, typeId, sizeId, colorId, exist, pageable);
         return assembler.toResource(products);
     }
 
