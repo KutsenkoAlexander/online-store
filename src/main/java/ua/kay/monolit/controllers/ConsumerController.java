@@ -2,7 +2,6 @@ package ua.kay.monolit.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ua.kay.monolit.models.Pages;
 import ua.kay.monolit.models.SprConsumer;
 import ua.kay.monolit.repositories.ConsumerRepository;
 
