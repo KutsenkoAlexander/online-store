@@ -6,7 +6,7 @@ angular.module('monolitApp.admin.page', ['ui.router', 'ngResource'])
                 url: "/pages",
                 views: {
                     'admin': {
-                        templateUrl: "admin.pages/admin.pages.html",
+                        templateUrl: "admin/pages/pages.html",
                         controller: 'adminPagesCtrl'
                     }
                 },

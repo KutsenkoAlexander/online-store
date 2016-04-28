@@ -26,7 +26,11 @@ var monolit = angular.module('monolitApp', [
     'monolitApp.admin.page',
     'monolitApp.admin.goods',
     'monolitApp.admin.slider',
-    'monolitApp.admin.categories'
+    'monolitApp.admin.categories',
+    'monolitApp.admin.consumer',
+    'monolitApp.admin.color',
+    'monolitApp.admin.type',
+    'monolitApp.admin.size'
 ]);
 
 monolit.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',

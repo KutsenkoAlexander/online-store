@@ -17,7 +17,7 @@
     <button ng-show="fastEdit" class="btn btn-default admin_add_new_good" ng-click="cancelFastEditGoods()">Отмена</button>
 </div>
 <div class="table-responsive" ng-controller="adminCategoryCtrl">
-    <div ng-hide="isCategoryAdd" ng-include=" 'admin.goods/admin.goods.table.html' "></div>
-    <div ng-hide="isCategoryAdd" ng-include=" 'admin.goods/admin.goods.add.edit.html' "></div>
-    <div ng-show="isCategoryAdd" ng-include=" 'admin.categories/admin.categories.html' "></div>
+    <div ng-hide="isCategoryAdd" ng-include=" 'admin/goods/goods.table.html' "></div>
+    <div ng-hide="isCategoryAdd" ng-include=" 'admin/goods/goods.add.edit.html' "></div>
+    <div ng-show="isCategoryAdd" ng-include=" 'admin/categories/categories.html' "></div>
 </div>

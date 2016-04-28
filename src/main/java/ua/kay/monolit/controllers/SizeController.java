@@ -16,6 +16,11 @@ public class SizeController {
     @Autowired
     SizeRepository sizeRepository;
 
+    @RequestMapping("/all")
+    public List<SprSize> findAllSizes(){
+        return sizeRepository.findAll();
+    }
+
     @RequestMapping("/{id}")
     public List<SprSize> getProductSizes(@PathVariable("id") Integer id) {
         return sizeRepository.findSizesByProductCategoryId(id);

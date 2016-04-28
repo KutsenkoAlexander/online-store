@@ -29,7 +29,7 @@ public class ImageController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return imageRepository.save(image);
+        return imageRepository.saveAndFlush(image);
     }
 
 }

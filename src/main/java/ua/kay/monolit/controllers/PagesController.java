@@ -30,7 +30,7 @@ public class PagesController {
 
     @RequestMapping(value = "/page", method = RequestMethod.POST)
     public Pages savePage(@RequestBody Pages pages){
-        return pagesRepositories.save(pages);
+        return pagesRepositories.saveAndFlush(pages);
     }
 
 }

@@ -20,16 +20,6 @@ public class ProductController {
     @Autowired
     ProductRepository productRepository;
 
-//    @RequestMapping("/price/{id}")
-//    public List<Product> getProductPrices(@PathVariable("id") Integer id) {
-//        return productRepository.findPricesProductByCategoryId(id);
-//    }
-//
-//    @RequestMapping("/exist/{id}")
-//    public List<Product> getProductExist(@PathVariable("id") Integer id) {
-//        return productRepository.findExistProductByCategoryId(id);
-//    }
-
     @RequestMapping(value = "/sort/{categoryId}", method = RequestMethod.GET, produces = {"application/json"})
     public PagedResources<Product> sortProduct(@PathVariable("categoryId") Integer categoryId,
                                                @PathParam("consumerId") Long consumerId,

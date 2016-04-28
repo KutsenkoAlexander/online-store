@@ -12,11 +12,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/type")
 public class TypeController {
+
     @Autowired
     TypeRepository typeRepository;
+
+    @RequestMapping("/all")
+    public List<SprType> findAllTypes(){
+        return typeRepository.findAll();
+    }
 
     @RequestMapping("/{id}")
     public List<SprType> getProductTypes(@PathVariable("id") Integer id) {
         return typeRepository.findTypesByProductCategoryId(id);
     }
+
 }

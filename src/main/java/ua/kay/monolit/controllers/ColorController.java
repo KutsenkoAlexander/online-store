@@ -16,6 +16,11 @@ public class ColorController {
     @Autowired
     ColorRepository colorRepository;
 
+    @RequestMapping("/all")
+    public List<SprColor> findAllColors(){
+        return colorRepository.findAll();
+    }
+
     @RequestMapping("/{id}")
     public List<SprColor> getProductColors(@PathVariable("id") Integer id) {
         return colorRepository.findColorsByProductCategoryId(id);

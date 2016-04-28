@@ -59,7 +59,7 @@ public class ProductCategoryController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public SprCategory saveCategory(@RequestBody SprCategory category){
-        return productCategoryRepository.save(category);
+        return productCategoryRepository.saveAndFlush(category);
     }
 
 }

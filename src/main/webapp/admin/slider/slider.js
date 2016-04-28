@@ -6,7 +6,7 @@ angular.module('monolitApp.admin.slider', ['ui.router', 'ngResource'])
                 url: "/slider",
                 views: {
                     'admin': {
-                        templateUrl: "admin.slider/admin.slider.html"
+                        templateUrl: "admin/slider/slider.html"
                         // controller: 'adminSliderCtrl'
                     }
                 },
