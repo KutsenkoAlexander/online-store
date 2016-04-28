@@ -6,13 +6,13 @@
              title="{{product.title}}">
             <!--title and description-->
             <div class="col-xs-12 title_product">
-                <a ui-sref="productId({productId : product.productByProductId.idProduct})">{{product.productByProductId.title}}</a>
+                <a ui-sref="productId({productId : product.idProduct})">{{product.title}}</a>
             </div>
             <!--img-->
             <div class="col-xs-6 set_text_align_center">
-                <a ui-sref="productId({productId : product.productByProductId.idProduct})">
-                    <img ng-show="product.imageByImageId.image" ng-src='data:image/jpeg; base64,{{product.imageByImageId.image}}'/>
-                    <img ng-hide="product.imageByImageId.image" ng-src="../static/img/no-image.png" type="image/png">
+                <a ui-sref="productId({productId : product.idProduct})">
+                    <img ng-show="product.image" ng-src='data:image/jpeg; base64,{{product.image.image}}'/>
+                    <img ng-hide="product.image" ng-src="../static/img/no-image.png" type="image/png">
                 </a>
             </div>
             <!--product digits-->
@@ -20,17 +20,17 @@
                 <div class="product_digits">
                     <div class="code">
                         <p class="product_description_text">Код товара:</p>
-                        <p class="product_description_digits">{{product.productByProductId.productCode}}</p>
+                        <p class="product_description_digits">{{product.productCode}}</p>
                     </div>
                     <div class="price">
                         <p class="product_description_text">Цена:</p>
-                        <p class="product_description_digits">{{product.productByProductId.price}}</p>
+                        <p class="product_description_digits">{{product.price}}</p>
                     </div>
-                    <div ng-if="product.productByProductId.exist === 1" class="exist_yes">
+                    <div ng-if="product.exist === 1" class="exist_yes">
                         <p class="exist_text">Наличие:</p>
                         <p class="product_exist">есть в наличии</p>
                     </div>
-                    <div ng-if="product.productByProductId.exist === 0" class="exist_no">
+                    <div ng-if="product.exist === 0" class="exist_no">
                         <p class="exist_text">Наличие:</p>
                         <p class="product_not_exist">нет в наличии</p>
                     </div>

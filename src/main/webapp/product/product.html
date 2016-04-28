@@ -1,29 +1,29 @@
 <div class="ng-cloak main_category">
     <div ng-hide="!product" class="single_product">
-        <img ng-src="data:image/jpeg; base64,{{product.imageByImageId.image}}" class="single_product_img"/>
-        <img ng-show="!product.imageByImageId.image" src="../static/img/no-image.png" type="image/jpeg" class="single_product_img"/>
+        <img ng-src="data:image/jpeg; base64,{{product.image.image}}" class="single_product_img"/>
+        <img ng-show="!product.image.image" src="../static/img/no-image.png" type="image/jpeg" class="single_product_img"/>
         <div class="describe_product">
-            <h1>{{product.productByProductId.title}}</h1>
+            <h1>{{product.title}}</h1>
             <table>
                 <tr>
                     <td class="set_width_100px"><p class="set_font_weight_bold">Описание:</p></td>
-                    <td><p class="set_font_weight_100" ng-bind="product.productByProductId.description"/></td>
+                    <td><p class="set_font_weight_100" ng-bind="product.description"/></td>
                 </tr>
                 <tr>
                     <td class="set_width_100px"><p class="set_font_weight_bold">Код товара:</p></td>
-                    <td><p class="set_font_weight_100" ng-bind="product.productByProductId.productCode"/></td>
+                    <td><p class="set_font_weight_100" ng-bind="product.productCode"/></td>
                 </tr>
                 <tr>
                     <td class="set_width_100px"><p class="set_font_weight_bold">Цена:</p></td>
-                    <td><p class="set_font_weight_100" ng-bind="product.productByProductId.price"/></td>
+                    <td><p class="set_font_weight_100" ng-bind="product.price"/></td>
                 </tr>
                 <tr>
                     <td class="set_width_100px"><p class="set_font_weight_bold">Наличие:</p></td>
                     <td>
-                        <p ng-if="product.productByProductId.exist === 1">
+                        <p ng-if="product.exist === 1">
                             <span class="product_exist">есть в наличии</span>
                         </p>
-                        <p ng-if="product.productByProductId.exist === 0">
+                        <p ng-if="product.exist === 0">
                             <span class="product_not_exist">нет в наличии</span>
                         </p>
                     </td>
@@ -31,29 +31,29 @@
                 <tr>
                     <td class="set_width_100px"><p class="set_font_weight_bold">Производитель:</p></td>
                     <td>
-                        <p class="set_font_weight_100" ng-bind="product.productByProductId.sprConsumerByConsumerId.name"/>
-                        <p ng-if="product.productByProductId.consumerId === null" class="set_font_weight_100">-</p>
+                        <p class="set_font_weight_100" ng-bind="product.sprConsumer.name"/>
+                        <p ng-if="product.consumerId === null" class="set_font_weight_100">-</p>
                     </td>
                 </tr>
                 <tr>
                     <td class="set_width_100px"><p class="set_font_weight_bold">Цвет:</p></td>
                     <td>
-                        <p class="set_font_weight_100" ng-bind="product.productByProductId.sprColorByColorId.name"/>
-                        <p ng-if="product.productByProductId.sprColorByColorId === null" class="set_font_weight_100">-</p>
+                        <p class="set_font_weight_100" ng-bind="product.sprColor.name"/>
+                        <p ng-if="product.sprColor === null" class="set_font_weight_100">-</p>
                     </td>
                 </tr>
                 <tr>
                     <td class="set_width_100px"><p class="set_font_weight_bold">Размер:</p></td>
                     <td>
-                        <p class="set_font_weight_100" ng-bind="product.productByProductId.sprSizeBySizeId.name"/>
-                        <p ng-if="product.productByProductId.sprSizeBySizeId === null" class="set_font_weight_100">-</p>
+                        <p class="set_font_weight_100" ng-bind="product.sprSize.name"/>
+                        <p ng-if="product.sprSize=== null" class="set_font_weight_100">-</p>
                     </td>
                 </tr>
                 <tr>
                     <td class="set_width_100px"><p class="set_font_weight_bold">Тип:</p></td>
                     <td>
-                        <p class="set_font_weight_100" ng-bind="product.productByProductId.sprTypeByTypeId.name"/>
-                        <p ng-if="product.productByProductId.sprTypeByTypeId === null" class="set_font_weight_100">-</p>
+                        <p class="set_font_weight_100" ng-bind="product.sprType.name"/>
+                        <p ng-if="product.sprType === null" class="set_font_weight_100">-</p>
                     </td>
                 </tr>
             </table>

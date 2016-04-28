@@ -11,22 +11,20 @@ import java.util.List;
 
 public interface ProductRepository extends PagingAndSortingRepository<Product, Long> {
 
-//    @Async
-//    @Query("select p.price from Product p where p.categoryId = ?1")
-//    List<Product> findPricesProductByCategoryId(Integer categoryId);
-
-//    @Async
-//    @Query("select p.exist from Product p where p.categoryId = ?1")
-//    List<Product> findExistProductByCategoryId(Integer categoryId);
-
-//    @Async
-//    @Query("select p from Product p where (p.productByProductId.categoryId = ?1 or ?1 is null) " +
-//                                    "and (p.productByProductId.consumerId = ?2  or ?2 is null) " +
-//                                    "and (p.productByProductId.typeId = ?3 or ?3 is null) " +
-//                                    "and (p.productByProductId.sizeId = ?4 or ?4 is null) " +
-//                                    "and (p.productByProductId.colorId = ?5 or ?5 is null) " +
-//                                    "and (p.productByProductId.exist = ?6 or ?6 is null)")
-//    Page<Product> sortProduct(Integer categoryId, Long consumerId, Integer typeId, Integer sizeId, Integer colorId, Byte exist, Pageable pageable);
+    @Async
+    @Query("select p from Product p where (p.sprCategory.idCategory = ?1 or ?1 is null) " +
+                                    "and (p.sprConsumer.idConsumer = ?2  or ?2 is null) " +
+                                    "and (p.sprType.idSprType = ?3 or ?3 is null) " +
+                                    "and (p.sprSize.idSprSize = ?4 or ?4 is null) " +
+                                    "and (p.sprColor.idSprColors = ?5 or ?5 is null) " +
+                                    "and (p.exist = ?6 or ?6 is null)")
+    Page<Product> sortProduct(Integer categoryId,
+                              Long consumerId,
+                              Integer typeId,
+                              Integer sizeId,
+                              Integer colorId,
+                              Byte exist,
+                              Pageable pageable);
 
     @Async
     Product findByIdProduct(Long productId);

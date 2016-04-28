@@ -29,19 +29,19 @@ public class ProductController {
 //    public List<Product> getProductExist(@PathVariable("id") Integer id) {
 //        return productRepository.findExistProductByCategoryId(id);
 //    }
-//
-//    @RequestMapping(value = "/sort/{categoryId}", method = RequestMethod.GET, produces = {"application/json"})
-//    public PagedResources<FullProduct> sortProduct(@PathVariable("categoryId") Integer categoryId,
-//                                     @PathParam("consumerId") Long consumerId,
-//                                     @PathParam("typeId") Integer typeId,
-//                                     @PathParam("sizeId") Integer sizeId,
-//                                     @PathParam("colorId") Integer colorId,
-//                                     @PathParam("exist") Byte exist,
-//                                     Pageable pageable,
-//                                     PagedResourcesAssembler assembler) {
-//        Page<FullProduct> products =  productRepository.sortProduct(categoryId, consumerId, typeId, sizeId, colorId, exist, pageable);
-//        return assembler.toResource(products);
-//    }
+
+    @RequestMapping(value = "/sort/{categoryId}", method = RequestMethod.GET, produces = {"application/json"})
+    public PagedResources<Product> sortProduct(@PathVariable("categoryId") Integer categoryId,
+                                               @PathParam("consumerId") Long consumerId,
+                                               @PathParam("typeId") Integer typeId,
+                                               @PathParam("sizeId") Integer sizeId,
+                                               @PathParam("colorId") Integer colorId,
+                                               @PathParam("exist") Byte exist,
+                                               Pageable pageable,
+                                               PagedResourcesAssembler assembler) {
+        Page<Product> products =  productRepository.sortProduct(categoryId, consumerId, typeId, sizeId, colorId, exist, pageable);
+        return assembler.toResource(products);
+    }
 
     @RequestMapping("/product_id/{id}")
     public Product findByIdProduct(@PathVariable("id") Long id) {

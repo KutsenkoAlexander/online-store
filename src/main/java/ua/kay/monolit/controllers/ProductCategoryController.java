@@ -27,14 +27,32 @@ public class ProductCategoryController {
         return sprCategory;
     }
 
-    @RequestMapping("/parent_with_img")
+    @RequestMapping("/parent")
     public List<SprCategory> findParentCategory(){
+        List<SprCategory> sprCategories = productCategoryRepository.findByParentIdOrderByNameAsc(PARENT_ID);
+        for(SprCategory sprCategory : sprCategories){
+            sprCategory.setImage(null);
+        }
+        return sprCategories;
+    }
+
+    @RequestMapping("/parent_with_img")
+    public List<SprCategory> findParentCategoryWithImg(){
         List<SprCategory> sprCategories = productCategoryRepository.findByParentIdOrderByNameAsc(PARENT_ID);
         return sprCategories;
     }
 
+    @RequestMapping("/child")
+    public List<SprCategory> findCategoryByParentId(){
+        List<SprCategory> sprCategories = productCategoryRepository.findByParentIdNotOrderByNameAsc(PARENT_ID);
+        for(SprCategory sprCategory : sprCategories){
+            sprCategory.setImage(null);
+        }
+        return sprCategories;
+    }
+
     @RequestMapping("/child_with_img/{id}")
-    public List<SprCategory> findCategoryByParentId(@PathVariable("id") Integer id){
+    public List<SprCategory> findCategoryByParentIdWithImg(@PathVariable("id") Integer id){
         List<SprCategory> sprCategories = productCategoryRepository.findByParentIdOrderByNameAsc(id);
         return sprCategories;
     }

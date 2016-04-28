@@ -42,8 +42,8 @@ angular.module('monolitApp.product', ['ui.router', 'ngResource'])
             }
             //breadcrumbs
             $scope.product.$promise.then(function(data){
-                $scope.productList = data.productByProductId.categoryId;
-                var title = data.productByProductId.title;
+                $scope.productList = data.sprCategory.idCategory;
+                var title = data.title;
                 $scope.productListByCatId = productListCacheFactory.get('product'+$scope.productList);
                 if(!$scope.productListByCatId){
                     $scope.productListByCatId = categoryNameByIdFactory.query({id:$scope.productList});

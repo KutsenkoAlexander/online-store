@@ -12,7 +12,6 @@ body {
     border-bottom: 1px solid #eee;
 }
 
-
 /*
  * Sidebar
  */
@@ -21,6 +20,7 @@ body {
 .sidebar {
     display: none;
 }
+
 @media (min-width: 768px) {
     .sidebar {
         position: fixed;
@@ -43,20 +43,21 @@ body {
     margin-bottom: 20px;
     margin-left: -20px;
 }
+
 .nav-sidebar > li > a {
     padding-right: 20px;
     padding-left: 20px;
 }
+
 .nav-sidebar > .active > a {
     color: #fff;
     background-color: #ff5c43;
 }
 
-.nav-sidebar > .active > a:hover, .nav-sidebar > .active > a:focus  {
+.nav-sidebar > .active > a:hover, .nav-sidebar > .active > a:focus {
     color: #fff;
     background-color: #ff5c43;
 }
-
 
 /*
  * Main content
@@ -65,6 +66,7 @@ body {
 .main {
     padding: 20px;
 }
+
 @media (min-width: 768px) {
     .main {
         padding-right: 40px;
@@ -79,7 +81,6 @@ body {
     /*padding-bottom: 0 !important;*/
 }
 
-
 /*
  * Placeholder dashboard ideas
  */
@@ -88,38 +89,46 @@ body {
     margin-bottom: 30px;
     text-align: center;
 }
+
 .placeholders h4 {
     margin-bottom: 0;
 }
+
 .placeholder {
     margin-bottom: 20px;
 }
+
 .placeholder img {
     display: inline-block;
     border-radius: 50%;
 }
- .new_container-fluid{
-     margin-left: 15px;
-     margin-right: 15px;
- }
 
- .exit{
-     margin-right: 25px;
- }
+.new_container-fluid {
+    margin-left: 15px;
+    margin-right: 15px;
+}
 
- .page_content_admin{
-     margin: 50px auto;
- }
+.exit {
+    margin-right: 25px;
+}
 
- .edit_page_btn{
-     float: right; width: 25px; cursor: pointer; margin: 0; padding: 0;
- }
+.page_content_admin {
+    margin: 50px auto;
+}
 
-tbody > tr.editable_goods > td{
+.edit_page_btn {
+    float: right;
+    width: 25px;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+tbody > tr.editable_goods > td {
     vertical-align: middle;
 }
 
-tbody > tr.editable_goods:hover{
+tbody > tr.editable_goods:hover {
     cursor: pointer;
     background-color: #E2E2E2;
 }
@@ -135,12 +144,12 @@ tbody > tr.editable_goods > td > input:focus {
     border: 1px solid #c2c2c2;
 }
 
-.fast_edit_btn{
+.fast_edit_btn {
     padding: 2px 3px;
     margin: 0;
 }
 
-.width_input_fast_edit{
+.width_input_fast_edit {
     min-width: 80px;
     max-width: 80px;
 }
@@ -159,86 +168,102 @@ tbody > tr.editable_goods > td > input:focus {
     background-color: #FFFFFF;
 }
 
-.goods_search{
+.goods_search {
     position: relative;
     top: -11px;
     padding: 0;
     margin: 0 5px;
 }
 
-.goods_dropdown{
+.goods_dropdown {
     margin: 0;
 }
 
-.wrapper_search_admin{
+.wrapper_search_admin {
     width: 45% !important;
     display: inline-block;
 }
 
-.admin_table_edit_text_center{
+.admin_table_edit_text_center {
     text-align: center;
 }
 
-.admin_save_edit_btn{
+.admin_save_edit_btn {
     float: right;
 }
 
-.admin_cancel_edit_btn{
+.admin_cancel_edit_btn {
     float: right;
     margin-right: 5px;
 }
 
-.admin_add_new_good{
+.admin_add_new_good {
     float: right;
 }
 
-
-.admin_logo{
+.admin_logo {
     width: 200px;
     position: relative;
     top: -5px;
     left: -20px;
 }
 
-.admin_sub_header{
+.admin_sub_header {
     width: auto;
     display: inline-block;
     position: relative;
     top: -7px;
 }
 
-.admin_category_select{
+.admin_category_select {
     width: auto;
     padding: 4px 3px;
     border: 1px solid #d2d2d2;
 }
 
-.admin_category_select:focus{
+.admin_category_select:focus {
     border: 1px solid #d2d2d2;
 }
 
-.admin_add_category_btn{
+.admin_add_category_btn {
     padding: 4px 3px;
 }
 
-.wrapper_panel_body_content{
+.wrapper_panel_body_content {
     padding: 0 15px;
 }
 
-.admin_add_input{
+.admin_add_input {
     border: 1px solid #d2d2d2;
     padding: 3px 7px;
     width: 100%;
 }
 
-.admin_add_input:focus{
+.admin_add_input:focus {
     border: 1px solid #d2d2d2;
 }
 
-.admin_area{
+.admin_area {
     height: 80px !important;
 }
 
-.admin_page_header{
+.admin_page_header {
     padding-bottom: 0;
+}
+
+.add_file {
+    padding: 3px 7px;
+    margin-top: 5px;
+}
+
+.admin_exist_product {
+    width: auto;
+    margin-left: 5px;
+    position: relative;
+    top: 2px;
+}
+
+.admin_add_product_lable {
+    font-size: 14px;
+    font-weight: 100;
 }

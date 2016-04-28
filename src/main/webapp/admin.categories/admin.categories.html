@@ -24,49 +24,46 @@
                     </tr>
                     <tr ng-show="category">
                         <td class="col-xs-4">
+                            <p>Изображение категории</p>
+                        </td>
+                        <td class="col-xs-8" style="padding-left: 5px;">
+                            <button type="file"
+                                    class="btn btn-default add_file"
+                                    ngf-select="uploadFiles($file, $invalidFiles)"
+                                    accept="image/*"
+                                    ngf-max-height="1000"
+                                    ngf-max-size="2MB"
+                                    ng-hide="img_category">Выберите изображение</button>
+                            <div style="margin: 5px 0;">
+                                <div style="font-size: 14px;" ng-show="img_category">Файл:
+                                    {{img_category.name}}
+                                    {{errFile.name}}
+                                    {{errFile.$error}}
+                                    {{errFile.$errorParam}}
+                                  <span class="progress" ng-show="img_category.progress >= 0">
+                                      <div style="width:{{img_category.progress}}%" ng-cloak>
+                                          Загружено: {{img_category.progress + '%'}}
+                                      </div>
+                                  </span>
+                                </div>
+                                {{errorMsg}}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-show="img_category && category">
+                        <td class="col-xs-4">
                             <p>Введите название дочерней категории</p>
                         </td>
                         <td class="col-xs-8">
                             <input type="text" ng-model="name_category" name="name" class="form-control admin_add_input" placeholder="Введите название дочерней категории"/>
                         </td>
                     </tr>
-                    <tr ng-show="category">
-                        <td class="col-xs-4">
-                            <p>Изображение категории</p>
-                        </td>
-                        <td class="col-xs-8">
-                            <!--<input type="file" nv-file-select uploader="uploader"/><br/>-->
-                            <ul>
-                                <li ng-repeat="item in uploader.queue">
-                                    Name: <span ng-bind="item.file.name"></span><br/>
-                                    <button ng-click="item.upload()">upload</button>
-                                </li>
-                            </ul>
-                            <button type="file"
-                                    ngf-select="uploadFiles($file, $invalidFiles)"
-                                    accept="image/*"
-                                    ngf-max-height="1000"
-                                    ngf-max-size="1MB">Выберите изображение</button>
-                            <br><br>
-                            Файл:
-                            <div style="font-size: 14px;">
-                                {{f.name}}
-                                {{errFile.name}}
-                                {{errFile.$error}}
-                                {{errFile.$errorParam}}
-                              <span class="progress" ng-show="f.progress >= 0">
-                                  <div style="width:{{f.progress}}%" ng-bind="f.progress + '%'"></div>
-                              </span>
-                            </div>
-                            {{errorMsg}}
-                        </td>
-                    </tr>
                 </table>
             </div>
         </div>
     </div>
-    <button class="btn btn-success admin_save_edit_btn" ng-click="saveCategory(name_category, category.idCategory)">
+    <button ng-show="category && img_category && name_category" class="btn btn-success admin_save_edit_btn" ng-click="saveCategory(name_category, category.idCategory); name_category = null">
         Сохранить
     </button>
-    <button class="btn btn-default admin_cancel_edit_btn" ng-click="cancelAddCategory()">Отмена</button>
+    <button class="btn btn-default admin_cancel_edit_btn" ng-click="cancelAddCategory(); name_category = null">Отмена</button>
 </div>

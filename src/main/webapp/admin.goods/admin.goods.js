@@ -17,19 +17,19 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
     })
 
     .factory('getAllProductsFactory', function ($resource) {
-        return $resource('/product/all', {},{'query': {method: 'GET', isArray:false}});
+        return $resource('/product/all', {}, {'query': {method: 'GET', isArray: false}});
     })
 
     .factory('saveProductFactory', function ($resource) {
-        return $resource('/product/save', {},{'save': {method:'POST'}});
+        return $resource('/product/save', {}, {'save': {method: 'POST'}});
     })
 
     .factory('allChildCategoryFactory', function ($resource) {
-        return $resource('/catalog/category/child', {},{});
+        return $resource('/catalog/category/child', {}, {});
     })
 
     .factory('allParentCategoryFactory', function ($resource) {
-        return $resource('/catalog/category/parent', {},{});
+        return $resource('/catalog/category/parent', {}, {});
     })
 
     .controller('adminGoodsCtrl', function ($rootScope,
@@ -38,13 +38,19 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                                             getAllProductsFactory,
                                             pageCacheFactory,
                                             saveProductFactory,
-                                            allChildCategoryFactory) {
+                                            allChildCategoryFactory,
+                                            Upload,
+                                            $timeout) {
         $scope.editableGoodsState = false;
         $scope.newGood = false;
         $scope.fastEdit = false;
         $scope.editItem = null;
         $scope.currentUrl = $rootScope.currentPath;
         $scope.editableProducts = getAllProductsFactory.query();
+
+        $scope.$on("categoriesBroadcast", function (event, args) {
+            $scope.categories = args.categories;
+        });
 
         $scope.$on('searched', function (event, data) {
             $scope.fastEdit = data.fastEdit;
@@ -60,7 +66,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.editableGoodsState = false;
             $scope.categories = allChildCategoryFactory.query();
         };
-        
+
         $scope.editGood = function () {
             $scope.editableGoods = null;
             $scope.editItem = null;
@@ -72,7 +78,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.categories = allChildCategoryFactory.query();
         };
 
-        $scope.saveGood = function (){
+        $scope.saveGood = function () {
             $scope.newGood = false;
             $scope.editableProducts = getAllProductsFactory.query();
         };
@@ -81,11 +87,11 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.editableGoodsState = false;
             $scope.newGood = false;
         };
-        
+
         $scope.fastEditGood = function (id, price, exist) {
             $scope.editItem = id;
             $scope.price = price;
-            switch (exist){
+            switch (exist) {
                 case 1 :
                     $scope.exist = true;
                     break;
@@ -97,10 +103,10 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
         };
 
         $scope.fastEditSingleGood = function (id, price, exist) {
-            if(!$scope.fastEdit){
+            if (!$scope.fastEdit) {
                 $scope.editSingleItem = id;
                 $scope.editableProductPrice = price;
-                switch (exist){
+                switch (exist) {
                     case 1 :
                         $scope.editableProductExist = true;
                         break;
@@ -120,7 +126,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
 
         $scope.saveFastEditGood = function (price, exist, product) {
             var productExist;
-            switch (exist){
+            switch (exist) {
                 case true:
                     productExist = 1;
                     break;
@@ -141,5 +147,31 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.editableProduct = false;
             $scope.editableGoodsState = false;
             $scope.editableProducts = getAllProductsFactory.query();
-        }
+        };
+
+        $scope.uploadImageProduct = function(file, errFiles) {
+            $scope.img_product = file;
+            $scope.errFile = errFiles && errFiles[0];
+            if (file) {
+                file.upload = Upload.upload({
+                    url: '/image/save',
+                    data: {file: file}
+                });
+
+                file.upload.then(function (response) {
+                    $scope.savedIdCategoryImg = response.data;
+                    $timeout(function () {
+                        file.result = response.data;
+                    });
+                }, function (response) {
+                    if (response.status > 0)
+                        $scope.errorMsg = response.status + ': ' + response.data;
+                }, function (evt) {
+                    file.progress = Math.min(100, parseInt(100.0 *
+                        evt.loaded / evt.total));
+                });
+            }
+        };
+
+
     });

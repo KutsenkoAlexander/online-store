@@ -1,19 +1,19 @@
 angular.module('monolitApp.sort', ['ui.router', 'ngResource'])
 
     .factory('consumerFactory', function($resource){
-        return $resource('/product/consumers/:id', {id: '@id'},{});
+        return $resource('/consumer/:id', {id: '@id'},{});
     })
 
     .factory('typeFactory', function($resource){
-        return $resource('/product/types/:id', {id: '@id'},{});
+        return $resource('/type/:id', {id: '@id'},{});
     })
 
     .factory('sizeFactory', function($resource){
-        return $resource('/product/sizes/:id', {id: '@id'},{});
+        return $resource('/size/:id', {id: '@id'},{});
     })
 
     .factory('colorFactory', function($resource){
-        return $resource('/product/colors/:id', {id: '@id'},{});
+        return $resource('/color/:id', {id: '@id'},{});
     })
 
     .factory('sortFactory', function($resource){
@@ -220,10 +220,10 @@ angular.module('monolitApp.sort', ['ui.router', 'ngResource'])
                     paramsFactory.id = $stateParams.productList;
                     switch (item.value){
                         case 1:
-                            paramsFactory.sort = 'productByProductId.price,asc';
+                            paramsFactory.sort = 'price,asc';
                             break;
                         case 2:
-                            paramsFactory.sort = 'productByProductId.price,desc';
+                            paramsFactory.sort = 'price,desc';
                             break;
                         default:
                             paramsFactory.sort = null;
@@ -240,11 +240,11 @@ angular.module('monolitApp.sort', ['ui.router', 'ngResource'])
             paramsFactory.id = $stateParams.productList;
             switch (price){
                 case 1:
-                    paramsFactory.sort = 'productByProductId.price,asc';
+                    paramsFactory.sort = 'price,asc';
                     getResultSortQuery(paramsFactory);
                     break;
                 case 2:
-                    paramsFactory.sort = 'productByProductId.price,desc';
+                    paramsFactory.sort = 'price,desc';
                     getResultSortQuery(paramsFactory);
                     break;
                 default:
