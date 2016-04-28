@@ -27,14 +27,31 @@
                 <li ng-class="(currentPath === '/admin') ? 'active' : ''">
                     <a ui-sref="admin">Главная</a>
                 </li>
-                <li ng-class="(currentPath === '/goods') ? 'active' : ''">
-                    <a ui-sref="admin.goods">Товары</a>
-                </li>
                 <li ng-class="(currentPath === '/pages') ? 'active' : ''">
                     <a ui-sref="admin.pages" ui-sref-active="active">Страницы</a>
                 </li>
                 <li ng-class="(currentPath === '/slider') ? 'active' : ''">
                     <a ui-sref="admin.slider" ui-sref-active="active">Слайдер</a>
+                </li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li ng-class="(currentPath === '/goods') ? 'active' : ''">
+                    <a ui-sref="admin.goods">Товары</a>
+                </li>
+                <li ng-class="(currentPath === '/categories') ? 'active' : ''">
+                    <a ui-sref="admin.categories" ui-sref-active="active">Категории</a>
+                </li>
+                <li ng-class="(currentPath === '/consumer') ? 'active' : ''">
+                    <a ui-sref="admin.consumer" ui-sref-active="active">Производители</a>
+                </li>
+                <li ng-class="(currentPath === '/color') ? 'active' : ''">
+                    <a ui-sref="admin.color" ui-sref-active="active">Цвета</a>
+                </li>
+                <li ng-class="(currentPath === '/size') ? 'active' : ''">
+                    <a ui-sref="admin.size" ui-sref-active="active">Размеры</a>
+                </li>
+                <li ng-class="(currentPath === '/type') ? 'active' : ''">
+                    <a ui-sref="admin.type" ui-sref-active="active">Типы</a>
                 </li>
             </ul>
         </div>

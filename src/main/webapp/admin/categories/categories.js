@@ -1,5 +1,21 @@
 angular.module('monolitApp.admin.categories', ['ngResource'])
 
+    .config(function ($stateProvider) {
+        $stateProvider
+            .state('admin.categories', {
+                url: "/categories",
+                views: {
+                    'admin': {
+                        templateUrl: "admin/categories/edit.category.html",
+                        controller: 'adminCategoryCtrl'
+                    }
+                },
+                data: {
+                    pageTitle: 'Управление категориями'
+                }
+            })
+    })
+
     .factory('saveCategoryFactory', function($resource){
         return $resource('/catalog/category/save', {},{'save': {method:'POST'}});
     })

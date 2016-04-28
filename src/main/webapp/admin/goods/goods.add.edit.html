@@ -93,7 +93,7 @@
                         </label>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" style="margin-bottom: 5px;">
                     <div class="col-xs-2">
                         <p>Производитель</p>
                     </div>
@@ -108,42 +108,48 @@
                         <button class="btn btn-default admin_add_category_btn">Добавить производителя</button>
                     </div>
                 </div>
-                <div>
+                <div class="row" style="margin-bottom: 5px;">
                     <div class="col-xs-2">
                         <p>Цвет</p>
                     </div>
-                    <div class="col-xs-10 admin_padding_left_ten_element" ng-controller="adminColorCtrl">
+                    <div class="col-xs-3" ng-controller="adminColorCtrl">
                         <select ng-model="adminColorSelect"
                                 class="form-control admin_category_select"
                                 ng-options="color.name for color in colorList | orderBy: 'name' track by color.idSprColors">
                             <option value="">Выбрать</option>
                         </select>
+                    </div>
+                    <div class="col-xs-7 admin_padding_left_ten_element">
                         <button class="btn btn-default admin_add_category_btn">Добавить цвет</button>
                     </div>
                 </div>
-                <div>
+                <div class="row" style="margin-bottom: 5px;">
                     <div class="col-xs-2">
                         <p>Тип</p>
                     </div>
-                    <div class="col-xs-10" ng-controller="adminTypeCtrl">
+                    <div class="col-xs-3" ng-controller="adminTypeCtrl">
                         <select ng-model="adminTypeSelect"
                                 class="form-control admin_category_select"
                                 ng-options="type.name for type in typeList | orderBy: 'name' track by type.idSprType">
                             <option value="">Выбрать</option>
                         </select>
+                    </div>
+                    <div class="col-xs-7 admin_padding_left_ten_element">
                         <button class="btn btn-default admin_add_category_btn">Добавить тип</button>
                     </div>
                 </div>
-                <div>
+                <div class="row" style="margin-bottom: 5px;">
                     <div class="col-xs-2">
                         <p>Размер</p>
                     </div>
-                    <div class="col-xs-10" ng-controller="adminSizeCtrl">
+                    <div class="col-xs-3" ng-controller="adminSizeCtrl">
                         <select ng-model="type"
                                 class="form-control admin_category_select"
                                 ng-options="type.name for type in sizeList | orderBy: 'name' track by type.idSprSize">
                             <option value="">Выбрать</option>
                         </select>
+                    </div>
+                    <div class="col-xs-7 admin_padding_left_ten_element">
                         <button class="btn btn-default admin_add_category_btn">Добавить размер</button>
                     </div>
                 </div>

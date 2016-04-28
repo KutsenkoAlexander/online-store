@@ -19,10 +19,15 @@
 <body ng-controller="mainCtrl">
     <div class="container-fluid" id="main_container">
         <div ng-if=" currentPath === '/admin' ||
-                     currentPath === '/login' ||
-                     currentPath === '/goods' ||
-                     currentPath === '/pages' ||
-                     currentPath === '/slider'">
+                       currentPath === '/login' ||
+                       currentPath === '/goods' ||
+                       currentPath === '/pages' ||
+                       currentPath === '/slider' ||
+                       currentPath === '/categories' ||
+                       currentPath === '/consumer' ||
+                       currentPath === '/color' ||
+                       currentPath === '/size' ||
+                       currentPath === '/type'">
             <div ui-view="content"></div>
         </div>
         <div class="row" id="row_container"
@@ -30,7 +35,12 @@
                        currentPath === '/login' ||
                        currentPath === '/goods' ||
                        currentPath === '/pages' ||
-                       currentPath === '/slider'">
+                       currentPath === '/slider' ||
+                       currentPath === '/categories' ||
+                       currentPath === '/consumer' ||
+                       currentPath === '/color' ||
+                       currentPath === '/size' ||
+                       currentPath === '/type'">
             <div class="col-xs-12" id="wrapper_header_nav" ng-controller="breadcrumbsCtrl">
                 <div ng-include="'navigation/navigation.html'"></div>
                 <div class="row" ng-class="(currentPath === '/')?'main_header':'head'">
@@ -55,10 +65,15 @@
                                         ng-if="stateNavigation.length > 1">
                                     </ul>
                                     <div ng-if=" currentPath !== '/admin' ||
-                                                 currentPath !== '/login' ||
-                                                 currentPath !== '/goods' ||
-                                                 currentPath !== '/pages' ||
-                                                 currentPath !== '/slider'"
+                                                   currentPath !== '/login' ||
+                                                   currentPath !== '/goods' ||
+                                                   currentPath !== '/pages' ||
+                                                   currentPath !== '/slider' ||
+                                                   currentPath !== '/categories' ||
+                                                   currentPath !== '/consumer' ||
+                                                   currentPath !== '/color' ||
+                                                   currentPath !== '/size' ||
+                                                   currentPath !== '/type'"
                                          ui-view="content"></div>
                                 </div>
                             </div>
