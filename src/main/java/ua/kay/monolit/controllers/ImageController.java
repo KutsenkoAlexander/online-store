@@ -29,7 +29,9 @@ public class ImageController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return imageRepository.saveAndFlush(image);
+        Image savedImage = imageRepository.saveAndFlush(image);
+        savedImage.setImage(null);
+        return savedImage;
     }
 
 }

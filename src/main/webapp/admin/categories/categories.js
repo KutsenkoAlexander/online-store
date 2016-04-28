@@ -66,6 +66,7 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
             $scope.newGood = true;
             $scope.name_category = '';
             $scope.f = null;
+            $scope.savedIdCategoryImg = null;
         };
 
         $scope.saveCategory = function(name, parentId){
@@ -80,6 +81,7 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
             });
             $scope.categories = allChildCategoryFactory.query();
             $scope.name_category = '';
+            $scope.savedIdCategoryImg = null;
             $scope.isCategoryAdd = false;
             $scope.newGood = true;
             $scope.f = null;

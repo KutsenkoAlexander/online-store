@@ -78,7 +78,32 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.categories = allChildCategoryFactory.query();
         };
 
-        $scope.saveGood = function () {
+        $scope.saveGood = function (description, exist, img, price, code, category,  adminColorSelect, adminConsumerSelect, sizeSelect, adminTypeSelect, name_product) {
+            var productExist;
+            console.log(exist);
+            switch (exist) {
+                case true:
+                    productExist = 1;
+                    break;
+                case false:
+                    productExist = 0;
+                    break;
+            }
+            var product = {
+                "description": description,
+                "exist": productExist,
+                "image": $scope.savedIdCategoryImg,
+                "price": price.number,
+                "productCode": code,
+                "sprCategory": category,
+                "sprColor": adminColorSelect,
+                "sprConsumer": adminConsumerSelect,
+                "sprSize": sizeSelect,
+                "sprType": adminTypeSelect,
+                "title": name_product
+            };
+            console.log(product);
+            saveProductFactory.save(product);
             $scope.newGood = false;
             $scope.editableProducts = getAllProductsFactory.query();
         };
