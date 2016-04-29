@@ -40,6 +40,7 @@
                         ng-show="fastEdit && editItem === product.idProduct"
                         ng-click="saveFastEditGood(price, exist, product)">OK</button>
             </td>
+
         </tr>
         <tr ng-show="editableProduct" class="editable_goods">
             <td ng-click="fastEditSingleGood(editableProduct.idProduct, editableProduct.price, editableProduct.exist)">{{$index+1}}</td>
@@ -72,4 +73,5 @@
         </tr>
     </tbody>
 </table>
+<div ng-include="'../pagination/pagination.html'"></div>
 <button ng-show="editableProduct" class="btn btn-default admin_add_new_good" ng-click="showAllProducts()">Показать все товары</button>

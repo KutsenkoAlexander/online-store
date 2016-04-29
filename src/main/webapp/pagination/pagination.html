@@ -1,5 +1,7 @@
-<ul class="pagination" id="pagination"
-    ng-controller="paginationCtrl" ng-show="page.totalPages > 1">
+<ul class="pagination"
+    id="pagination"
+    ng-controller="paginationCtrl"
+    ng-show="page.totalPages > 1">
     <li ng-class="{disabled: page.number === 0}">
         <a ng-show="page.number !== 0"
            ng-click="setPageAndSize(0)">&laquo;</a>

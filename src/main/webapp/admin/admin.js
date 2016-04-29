@@ -7,7 +7,6 @@ angular.module('monolitApp.admin', ['ui.router', 'ngResource'])
                 views: {
                     'content': {
                         templateUrl: 'admin/admin.html'
-                        // controller: 'adminCtrl'
                     }
                 },
                 data: {
