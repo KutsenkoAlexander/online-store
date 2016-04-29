@@ -59,6 +59,10 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             });
         });
 
+        $scope.$on("selectColor", function (event, args) {
+            $scope.selectColor = args;
+        });
+
         $scope.addGood = function () {
             $scope.newGood = true;
             $scope.editItem = null;
@@ -78,9 +82,15 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.categories = allChildCategoryFactory.query();
         };
 
-        $scope.saveGood = function (description, exist, img, price, code, category,  adminColorSelect, adminConsumerSelect, sizeSelect, adminTypeSelect, name_product) {
+        $scope.saveGood = function (description,
+                                    exist,
+                                    img,
+                                    price,
+                                    code,
+                                    category,
+                                    adminColorSelect) {
             var productExist;
-            console.log(exist);
+            console.log(adminColorSelect);
             switch (exist) {
                 case true:
                     productExist = 1;
@@ -96,11 +106,11 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                 "price": price.number,
                 "productCode": code,
                 "sprCategory": category,
-                "sprColor": adminColorSelect,
-                "sprConsumer": adminConsumerSelect,
-                "sprSize": sizeSelect,
-                "sprType": adminTypeSelect,
-                "title": name_product
+                "sprColor": $scope.selectColor
+                //"sprConsumer": adminConsumerSelect,
+                //"sprSize": sizeSelect,
+                //"sprType": adminTypeSelect,
+                //"title": name_product
             };
             console.log(product);
             saveProductFactory.save(product);
