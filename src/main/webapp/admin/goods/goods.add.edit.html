@@ -99,6 +99,7 @@
                     </div>
                     <div class="col-xs-3" ng-controller="adminConsumerCtrl">
                         <select ng-model="adminConsumerSelect"
+                                ng-change="selectConsumer(adminConsumerCtrl)"
                                 class="form-control admin_category_select"
                                 ng-options="consumer.name for consumer in consumerList | orderBy: 'name' track by consumer.idConsumer">
                             <option value="">Выбрать</option>
@@ -130,6 +131,7 @@
                     </div>
                     <div class="col-xs-3" ng-controller="adminTypeCtrl">
                         <select ng-model="adminTypeSelect"
+                                ng-change="selectType(adminTypeCtrl)"
                                 class="form-control admin_category_select"
                                 ng-options="type.name for type in typeList | orderBy: 'name' track by type.idSprType">
                             <option value="">Выбрать</option>
@@ -146,6 +148,7 @@
                     <div class="col-xs-3" ng-controller="adminSizeCtrl">
                         <select ng-model="sizeSelect"
                                 class="form-control admin_category_select"
+                                ng-change="selectSize(adminSizeCtrl)"
                                 ng-options="type.name for type in sizeList | orderBy: 'name' track by type.idSprSize">
                             <option value="">Выбрать</option>
                         </select>
@@ -163,9 +166,7 @@
                                 addGoodsExist,
                                 img,
                                 price,
-                                addGoodsCode,
-                                addGoodsCategory,
-                                adminColorSelect)">
+                                addGoodsCode)">
         Сохранить
     </button>
     <button class="btn btn-default admin_cancel_edit_btn" ng-click="cancelEditGood()">Отмена</button>

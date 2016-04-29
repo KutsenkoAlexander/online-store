@@ -63,6 +63,10 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.selectColor = args;
         });
 
+        $scope.$on("selectConsumer", function (event, args) {
+            $scope.selectConsumer = args;
+        });
+
         $scope.addGood = function () {
             $scope.newGood = true;
             $scope.editItem = null;
@@ -106,11 +110,11 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                 "price": price.number,
                 "productCode": code,
                 "sprCategory": category,
-                "sprColor": $scope.selectColor
-                //"sprConsumer": adminConsumerSelect,
-                //"sprSize": sizeSelect,
-                //"sprType": adminTypeSelect,
-                //"title": name_product
+                "sprColor": $scope.selectColor,
+                "sprConsumer": $scope.selectConsumer,
+                "sprSize": $scope.sizeSelect,
+                "sprType": $scope.adminTypeSelect,
+                "title": name_product
             };
             console.log(product);
             saveProductFactory.save(product);
