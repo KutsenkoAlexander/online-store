@@ -24,7 +24,7 @@
                     </div>
                     <div class="price">
                         <p class="product_description_text">Цена:</p>
-                        <p class="product_description_digits">{{product.price}}</p>
+                        <p class="product_description_digits">{{product.price | number:2}}</p>
                     </div>
                     <div ng-if="product.exist === 1" class="exist_yes">
                         <p class="exist_text">Наличие:</p>

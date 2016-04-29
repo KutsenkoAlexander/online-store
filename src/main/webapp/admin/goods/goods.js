@@ -60,11 +60,19 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
         });
 
         $scope.$on("selectColor", function (event, args) {
-            $scope.selectColor = args;
+            $scope.selectColor = args.selectColor;
         });
 
         $scope.$on("selectConsumer", function (event, args) {
-            $scope.selectConsumer = args;
+            $scope.selectConsumer = args.selectConsumer;
+        });
+
+        $scope.$on("selectSize", function (event, args) {
+            $scope.selectSize = args.selectSize;
+        });
+
+        $scope.$on("selectType", function (event, args) {
+            $scope.selectType = args.selectType;
         });
 
         $scope.addGood = function () {
@@ -89,12 +97,12 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
         $scope.saveGood = function (description,
                                     exist,
                                     img,
-                                    price,
+                                    priceUah,
+                                    priceCent,
                                     code,
-                                    category,
-                                    adminColorSelect) {
+                                    addGoodsCategory,
+                                    name_product) {
             var productExist;
-            console.log(adminColorSelect);
             switch (exist) {
                 case true:
                     productExist = 1;
@@ -103,22 +111,27 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                     productExist = 0;
                     break;
             }
+            if(angular.isUndefined(priceCent)){
+                priceCent = 00;
+            }
+            var price = priceUah+"."+priceCent;
             var product = {
                 "description": description,
                 "exist": productExist,
                 "image": $scope.savedIdCategoryImg,
-                "price": price.number,
+                "price": price,
                 "productCode": code,
-                "sprCategory": category,
+                "title": name_product,
+                "sprCategory": addGoodsCategory,
                 "sprColor": $scope.selectColor,
                 "sprConsumer": $scope.selectConsumer,
-                "sprSize": $scope.sizeSelect,
-                "sprType": $scope.adminTypeSelect,
-                "title": name_product
+                "sprSize": $scope.selectSize,
+                "sprType": $scope.selectType
             };
             console.log(product);
             saveProductFactory.save(product);
             $scope.newGood = false;
+            $scope.editableProducts = getAllProductsFactory.query();
             $scope.editableProducts = getAllProductsFactory.query();
         };
 

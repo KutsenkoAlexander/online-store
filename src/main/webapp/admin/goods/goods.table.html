@@ -15,7 +15,7 @@
                 <p>{{product.title}}</p>
             </td>
             <td ng-click="fastEditGood(product.idProduct, product.price, product.exist)">
-                <p ng-show="editItem !== product.idProduct">{{product.price}}</p>
+                <p ng-show="editItem !== product.idProduct">{{product.price | number:2}}</p>
                 <input ng-show="fastEdit && editItem === product.idProduct"
                        ng-model="price"
                        type="text"
@@ -42,34 +42,34 @@
             </td>
         </tr>
         <tr ng-show="editableProduct" class="editable_goods">
-        <td ng-click="fastEditSingleGood(editableProduct.idProduct, editableProduct.price, editableProduct.exist)">{{$index+1}}</td>
-        <td ng-click="fastEditSingleGood(editableProduct.idProduct, editableProduct.price, editableProduct.exist)">
-            <p>{{editableProduct.title}}</p>
-        </td>
-        <td ng-click="fastEditSingleGood(editableProduct.idProduct, editableProduct.price, editableProduct.exist)">
-            <p ng-hide="fastEdit">{{editableProduct.price}}</p>
-            <input ng-show="fastEdit"
-                   ng-model="editableProductPrice"
-                   type="text"
-                   class="form-control width_input_fast_edit"/>
-        </td>
-        <td ng-click="fastEditSingleGood(editableProduct.idProduct, editableProduct.price, editableProduct.exist)"
-            class="admin_table_edit_text_center">
-            <p ng-hide="fastEdit" ng-class="editableProduct.exist ? 'product_exist' : 'product_not_exist'">{{editableProduct.exist ? 'Да' : 'Нет'}}</p>
-            <input type="checkbox" ng-show="fastEdit" ng-model="editableProductExist" />
-        </td>
-        <td class="admin_table_edit_text_center">
-            <img src="../../static/img/edit.jpg"
-                 class="edit_page_btn"
-                 alt="Редактировать"
-                 title="Полное редактирование"
-                 ng-click="editGood(editableProduct.idProduct)"
-                 ng-hide="fastEdit"/>
-            <button class="btn btn-success fast_edit_btn"
-                    ng-show="fastEdit"
-                    ng-click="saveFastEditGood(editableProductPrice, editableProductExist, editableProduct)">OK</button>
-        </td>
-    </tr>
+            <td ng-click="fastEditSingleGood(editableProduct.idProduct, editableProduct.price, editableProduct.exist)">{{$index+1}}</td>
+            <td ng-click="fastEditSingleGood(editableProduct.idProduct, editableProduct.price, editableProduct.exist)">
+                <p>{{editableProduct.title}}</p>
+            </td>
+            <td ng-click="fastEditSingleGood(editableProduct.idProduct, editableProduct.price, editableProduct.exist)">
+                <p ng-hide="fastEdit">{{editableProduct.price}}</p>
+                <input ng-show="fastEdit"
+                       ng-model="editableProductPrice"
+                       type="text"
+                       class="form-control width_input_fast_edit"/>
+            </td>
+            <td ng-click="fastEditSingleGood(editableProduct.idProduct, editableProduct.price, editableProduct.exist)"
+                class="admin_table_edit_text_center">
+                <p ng-hide="fastEdit" ng-class="editableProduct.exist ? 'product_exist' : 'product_not_exist'">{{editableProduct.exist ? 'Да' : 'Нет'}}</p>
+                <input type="checkbox" ng-show="fastEdit" ng-model="editableProductExist" />
+            </td>
+            <td class="admin_table_edit_text_center">
+                <img src="../../static/img/edit.jpg"
+                     class="edit_page_btn"
+                     alt="Редактировать"
+                     title="Полное редактирование"
+                     ng-click="editGood(editableProduct.idProduct)"
+                     ng-hide="fastEdit"/>
+                <button class="btn btn-success fast_edit_btn"
+                        ng-show="fastEdit"
+                        ng-click="saveFastEditGood(editableProductPrice, editableProductExist, editableProduct)">OK</button>
+            </td>
+        </tr>
     </tbody>
 </table>
 <button ng-show="editableProduct" class="btn btn-default admin_add_new_good" ng-click="showAllProducts()">Показать все товары</button>

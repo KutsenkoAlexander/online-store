@@ -28,4 +28,10 @@ angular.module('monolitApp.admin.size', ['ui.router', 'ngResource'])
 
         $scope.sizeList = getAllSizesFactory.query();
 
+        $scope.selectSize = function(sizeSelect){
+            $rootScope.$broadcast('selectSize', {
+                selectSize: sizeSelect
+            });
+        }
+
     });
