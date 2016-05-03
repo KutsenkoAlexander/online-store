@@ -36,7 +36,7 @@ angular.module('monolitApp.productList', ['ui.router', 'ngResource'])
         var search = $location.search();
         paramsFactory.id = $stateParams.productList;
         paramsFactory.page = search.page || 0;
-        paramsFactory.size = 3;//items on page
+        paramsFactory.size = 21;//items on page
         paramsFactory.consumerId = search.consumerId || null;
         paramsFactory.typeId = search.typeId || null;
         paramsFactory.sizeId = search.sizeId || null;
