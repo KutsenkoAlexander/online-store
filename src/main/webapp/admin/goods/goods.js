@@ -41,7 +41,8 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                                             allChildCategoryFactory,
                                             Upload,
                                             $timeout,
-                                            $http) {
+                                            $http,
+                                            productByIdFactory) {
         $scope.editableGoodsState = false;
         $scope.newGood = false;
         $scope.fastEdit = false;
@@ -109,10 +110,17 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.editItem = null;
             $scope.editableProduct = false;
             $scope.editableGoodsState = false;
+            $scope.addGoodsCategory = '';
+            $scope.addGoodsCode = '';
+            $scope.name_product = '';
+            $scope.description = '';
+            $scope.priceUah = '';
+            $scope.priceCent = '';
+            $scope.addGoodsExist = '';
             $scope.categories = allChildCategoryFactory.query();
         };
 
-        $scope.editGood = function () {
+        $scope.editGood = function (id) {
             $scope.editableGoods = null;
             $scope.editItem = null;
             $scope.editSingleItem = null;
@@ -120,6 +128,38 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.fastEdit = false;
             $scope.newGood = false;
             $scope.editableProduct = false;
+
+            var editProduct = productByIdFactory.query({id:id});
+            editProduct.$promise.then(function(data){
+                console.log(data);
+
+                $scope.addGoodsCategory = data.sprCategory;
+                $scope.addGoodsCode = data.productCode;
+                $scope.name_product = data.title;
+                $scope.description = data.description;
+                var price = data.price.toFixed(2);
+                var index = price.indexOf(".");
+                if(index > -1){
+                    $scope.priceUah = price.substring(0, index);
+                    $scope.priceCent = parseInt(price.substring(index+1));
+                } else {
+                    $scope.priceUah = parseInt(data.price);
+                    $scope.priceCent = 00;
+                }
+                switch(data.exist){
+                    case 1:
+                        $scope.addGoodsExist = true;
+                        break;
+                    case 0:
+                        $scope.addGoodsExist = false;
+                        break;
+                }
+                $scope.adminConsumerSelect = data.sprConsumer;
+                $scope.adminColorSelect = data.sprColor;
+                $scope.adminTypeSelect = data.sprType;
+                $scope.sizeSelect = data.sprSize;
+            });
+
             $scope.categories = allChildCategoryFactory.query();
         };
 
@@ -167,6 +207,13 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
         $scope.cancelEditGood = function () {
             $scope.editableGoodsState = false;
             $scope.newGood = false;
+            $scope.addGoodsCategory = '';
+            $scope.addGoodsCode = '';
+            $scope.name_product = '';
+            $scope.description = '';
+            $scope.priceUah = '';
+            $scope.priceCent = '';
+            $scope.addGoodsExist = '';
         };
 
         $scope.fastEditGood = function (id, price, exist) {

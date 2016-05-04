@@ -61,9 +61,7 @@
                         <p>Наименование</p>
                     </div>
                     <div class="col-xs-10">
-                        <input type="text"
-                               class="form-control admin_add_input"
-                               ng-model="name_product"/>
+                        <input type="text" class="form-control admin_add_input" ng-model="name_product"/>
                     </div>
                 </div>
                 <div class="row">
@@ -172,7 +170,7 @@
         </div>
     </div>
     <button class="btn btn-success admin_save_edit_btn"
-            ng-show="addGoodsCategory && addGoodsCode && name_product && description && priceUah && addGoodsExist"
+            ng-show="addGoodsCategory && addGoodsCode && name_product && description && priceUah"
             ng-click="saveGood(description,
                                 addGoodsExist,
                                 img,
