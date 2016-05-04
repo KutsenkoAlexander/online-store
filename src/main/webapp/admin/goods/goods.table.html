@@ -81,7 +81,7 @@
     </tbody>
 </table>
 
-<ul class="pagination" ng-show="page.totalPages > 1">
+<ul class="pagination" ng-hide="editableGoodsState || newGood || page.totalPages < 2" >
     <li ng-class="{disabled: page.number === 0}">
         <a ng-show="page.number !== 0"
            ng-click="setPageAndSizeAdmin(page.number)">&laquo;</a>
