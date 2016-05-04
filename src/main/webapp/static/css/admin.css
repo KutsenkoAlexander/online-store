@@ -272,3 +272,7 @@ tbody > tr.editable_goods > td > input:focus {
     padding-left: 10px;
 }
 
+.admin_single_product_img {
+    max-height: 145px;
+    max-width: 85px;
+}

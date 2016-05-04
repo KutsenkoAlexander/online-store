@@ -110,6 +110,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.editItem = null;
             $scope.editableProduct = false;
             $scope.editableGoodsState = false;
+            $scope.savedIdCategoryImg = '';
             $scope.addGoodsCategory = '';
             $scope.addGoodsCode = '';
             $scope.name_product = '';
@@ -117,6 +118,10 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.priceUah = '';
             $scope.priceCent = '';
             $scope.addGoodsExist = '';
+            $scope.adminConsumerSelect = '';
+            $scope.adminColorSelect = '';
+            $scope.adminTypeSelect = '';
+            $scope.sizeSelect = '';
             $scope.categories = allChildCategoryFactory.query();
         };
 
@@ -133,6 +138,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             editProduct.$promise.then(function(data){
                 console.log(data);
 
+                $scope.savedIdCategoryImg = data.image;
                 $scope.addGoodsCategory = data.sprCategory;
                 $scope.addGoodsCode = data.productCode;
                 $scope.name_product = data.title;
@@ -207,6 +213,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
         $scope.cancelEditGood = function () {
             $scope.editableGoodsState = false;
             $scope.newGood = false;
+            $scope.savedIdCategoryImg = '';
             $scope.addGoodsCategory = '';
             $scope.addGoodsCode = '';
             $scope.name_product = '';
@@ -214,6 +221,10 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.priceUah = '';
             $scope.priceCent = '';
             $scope.addGoodsExist = '';
+            $scope.adminConsumerSelect = '';
+            $scope.adminColorSelect = '';
+            $scope.adminTypeSelect = '';
+            $scope.sizeSelect = '';
         };
 
         $scope.fastEditGood = function (id, price, exist) {

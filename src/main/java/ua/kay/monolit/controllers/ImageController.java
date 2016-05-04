@@ -30,7 +30,7 @@ public class ImageController {
             e.printStackTrace();
         }
         Image savedImage = imageRepository.saveAndFlush(image);
-        savedImage.setImage(null);
+//        savedImage.setImage(null);
         return savedImage;
     }
 
