@@ -33,6 +33,10 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, L
     Page<Product> findProductBySprCategoryIdCategory(Integer idCategory, Pageable pageable);
 
     @Async
+    @Query("select p from Product p order by p.title")
+    Page<Product> findAllOrderByTitle(Pageable pageable);
+
+    @Async
     @Query("select p from Product p where p.title like %?1%")
     List<Product> findTitleLikeName(String name);
 

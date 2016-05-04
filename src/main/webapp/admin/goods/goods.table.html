@@ -9,7 +9,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-hide="editableProduct" ng-repeat="product in editableProducts | orderBy: 'title' " class="editable_goods">
+    <tr ng-hide="editableProduct" ng-repeat="product in editableProducts" class="editable_goods">
         <!--<td ng-click="fastEditGood(product.idProduct, product.price, product.exist)">{{$index+1}}</td>-->
         <td ng-click="fastEditGood(product.idProduct, product.price, product.exist)">
             {{product.idProduct}}

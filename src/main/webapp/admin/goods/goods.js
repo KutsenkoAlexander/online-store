@@ -51,7 +51,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
 
         var search = $location.search();
         var page = search.page||0;
-        var size = search.size||15;
+        var size = search.size||    5;
         var sort = search.sort||'type,desc';
 
         $scope.setPageAndSizeAdmin = function(page){
@@ -161,16 +161,16 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                         break;
                 }
                 $scope.adminConsumerSelect = data.sprConsumer;
-                //$scope.selectConsumer = data.sprConsumer;
+                $scope.selectConsumer = data.sprConsumer;
 
                 $scope.adminColorSelect = data.sprColor;
-                //$scope.selectColor = data.sprColor;
+                $scope.selectColor = data.sprColor;
 
                 $scope.adminTypeSelect = data.sprType;
-                //$scope.selectType = data.sprType;
+                $scope.selectType = data.sprType;
 
                 $scope.sizeSelect = data.sprSize;
-                //$scope.selectSize = data.sprSize;
+                $scope.selectSize = data.sprSize;
             });
 
             $scope.categories = allChildCategoryFactory.query();
@@ -215,8 +215,8 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             console.log(product);
             saveProductFactory.save(product);
             $scope.newGood = false;
-            $scope.editableProducts = getAllProductsFactory.query();
-            $scope.editableProducts = getAllProductsFactory.query();
+            $scope.editableGoodsState = false;
+            $scope.setPageAndSizeAdmin(0);
         };
 
         $scope.cancelEditGood = function () {
@@ -294,7 +294,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.editItem = null;
             $scope.editableProduct = false;
             $scope.editableGoodsState = false;
-            $scope.editableProducts = getAllProductsFactory.query();
+            $scope.setPageAndSizeAdmin(0);
         };
 
         $scope.uploadImageProduct = function(file, errFiles) {
