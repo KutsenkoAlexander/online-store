@@ -39,10 +39,11 @@
                     <div class="col-xs-2">
                         <p>Категория</p>
                     </div>
-                    <div class="col-xs-3">
+                    <div class="col-xs-3" ng-controller="adminCategoryCtrl">
                         <select ng-model="addGoodsCategory"
+                                ng-change="selectCat(addGoodsCategory)"
                                 class="form-control admin_category_select"
-                                ng-options="category.name for category in categories track by category.idCategory">
+                                ng-options="category.name for category in categories | orderBy: 'name' track by category.idCategory">
                             <option value="">Выбрать</option>
                         </select>
                     </div>
@@ -179,7 +180,6 @@
                                 priceUah,
                                 priceCent,
                                 addGoodsCode,
-                                addGoodsCategory,
                                 name_product)">
         Сохранить
     </button>

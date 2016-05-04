@@ -1,7 +1,7 @@
 <ul class="pagination" ng-hide="editableGoodsState || newGood || page.totalPages < 2" >
     <li ng-class="{disabled: page.number === 0}">
         <a ng-show="page.number !== 0"
-           ng-click="setPageAndSizeAdmin(page.number)">&laquo;</a>
+           ng-click="setPageAndSizeAdmin(0)">&laquo;</a>
         <span ng-show="page.number === 0">&laquo;</span>
     </li>
     <li ng-class="{disabled: page.number === 0}">

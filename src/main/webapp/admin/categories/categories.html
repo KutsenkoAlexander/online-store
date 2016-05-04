@@ -1,8 +1,8 @@
 <div ng-show="editableGoodsState || isCategoryAdd">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title" ng-show="editableGoodsState">Редактирование товара</h3>
-            <h3 class="panel-title" ng-show="newGood">Добавление нового товара</h3>
+            <h3 class="panel-title" ng-show="editableGoodsState && !isCategoryAdd" ng-hide="isCategoryAdd">Редактирование товара</h3>
+            <h3 class="panel-title" ng-show="newGood && !isCategoryAdd" ng-hide="isCategoryAdd">Добавление нового товара</h3>
             <h3 class="panel-title" ng-show="isCategoryAdd">Добавление новой категории</h3>
         </div>
         <div class="panel-body">
