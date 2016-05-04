@@ -136,8 +136,8 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
 
             var editProduct = productByIdFactory.query({id:id});
             editProduct.$promise.then(function(data){
-                console.log(data);
-
+                //console.log(data);
+                $scope.idProductEdit = data.idProduct;
                 $scope.savedIdCategoryImg = data.image;
                 $scope.addGoodsCategory = data.sprCategory;
                 $scope.addGoodsCode = data.productCode;
@@ -161,9 +161,16 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                         break;
                 }
                 $scope.adminConsumerSelect = data.sprConsumer;
+                //$scope.selectConsumer = data.sprConsumer;
+
                 $scope.adminColorSelect = data.sprColor;
+                //$scope.selectColor = data.sprColor;
+
                 $scope.adminTypeSelect = data.sprType;
+                //$scope.selectType = data.sprType;
+
                 $scope.sizeSelect = data.sprSize;
+                //$scope.selectSize = data.sprSize;
             });
 
             $scope.categories = allChildCategoryFactory.query();
@@ -190,7 +197,9 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                 priceCent = 00;
             }
             var price = priceUah+"."+priceCent;
+            console.log($scope.savedIdCategoryImg);
             var product = {
+                "idProduct": $scope.idProductEdit,
                 "description": description,
                 "exist": productExist,
                 "image": $scope.savedIdCategoryImg,
