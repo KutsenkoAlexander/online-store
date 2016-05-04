@@ -47,32 +47,11 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
         $scope.fastEdit = false;
         $scope.editItem = null;
         $scope.currentUrl = $rootScope.currentPath;
-        // $scope.editableProducts = getAllProductsFactory.query();
 
         var search = $location.search();
         var page = search.page||0;
-        var size = search.size||3;
+        var size = search.size||20;
         var sort = search.sort||'type,desc';
-
-        $http({method: 'GET', url: '/product/all?page=' + page + '&size=' + size})
-            .success(function(data) {
-                $scope.editableProducts = data.content;
-                $scope.page = data.page;
-                $scope.sort = sort;
-
-                angular.forEach(data.links, function(value) {
-                    if(value.rel === 'next') {
-                        $scope.nextPageLink = value.href;
-                    }
-
-                    if(value.rel === 'prev') {
-                        $scope.prevPageLink = value.href;
-                    }
-                });
-            })
-            .error(function(error) {
-                $scope.widgetsError = error;
-            });
 
         $scope.setPageAndSizeAdmin = function(page){
             $http({method: 'GET', url: '/product/all?page=' + page + '&size=' + size})
@@ -95,6 +74,8 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                     $scope.widgetsError = error;
                 });
         };
+
+        $scope.setPageAndSizeAdmin(0);
 
         $scope.$on("categoriesBroadcast", function (event, args) {
             $scope.categories = args.categories;

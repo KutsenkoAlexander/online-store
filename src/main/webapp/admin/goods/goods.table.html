@@ -1,7 +1,7 @@
 <table class="table table-striped" ng-hide="editableGoodsState || newGood">
     <thead>
     <tr>
-        <th>#</th>
+        <th>id</th>
         <th>Наименование</th>
         <th>Цена</th>
         <th>Наличие</th>
@@ -10,7 +10,8 @@
     </thead>
     <tbody>
     <tr ng-hide="editableProduct" ng-repeat="product in editableProducts | orderBy: 'title' " class="editable_goods">
-        <td ng-click="fastEditGood(product.idProduct, product.price, product.exist)">{{$index+1}}</td>
+        <!--<td ng-click="fastEditGood(product.idProduct, product.price, product.exist)">{{$index+1}}</td>-->
+        <td ng-click="fastEditGood(product.idProduct, product.price, product.exist)">{{product.idProduct}}</td>
         <td ng-click="fastEditGood(product.idProduct, product.price, product.exist)">
             <p>{{product.title}}</p>
         </td>
@@ -80,25 +81,26 @@
     </tbody>
 </table>
 
-<ul class="pagination">
+<ul class="pagination" ng-show="page.totalPages > 1">
     <li ng-class="{disabled: page.number === 0}">
-        <a ng-show="page.number !== 0" ng-href="/admin/goods?page=0">&laquo;</a>
+        <a ng-show="page.number !== 0"
+           ng-click="setPageAndSizeAdmin(page.number)">&laquo;</a>
         <span ng-show="page.number === 0">&laquo;</span>
     </li>
     <li ng-class="{disabled: page.number === 0}">
-        <a ng-show="page.number !== 0" ng-href="/admin/goods?page={{page.number - 1}}">Prev</a>
+        <a ng-show="page.number !== 0" ng-click="setPageAndSizeAdmin(page.number-1)">Prev</a>
         <span ng-show="page.number === 0">Prev</span>
     </li>
     <li ng-repeat="n in [] | adminPages: page.number:page.totalPages:5" ng-class="{active: n === page.number}">
-        <a ng-show="page.number !== n" ng-href="/admin/goods?page={{n}}">{{n + 1}}</a>
+        <a ng-show="page.number !== n" ng-click="setPageAndSizeAdmin(n)">{{n + 1}}</a>
         <span ng-show="page.number === n">{{n + 1}}</span>
     </li>
     <li ng-class="{disabled: page.number === page.totalPages - 1}">
-        <a ng-show="page.number !== page.totalPages - 1" ng-href="/admin/goods?page={{page.number + 1}}">Next</a>
+        <a ng-show="page.number !== page.totalPages - 1" ng-click="setPageAndSizeAdmin(page.number+1)">Next</a>
         <span ng-show="page.number === page.totalPages - 1">Next</span>
     </li>
     <li ng-class="{disabled: page.number === page.totalPages - 1}">
-        <a ng-show="page.number !== page.totalPages - 1" ng-href="/admin/goods?page={{page.totalPages - 1}}">&raquo;</a>
+        <a ng-show="page.number !== page.totalPages - 1" ng-click="setPageAndSizeAdmin(page.totalPages - 1)">&raquo;</a>
         <span ng-show="page.number === page.totalPages - 1">&raquo;</span>
     </li>
 </ul>
