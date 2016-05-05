@@ -55,7 +55,7 @@ monolit.factory('pageCacheFactory', function ($cacheFactory) {
     return $cacheFactory('pageCache', {});
 });
 
-monolit.controller('mainCtrl', function mainController() {
+monolit.controller('mainCtrl', function ($scope) {
     
 });
 

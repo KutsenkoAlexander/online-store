@@ -51,7 +51,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
 
         var search = $location.search();
         var page = search.page||0;
-        var size = search.size||    5;
+        var size = search.size||5;
         var sort = search.sort||'type,desc';
 
         $scope.setPageAndSizeAdmin = function(page){
@@ -235,11 +235,10 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
         };
 
         $scope.cancelEditGood = function () {
-            $scope.editableGoodsState = false;
-            $scope.newGood = false;
+            console.log($scope.addGoodsCode);
             $scope.savedIdCategoryImg = null;
             $scope.addGoodsCategory = null;
-            $scope.addGoodsCode = '';
+            $scope.addGoodsCode = null;
             $scope.name_product = '';
             $scope.description = '';
             $scope.priceUah = '';
@@ -249,6 +248,8 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.adminColorSelect = null;
             $scope.adminTypeSelect = null;
             $scope.sizeSelect = null;
+            $scope.editableGoodsState = false;
+            $scope.newGood = false;
         };
 
         $scope.fastEditGood = function (id, price, exist) {
