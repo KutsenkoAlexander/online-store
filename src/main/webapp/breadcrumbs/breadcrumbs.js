@@ -1,4 +1,4 @@
-angular.module('monolitApp.breadcrumbs', ['monolitApp.sort'])
+angular.module('monolitApp.breadcrumbs', [])
 
     .factory('categoryNameByIdFactory', function($resource){
         return $resource('/catalog/category/name/:id', {id: '@id'},{'query': { method: 'GET' }});
