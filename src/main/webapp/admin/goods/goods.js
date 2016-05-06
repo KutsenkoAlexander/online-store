@@ -142,6 +142,9 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                 $scope.idProductEdit = data.idProduct;
                 $scope.savedIdCategoryImg = data.image;
                 $scope.addGoodsCode = data.productCode;
+                $scope.$watch('addGoodsCode', function(){
+                    angular.element('#addGoodsCode').val(data.productCode);
+                });
                 $scope.name_product = data.title;
                 $scope.description = data.description;
                 var price = data.price.toFixed(2);
@@ -235,10 +238,15 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
         };
 
         $scope.cancelEditGood = function () {
-            console.log($scope.addGoodsCode);
             $scope.savedIdCategoryImg = null;
+
             $scope.addGoodsCategory = null;
+
+
             $scope.addGoodsCode = null;
+            $scope.$watch('addGoodsCode', function(){
+                angular.element('#addGoodsCode').val('');
+            });
             $scope.name_product = '';
             $scope.description = '';
             $scope.priceUah = '';
@@ -336,6 +344,4 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                 });
             }
         };
-
-
     });
