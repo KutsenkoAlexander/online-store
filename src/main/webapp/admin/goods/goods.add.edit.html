@@ -43,7 +43,7 @@
                         <select ng-model="addGoodsCategory"
                                 ng-change="selectCat(addGoodsCategory)"
                                 class="form-control admin_category_select"
-                                id="categories"
+                                id="addGoodsCategory"
                                 ng-options="category.name for category in categories | orderBy: 'name' track by category.idCategory">
                             <option value="">Выбрать</option>
                         </select>

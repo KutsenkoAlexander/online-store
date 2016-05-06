@@ -87,6 +87,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
 
         $scope.$on("catBroadcast", function (event, args) {
             $scope.selectCat = args.selectCat;
+
         });
 
         $scope.$on("selectColor", function (event, args) {
@@ -111,8 +112,14 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.editableProduct = false;
             $scope.editableGoodsState = false;
             $scope.savedIdCategoryImg = null;
+
             $scope.addGoodsCategory = null;
+
             $scope.addGoodsCode = '';
+            $scope.$watch('addGoodsCode', function(){
+                angular.element('#addGoodsCode').val('');
+            });
+
             $scope.name_product = '';
             $scope.description = '';
             $scope.priceUah = '';
@@ -138,13 +145,15 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
 
             var editProduct = productByIdFactory.query({id:id});
             editProduct.$promise.then(function(data){
-                // console.log(data);
+                //console.log(data);
                 $scope.idProductEdit = data.idProduct;
                 $scope.savedIdCategoryImg = data.image;
+
                 $scope.addGoodsCode = data.productCode;
                 $scope.$watch('addGoodsCode', function(){
                     angular.element('#addGoodsCode').val(data.productCode);
                 });
+
                 $scope.name_product = data.title;
                 $scope.description = data.description;
                 var price = data.price.toFixed(2);
@@ -165,8 +174,15 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                         break;
                 }
 
+                //////////////////////////////////////////
+
                 $scope.addGoodsCategory = data.sprCategory;
                 $scope.selectCat = data.sprCategory;
+
+                angular.element('#addGoodsCategory').val(data.sprCategory);
+                console.log(data.sprCategory);
+
+                /////////////////////////////////////////
 
                 $scope.adminConsumerSelect = data.sprConsumer;
                 $scope.selectConsumer = data.sprConsumer;
@@ -239,14 +255,8 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
 
         $scope.cancelEditGood = function () {
             $scope.savedIdCategoryImg = null;
-
             $scope.addGoodsCategory = null;
-
-
-            $scope.addGoodsCode = null;
-            $scope.$watch('addGoodsCode', function(){
-                angular.element('#addGoodsCode').val('');
-            });
+            $scope.addGoodsCode = '';
             $scope.name_product = '';
             $scope.description = '';
             $scope.priceUah = '';
@@ -256,6 +266,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.adminColorSelect = null;
             $scope.adminTypeSelect = null;
             $scope.sizeSelect = null;
+
             $scope.editableGoodsState = false;
             $scope.newGood = false;
         };
