@@ -14,6 +14,7 @@
                         </td>
                         <td class="col-xs-8">
                             <select ng-model="category"
+                                    id="category"
                                     name="parentId"
                                     class="form-control admin_category_select"
                                     style="padding: 4px 0;"
@@ -23,7 +24,7 @@
                         </td>
                     </tr>
                     <tr ng-show="category">
-                        <td class="col-xs-4">
+                        <td class="col-xs-4">{{category}}
                             <p>Изображение категории</p>
                         </td>
                         <td class="col-xs-8" style="padding-left: 5px;">
@@ -65,5 +66,5 @@
     <button ng-show="category && img_category && name_category" class="btn btn-success admin_save_edit_btn" ng-click="saveCategory(name_category, category.idCategory); name_category = null">
         Сохранить
     </button>
-    <button class="btn btn-default admin_cancel_edit_btn" ng-click="cancelAddCategory(); name_category = null">Отмена</button>
+    <button class="btn btn-default admin_cancel_edit_btn" ng-click="cancelAddCategory(); category = null; name_category = null">Отмена</button>
 </div>

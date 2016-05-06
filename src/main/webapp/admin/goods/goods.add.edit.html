@@ -41,9 +41,9 @@
                     </div>
                     <div class="col-xs-3" ng-controller="adminCategoryCtrl">
                         <select ng-model="addGoodsCategory"
-                                ng-change="selectCat(addGoodsCategory)"
-                                class="form-control admin_category_select"
                                 id="addGoodsCategory"
+                                ng-click="selectCat(addGoodsCategory)"
+                                class="form-control admin_category_select"
                                 ng-options="category.name for category in categories | orderBy: 'name' track by category.idCategory">
                             <option value="">Выбрать</option>
                         </select>
@@ -187,5 +187,5 @@
                                 name_product)">
         Сохранить
     </button>
-    <button class="btn btn-default admin_cancel_edit_btn" ng-click="cancelEditGood()">Отмена</button>
+    <button class="btn btn-default admin_cancel_edit_btn" ng-click="cancelEditGood();">Отмена</button>
 </div>

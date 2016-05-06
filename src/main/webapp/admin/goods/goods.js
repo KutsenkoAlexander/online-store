@@ -87,7 +87,6 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
 
         $scope.$on("catBroadcast", function (event, args) {
             $scope.selectCat = args.selectCat;
-
         });
 
         $scope.$on("selectColor", function (event, args) {
@@ -113,7 +112,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.editableGoodsState = false;
             $scope.savedIdCategoryImg = null;
 
-            $scope.addGoodsCategory = null;
+            // $scope.addGoodsCategory = null;
 
             $scope.addGoodsCode = '';
             $scope.$watch('addGoodsCode', function(){
@@ -174,15 +173,11 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                         break;
                 }
 
-                //////////////////////////////////////////
-
                 $scope.addGoodsCategory = data.sprCategory;
                 $scope.selectCat = data.sprCategory;
-
-                angular.element('#addGoodsCategory').val(data.sprCategory);
-                console.log(data.sprCategory);
-
-                /////////////////////////////////////////
+                // $scope.$watch('addGoodsCategory', function(){
+                //     angular.element('#addGoodsCategory').val(data.sprCategory);
+                // });
 
                 $scope.adminConsumerSelect = data.sprConsumer;
                 $scope.selectConsumer = data.sprConsumer;
@@ -266,6 +261,8 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.adminColorSelect = null;
             $scope.adminTypeSelect = null;
             $scope.sizeSelect = null;
+
+            $scope.selectCat = null;
 
             $scope.editableGoodsState = false;
             $scope.newGood = false;

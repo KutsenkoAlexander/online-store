@@ -71,6 +71,7 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
             $scope.isCategoryAdd = false;
             $scope.name_category = '';
             $scope.f = null;
+            $scope.category = null;
             $scope.savedIdCategoryImg = null;
         };
 
