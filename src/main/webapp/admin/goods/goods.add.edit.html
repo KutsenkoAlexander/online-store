@@ -43,6 +43,7 @@
                         <select ng-model="addGoodsCategory"
                                 ng-change="selectCat(addGoodsCategory)"
                                 class="form-control admin_category_select"
+                                id="addGoodsCategory"
                                 ng-options="category.name for category in categories | orderBy: 'name' track by category.idCategory">
                             <option value="">Выбрать</option>
                         </select>
@@ -56,7 +57,10 @@
                         <p>Код продукта</p>
                     </div>
                     <div class="col-xs-10">
-                        <input type="text" class="form-control admin_add_input" ng-model="addGoodsCode"/>
+                        <input type="text"
+                               class="form-control admin_add_input"
+                               id="addGoodsCode"
+                               ng-model="addGoodsCode"/>
                     </div>
                 </div>
                 <div class="row">
