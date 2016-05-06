@@ -235,7 +235,6 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
         };
 
         $scope.cancelEditGood = function () {
-            console.log($scope.addGoodsCode);
             $scope.savedIdCategoryImg = null;
             $scope.addGoodsCategory = null;
             $scope.addGoodsCode = null;
