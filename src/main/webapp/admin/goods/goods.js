@@ -111,21 +111,52 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.editableProduct = false;
             $scope.editableGoodsState = false;
             $scope.savedIdCategoryImg = null;
+
             $scope.addGoodsCategory = null;
+            $scope.selectCat = null;
+
             $scope.addGoodsCode = '';
             $scope.$watch('addGoodsCode', function(){
                 angular.element('#addGoodsCode').val('');
             });
 
             $scope.name_product = '';
+            $scope.$watch('name_product', function(){
+                angular.element('#name_product').val('');
+            });
+
             $scope.description = '';
+            $scope.$watch('description', function(){
+                angular.element('#description').val('');
+            });
+
             $scope.priceUah = '';
+            $scope.$watch('priceUah', function(){
+                angular.element('#priceUah').val('');
+            });
+
             $scope.priceCent = '';
+            $scope.$watch('priceCent', function(){
+                angular.element('#priceCent').val('');
+            });
+
             $scope.addGoodsExist = '';
+            $scope.$watch('addGoodsExist', function(){
+                angular.element('#addGoodsExist').prop('checked', false);
+            });
+
             $scope.adminConsumerSelect = null;
+            $scope.selectConsumer = null;
+
             $scope.adminColorSelect = null;
+            $scope.selectColor = null;
+
             $scope.adminTypeSelect = null;
+            $scope.selectType = null;
+
             $scope.sizeSelect = null;
+            $scope.selectSize = null;
+
             $scope.isCategoryAdd = false;
             $scope.categories = allChildCategoryFactory.query();
         };
@@ -227,13 +258,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.categories = allChildCategoryFactory.query();
         };
 
-        $scope.saveGood = function (description,
-                                    exist,
-                                    img,
-                                    priceUah,
-                                    priceCent,
-                                    code,
-                                    name_product) {
+        $scope.saveGood = function (description, exist, img, priceUah, priceCent, code, name_product) {
             var productExist;
             switch (exist) {
                 case true:
@@ -262,20 +287,31 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                 "sprType": $scope.selectType
             };
             saveProductFactory.save(product);
-            $scope.editableGoodsState = false;
-            $scope.newGood = false;
             $scope.savedIdCategoryImg = null;
-            $scope.addGoodsCategory = null;
             $scope.addGoodsCode = '';
             $scope.name_product = '';
             $scope.description = '';
             $scope.priceUah = '';
             $scope.priceCent = '';
             $scope.addGoodsExist = '';
+
             $scope.adminConsumerSelect = null;
+            $scope.selectConsumer = null;
+
             $scope.adminColorSelect = null;
+            $scope.selectColor = null;
+
             $scope.adminTypeSelect = null;
+            $scope.selectType = null;
+
             $scope.sizeSelect = null;
+            $scope.selectSize = null;
+
+            $scope.addGoodsCategory = null;
+            $scope.selectCat = null;
+
+            $scope.editableGoodsState = false;
+            $scope.newGood = false;
             $scope.setPageAndSizeAdmin(0);
             $scope.setPageAndSizeAdmin(0);
         };
