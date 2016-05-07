@@ -28,10 +28,14 @@ angular.module('monolitApp.admin.consumer', ['ui.router', 'ngResource'])
         
         $scope.consumerList = getAllConsumersFactory.query();
 
-        $scope.selectConsumer = function(adminConsumerCtrl){
+        $scope.selectConsumerFromList = function(adminConsumerCtrl){
             $rootScope.$broadcast('selectConsumer', {
                 selectConsumer: adminConsumerCtrl
             });
-        }
+        };
+
+        $scope.$on("consumerBroadcastToList", function (event, args) {
+            $scope.adminConsumerSelect = args.consumerToList;
+        });
 
     });

@@ -28,10 +28,14 @@ angular.module('monolitApp.admin.color', ['ui.router', 'ngResource'])
 
         $scope.colorList = getAllColorsFactory.query();
 
-        $scope.selectColor = function(adminColorSelect){
+        $scope.selectColorFromList = function(adminColorSelect){
             $rootScope.$broadcast('selectColor', {
                 selectColor: adminColorSelect
             });
-        }
+        };
 
+        $scope.$on("colorBroadcastToList", function (event, args) {
+            $scope.adminColorSelect = args.colorToList;
+        });
+        
     });

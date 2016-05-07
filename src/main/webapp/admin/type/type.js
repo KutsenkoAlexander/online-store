@@ -28,10 +28,14 @@ angular.module('monolitApp.admin.type', ['ui.router', 'ngResource'])
 
         $scope.typeList = getAllTypesFactory.query();
 
-        $scope.selectType = function(adminTypeSelect){
+        $scope.selectTypeFromList = function(adminTypeSelect){
             $rootScope.$broadcast('selectType', {
                 selectType: adminTypeSelect
             });
-        }
+        };
+
+        $scope.$on("typeBroadcastToList", function (event, args) {
+            $scope.adminTypeSelect = args.typeToList;
+        });
 
     });

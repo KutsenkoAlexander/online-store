@@ -111,9 +111,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.editableProduct = false;
             $scope.editableGoodsState = false;
             $scope.savedIdCategoryImg = null;
-
-            // $scope.addGoodsCategory = null;
-
+            $scope.addGoodsCategory = null;
             $scope.addGoodsCode = '';
             $scope.$watch('addGoodsCode', function(){
                 angular.element('#addGoodsCode').val('');
@@ -144,7 +142,6 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
 
             var editProduct = productByIdFactory.query({id:id});
             editProduct.$promise.then(function(data){
-                //console.log(data);
                 $scope.idProductEdit = data.idProduct;
                 $scope.savedIdCategoryImg = data.image;
 
@@ -154,40 +151,75 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                 });
 
                 $scope.name_product = data.title;
+                $scope.$watch('name_product', function(){
+                    angular.element('#name_product').val(data.title);
+                });
+
                 $scope.description = data.description;
+                $scope.$watch('description', function(){
+                    angular.element('#description').val(data.description);
+                });
+
                 var price = data.price.toFixed(2);
                 var index = price.indexOf(".");
                 if(index > -1){
                     $scope.priceUah = price.substring(0, index);
                     $scope.priceCent = parseInt(price.substring(index+1));
+                    $scope.$watch('description', function(){
+                        angular.element('#priceUah').val(price.substring(0, index));
+                        angular.element('#priceCent').val(parseInt(price.substring(index+1)));
+                    });
                 } else {
                     $scope.priceUah = parseInt(data.price);
                     $scope.priceCent = 00;
+                    $scope.$watch('description', function(){
+                        angular.element('#priceUah').val(parseInt(data.price));
+                        angular.element('#priceCent').val('00');
+                    });
                 }
+
                 switch(data.exist){
                     case 1:
                         $scope.addGoodsExist = true;
+                        $scope.$watch('addGoodsExist', function(){
+                            angular.element('#addGoodsExist').prop('checked', true);
+                        });
                         break;
                     case 0:
                         $scope.addGoodsExist = false;
+                        $scope.$watch('addGoodsExist', function(){
+                            angular.element('#addGoodsExist').prop('checked', false);
+                        });
                         break;
                 }
 
+                $rootScope.$broadcast('categoryBroadcastToList', {
+                    categoryToList: data.sprCategory
+                });
                 $scope.addGoodsCategory = data.sprCategory;
                 $scope.selectCat = data.sprCategory;
-                // $scope.$watch('addGoodsCategory', function(){
-                //     angular.element('#addGoodsCategory').val(data.sprCategory);
-                // });
 
+                $rootScope.$broadcast('consumerBroadcastToList', {
+                    consumerToList: data.sprConsumer
+                });
                 $scope.adminConsumerSelect = data.sprConsumer;
                 $scope.selectConsumer = data.sprConsumer;
 
+                $rootScope.$broadcast('colorBroadcastToList', {
+                    colorToList: data.sprColor
+                });
                 $scope.adminColorSelect = data.sprColor;
                 $scope.selectColor = data.sprColor;
 
+                $rootScope.$broadcast('typeBroadcastToList', {
+                    typeToList: data.sprType
+                });
                 $scope.adminTypeSelect = data.sprType;
                 $scope.selectType = data.sprType;
 
+                $rootScope.$broadcast('sizeBroadcastToList', {
+                    sizeToList: data.sprSize
+                });
                 $scope.sizeSelect = data.sprSize;
                 $scope.selectSize = data.sprSize;
             });
@@ -250,18 +282,26 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
 
         $scope.cancelEditGood = function () {
             $scope.savedIdCategoryImg = null;
-            $scope.addGoodsCategory = null;
             $scope.addGoodsCode = '';
             $scope.name_product = '';
             $scope.description = '';
             $scope.priceUah = '';
             $scope.priceCent = '';
             $scope.addGoodsExist = '';
-            $scope.adminConsumerSelect = null;
-            $scope.adminColorSelect = null;
-            $scope.adminTypeSelect = null;
-            $scope.sizeSelect = null;
 
+            $scope.adminConsumerSelect = null;
+            $scope.selectConsumer = null;
+
+            $scope.adminColorSelect = null;
+            $scope.selectColor = null;
+
+            $scope.adminTypeSelect = null;
+            $scope.selectType = null;
+
+            $scope.sizeSelect = null;
+            $scope.selectSize = null;
+
+            $scope.addGoodsCategory = null;
             $scope.selectCat = null;
 
             $scope.editableGoodsState = false;

@@ -41,8 +41,7 @@
                     </div>
                     <div class="col-xs-3" ng-controller="adminCategoryCtrl">
                         <select ng-model="addGoodsCategory"
-                                id="addGoodsCategory"
-                                ng-click="selectCat(addGoodsCategory)"
+                                ng-click="selectCategoryFromList(addGoodsCategory)"
                                 class="form-control admin_category_select"
                                 ng-options="category.name for category in categories | orderBy: 'name' track by category.idCategory">
                             <option value="">Выбрать</option>
@@ -68,7 +67,7 @@
                         <p>Наименование</p>
                     </div>
                     <div class="col-xs-10">
-                        <input type="text" class="form-control admin_add_input" ng-model="name_product"/>
+                        <input type="text" class="form-control admin_add_input" id="name_product" ng-model="name_product"/>
                     </div>
                 </div>
                 <div class="row">
@@ -76,7 +75,7 @@
                         <p>Описание</p>
                     </div>
                     <div class="col-xs-10">
-                        <textarea class="form-control admin_add_input admin_area"  ng-model="description"></textarea>
+                        <textarea class="form-control admin_add_input admin_area" id="description" ng-model="description"></textarea>
                     </div>
                 </div>
                 <div class="row">
@@ -84,13 +83,13 @@
                         <p>Цена</p>
                     </div>
                     <div class="col-xs-6">
-                        <input type="text" class="form-control admin_add_input"  ng-model="priceUah"/>
+                        <input type="text" class="form-control admin_add_input" id="priceUah" ng-model="priceUah"/>
                     </div>
                     <div class="col-xs-1">
                         <p style="margin: 6px 0 0 10px; font-size: 15px;">гривен</p>
                     </div>
                     <div class="col-xs-2">
-                        <input type="text" class="form-control admin_add_input"  ng-model="priceCent"/>
+                        <input type="text" class="form-control admin_add_input" id="priceCent" ng-model="priceCent"/>
                     </div>
                     <div class="col-xs-1">
                         <p style="margin: 6px 0 0 10px; font-size: 15px;">коп.</p>
@@ -103,6 +102,7 @@
                     <div class="col-xs-10" style="padding-left: 5px;">
                         <label class="admin_add_product_lable">
                             <input type="checkbox"
+                                   id="addGoodsExist"
                                    ng-model="addGoodsExist"
                                    class="form-control admin_exist_product"/>
                             В наличии
@@ -115,7 +115,7 @@
                     </div>
                     <div class="col-xs-3" ng-controller="adminConsumerCtrl">
                         <select ng-model="adminConsumerSelect"
-                                ng-change="selectConsumer(adminConsumerSelect)"
+                                ng-change="selectConsumerFromList(adminConsumerSelect)"
                                 class="form-control admin_category_select"
                                 ng-options="consumer.name for consumer in consumerList | orderBy: 'name' track by consumer.idConsumer">
                             <option value="">Выбрать</option>
@@ -132,7 +132,7 @@
                     <div class="col-xs-3" ng-controller="adminColorCtrl">
                         <select ng-model="adminColorSelect"
                                 class="form-control admin_category_select"
-                                ng-change="selectColor(adminColorSelect)"
+                                ng-change="selectColorFromList(adminColorSelect)"
                                 ng-options="color.name for color in colorList | orderBy: 'name' track by color.idSprColors">
                             <option value="">Выбрать</option>
                         </select>
@@ -147,7 +147,7 @@
                     </div>
                     <div class="col-xs-3" ng-controller="adminTypeCtrl">
                         <select ng-model="adminTypeSelect"
-                                ng-change="selectType(adminTypeSelect)"
+                                ng-change="selectTypeFromList(adminTypeSelect)"
                                 class="form-control admin_category_select"
                                 ng-options="type.name for type in typeList | orderBy: 'name' track by type.idSprType">
                             <option value="">Выбрать</option>
@@ -164,7 +164,7 @@
                     <div class="col-xs-3" ng-controller="adminSizeCtrl">
                         <select ng-model="sizeSelect"
                                 class="form-control admin_category_select"
-                                ng-change="selectSize(sizeSelect)"
+                                ng-change="selectSizeFromList(sizeSelect)"
                                 ng-options="type.name for type in sizeList | orderBy: 'name' track by type.idSprSize">
                             <option value="">Выбрать</option>
                         </select>

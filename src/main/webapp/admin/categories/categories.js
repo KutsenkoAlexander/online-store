@@ -28,11 +28,15 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
                                               $timeout,
                                               pageCacheFactory){
 
-        $scope.selectCat = function(addGoodsCategory){
+        $scope.selectCategoryFromList = function(addGoodsCategory){
             $rootScope.$broadcast('catBroadcast', {
                 selectCat: addGoodsCategory
             });
         };
+
+        $scope.$on("categoryBroadcastToList", function (event, args) {
+            $scope.addGoodsCategory = args.categoryToList;
+        });
         
         $scope.addCategory = function(){
             $scope.isCategoryAdd = true;
