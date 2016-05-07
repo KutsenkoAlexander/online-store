@@ -87,6 +87,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
 
         $scope.$on("catBroadcast", function (event, args) {
             $scope.selectCat = args.selectCat;
+            $scope.addGoodsCategory = args.selectCat;
         });
 
         $scope.$on("selectColor", function (event, args) {
@@ -110,10 +111,9 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.editItem = null;
             $scope.editableProduct = false;
             $scope.editableGoodsState = false;
-            $scope.savedIdCategoryImg = null;
 
-            $scope.addGoodsCategory = null;
-            $scope.selectCat = null;
+            $scope.savedIdCategoryImg = null;
+            $scope.img_product = null;
 
             $scope.addGoodsCode = '';
             $scope.$watch('addGoodsCode', function(){
@@ -145,15 +145,33 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                 angular.element('#addGoodsExist').prop('checked', false);
             });
 
+            $rootScope.$broadcast('categoryBroadcastToList', {
+                categoryToList: null
+            });
+            $scope.addGoodsCategory = null;
+            $scope.selectCat = null;
+
+            $rootScope.$broadcast('consumerBroadcastToList', {
+                consumerToList: null
+            });
             $scope.adminConsumerSelect = null;
             $scope.selectConsumer = null;
 
+            $rootScope.$broadcast('colorBroadcastToList', {
+                colorToList: null
+            });
             $scope.adminColorSelect = null;
             $scope.selectColor = null;
 
+            $rootScope.$broadcast('typeBroadcastToList', {
+                typeToList: null
+            });
             $scope.adminTypeSelect = null;
             $scope.selectType = null;
 
+            $rootScope.$broadcast('sizeBroadcastToList', {
+                sizeToList: null
+            });
             $scope.sizeSelect = null;
             $scope.selectSize = null;
 
