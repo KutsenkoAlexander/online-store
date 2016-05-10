@@ -34,8 +34,8 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
             });
         };
 
-        $scope.$on("categoryBroadcastToList", function (event, args) {
-            $scope.addGoodsCategory = args.categoryToList;
+        $scope.$on("allItemsBroadcast", function (event, args) {
+            $scope.addGoodsCode = args.allItems;
         });
         
         $scope.addCategory = function(){

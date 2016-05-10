@@ -176,17 +176,22 @@
             </div>
         </div>
     </div>
-    {{addGoodsCategory}}
     <button class="btn btn-success admin_save_edit_btn"
-            ng-show="addGoodsCategory && addGoodsCode && name_product && description && priceUah"
+            ng-show="addGoodsCategory || selectCat && addGoodsCode && name_product && description && priceUah"
             ng-click="saveGood(description,
                                 addGoodsExist,
                                 img,
                                 priceUah,
                                 priceCent,
                                 addGoodsCode,
-                                name_product)">
+                                name_product);">
         Сохранить
     </button>
     <button class="btn btn-default admin_cancel_edit_btn" ng-click="cancelEditGood();">Отмена</button>
+    1) {{addGoodsCategory}}
+    2) {{selectCat}}
+    3) {{addGoodsCode}}
+    4) {{name_product}}
+    5) {{description}}
+    6) {{priceUah}}
 </div>

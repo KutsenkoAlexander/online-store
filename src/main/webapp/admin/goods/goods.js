@@ -115,35 +115,39 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.savedIdCategoryImg = null;
             $scope.img_product = null;
 
-            $scope.addGoodsCode = '';
-            $scope.$watch('addGoodsCode', function(){
-                angular.element('#addGoodsCode').val('');
-            });
+            // $rootScope.$broadcast('allItemsBroadcast', {
+            //     allItems: null
+            // });
 
-            $scope.name_product = '';
-            $scope.$watch('name_product', function(){
-                angular.element('#name_product').val('');
-            });
+            $scope.addGoodsCode = null;
+            // $scope.$watch('addGoodsCode', function(){
+            //     angular.element('#addGoodsCode').val('');
+            // });
 
-            $scope.description = '';
-            $scope.$watch('description', function(){
-                angular.element('#description').val('');
-            });
+            $scope.name_product = null;
+            // $scope.$watch('name_product', function(){
+            //     angular.element('#name_product').val('');
+            // });
 
-            $scope.priceUah = '';
-            $scope.$watch('priceUah', function(){
-                angular.element('#priceUah').val('');
-            });
+            $scope.description = null;
+            // $scope.$watch('description', function(){
+            //     angular.element('#description').val('');
+            // });
 
-            $scope.priceCent = '';
-            $scope.$watch('priceCent', function(){
-                angular.element('#priceCent').val('');
-            });
+            $scope.priceUah = null;
+            // $scope.$watch('priceUah', function(){
+            //     angular.element('#priceUah').val('');
+            // });
 
-            $scope.addGoodsExist = '';
-            $scope.$watch('addGoodsExist', function(){
-                angular.element('#addGoodsExist').prop('checked', false);
-            });
+            $scope.priceCent = null;
+            // $scope.$watch('priceCent', function(){
+            //     angular.element('#priceCent').val('');
+            // });
+
+            $scope.addGoodsExist = null;
+            // $scope.$watch('addGoodsExist', function(){
+            //     angular.element('#addGoodsExist').prop('checked', false);
+            // });
 
             $rootScope.$broadcast('categoryBroadcastToList', {
                 categoryToList: null
@@ -336,12 +340,12 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
 
         $scope.cancelEditGood = function () {
             $scope.savedIdCategoryImg = null;
-            $scope.addGoodsCode = '';
-            $scope.name_product = '';
-            $scope.description = '';
-            $scope.priceUah = '';
-            $scope.priceCent = '';
-            $scope.addGoodsExist = '';
+            $scope.addGoodsCode = null;
+            $scope.name_product = null;
+            $scope.description = null;
+            $scope.priceUah = null;
+            $scope.priceCent = null;
+            $scope.addGoodsExist = null;
 
             $scope.adminConsumerSelect = null;
             $scope.selectConsumer = null;
