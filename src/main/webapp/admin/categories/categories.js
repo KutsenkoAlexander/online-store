@@ -28,16 +28,16 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
                                               $timeout,
                                               pageCacheFactory){
 
-        $scope.selectCategoryFromList = function(addGoodsCategory){
+        $scope.$on("categoryBroadcastToList", function (event, args) {
+            $scope.addGoodsCategory = args.categoryToList;
+        });
+
+        $scope.selectCat = function(addGoodsCategory){
             $rootScope.$broadcast('catBroadcast', {
                 selectCat: addGoodsCategory
             });
         };
 
-        $scope.$on("allItemsBroadcast", function (event, args) {
-            $scope.addGoodsCode = args.allItems;
-        });
-        
         $scope.addCategory = function(){
             $scope.isCategoryAdd = true;
             $scope.parenCategories = pageCacheFactory.get('parenCategories');
@@ -75,7 +75,6 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
             $scope.isCategoryAdd = false;
             $scope.name_category = '';
             $scope.f = null;
-            $scope.category = null;
             $scope.savedIdCategoryImg = null;
         };
 
@@ -93,5 +92,5 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
             $scope.newGood = true;
             $scope.img_category = null;
         };
-        
+
     });
