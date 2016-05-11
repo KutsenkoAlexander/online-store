@@ -106,25 +106,34 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.selectType = args.selectType;
         });
 
-        //$scope.addGood = function () {
-        //    $scope.newGood = true;
-        //    $scope.editItem = null;
-        //    $scope.editableProduct = false;
-        //    $scope.editableGoodsState = false;
-        //
-        //    $scope.isCategoryAdd = false;
-        //    $scope.categories = allChildCategoryFactory.query();
-        //};
+        $scope.addGood = function () {
+            $rootScope.$broadcast('itemsBroadcast', {
+                sizeToList: null
+            });
+
+            $scope.editItem = null;
+            $scope.newGood = true;
+            $scope.editableProduct = false;
+            $scope.editableGoodsState = false;
+            $scope.isCategoryAdd = false;
+
+            $scope.editableGoods = null;
+            $scope.editSingleItem = null;
+            $scope.fastEdit = false;
+
+            $scope.categories = allChildCategoryFactory.query();
+        };
 
         $scope.editGood = function (id) {
-            $scope.editableGoods = null;
             $scope.editItem = null;
-            $scope.editSingleItem = null;
-            $scope.editableGoodsState = true;
-            $scope.fastEdit = false;
             $scope.newGood = false;
             $scope.editableProduct = false;
+            $scope.editableGoodsState = true;
             $scope.isCategoryAdd = false;
+
+            $scope.editableGoods = null;
+            $scope.editSingleItem = null;
+            $scope.fastEdit = false;
 
             var editProduct = productByIdFactory.query({id:id});
             editProduct.$promise.then(function(data){
@@ -268,75 +277,18 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.editableGoodsState = false;
             $scope.newGood = false;
             $scope.setPageAndSizeAdmin(0);
-            $scope.setPageAndSizeAdmin(0);
         };
 
         $scope.cancelEditGood = function () {
-            $scope.savedIdCategoryImg = null;
-            $scope.img_product = null;
-
-            $scope.addGoodsCode = null;
-            $scope.$watch('addGoodsCode', function(){
-                angular.element('#addGoodsCode').val('');
-            });
-
-            $scope.name_product = null;
-            $scope.$watch('name_product', function(){
-                angular.element('#name_product').val('');
-            });
-
-            $scope.description = null;
-            $scope.$watch('description', function(){
-                angular.element('#description').val('');
-            });
-
-            $scope.priceUah = null;
-            $scope.$watch('priceUah', function(){
-                angular.element('#priceUah').val('');
-            });
-
-            $scope.priceCent = null;
-            $scope.$watch('priceCent', function(){
-                angular.element('#priceCent').val('');
-            });
-
-            $scope.addGoodsExist = null;
-            $scope.$watch('addGoodsExist', function(){
-                angular.element('#addGoodsExist').prop('checked', false);
-            });
-
-            $rootScope.$broadcast('categoryBroadcastToList', {
-                categoryToList: null
-            });
-            $scope.addGoodsCategory = null;
-            $scope.selectCat = null;
-
-            $rootScope.$broadcast('consumerBroadcastToList', {
-                consumerToList: null
-            });
-            $scope.adminConsumerSelect = null;
-            $scope.selectConsumer = null;
-
-            $rootScope.$broadcast('colorBroadcastToList', {
-                colorToList: null
-            });
-            $scope.adminColorSelect = null;
-            $scope.selectColor = null;
-
-            $rootScope.$broadcast('typeBroadcastToList', {
-                typeToList: null
-            });
-            $scope.adminTypeSelect = null;
-            $scope.selectType = null;
-
-            $rootScope.$broadcast('sizeBroadcastToList', {
-                sizeToList: null
-            });
-            $scope.sizeSelect = null;
-            $scope.selectSize = null;
-
-            $scope.editableGoodsState = false;
+            $scope.editItem = null;
             $scope.newGood = false;
+            $scope.editableProduct = false;
+            $scope.editableGoodsState = false;
+            $scope.isCategoryAdd = false;
+
+            $scope.editableGoods = null;
+            $scope.editSingleItem = null;
+            $scope.fastEdit = false;
         };
 
         $scope.fastEditGood = function (id, price, exist) {

@@ -1,0 +1,189 @@
+<div ng-show="editableGoodsState || newGood">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title" ng-show="editableGoodsState">Редактирование товара</h3>
+            <h3 class="panel-title" ng-show="newGood">Добавление нового товара</h3>
+        </div>
+        <div class="panel-body">
+            <div class="wrapper_panel_body_content">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <p>Изображение</p>
+                    </div>
+                    <div class="col-xs-10" style="padding-left: 5px;">
+                        <button type="file"
+                                class="btn btn-default add_file"
+                                ngf-select="uploadImageProduct($file, $invalidFiles)"
+                                accept="image/*"
+                                ngf-max-height="1000"
+                                ngf-max-size="2MB"
+                                ng-hide="img_product">Выберите изображение</button>
+                        <div style="margin: 5px 0;">
+                            <div style="font-size: 14px;" ng-show="img_product">Файл:
+                                {{img_product.name}}
+                                {{errFile.name}}
+                                {{errFile.$error}}
+                                {{errFile.$errorParam}}
+                                  <span class="progress" ng-show="img_product.progress >= 0">
+                                      <div style="width:{{f.progress}}%" ng-cloak>Загружено:
+                                          {{img_product.progress + '%'}}</div>
+                                  </span>
+                            </div>
+                            {{errorMsg}}
+                        </div>
+                        <img ng-show="savedIdCategoryImg.image" ng-src="data:image/jpeg; base64,{{savedIdCategoryImg.image}}" class="admin_single_product_img"/>
+                        <img ng-hide="savedIdCategoryImg.image || newGood" src="../../static/img/no-image.png" type="image/jpeg" class="single_product_img"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2">
+                        <p>Категория</p>
+                    </div>
+                    <div class="col-xs-3" ng-controller="adminCategoryCtrl">
+                        <select ng-model="addGoodsCategory"
+                                ng-click="selectCategoryFromList(addGoodsCategory)"
+                                class="form-control admin_category_select"
+                                ng-options="category.name for category in categories | orderBy: 'name' track by category.idCategory">
+                            <option value="">Выбрать</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-7 admin_padding_left_ten_element">
+                        <button class="btn btn-default admin_add_category_btn" ng-click="addCategory()">Новая категория</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2">
+                        <p>Код продукта</p>
+                    </div>
+                    <div class="col-xs-10">
+                        <input type="text"
+                               class="form-control admin_add_input"
+                               id="addGoodsCode"
+                               ng-model="addGoodsCode"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2">
+                        <p>Наименование</p>
+                    </div>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control admin_add_input" id="name_product" ng-model="name_product"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2">
+                        <p>Описание</p>
+                    </div>
+                    <div class="col-xs-10">
+                        <textarea class="form-control admin_add_input admin_area" id="description" ng-model="description"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2">
+                        <p>Цена</p>
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="text" class="form-control admin_add_input" id="priceUah" ng-model="priceUah"/>
+                    </div>
+                    <div class="col-xs-1">
+                        <p style="margin: 6px 0 0 10px; font-size: 15px;">гривен</p>
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" class="form-control admin_add_input" id="priceCent" ng-model="priceCent"/>
+                    </div>
+                    <div class="col-xs-1">
+                        <p style="margin: 6px 0 0 10px; font-size: 15px;">коп.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2">
+                        <p>Наличие</p>
+                    </div>
+                    <div class="col-xs-10" style="padding-left: 5px;">
+                        <label class="admin_add_product_lable">
+                            <input type="checkbox"
+                                   id="addGoodsExist"
+                                   ng-model="addGoodsExist"
+                                   class="form-control admin_exist_product"/>
+                            В наличии
+                        </label>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 5px;">
+                    <div class="col-xs-2">
+                        <p>Производитель</p>
+                    </div>
+                    <div class="col-xs-3" ng-controller="adminConsumerCtrl">
+                        <select ng-model="adminConsumerSelect"
+                                ng-change="selectConsumerFromList(adminConsumerSelect)"
+                                class="form-control admin_category_select"
+                                ng-options="consumer.name for consumer in consumerList | orderBy: 'name' track by consumer.idConsumer">
+                            <option value="">Выбрать</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-7 admin_padding_left_ten_element">
+                        <button class="btn btn-default admin_add_category_btn">Новый производитель</button>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 5px;">
+                    <div class="col-xs-2">
+                        <p>Цвет</p>
+                    </div>
+                    <div class="col-xs-3" ng-controller="adminColorCtrl">
+                        <select ng-model="adminColorSelect"
+                                class="form-control admin_category_select"
+                                ng-change="selectColorFromList(adminColorSelect)"
+                                ng-options="color.name for color in colorList | orderBy: 'name' track by color.idSprColors">
+                            <option value="">Выбрать</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-7 admin_padding_left_ten_element">
+                        <button class="btn btn-default admin_add_category_btn">Новый цвет</button>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 5px;">
+                    <div class="col-xs-2">
+                        <p>Тип</p>
+                    </div>
+                    <div class="col-xs-3" ng-controller="adminTypeCtrl">
+                        <select ng-model="adminTypeSelect"
+                                ng-change="selectTypeFromList(adminTypeSelect)"
+                                class="form-control admin_category_select"
+                                ng-options="type.name for type in typeList | orderBy: 'name' track by type.idSprType">
+                            <option value="">Выбрать</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-7 admin_padding_left_ten_element">
+                        <button class="btn btn-default admin_add_category_btn">Новый тип</button>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 5px;">
+                    <div class="col-xs-2">
+                        <p>Размер</p>
+                    </div>
+                    <div class="col-xs-3" ng-controller="adminSizeCtrl">
+                        <select ng-model="sizeSelect"
+                                class="form-control admin_category_select"
+                                ng-change="selectSizeFromList(sizeSelect)"
+                                ng-options="type.name for type in sizeList | orderBy: 'name' track by type.idSprSize">
+                            <option value="">Выбрать</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-7 admin_padding_left_ten_element">
+                        <button class="btn btn-default admin_add_category_btn">Новый размер</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-success admin_save_edit_btn"
+            ng-show="addGoodsCode && name_product && description && priceUah"
+            ng-click="saveGood(description,
+                                addGoodsExist,
+                                img,
+                                priceUah,
+                                priceCent,
+                                addGoodsCode,
+                                name_product);">Сохранить</button>
+    <button class="btn btn-default admin_cancel_edit_btn" ng-click="cancelEditGood();">Отмена</button>
+</div>

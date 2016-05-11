@@ -13,13 +13,19 @@
                           inputclass="form-control form-control-small goods_search"/>
         </div>
     </div>
-    <button ng-hide="editableGoodsState || newGood || fastEdit"
-            class="btn btn-default admin_add_new_good"
-            ui-sref="admin.goods.add">Новый товар</button>
+    <button ng-hide="editableGoodsState || newGood || fastEdit" class="btn btn-default admin_add_new_good" ng-click="addGood();
+                                                                                                                     addGoodsCode = null;
+                                                                                                                     name_product = null;
+                                                                                                                     description = null;
+                                                                                                                     priceUah = null;
+                                                                                                                     priceCent = null;
+                                                                                                                     addGoodsExist = null;">Новый товар</button>
     <button ng-show="fastEdit" class="btn btn-default admin_add_new_good" ng-click="cancelFastEditGoods()">Отмена</button>
 </div>
 <div class="table-responsive" ng-controller="adminCategoryCtrl">
-    <div ng-hide="isCategoryAdd" ng-include=" 'admin/goods/goods.table.html' "></div>
-    <div ng-hide="isCategoryAdd" ng-include=" 'admin/goods/goods.add.edit.html' "></div>
-    <div ng-show="isCategoryAdd" ng-include=" 'admin/categories/categories.html' "></div>
+    <div>
+        <div ng-hide="isCategoryAdd || editableGoodsState" ng-include=" 'admin/goods/goods.table.html' "></div>
+        <div ng-hide="isCategoryAdd" ng-include=" 'admin/goods/goods.add.edit.html' "></div>
+        <div ng-show="isCategoryAdd" ng-include=" 'admin/categories/categories.html' "></div>
+    </div>
 </div>

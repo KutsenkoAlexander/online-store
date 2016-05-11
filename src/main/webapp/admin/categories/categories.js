@@ -32,6 +32,72 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
             $scope.addGoodsCategory = args.categoryToList;
         });
 
+        $scope.$on("itemsBroadcast", function (event, args) {
+            //$scope.savedIdCategoryImg = null;
+            //$scope.img_product = null;
+
+            $scope.addGoodsCode = null;
+            $scope.$watch('addGoodsCode', function(){
+                angular.element('#addGoodsCode').val('');
+            });
+
+            $scope.name_product = null;
+            $scope.$watch('name_product', function(){
+                angular.element('#name_product').val('');
+            });
+
+            $scope.description = null;
+            $scope.$watch('description', function(){
+                angular.element('#description').val('');
+            });
+
+            $scope.priceUah = null;
+            $scope.$watch('priceUah', function(){
+                angular.element('#priceUah').val('');
+            });
+
+            $scope.priceCent = null;
+            $scope.$watch('priceCent', function(){
+                angular.element('#priceCent').val('');
+            });
+
+            $scope.addGoodsExist = null;
+            $scope.$watch('addGoodsExist', function(){
+                angular.element('#addGoodsExist').prop('checked', false);
+            });
+
+            $rootScope.$broadcast('categoryBroadcastToList', {
+                categoryToList: null
+            });
+            $scope.addGoodsCategory = null;
+            $scope.selectCat = null;
+
+            $rootScope.$broadcast('consumerBroadcastToList', {
+                consumerToList: null
+            });
+            $scope.adminConsumerSelect = null;
+            $scope.selectConsumer = null;
+
+            $rootScope.$broadcast('colorBroadcastToList', {
+                colorToList: null
+            });
+            $scope.adminColorSelect = null;
+            $scope.selectColor = null;
+
+            $rootScope.$broadcast('typeBroadcastToList', {
+                typeToList: null
+            });
+            $scope.adminTypeSelect = null;
+            $scope.selectType = null;
+
+            $rootScope.$broadcast('sizeBroadcastToList', {
+                sizeToList: null
+            });
+            $scope.sizeSelect = null;
+            $scope.selectSize = null;
+
+        });
+
         $scope.selectCat = function(addGoodsCategory){
             $rootScope.$broadcast('catBroadcast', {
                 selectCat: addGoodsCategory

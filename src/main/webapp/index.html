@@ -27,7 +27,7 @@
                        currentPath === '/consumer' ||
                        currentPath === '/color' ||
                        currentPath === '/size' ||
-                       currentPath === '/type'">
+                       currentPath === '/type' ">
             <div ui-view="content"></div>
         </div>
         <div class="row" id="row_container"
@@ -40,7 +40,7 @@
                        currentPath === '/consumer' ||
                        currentPath === '/color' ||
                        currentPath === '/size' ||
-                       currentPath === '/type'">
+                       currentPath === '/type' ">
             <div class="col-xs-12" id="wrapper_header_nav" ng-controller="breadcrumbsCtrl">
                 <div ng-include="'navigation/navigation.html'"></div>
                 <div class="row" ng-class="(currentPath === '/')?'main_header':'head'">
@@ -73,7 +73,7 @@
                                                    currentPath !== '/consumer' ||
                                                    currentPath !== '/color' ||
                                                    currentPath !== '/size' ||
-                                                   currentPath !== '/type'"
+                                                   currentPath !== '/type' "
                                          ui-view="content"></div>
                                 </div>
                             </div>
@@ -125,6 +125,5 @@
     <script src="admin/color/color.js"></script>
     <script src="admin/type/type.js"></script>
     <script src="admin/size/size.js"></script>
-    <script src="admin/goods/goods.add.js"></script>
 </body>
 </html>
