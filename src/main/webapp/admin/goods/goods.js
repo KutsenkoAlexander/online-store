@@ -107,17 +107,6 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
         });
 
         $scope.addGood = function () {
-            $rootScope.$broadcast('itemsBroadcast', {
-                sizeToList: null
-            });
-
-            $scope.addGoodsCode = null;
-            $scope.name_product = null;
-            $scope.description = null;
-            $scope.priceUah = null;
-            $scope.priceCent = null;
-            $scope.addGoodsExist = null;
-
             $scope.editItem = null;
             $scope.newGood = true;
             $scope.editableProduct = false;
@@ -257,6 +246,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                 "sprSize": $scope.selectSize,
                 "sprType": $scope.selectType
             };
+            console.log(product);
             saveProductFactory.save(product);
             $scope.savedIdCategoryImg = null;
             $scope.addGoodsCode = '';
@@ -287,12 +277,80 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
         };
 
         $scope.cancelEditGood = function () {
-            $scope.addGoodsCode = null;
-            $scope.name_product = null;
-            $scope.description = null;
-            $scope.priceUah = null;
-            $scope.priceCent = null;
-            $scope.addGoodsExist = null;
+            $scope.savedIdCategoryImg = null;
+            $scope.img_product = null;
+
+            $rootScope.$broadcast('goodsTxtInputBroadcast', {
+                goodsCode: null
+            });
+            $scope.$watch('addGoodsCode', function(){
+                angular.element('#addGoodsCode').val('');
+            });
+
+            $rootScope.$broadcast('goodsTxtInputBroadcast', {
+                nameProduct: null
+            });
+            $scope.$watch('name_product', function(){
+                angular.element('#name_product').val('');
+            });
+
+            $rootScope.$broadcast('goodsTxtInputBroadcast', {
+                descriptionProduct: null
+            });
+            $scope.$watch('description', function(){
+                angular.element('#description').val('');
+            });
+
+            $rootScope.$broadcast('goodsTxtInputBroadcast', {
+                priceUahProduct: null
+            });
+            $scope.$watch('priceUah', function(){
+                angular.element('#priceUah').val('');
+            });
+
+            $rootScope.$broadcast('goodsTxtInputBroadcast', {
+                priceCentProduct: null
+            });
+            $scope.$watch('priceCent', function(){
+                angular.element('#priceCent').val('');
+            });
+
+            $rootScope.$broadcast('goodsTxtInputBroadcast', {
+                existProduct: null
+            });
+            $scope.$watch('addGoodsExist', function(){
+                angular.element('#addGoodsExist').prop('checked', false);
+            });
+
+            $rootScope.$broadcast('categoryBroadcastToList', {
+                categoryToList: null
+            });
+            $scope.addGoodsCategory = null;
+            $scope.selectCat = null;
+
+            $rootScope.$broadcast('consumerBroadcastToList', {
+                consumerToList: null
+            });
+            $scope.adminConsumerSelect = null;
+            $scope.selectConsumer = null;
+
+            $rootScope.$broadcast('colorBroadcastToList', {
+                colorToList: null
+            });
+            $scope.adminColorSelect = null;
+            $scope.selectColor = null;
+
+            $rootScope.$broadcast('typeBroadcastToList', {
+                typeToList: null
+            });
+            $scope.adminTypeSelect = null;
+            $scope.selectType = null;
+
+            $rootScope.$broadcast('sizeBroadcastToList', {
+                sizeToList: null
+            });
+            $scope.sizeSelect = null;
+            $scope.selectSize = null;
 
             $scope.editItem = null;
             $scope.newGood = false;

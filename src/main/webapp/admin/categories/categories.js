@@ -20,8 +20,7 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
         return $resource('/catalog/category/save', {},{'save': {method:'POST'}});
     })
 
-    .controller('adminCategoryCtrl', function($scope,
-                                              $rootScope,
+    .controller('adminCategoryCtrl', function($scope, $rootScope,
                                               allParentCategoryFactory,
                                               allChildCategoryFactory,
                                               saveCategoryFactory,
@@ -32,87 +31,21 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
         $scope.$on("categoryBroadcastToList", function (event, args) {
             $scope.addGoodsCategory = args.categoryToList;
         });
-
-        $scope.$on("itemsBroadcast", function (event, args) {
-            //$scope.savedIdCategoryImg = null;
-            //$scope.img_product = null;
-            console.log("qwerty");
-            $scope.addGoodsCode = null;
-            $scope.$watch('addGoodsCode', function(){
-                angular.element('#addGoodsCode').val('');
-            });
-
-            $scope.name_product = null;
-            $scope.$watch('name_product', function(){
-                angular.element('#name_product').val('');
-            });
-
-            $scope.description = null;
-            $scope.$watch('description', function(){
-                angular.element('#description').val('');
-            });
-
-            $scope.priceUah = null;
-            $scope.$watch('priceUah', function(){
-                angular.element('#priceUah').val('');
-            });
-
-            $scope.priceCent = null;
-            $scope.$watch('priceCent', function(){
-                angular.element('#priceCent').val('');
-            });
-
-            $scope.addGoodsExist = null;
-            $scope.$watch('addGoodsExist', function(){
-                angular.element('#addGoodsExist').prop('checked', false);
-            });
-
-            $rootScope.$broadcast('categoryBroadcastToList', {
-                categoryToList: null
-            });
-            $scope.addGoodsCategory = null;
-            $scope.selectCat = null;
-
-            $rootScope.$broadcast('consumerBroadcastToList', {
-                consumerToList: null
-            });
-            $scope.adminConsumerSelect = null;
-            $scope.selectConsumer = null;
-
-            $rootScope.$broadcast('colorBroadcastToList', {
-                colorToList: null
-            });
-            $scope.adminColorSelect = null;
-            $scope.selectColor = null;
-
-            $rootScope.$broadcast('typeBroadcastToList', {
-                typeToList: null
-            });
-            $scope.adminTypeSelect = null;
-            $scope.selectType = null;
-
-            $rootScope.$broadcast('sizeBroadcastToList', {
-                sizeToList: null
-            });
-            $scope.sizeSelect = null;
-            $scope.selectSize = null;
-
-        });
-
-        $scope.selectCat = function(addGoodsCategory){
+        
+        $scope.selectCategoryFromList = function(addGoodsCategory){
             $rootScope.$broadcast('catBroadcast', {
                 selectCat: addGoodsCategory
             });
         };
 
-        $scope.addCategory = function(){
+        $scope.$on("isCategoryAddBroadcast", function (event, args) {
             $scope.isCategoryAdd = true;
             $scope.parenCategories = pageCacheFactory.get('parenCategories');
-            if(!$scope.parenCategories){
+            if (!$scope.parenCategories) {
                 $scope.parenCategories = allParentCategoryFactory.query();
                 pageCacheFactory.put('parenCategories', $scope.parenCategories);
             }
-        };
+        });
 
         $scope.uploadFiles = function(file, errFiles) {
             $scope.img_category = file;
@@ -139,10 +72,9 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
         };
 
         $scope.cancelAddCategory = function(){
-            $scope.isCategoryAdd = false;
-            $scope.name_category = '';
-            $scope.f = null;
-            $scope.savedIdCategoryImg = null;
+            $scope.$broadcast("cancelAddCategoryBroadcast", {
+                cancelAddCategory: true
+            });
         };
 
         $scope.saveCategory = function(name, parentId){
