@@ -1,6 +1,6 @@
 angular.module('monolitApp.admin.goods.code', [])
     
-    .controller('goodsTxtInputCtrl', function($scope){
+    .controller('goodsTxtInputCtrl', function($scope, $rootScope){
 
         $scope.$on("goodsTxtInputBroadcast", function (event, args) {
             $scope.addGoodsCode = args.goodsCode;
@@ -10,5 +10,5 @@ angular.module('monolitApp.admin.goods.code', [])
             $scope.priceCent = args.priceCentProduct;
             $scope.addGoodsExist = args.existProduct;
         });
-        
+
     });

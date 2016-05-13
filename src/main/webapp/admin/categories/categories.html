@@ -62,13 +62,15 @@
             </div>
         </div>
     </div>
-    <button ng-show="category && img_category && name_category"
+    <button type="submit"
+            ng-show="category && img_category && name_category"
             class="btn btn-success admin_save_edit_btn"
             ng-click="saveCategory(name_category, category.idCategory);
                       category = null;
                       name_category = null;
                       f = null;">Сохранить</button>
-    <button class="btn btn-default admin_cancel_edit_btn"
+    <button type="reset"
+            class="btn btn-default admin_cancel_edit_btn"
             ng-click="cancelAddCategory();
                       category = null;
                       name_category = null;

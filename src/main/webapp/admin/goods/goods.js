@@ -131,6 +131,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.editableGoods = null;
             $scope.editSingleItem = null;
             $scope.fastEdit = false;
+            $scope.btnSave = true;
 
             var editProduct = productByIdFactory.query({id:id});
             editProduct.$promise.then(function(data){
@@ -220,61 +221,65 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
         };
 
         $scope.saveGood = function (description, exist, img, priceUah, priceCent, code, name_product) {
-            var productExist;
-            switch (exist) {
-                case true:
-                    productExist = 1;
-                    break;
-                case false:
-                    productExist = 0;
-                    break;
+            if($scope.addGoodsCode){
+                var productExist;
+                switch (exist) {
+                    case true:
+                        productExist = 1;
+                        break;
+                    case false:
+                        productExist = 0;
+                        break;
+                }
+                if(angular.isUndefined(priceCent)){
+                    priceCent = 00;
+                }
+                var price = priceUah+"."+priceCent;
+                var product = {
+                    "idProduct": $scope.idProductEdit,
+                    "description": description,
+                    "exist": productExist,
+                    "image": $scope.savedIdCategoryImg,
+                    "price": price,
+                    "productCode": code,
+                    "title": name_product,
+                    "sprCategory": $scope.selectCat,
+                    "sprColor": $scope.selectColor,
+                    "sprConsumer": $scope.selectConsumer,
+                    "sprSize": $scope.selectSize,
+                    "sprType": $scope.selectType
+                };
+                console.log(product);
+                saveProductFactory.save(product);
+                $scope.savedIdCategoryImg = null;
+                $scope.addGoodsCode = '';
+                $scope.name_product = '';
+                $scope.description = '';
+                $scope.priceUah = '';
+                $scope.priceCent = '';
+                $scope.addGoodsExist = '';
+
+                $scope.adminConsumerSelect = null;
+                $scope.selectConsumer = null;
+
+                $scope.adminColorSelect = null;
+                $scope.selectColor = null;
+
+                $scope.adminTypeSelect = null;
+                $scope.selectType = null;
+
+                $scope.sizeSelect = null;
+                $scope.selectSize = null;
+
+                $scope.addGoodsCategory = null;
+                $scope.selectCat = null;
+
+                $scope.editableGoodsState = false;
+                $scope.newGood = false;
             }
-            if(angular.isUndefined(priceCent)){
-                priceCent = 00;
+            else{
+                angular.element("#addGoodsCode").attr('class', 'red_border');
             }
-            var price = priceUah+"."+priceCent;
-            var product = {
-                "idProduct": $scope.idProductEdit,
-                "description": description,
-                "exist": productExist,
-                "image": $scope.savedIdCategoryImg,
-                "price": price,
-                "productCode": code,
-                "title": name_product,
-                "sprCategory": $scope.selectCat,
-                "sprColor": $scope.selectColor,
-                "sprConsumer": $scope.selectConsumer,
-                "sprSize": $scope.selectSize,
-                "sprType": $scope.selectType
-            };
-            console.log(product);
-            saveProductFactory.save(product);
-            $scope.savedIdCategoryImg = null;
-            $scope.addGoodsCode = '';
-            $scope.name_product = '';
-            $scope.description = '';
-            $scope.priceUah = '';
-            $scope.priceCent = '';
-            $scope.addGoodsExist = '';
-
-            $scope.adminConsumerSelect = null;
-            $scope.selectConsumer = null;
-
-            $scope.adminColorSelect = null;
-            $scope.selectColor = null;
-
-            $scope.adminTypeSelect = null;
-            $scope.selectType = null;
-
-            $scope.sizeSelect = null;
-            $scope.selectSize = null;
-
-            $scope.addGoodsCategory = null;
-            $scope.selectCat = null;
-
-            $scope.editableGoodsState = false;
-            $scope.newGood = false;
-            $scope.setPageAndSizeAdmin(0);
         };
 
         $scope.cancelEditGood = function () {

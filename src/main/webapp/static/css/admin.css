@@ -276,3 +276,7 @@ tbody > tr.editable_goods > td > input:focus {
     max-height: 145px;
     max-width: 85px;
 }
+
+.red_border{
+    border-color: red;
+}
