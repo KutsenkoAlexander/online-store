@@ -42,8 +42,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                                             Upload,
                                             $timeout,
                                             $http,
-                                            productByIdFactory,
-                                            allParentCategoryFactory) {
+                                            productByIdFactory) {
         $scope.editableGoodsState = false;
         $scope.newGood = false;
         $scope.fastEdit = false;
@@ -204,6 +203,69 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.editSingleItem = null;
             $scope.fastEdit = false;
 
+            var priceUah;
+            var priceCent;
+            var addGoodsExist;
+
+            //code
+            $scope.$on('codeBroadcast', function (event, args) {
+                $scope.goodsCode = args.goodsCode;
+            });
+
+            //title
+            $scope.$on('titleBroadcast', function (event, args) {
+                $scope.titleProduct = args.titleBroadcast;
+            });
+
+            //description
+            $scope.$on('descriptionBroadcast', function (event, args) {
+                $scope.descriptionProduct = args.descriptionBroadcast;
+            });
+
+            //price
+            $scope.$on('priceUahBroadcast', function (event, args) {
+                $scope.uah = args.priceUahBroadcast;
+            });
+            $scope.$on('priceCentBroadcast', function (event, args) {
+                $scope.cent = args.priceCentBroadcast;
+            });
+
+            //exist
+            $scope.$on('productExistBroadcast', function (event, args) {
+                $scope.productExist = args.productExistBroadcast;
+            });
+
+
+            $rootScope.$broadcast('categoryBroadcastToList', {
+                categoryToList: data.sprCategory
+            });
+            $scope.addGoodsCategory = data.sprCategory;
+            $scope.selectCat = data.sprCategory;
+
+            $rootScope.$broadcast('consumerBroadcastToList', {
+                consumerToList: data.sprConsumer
+            });
+            $scope.adminConsumerSelect = data.sprConsumer;
+            $scope.selectConsumer = data.sprConsumer;
+
+            $rootScope.$broadcast('colorBroadcastToList', {
+                colorToList: data.sprColor
+            });
+            $scope.adminColorSelect = data.sprColor;
+            $scope.selectColor = data.sprColor;
+
+            $rootScope.$broadcast('typeBroadcastToList', {
+                typeToList: data.sprType
+            });
+            $scope.adminTypeSelect = data.sprType;
+            $scope.selectType = data.sprType;
+
+            $rootScope.$broadcast('sizeBroadcastToList', {
+                sizeToList: data.sprSize
+            });
+            $scope.sizeSelect = data.sprSize;
+            $scope.selectSize = data.sprSize;
+
             $scope.categories = allChildCategoryFactory.query();
         };
 
@@ -261,10 +323,10 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                     priceUah = price.substring(0, index);
                     priceCent = parseInt(price.substring(index + 1));
                     $scope.$on('priceUahBroadcast', function (event, args) {
-                        $scope.priceUah = args.priceUahBroadcast;
+                        $scope.uah = args.priceUahBroadcast;
                     });
                     $scope.$on('priceCentBroadcast', function (event, args) {
-                        $scope.priceCent = args.priceCentBroadcast;
+                        $scope.cent = args.priceCentBroadcast;
                     });
                     $scope.$watch('description', function () {
                         angular.element('#priceUah').val(price.substring(0, index));
@@ -273,9 +335,9 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                 } else {
                     priceUah = parseInt(data.price);
                     priceCent = 00;
-                    $scope.priceCent = 00;
+                    $scope.cent = 00;
                     $scope.$on('priceUahBroadcast', function (event, args) {
-                        $scope.priceUah = args.priceUahBroadcast;
+                        $scope.uah = args.priceUahBroadcast;
                     });
                     $scope.$watch('description', function () {
                         angular.element('#priceUah').val(parseInt(data.price));
@@ -343,7 +405,6 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                     priceCentProduct: priceCent,
                     existProduct: addGoodsExist
                 });
-
             });
 
             $scope.categories = allChildCategoryFactory.query();
@@ -360,33 +421,36 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                     break;
             }
             if (angular.isUndefined(priceCent)) {
-                $scope.priceCent = 00;
+                priceCent = 00;
             }
-            var price = $scope.priceUah + "." + $scope.priceCent;
+            var price = priceUah + "." + priceCent;
             var product = {
                 "idProduct": $scope.idProductEdit,
                 "description": $scope.descriptionProduct,
-                "exist": $scope.productExist,
+                "exist": productExist,
                 "image": $scope.savedIdCategoryImg,
                 "price": price,
-                "productCode": $scope.goodsCode,
-                "title": $scope.titleProduct,
+                "productCode": code,
+                "title": name_product,
                 "sprCategory": $scope.addGoodsCategory,
                 "sprColor": $scope.selectColor,
                 "sprConsumer": $scope.selectConsumer,
                 "sprSize": $scope.selectSize,
                 "sprType": $scope.selectType
             };
-            var resultSave = saveProductFactory.save(product,
-                function (resp, headers) {
-                    //success callback
-                    setEmptyAllFieldsAfterCloseOrSaveProduct();
-                },
-                function (err) {
-                    // error callback
-                    confirm("Заполните все поля!");
-                }
-            );
+
+            console.log(product);
+
+            //saveProductFactory.save(product,
+            //    function (resp, headers) {
+            //        //success callback
+            //        setEmptyAllFieldsAfterCloseOrSaveProduct();
+            //    },
+            //    function (err) {
+            //        // error callback
+            //        confirm("Заполните все поля!");
+            //    }
+            //);
         };
 
         $scope.cancelEditGood = function () {
