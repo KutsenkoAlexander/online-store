@@ -435,7 +435,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                 });
 
                 file.upload.then(function (response) {
-                    $scope.savedIdCategoryImg = response.data;
+                    $scope.savedIdProductImg = response.data;
                     $timeout(function () {
                         file.result = response.data;
                     });

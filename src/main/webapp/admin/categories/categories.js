@@ -73,7 +73,7 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
                 });
 
                 file.upload.then(function (response) {
-                    $scope.savedIdCategoryImg = response.data;
+                    $scope.savedImg = response.data;
                     $timeout(function () {
                         file.result = response.data;
                     });
@@ -92,7 +92,7 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
             $scope.name_category = '';
             $scope.f = null;
             $scope.img_category = null;
-            $scope.savedIdCategoryImg = null;
+            $scope.savedImg = null;
         };
 
         $scope.saveCategory = function(name, parentId){
@@ -104,7 +104,7 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
             saveCategoryFactory.save(category);
             $scope.categories = allChildCategoryFactory.query();
             $scope.name_category = '';
-            $scope.savedIdCategoryImg = null;
+            $scope.savedImg = null;
             $scope.isCategoryAdd = false;
             $scope.newGood = true;
             $scope.img_category = null;
