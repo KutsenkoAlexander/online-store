@@ -47,6 +47,22 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
             }
         });
 
+        //when product add or edit
+        $scope.selectCat = function(addGoodsCategory){
+            $rootScope.$broadcast('catBroadcast', {
+                selectCat: addGoodsCategory
+            });
+        };
+
+        $scope.addCategory = function(){
+            $scope.isCategoryAdd = true;
+            $scope.parenCategories = pageCacheFactory.get('parenCategories');
+            if(!$scope.parenCategories){
+                $scope.parenCategories = allParentCategoryFactory.query();
+                pageCacheFactory.put('parenCategories', $scope.parenCategories);
+            }
+        };
+
         $scope.uploadFiles = function(file, errFiles) {
             $scope.img_category = file;
             $scope.errFile = errFiles && errFiles[0];
@@ -75,6 +91,7 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
             $scope.isCategoryAdd = false;
             $scope.name_category = '';
             $scope.f = null;
+            $scope.img_category = null;
             $scope.savedIdCategoryImg = null;
         };
 

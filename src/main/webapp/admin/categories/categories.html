@@ -1,8 +1,6 @@
-<div ng-show="editableGoodsState || isCategoryAdd" >
+<div ng-show="isCategoryAdd" >
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title" ng-show="editableGoodsState && !isCategoryAdd" ng-hide="isCategoryAdd">Редактирование товара</h3>
-            <h3 class="panel-title" ng-show="newGood && !isCategoryAdd" ng-hide="isCategoryAdd">Добавление нового товара</h3>
             <h3 class="panel-title" ng-show="isCategoryAdd">Добавление новой категории</h3>
         </div>
         <div class="panel-body">
@@ -49,6 +47,7 @@
                                 </div>
                                 {{errorMsg}}
                             </div>
+                            <img ng-show="savedIdCategoryImg.image" ng-src="data:image/jpeg; base64,{{savedIdCategoryImg.image}}" class="admin_single_product_img"/>
                         </td>
                     </tr>
                     <tr ng-show="img_category && category">
@@ -63,8 +62,15 @@
             </div>
         </div>
     </div>
-    <button ng-show="category && img_category && name_category" class="btn btn-success admin_save_edit_btn" ng-click="saveCategory(name_category, category.idCategory); name_category = null">
-        Сохранить
-    </button>
-    <button class="btn btn-default admin_cancel_edit_btn" ng-click="cancelAddCategory(); category = null; name_category = null">Отмена</button>
+    <button ng-show="category && img_category && name_category"
+            class="btn btn-success admin_save_edit_btn"
+            ng-click="saveCategory(name_category, category.idCategory);
+                      category = null;
+                      name_category = null;
+                      f = null;">Сохранить</button>
+    <button class="btn btn-default admin_cancel_edit_btn"
+            ng-click="cancelAddCategory();
+                      category = null;
+                      name_category = null;
+                      f = null;">Отмена</button>
 </div>

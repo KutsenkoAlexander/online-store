@@ -42,7 +42,8 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                                             Upload,
                                             $timeout,
                                             $http,
-                                            productByIdFactory) {
+                                            productByIdFactory,
+                                            allParentCategoryFactory) {
         $scope.editableGoodsState = false;
         $scope.newGood = false;
         $scope.fastEdit = false;
@@ -448,12 +449,4 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             }
         };
 
-        $scope.addCategory = function(){
-            $scope.isCategoryAdd = true;
-            $scope.parenCategories = pageCacheFactory.get('parenCategories');
-            if(!$scope.parenCategories){
-                $scope.parenCategories = allParentCategoryFactory.query();
-                pageCacheFactory.put('parenCategories', $scope.parenCategories);
-            }
-        };
     });
