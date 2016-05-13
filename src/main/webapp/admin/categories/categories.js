@@ -72,9 +72,10 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
         };
 
         $scope.cancelAddCategory = function(){
-            $scope.$broadcast("cancelAddCategoryBroadcast", {
-                cancelAddCategory: true
-            });
+            $scope.isCategoryAdd = false;
+            $scope.name_category = '';
+            $scope.f = null;
+            $scope.savedIdCategoryImg = null;
         };
 
         $scope.saveCategory = function(name, parentId){
