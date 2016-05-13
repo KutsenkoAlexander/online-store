@@ -20,7 +20,8 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
         return $resource('/catalog/category/save', {},{'save': {method:'POST'}});
     })
 
-    .controller('adminCategoryCtrl', function($scope, $rootScope,
+    .controller('adminCategoryCtrl', function($scope,
+                                              $rootScope,
                                               allParentCategoryFactory,
                                               allChildCategoryFactory,
                                               saveCategoryFactory,
@@ -35,7 +36,7 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
         $scope.$on("itemsBroadcast", function (event, args) {
             //$scope.savedIdCategoryImg = null;
             //$scope.img_product = null;
-
+            console.log("qwerty");
             $scope.addGoodsCode = null;
             $scope.$watch('addGoodsCode', function(){
                 angular.element('#addGoodsCode').val('');

@@ -111,6 +111,13 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                 sizeToList: null
             });
 
+            $scope.addGoodsCode = null;
+            $scope.name_product = null;
+            $scope.description = null;
+            $scope.priceUah = null;
+            $scope.priceCent = null;
+            $scope.addGoodsExist = null;
+
             $scope.editItem = null;
             $scope.newGood = true;
             $scope.editableProduct = false;
@@ -280,6 +287,13 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
         };
 
         $scope.cancelEditGood = function () {
+            $scope.addGoodsCode = null;
+            $scope.name_product = null;
+            $scope.description = null;
+            $scope.priceUah = null;
+            $scope.priceCent = null;
+            $scope.addGoodsExist = null;
+
             $scope.editItem = null;
             $scope.newGood = false;
             $scope.editableProduct = false;

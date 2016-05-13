@@ -13,13 +13,7 @@
                           inputclass="form-control form-control-small goods_search"/>
         </div>
     </div>
-    <button ng-hide="editableGoodsState || newGood || fastEdit" class="btn btn-default admin_add_new_good" ng-click="addGood();
-                                                                                                                     addGoodsCode = null;
-                                                                                                                     name_product = null;
-                                                                                                                     description = null;
-                                                                                                                     priceUah = null;
-                                                                                                                     priceCent = null;
-                                                                                                                     addGoodsExist = null;">Новый товар</button>
+    <button ng-hide="editableGoodsState || newGood || fastEdit" class="btn btn-default admin_add_new_good" ng-click="addGood();">Новый товар</button>
     <button ng-show="fastEdit" class="btn btn-default admin_add_new_good" ng-click="cancelFastEditGoods()">Отмена</button>
 </div>
 <div class="table-responsive" ng-controller="adminCategoryCtrl">
