@@ -51,28 +51,28 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
         $scope.currentUrl = $rootScope.currentPath;
 
         var search = $location.search();
-        var page = search.page||0;
-        var size = search.size||5;
-        var sort = search.sort||'type,desc';
+        var page = search.page || 0;
+        var size = search.size || 5;
+        var sort = search.sort || 'type,desc';
 
-        $scope.setPageAndSizeAdmin = function(page){
+        $scope.setPageAndSizeAdmin = function (page) {
             $http({method: 'GET', url: '/product/all?page=' + page + '&size=' + size})
-                .success(function(data) {
+                .success(function (data) {
                     $scope.editableProducts = data.content;
                     $scope.page = data.page;
                     $scope.sort = sort;
 
-                    angular.forEach(data.links, function(value) {
-                        if(value.rel === 'next') {
+                    angular.forEach(data.links, function (value) {
+                        if (value.rel === 'next') {
                             $scope.nextPageLink = value.href;
                         }
 
-                        if(value.rel === 'prev') {
+                        if (value.rel === 'prev') {
                             $scope.prevPageLink = value.href;
                         }
                     });
                 })
-                .error(function(error) {
+                .error(function (error) {
                     $scope.widgetsError = error;
                 });
         };
@@ -87,7 +87,6 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
         });
 
         $scope.$on("catBroadcast", function (event, args) {
-            $scope.selectCat = args.selectCat;
             $scope.addGoodsCategory = args.selectCat;
         });
 
@@ -107,224 +106,49 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.selectType = args.selectType;
         });
 
-        $scope.addGood = function () {
-            $scope.editItem = null;
-            $scope.newGood = true;
-            $scope.editableProduct = false;
-            $scope.editableGoodsState = false;
-            $scope.isCategoryAdd = false;
-
-            $scope.editableGoods = null;
-            $scope.editSingleItem = null;
-            $scope.fastEdit = false;
-
-            $scope.categories = allChildCategoryFactory.query();
-        };
-
-        $scope.editGood = function (id) {
-            $scope.editItem = null;
-            $scope.newGood = false;
-            $scope.editableProduct = false;
-            $scope.editableGoodsState = true;
-            $scope.isCategoryAdd = false;
-
-            $scope.editableGoods = null;
-            $scope.editSingleItem = null;
-            $scope.fastEdit = false;
-            $scope.btnSave = true;
-
-            var editProduct = productByIdFactory.query({id:id});
-            editProduct.$promise.then(function(data){
-                $scope.idProductEdit = data.idProduct;
-                $scope.savedIdCategoryImg = data.image;
-
-                $scope.addGoodsCode = data.productCode;
-                $scope.$watch('addGoodsCode', function(){
-                    angular.element('#addGoodsCode').val(data.productCode);
-                });
-
-                $scope.name_product = data.title;
-                $scope.$watch('name_product', function(){
-                    angular.element('#name_product').val(data.title);
-                });
-
-                $scope.description = data.description;
-                $scope.$watch('description', function(){
-                    angular.element('#description').val(data.description);
-                });
-
-                var price = data.price.toFixed(2);
-                var index = price.indexOf(".");
-                if(index > -1){
-                    $scope.priceUah = price.substring(0, index);
-                    $scope.priceCent = parseInt(price.substring(index+1));
-                    $scope.$watch('description', function(){
-                        angular.element('#priceUah').val(price.substring(0, index));
-                        angular.element('#priceCent').val(parseInt(price.substring(index+1)));
-                    });
-                } else {
-                    $scope.priceUah = parseInt(data.price);
-                    $scope.priceCent = 00;
-                    $scope.$watch('description', function(){
-                        angular.element('#priceUah').val(parseInt(data.price));
-                        angular.element('#priceCent').val('00');
-                    });
-                }
-
-                switch(data.exist){
-                    case 1:
-                        $scope.addGoodsExist = true;
-                        $scope.$watch('addGoodsExist', function(){
-                            angular.element('#addGoodsExist').prop('checked', true);
-                        });
-                        break;
-                    case 0:
-                        $scope.addGoodsExist = false;
-                        $scope.$watch('addGoodsExist', function(){
-                            angular.element('#addGoodsExist').prop('checked', false);
-                        });
-                        break;
-                }
-
-                $rootScope.$broadcast('categoryBroadcastToList', {
-                    categoryToList: data.sprCategory
-                });
-                $scope.addGoodsCategory = data.sprCategory;
-                $scope.selectCat = data.sprCategory;
-
-                $rootScope.$broadcast('consumerBroadcastToList', {
-                    consumerToList: data.sprConsumer
-                });
-                $scope.adminConsumerSelect = data.sprConsumer;
-                $scope.selectConsumer = data.sprConsumer;
-
-                $rootScope.$broadcast('colorBroadcastToList', {
-                    colorToList: data.sprColor
-                });
-                $scope.adminColorSelect = data.sprColor;
-                $scope.selectColor = data.sprColor;
-
-                $rootScope.$broadcast('typeBroadcastToList', {
-                    typeToList: data.sprType
-                });
-                $scope.adminTypeSelect = data.sprType;
-                $scope.selectType = data.sprType;
-
-                $rootScope.$broadcast('sizeBroadcastToList', {
-                    sizeToList: data.sprSize
-                });
-                $scope.sizeSelect = data.sprSize;
-                $scope.selectSize = data.sprSize;
-            });
-
-            $scope.categories = allChildCategoryFactory.query();
-        };
-
-        $scope.saveGood = function (description, exist, img, priceUah, priceCent, code, name_product) {
-            if($scope.addGoodsCode){
-                var productExist;
-                switch (exist) {
-                    case true:
-                        productExist = 1;
-                        break;
-                    case false:
-                        productExist = 0;
-                        break;
-                }
-                if(angular.isUndefined(priceCent)){
-                    priceCent = 00;
-                }
-                var price = priceUah+"."+priceCent;
-                var product = {
-                    "idProduct": $scope.idProductEdit,
-                    "description": description,
-                    "exist": productExist,
-                    "image": $scope.savedIdCategoryImg,
-                    "price": price,
-                    "productCode": code,
-                    "title": name_product,
-                    "sprCategory": $scope.selectCat,
-                    "sprColor": $scope.selectColor,
-                    "sprConsumer": $scope.selectConsumer,
-                    "sprSize": $scope.selectSize,
-                    "sprType": $scope.selectType
-                };
-                console.log(product);
-                saveProductFactory.save(product);
-                $scope.savedIdCategoryImg = null;
-                $scope.addGoodsCode = '';
-                $scope.name_product = '';
-                $scope.description = '';
-                $scope.priceUah = '';
-                $scope.priceCent = '';
-                $scope.addGoodsExist = '';
-
-                $scope.adminConsumerSelect = null;
-                $scope.selectConsumer = null;
-
-                $scope.adminColorSelect = null;
-                $scope.selectColor = null;
-
-                $scope.adminTypeSelect = null;
-                $scope.selectType = null;
-
-                $scope.sizeSelect = null;
-                $scope.selectSize = null;
-
-                $scope.addGoodsCategory = null;
-                $scope.selectCat = null;
-
-                $scope.editableGoodsState = false;
-                $scope.newGood = false;
-            }
-            else{
-                angular.element("#addGoodsCode").attr('class', 'red_border');
-            }
-        };
-
-        $scope.cancelEditGood = function () {
+        var setEmptyAllFieldsAfterCloseOrSaveProduct = function () {
             $scope.savedIdCategoryImg = null;
             $scope.img_product = null;
 
             $rootScope.$broadcast('goodsTxtInputBroadcast', {
                 goodsCode: null
             });
-            $scope.$watch('addGoodsCode', function(){
+            $scope.$watch('addGoodsCode', function () {
                 angular.element('#addGoodsCode').val('');
             });
 
             $rootScope.$broadcast('goodsTxtInputBroadcast', {
                 nameProduct: null
             });
-            $scope.$watch('name_product', function(){
+            $scope.$watch('name_product', function () {
                 angular.element('#name_product').val('');
             });
 
             $rootScope.$broadcast('goodsTxtInputBroadcast', {
                 descriptionProduct: null
             });
-            $scope.$watch('description', function(){
+            $scope.$watch('description', function () {
                 angular.element('#description').val('');
             });
 
             $rootScope.$broadcast('goodsTxtInputBroadcast', {
                 priceUahProduct: null
             });
-            $scope.$watch('priceUah', function(){
+            $scope.$watch('priceUah', function () {
                 angular.element('#priceUah').val('');
             });
 
             $rootScope.$broadcast('goodsTxtInputBroadcast', {
                 priceCentProduct: null
             });
-            $scope.$watch('priceCent', function(){
+            $scope.$watch('priceCent', function () {
                 angular.element('#priceCent').val('');
             });
 
             $rootScope.$broadcast('goodsTxtInputBroadcast', {
                 existProduct: null
             });
-            $scope.$watch('addGoodsExist', function(){
+            $scope.$watch('addGoodsExist', function () {
                 angular.element('#addGoodsExist').prop('checked', false);
             });
 
@@ -367,6 +191,206 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.editableGoods = null;
             $scope.editSingleItem = null;
             $scope.fastEdit = false;
+        };
+
+        $scope.addGood = function () {
+            $scope.editItem = null;
+            $scope.newGood = true;
+            $scope.editableProduct = false;
+            $scope.editableGoodsState = false;
+            $scope.isCategoryAdd = false;
+
+            $scope.editableGoods = null;
+            $scope.editSingleItem = null;
+            $scope.fastEdit = false;
+
+            $scope.categories = allChildCategoryFactory.query();
+        };
+
+        $scope.editGood = function (id) {
+            $scope.editItem = null;
+            $scope.newGood = false;
+            $scope.editableProduct = false;
+            $scope.editableGoodsState = true;
+            $scope.isCategoryAdd = false;
+
+            $scope.editableGoods = null;
+            $scope.editSingleItem = null;
+            $scope.fastEdit = false;
+            $scope.btnSave = true;
+
+            var editProduct = productByIdFactory.query({id: id});
+
+            editProduct.$promise.then(function (data) {
+
+                var priceUah;
+                var priceCent;
+                var addGoodsExist;
+
+                $scope.idProductEdit = data.idProduct;
+                $scope.savedIdCategoryImg = data.image;
+
+                //code
+                $scope.$on('codeBroadcast', function (event, args) {
+                    $scope.goodsCode = args.goodsCode;
+                });
+                $scope.$watch('addGoodsCode', function () {
+                    angular.element('#addGoodsCode').val(data.productCode);
+                });
+
+                //title
+                $scope.$on('titleBroadcast', function (event, args) {
+                    $scope.titleProduct = args.titleBroadcast;
+                });
+                $scope.$watch('name_product', function () {
+                    angular.element('#name_product').val(data.title);
+                });
+
+                //description
+                $scope.$on('descriptionBroadcast', function (event, args) {
+                    $scope.descriptionProduct = args.descriptionBroadcast;
+                });
+                $scope.$watch('description', function () {
+                    angular.element('#description').val(data.description);
+                });
+
+                //price
+                var price = data.price.toFixed(2);
+                var index = price.indexOf(".");
+                if (index > -1) {
+                    priceUah = price.substring(0, index);
+                    priceCent = parseInt(price.substring(index + 1));
+                    $scope.$on('priceUahBroadcast', function (event, args) {
+                        $scope.priceUah = args.priceUahBroadcast;
+                    });
+                    $scope.$on('priceCentBroadcast', function (event, args) {
+                        $scope.priceCent = args.priceCentBroadcast;
+                    });
+                    $scope.$watch('description', function () {
+                        angular.element('#priceUah').val(price.substring(0, index));
+                        angular.element('#priceCent').val(parseInt(price.substring(index + 1)));
+                    });
+                } else {
+                    priceUah = parseInt(data.price);
+                    priceCent = 00;
+                    $scope.priceCent = 00;
+                    $scope.$on('priceUahBroadcast', function (event, args) {
+                        $scope.priceUah = args.priceUahBroadcast;
+                    });
+                    $scope.$watch('description', function () {
+                        angular.element('#priceUah').val(parseInt(data.price));
+                        angular.element('#priceCent').val('00');
+                    });
+                }
+
+                //exist
+                switch (data.exist) {
+                    case 1:
+                        addGoodsExist = true;
+                        $scope.$on('productExistBroadcast', function (event, args) {
+                            $scope.productExist = args.productExistBroadcast;
+                        });
+                        $scope.$watch('addGoodsExist', function () {
+                            angular.element('#addGoodsExist').prop('checked', true);
+                        });
+                        break;
+                    case 0:
+                        addGoodsExist = false;
+                        $scope.$on('productExistBroadcast', function (event, args) {
+                            $scope.productExist = args.productExistBroadcast;
+                        });
+                        $scope.$watch('addGoodsExist', function () {
+                            angular.element('#addGoodsExist').prop('checked', false);
+                        });
+                        break;
+                }
+
+                $rootScope.$broadcast('categoryBroadcastToList', {
+                    categoryToList: data.sprCategory
+                });
+                $scope.addGoodsCategory = data.sprCategory;
+                $scope.selectCat = data.sprCategory;
+
+                $rootScope.$broadcast('consumerBroadcastToList', {
+                    consumerToList: data.sprConsumer
+                });
+                $scope.adminConsumerSelect = data.sprConsumer;
+                $scope.selectConsumer = data.sprConsumer;
+
+                $rootScope.$broadcast('colorBroadcastToList', {
+                    colorToList: data.sprColor
+                });
+                $scope.adminColorSelect = data.sprColor;
+                $scope.selectColor = data.sprColor;
+
+                $rootScope.$broadcast('typeBroadcastToList', {
+                    typeToList: data.sprType
+                });
+                $scope.adminTypeSelect = data.sprType;
+                $scope.selectType = data.sprType;
+
+                $rootScope.$broadcast('sizeBroadcastToList', {
+                    sizeToList: data.sprSize
+                });
+                $scope.sizeSelect = data.sprSize;
+                $scope.selectSize = data.sprSize;
+
+                $rootScope.$broadcast('goodsTxtInputBroadcast', {
+                    goodsCode: data.productCode,
+                    nameProduct: data.title,
+                    descriptionProduct: data.description,
+                    priceUahProduct: priceUah,
+                    priceCentProduct: priceCent,
+                    existProduct: addGoodsExist
+                });
+
+            });
+
+            $scope.categories = allChildCategoryFactory.query();
+        };
+
+        $scope.saveGood = function (description, exist, img, priceUah, priceCent, code, name_product) {
+            var productExist;
+            switch (exist) {
+                case true:
+                    productExist = 1;
+                    break;
+                case false:
+                    productExist = 0;
+                    break;
+            }
+            if (angular.isUndefined(priceCent)) {
+                $scope.priceCent = 00;
+            }
+            var price = $scope.priceUah + "." + $scope.priceCent;
+            var product = {
+                "idProduct": $scope.idProductEdit,
+                "description": $scope.descriptionProduct,
+                "exist": $scope.productExist,
+                "image": $scope.savedIdCategoryImg,
+                "price": price,
+                "productCode": $scope.goodsCode,
+                "title": $scope.titleProduct,
+                "sprCategory": $scope.addGoodsCategory,
+                "sprColor": $scope.selectColor,
+                "sprConsumer": $scope.selectConsumer,
+                "sprSize": $scope.selectSize,
+                "sprType": $scope.selectType
+            };
+            var resultSave = saveProductFactory.save(product,
+                function (resp, headers) {
+                    //success callback
+                    setEmptyAllFieldsAfterCloseOrSaveProduct();
+                },
+                function (err) {
+                    // error callback
+                    confirm("Заполните все поля!");
+                }
+            );
+        };
+
+        $scope.cancelEditGood = function () {
+            setEmptyAllFieldsAfterCloseOrSaveProduct();
         };
 
         $scope.fastEditGood = function (id, price, exist) {
@@ -430,7 +454,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.setPageAndSizeAdmin(0);
         };
 
-        $scope.uploadImageProduct = function(file, errFiles) {
+        $scope.uploadImageProduct = function (file, errFiles) {
             $scope.img_product = file;
             $scope.errFile = errFiles && errFiles[0];
             if (file) {
