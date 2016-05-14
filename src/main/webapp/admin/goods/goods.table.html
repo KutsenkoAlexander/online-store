@@ -74,6 +74,12 @@
             <input type="checkbox" ng-show="fastEdit" ng-model="editableProductExist"/>
         </td>
         <td class="admin_table_edit_text_center">
+            <img src="../../static/img/delete-icon.png"
+                 class="edit_page_btn"
+                 alt="Удалить"
+                 title="Удалить"
+                 ng-click="deleteProduct(editableProduct.idProduct, page.number, editableProduct.title)"
+                 ng-show="(product.exist || !product.exist) && editItem !== product.idProduct"/>
             <img src="../../static/img/edit.png"
                  class="edit_page_btn"
                  alt="Редактировать"

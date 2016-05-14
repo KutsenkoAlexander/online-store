@@ -511,6 +511,9 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                     function (resp, headers) {
                         //success callback
                         $scope.setPageAndSizeAdmin(page);
+                        $scope.editItem = null;
+                        $scope.editableProduct = false;
+                        $scope.editableGoodsState = false;
                     },
                     function (err) {
                         // error callback
