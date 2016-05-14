@@ -31,8 +31,17 @@
                             </div>
                             {{errorMsg}}
                         </div>
-                        <img ng-show="savedIdCategoryImg.image" ng-src="data:image/jpeg; base64,{{savedIdCategoryImg.image}}" class="admin_single_product_img"/>
-                        <img ng-hide="savedIdCategoryImg.image || newGood" src="../../static/img/no-image.png" type="image/jpeg" class="single_product_img"/>
+                        <img ng-show="savedIdProductImg.image"
+                             ng-src="data:image/jpeg; base64,{{savedIdProductImg.image}}"
+                             class="admin_single_product_img"/>
+                        <img ng-show="savedIdCategoryImg.image"
+                             ng-hide="savedIdProductImg.image"
+                             ng-src="data:image/jpeg; base64,{{savedIdCategoryImg.image}}"
+                             class="admin_single_product_img"/>
+                        <img ng-hide="savedIdCategoryImg.image || newGood || savedIdProductImg.image"
+                             src="../../static/img/no-image.png"
+                             type="image/jpeg"
+                             class="single_product_img"/>
                     </div>
                 </div>
                 <div class="row">
@@ -196,10 +205,11 @@
             class="btn btn-success admin_save_edit_btn"
             ng-click="saveGood(descriptionProduct,
                                 productExist,
-                                img,
+                                savedIdProductImg,
                                 uah,
                                 cent,
                                 goodsCode,
-                                titleProduct);">Сохранить</button>
+                                titleProduct,
+                                page.number);">Сохранить</button>
     <button type="reset" class="btn btn-default admin_cancel_edit_btn" ng-click="cancelEditGood();">Отмена</button>
 </div>

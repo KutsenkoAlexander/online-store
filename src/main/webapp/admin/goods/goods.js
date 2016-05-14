@@ -108,6 +108,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
         var setEmptyAllFieldsAfterCloseOrSaveProduct = function () {
             $scope.savedIdCategoryImg = null;
             $scope.img_product = null;
+            $scope.savedIdProductImg = null;
 
             $rootScope.$broadcast('goodsTxtInputBroadcast', {
                 goodsCode: null
@@ -203,10 +204,6 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.editSingleItem = null;
             $scope.fastEdit = false;
 
-            var priceUah;
-            var priceCent;
-            var addGoodsExist;
-
             //code
             $scope.$on('codeBroadcast', function (event, args) {
                 $scope.goodsCode = args.goodsCode;
@@ -235,37 +232,6 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                 $scope.productExist = args.productExistBroadcast;
             });
 
-
-            $rootScope.$broadcast('categoryBroadcastToList', {
-                categoryToList: data.sprCategory
-            });
-            $scope.addGoodsCategory = data.sprCategory;
-            $scope.selectCat = data.sprCategory;
-
-            $rootScope.$broadcast('consumerBroadcastToList', {
-                consumerToList: data.sprConsumer
-            });
-            $scope.adminConsumerSelect = data.sprConsumer;
-            $scope.selectConsumer = data.sprConsumer;
-
-            $rootScope.$broadcast('colorBroadcastToList', {
-                colorToList: data.sprColor
-            });
-            $scope.adminColorSelect = data.sprColor;
-            $scope.selectColor = data.sprColor;
-
-            $rootScope.$broadcast('typeBroadcastToList', {
-                typeToList: data.sprType
-            });
-            $scope.adminTypeSelect = data.sprType;
-            $scope.selectType = data.sprType;
-
-            $rootScope.$broadcast('sizeBroadcastToList', {
-                sizeToList: data.sprSize
-            });
-            $scope.sizeSelect = data.sprSize;
-            $scope.selectSize = data.sprSize;
-
             $scope.categories = allChildCategoryFactory.query();
         };
 
@@ -290,7 +256,9 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                 var addGoodsExist;
 
                 $scope.idProductEdit = data.idProduct;
-                $scope.savedIdCategoryImg = data.image;
+
+                //image
+                $scope.savedIdProductImg = data.image;
 
                 //code
                 $scope.$on('codeBroadcast', function (event, args) {
@@ -410,7 +378,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.categories = allChildCategoryFactory.query();
         };
 
-        $scope.saveGood = function (description, exist, img, priceUah, priceCent, code, name_product) {
+        $scope.saveGood = function (description, exist, img, priceUah, priceCent, code, name_product, page_number) {
             var productExist;
             switch (exist) {
                 case true:
@@ -428,7 +396,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                 "idProduct": $scope.idProductEdit,
                 "description": $scope.descriptionProduct,
                 "exist": productExist,
-                "image": $scope.savedIdCategoryImg,
+                "image": img,
                 "price": price,
                 "productCode": code,
                 "title": name_product,
@@ -438,19 +406,17 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                 "sprSize": $scope.selectSize,
                 "sprType": $scope.selectType
             };
-
-            console.log(product);
-
-            //saveProductFactory.save(product,
-            //    function (resp, headers) {
-            //        //success callback
-            //        setEmptyAllFieldsAfterCloseOrSaveProduct();
-            //    },
-            //    function (err) {
-            //        // error callback
-            //        confirm("Заполните все поля!");
-            //    }
-            //);
+            saveProductFactory.save(product,
+                function (resp, headers) {
+                    //success callback
+                    setEmptyAllFieldsAfterCloseOrSaveProduct();
+                    $scope.setPageAndSizeAdmin(page_number);
+                },
+                function (err) {
+                    // error callback
+                    confirm("Пустые поля или не верные данные!");
+                }
+            );
         };
 
         $scope.cancelEditGood = function () {

@@ -28,6 +28,8 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
                                               $timeout,
                                               pageCacheFactory){
 
+        var imgId;
+
         $scope.$on("categoryBroadcastToList", function (event, args) {
             $scope.addGoodsCategory = args.categoryToList;
         });
@@ -99,7 +101,7 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
             var category = {
                 "name": name,
                 "parentId": parentId,
-                "image": $scope.savedIdCategoryImg
+                "image": $scope.savedImg
             };
             saveCategoryFactory.save(category);
             $scope.categories = allChildCategoryFactory.query();
