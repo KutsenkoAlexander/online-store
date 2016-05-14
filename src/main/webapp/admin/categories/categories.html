@@ -1,78 +1,42 @@
-<div ng-show="isCategoryAdd" >
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title" ng-show="isCategoryAdd">Добавление новой категории</h3>
-        </div>
-        <div class="panel-body">
-            <div class="row wrapper_panel_body_content">
-                <table style="width: 100%;">
-                    <tr>
-                        <td class="col-xs-4">
-                            <p>Родительская категория</p>
-                        </td>
-                        <td class="col-xs-8">
-                            <select ng-model="category"
-                                    id="category"
-                                    name="parentId"
-                                    class="form-control admin_category_select"
-                                    style="padding: 4px 0;"
-                                    ng-options="parentCategory.name for parentCategory in parenCategories | orderBy: 'name' track by parentCategory.idCategory">
-                                <option value="">Выбрать</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr ng-show="category">
-                        <td class="col-xs-4">
-                            <p>Изображение категории</p>
-                        </td>
-                        <td class="col-xs-8" style="padding-left: 5px;">
-                            <button type="file"
-                                    class="btn btn-default add_file"
-                                    ngf-select="uploadFiles($file, $invalidFiles)"
-                                    accept="image/*"
-                                    ngf-max-height="1000"
-                                    ngf-max-size="2MB"
-                                    ng-hide="img_category">Выберите изображение</button>
-                            <div style="margin: 5px 0;">
-                                <div style="font-size: 14px;" ng-show="img_category">Файл:
-                                    {{img_category.name}}
-                                    {{errFile.name}}
-                                    {{errFile.$error}}
-                                    {{errFile.$errorParam}}
-                                  <span class="progress" ng-show="img_category.progress >= 0">
-                                      <div style="width:{{img_category.progress}}%" ng-cloak>
-                                          Загружено: {{img_category.progress + '%'}}
-                                      </div>
-                                  </span>
-                                </div>
-                                {{errorMsg}}
-                            </div>
-                            <img ng-show="savedImg.image" ng-src="data:image/jpeg; base64,{{savedImg.image}}" class="admin_single_product_img"/>
-                        </td>
-                    </tr>
-                    <tr ng-show="img_category && category">
-                        <td class="col-xs-4">
-                            <p>Введите название дочерней категории</p>
-                        </td>
-                        <td class="col-xs-8">
-                            <input type="text" ng-model="name_category" name="name" class="form-control admin_add_input" placeholder="Введите название дочерней категории"/>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+<div ng-class="currentPath === '/categories' ? 'page-header admin_page_header' : ''">
+    <h1 class="admin_sub_header">Управление категориями</h1>
+    <button ng-hide="isCategoryEdit || isCategoryAdd"
+            class="btn btn-default admin_add_new_good"
+            ng-click="addCategory();">Новая категория
+    </button>
+</div>
+<div class="table-responsive">
+    <div>
+        <div ng-show="isCategoryAdd"
+             ng-include=" 'admin/categories/add.category.html' "></div>
+        <div ng-show="isCategoryEdit"
+             ng-include=" 'admin/categories/edit.category.html' "></div>
+        <table ng-hide="isCategoryAdd || isCategoryEdit" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Наименование категории</th>
+                    <th style="text-align: right;">Опции</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="categoryItem in categories">
+                    <td>{{$index+1}}</td>
+                    <td>{{categoryItem.name}}</td>
+                    <td>
+                        <img src="../../static/img/delete-icon.png"
+                             class="edit_page_btn"
+                             alt="Удалить"
+                             title="Удалить"
+                             ng-click=""/>
+                        <img src="../../static/img/edit.png"
+                             class="edit_page_btn"
+                             alt="Редактировать"
+                             title="Редактировать"
+                             ng-click="editCategory(categoryItem.idCategory)"/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <button type="submit"
-            ng-show="category && img_category && name_category"
-            class="btn btn-success admin_save_edit_btn"
-            ng-click="saveCategory(name_category, category.idCategory);
-                      category = null;
-                      name_category = null;
-                      f = null;">Сохранить</button>
-    <button type="reset"
-            class="btn btn-default admin_cancel_edit_btn"
-            ng-click="cancelAddCategory();
-                      category = null;
-                      name_category = null;
-                      f = null;">Отмена</button>
 </div>

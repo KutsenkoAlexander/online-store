@@ -8,7 +8,6 @@ import ua.kay.monolit.repositories.ProductCategoryRepository;
 import java.util.List;
 
 @RestController
-@RequestMapping("/catalog/category")
 public class ProductCategoryController {
 
     private static final int PARENT_ID = 0;
@@ -16,18 +15,17 @@ public class ProductCategoryController {
     @Autowired
     ProductCategoryRepository categoryRepository;
 
-    @RequestMapping("/{id}")
+    @RequestMapping("/catalog/category/{id}")
     public List<SprCategory> getByParentIdOrderByNameAsc(@PathVariable("id") Integer id) {
         return categoryRepository.findByParentIdOrderByNameAsc(id);
     }
 
-    @RequestMapping("/name/{id}")
+    @RequestMapping("/catalog/category/name/{id}")
     public SprCategory getCategoryById(@PathVariable("id") Integer id) {
-        SprCategory sprCategory = categoryRepository.findByIdCategory(id);
-        return sprCategory;
+        return categoryRepository.findByIdCategory(id);
     }
 
-    @RequestMapping("/parent")
+    @RequestMapping("/catalog/category/parent")
     public List<SprCategory> findParentCategory(){
         List<SprCategory> sprCategories = categoryRepository.findByParentIdOrderByNameAsc(PARENT_ID);
         for(SprCategory sprCategory : sprCategories){
@@ -36,13 +34,12 @@ public class ProductCategoryController {
         return sprCategories;
     }
 
-    @RequestMapping("/parent_with_img")
+    @RequestMapping("/catalog/category/parent_with_img")
     public List<SprCategory> findParentCategoryWithImg(){
-        List<SprCategory> sprCategories = categoryRepository.findByParentIdOrderByNameAsc(PARENT_ID);
-        return sprCategories;
+        return categoryRepository.findByParentIdOrderByNameAsc(PARENT_ID);
     }
 
-    @RequestMapping("/child")
+    @RequestMapping("/catalog/category/child")
     public List<SprCategory> findCategoryByParentId(){
         List<SprCategory> sprCategories = categoryRepository.findByParentIdNotOrderByNameAsc(PARENT_ID);
         for(SprCategory sprCategory : sprCategories){
@@ -51,13 +48,12 @@ public class ProductCategoryController {
         return sprCategories;
     }
 
-    @RequestMapping("/child_with_img/{id}")
+    @RequestMapping("/catalog/category/child_with_img/{id}")
     public List<SprCategory> findCategoryByParentIdWithImg(@PathVariable("id") Integer id){
-        List<SprCategory> sprCategories = categoryRepository.findByParentIdOrderByNameAsc(id);
-        return sprCategories;
+        return categoryRepository.findByParentIdOrderByNameAsc(id);
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/category/save", method = RequestMethod.POST)
     public SprCategory saveCategory(@RequestBody SprCategory category){
         return categoryRepository.saveAndFlush(category);
     }

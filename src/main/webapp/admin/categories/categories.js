@@ -6,7 +6,7 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
                 url: "/categories",
                 views: {
                     'admin': {
-                        templateUrl: "admin/categories/edit.category.html",
+                        templateUrl: "admin/categories/categories.html",
                         controller: 'adminCategoryCtrl'
                     }
                 },
@@ -24,8 +24,12 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
         return $resource('/catalog/category/parent', {}, {});
     })
 
+    .factory('getCategoryByIdFactory', function ($resource) {
+        return $resource('/catalog/category/name/:id', {id: '@id'},{'query': { method: 'GET' }});
+    })
+
     .factory('saveCategoryFactory', function($resource){
-        return $resource('/catalog/category/save', {},{'save': {method:'POST'}});
+        return $resource('/admin/category/save', {},{'save': {method:'POST'}});
     })
 
     .controller('adminCategoryCtrl', function($scope, $rootScope,
@@ -34,45 +38,9 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
                                               saveCategoryFactory,
                                               Upload,
                                               $timeout,
-                                              pageCacheFactory){
-        var imgId;
-
+                                              pageCacheFactory,
+                                              getCategoryByIdFactory){
         $scope.categories = allChildCategoryFactory.query();
-
-        $scope.$on("categoryBroadcastToList", function (event, args) {
-            $scope.addGoodsCategory = args.categoryToList;
-        });
-        
-        $scope.selectCategoryFromList = function(addGoodsCategory){
-            $rootScope.$broadcast('catBroadcast', {
-                selectCat: addGoodsCategory
-            });
-        };
-
-        $scope.$on("isCategoryAddBroadcast", function (event, args) {
-            $scope.isCategoryAdd = true;
-            $scope.parenCategories = pageCacheFactory.get('parenCategories');
-            if (!$scope.parenCategories) {
-                $scope.parenCategories = allParentCategoryFactory.query();
-                pageCacheFactory.put('parenCategories', $scope.parenCategories);
-            }
-        });
-
-        //when product add or edit
-        $scope.selectCat = function(addGoodsCategory){
-            $rootScope.$broadcast('catBroadcast', {
-                selectCat: addGoodsCategory
-            });
-        };
-
-        $scope.addCategory = function(){
-            $scope.isCategoryAdd = true;
-            $scope.parenCategories = pageCacheFactory.get('parenCategories');
-            if(!$scope.parenCategories){
-                $scope.parenCategories = allParentCategoryFactory.query();
-                pageCacheFactory.put('parenCategories', $scope.parenCategories);
-            }
-        };
 
         $scope.uploadFiles = function(file, errFiles) {
             $scope.img_category = file;
@@ -98,9 +66,39 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
             }
         };
 
+        $scope.$on("categoryBroadcastToList", function (event, args) {
+            $scope.addGoodsCategory = args.categoryToList;
+        });
+
+        $scope.$on("isCategoryAddBroadcast", function (event, args) {
+            $scope.isCategoryAdd = true;
+            $scope.parenCategories = pageCacheFactory.get('parenCategories');
+            if (!$scope.parenCategories) {
+                $scope.parenCategories = allParentCategoryFactory.query();
+                pageCacheFactory.put('parenCategories', $scope.parenCategories);
+            }
+        });
+
+        $scope.selectCategoryFromList = function(addGoodsCategory){
+            $rootScope.$broadcast('catBroadcast', {
+                selectCat: addGoodsCategory
+            });
+        };
+
+        $scope.addCategory = function(){
+            $scope.isCategoryAdd = true;
+            $scope.parenCategories = pageCacheFactory.get('parenCategories');
+            if(!$scope.parenCategories){
+                $scope.parenCategories = allParentCategoryFactory.query();
+                pageCacheFactory.put('parenCategories', $scope.parenCategories);
+            }
+        };
+
         $scope.cancelAddCategory = function(){
             $scope.isCategoryAdd = false;
-            $scope.name_category = '';
+            $scope.isCategoryEdit = false;
+            $scope.category = null;
+            $scope.name_category = null;
             $scope.f = null;
             $scope.img_category = null;
             $scope.savedImg = null;
@@ -112,13 +110,35 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
                 "parentId": parentId,
                 "image": $scope.savedImg
             };
-            saveCategoryFactory.save(category);
-            $scope.categories = allChildCategoryFactory.query();
-            $scope.isCategoryAdd = false;
-            $scope.name_category = '';
-            $scope.f = null;
-            $scope.img_category = null;
-            $scope.savedImg = null;
+            saveCategoryFactory.save(category,
+                function (resp, headers) {
+                    //success callback
+                    $scope.categories = allChildCategoryFactory.query();
+                    $scope.isCategoryAdd = false;
+                    $scope.name_category = '';
+                    $scope.f = null;
+                    $scope.img_category = null;
+                    $scope.savedImg = null;
+                },
+                function (err) {
+                    // error callback
+                    confirm("Ошибка сохранения категории!");
+                });
         };
 
+        $scope.editCategory = function(id){
+            $scope.isCategoryEdit = true;
+            var editableCategory = getCategoryByIdFactory.query({id:id});
+            editableCategory.$promise.then(function(data){
+                console.log(data);
+                $scope.category = data.parentId;
+                $scope.parenCategories = pageCacheFactory.get('parenCategories');
+                if(!$scope.parenCategories){
+                    $scope.parenCategories = allParentCategoryFactory.query();
+                    pageCacheFactory.put('parenCategories', $scope.parenCategories);
+                }
+                $scope.savedImg = data.image;
+                $scope.name_category = data.name;
+            });
+        }
     });

@@ -21,11 +21,11 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
     })
 
     .factory('saveProductFactory', function ($resource) {
-        return $resource('/admin/save', {}, {'save': {method: 'POST'}});
+        return $resource('/admin/product/save', {}, {'save': {method: 'POST'}});
     })
 
     .factory('deleteProductFactory', function ($resource) {
-        return $resource('/admin/delete/:id', {id: '@id'},{'delete': { method: 'DELETE' }});
+        return $resource('/admin/product/delete/:id', {id: '@id'},{'delete': { method: 'DELETE' }});
     })
 
     .controller('adminGoodsCtrl', function ($rootScope,
@@ -505,7 +505,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
         };
 
         $scope.deleteProduct = function(id, page, nameProduct){
-            var result = confirm('Удалить '+nameProduct+' ?');
+            var result = confirm('Удалить \"'+nameProduct+'\" ?');
             if(result){
                 deleteProductFactory.delete({id:id},
                     function (resp, headers) {

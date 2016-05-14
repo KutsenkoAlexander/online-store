@@ -1,7 +1,7 @@
-<div>
+<div ng-show="isCategoryAdd" >
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Редактирование категории</h3>
+            <h3 class="panel-title" ng-show="isCategoryAdd">Добавление новой категории</h3>
         </div>
         <div class="panel-body">
             <div class="row wrapper_panel_body_content">
@@ -21,7 +21,7 @@
                             </select>
                         </td>
                     </tr>
-                    <tr>
+                    <tr ng-show="category">
                         <td class="col-xs-4">
                             <p>Изображение категории</p>
                         </td>
@@ -50,7 +50,7 @@
                             <img ng-show="savedImg.image" ng-src="data:image/jpeg; base64,{{savedImg.image}}" class="admin_single_product_img"/>
                         </td>
                     </tr>
-                    <tr>
+                    <tr ng-show="img_category && category">
                         <td class="col-xs-4">
                             <p>Введите название дочерней категории</p>
                         </td>
