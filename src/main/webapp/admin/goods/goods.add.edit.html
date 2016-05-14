@@ -48,18 +48,19 @@
                         <div class="col-xs-2">
                             <p>Категория</p>
                         </div>
-                        <div class="col-xs-3" ng-controller="adminCategoryCtrl">
+                        <div class="col-xs-10" ng-controller="adminCategoryCtrl">
                             <select ng-model="addGoodsCategory"
                                     ng-click="selectCategoryFromList(addGoodsCategory)"
                                     class="form-control admin_category_select"
                                     ng-options="category.name for category in categories | orderBy: 'name' track by category.idCategory"
+                                    name="addGoodsCategory"
                                     required>
                                 <option value="">Выбрать</option>
                             </select>
                         </div>
-                        <div class="col-xs-7 admin_padding_left_ten_element">
-                            <button class="btn btn-default admin_add_category_btn" ng-click="addCategory()">Новая категория</button>
-                        </div>
+                        <!--<div class="col-xs-7 admin_padding_left_ten_element">-->
+                            <!--<button class="btn btn-default admin_add_category_btn" ng-click="addCategory()">Новая категория</button>-->
+                        <!--</div>-->
                     </div>
                     <div class="row">
                         <div class="col-xs-2">
@@ -73,6 +74,7 @@
                                    class="form-control admin_add_input"
                                    id="addGoodsCode"
                                    ng-model="addGoodsCode"
+                                   name="addGoodsCode"
                                    required/>
                         </div>
                     </div>
@@ -85,6 +87,7 @@
                                    class="form-control admin_add_input"
                                    id="name_product"
                                    ng-model="name_product"
+                                   name="name_product"
                                    required/>
                         </div>
                     </div>
@@ -96,6 +99,7 @@
                         <textarea class="form-control admin_add_input admin_area"
                                   id="description"
                                   ng-model="description"
+                                  name="description"
                                   required></textarea>
                         </div>
                     </div>
@@ -107,6 +111,7 @@
                             <input type="text"
                                    class="form-control admin_add_input"
                                    id="priceUah"
+                                   name="priceUah"
                                    ng-model="priceUah"
                                    required/>
                         </div>
@@ -142,7 +147,7 @@
                         <div class="col-xs-2">
                             <p>Производитель</p>
                         </div>
-                        <div class="col-xs-3" ng-controller="adminConsumerCtrl">
+                        <div class="col-xs-10" ng-controller="adminConsumerCtrl">
                             <select ng-model="adminConsumerSelect"
                                     ng-change="selectConsumerFromList(adminConsumerSelect)"
                                     class="form-control admin_category_select"
@@ -150,15 +155,15 @@
                                 <option value="">Выбрать</option>
                             </select>
                         </div>
-                        <div class="col-xs-7 admin_padding_left_ten_element">
-                            <button class="btn btn-default admin_add_category_btn">Новый производитель</button>
-                        </div>
+                        <!--<div class="col-xs-7 admin_padding_left_ten_element">-->
+                            <!--<button class="btn btn-default admin_add_category_btn">Новый производитель</button>-->
+                        <!--</div>-->
                     </div>
                     <div class="row" style="margin-bottom: 5px;">
                         <div class="col-xs-2">
                             <p>Цвет</p>
                         </div>
-                        <div class="col-xs-3" ng-controller="adminColorCtrl">
+                        <div class="col-xs-10" ng-controller="adminColorCtrl">
                             <select ng-model="adminColorSelect"
                                     class="form-control admin_category_select"
                                     ng-change="selectColorFromList(adminColorSelect)"
@@ -166,15 +171,15 @@
                                 <option value="">Выбрать</option>
                             </select>
                         </div>
-                        <div class="col-xs-7 admin_padding_left_ten_element">
-                            <button class="btn btn-default admin_add_category_btn">Новый цвет</button>
-                        </div>
+                        <!--<div class="col-xs-7 admin_padding_left_ten_element">-->
+                            <!--<button class="btn btn-default admin_add_category_btn">Новый цвет</button>-->
+                        <!--</div>-->
                     </div>
                     <div class="row" style="margin-bottom: 5px;">
                         <div class="col-xs-2">
                             <p>Тип</p>
                         </div>
-                        <div class="col-xs-3" ng-controller="adminTypeCtrl">
+                        <div class="col-xs-10" ng-controller="adminTypeCtrl">
                             <select ng-model="adminTypeSelect"
                                     ng-change="selectTypeFromList(adminTypeSelect)"
                                     class="form-control admin_category_select"
@@ -182,15 +187,15 @@
                                 <option value="">Выбрать</option>
                             </select>
                         </div>
-                        <div class="col-xs-7 admin_padding_left_ten_element">
-                            <button class="btn btn-default admin_add_category_btn">Новый тип</button>
-                        </div>
+                        <!--<div class="col-xs-7 admin_padding_left_ten_element">-->
+                            <!--<button class="btn btn-default admin_add_category_btn">Новый тип</button>-->
+                        <!--</div>-->
                     </div>
                     <div class="row" style="margin-bottom: 5px;">
                         <div class="col-xs-2">
                             <p>Размер</p>
                         </div>
-                        <div class="col-xs-3" ng-controller="adminSizeCtrl">
+                        <div class="col-xs-10" ng-controller="adminSizeCtrl">
                             <select ng-model="sizeSelect"
                                     class="form-control admin_category_select"
                                     ng-change="selectSizeFromList(sizeSelect)"
@@ -198,9 +203,9 @@
                                 <option value="">Выбрать</option>
                             </select>
                         </div>
-                        <div class="col-xs-7 admin_padding_left_ten_element">
-                            <button class="btn btn-default admin_add_category_btn">Новый размер</button>
-                        </div>
+                        <!--<div class="col-xs-7 admin_padding_left_ten_element">-->
+                            <!--<button class="btn btn-default admin_add_category_btn">Новый размер</button>-->
+                        <!--</div>-->
                     </div>
                 </div>
             </div>
