@@ -21,15 +21,11 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
     })
 
     .factory('saveProductFactory', function ($resource) {
-        return $resource('/product/save', {}, {'save': {method: 'POST'}});
+        return $resource('/admin/save', {}, {'save': {method: 'POST'}});
     })
 
-    .factory('allChildCategoryFactory', function ($resource) {
-        return $resource('/catalog/category/child', {}, {});
-    })
-
-    .factory('allParentCategoryFactory', function ($resource) {
-        return $resource('/catalog/category/parent', {}, {});
+    .factory('deleteProductFactory', function ($resource) {
+        return $resource('/admin/delete/:id', {id: '@id'},{'delete': { method: 'DELETE' }});
     })
 
     .controller('adminGoodsCtrl', function ($rootScope,
@@ -42,7 +38,8 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                                             Upload,
                                             $timeout,
                                             $http,
-                                            productByIdFactory) {
+                                            productByIdFactory,
+                                            deleteProductFactory) {
         $scope.editableGoodsState = false;
         $scope.newGood = false;
         $scope.fastEdit = false;
@@ -474,7 +471,6 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             var result = saveProductFactory.save(product);
             $scope.editItem = null;
             $scope.fastEdit = false;
-
         };
 
         $scope.showAllProducts = function () {
@@ -507,5 +503,21 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                 });
             }
         };
+
+        $scope.deleteProduct = function(id, page, nameProduct){
+            var result = confirm('Удалить '+nameProduct+' ?');
+            if(result){
+                deleteProductFactory.delete({id:id},
+                    function (resp, headers) {
+                        //success callback
+                        $scope.setPageAndSizeAdmin(page);
+                    },
+                    function (err) {
+                        // error callback
+                        confirm("Ошибка удаления товара!");
+                    }
+                );
+            }
+        }
 
     });

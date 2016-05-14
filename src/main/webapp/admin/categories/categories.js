@@ -16,6 +16,14 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
             })
     })
 
+    .factory('allChildCategoryFactory', function ($resource) {
+        return $resource('/catalog/category/child', {}, {});
+    })
+
+    .factory('allParentCategoryFactory', function ($resource) {
+        return $resource('/catalog/category/parent', {}, {});
+    })
+
     .factory('saveCategoryFactory', function($resource){
         return $resource('/catalog/category/save', {},{'save': {method:'POST'}});
     })
@@ -27,8 +35,9 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
                                               Upload,
                                               $timeout,
                                               pageCacheFactory){
-
         var imgId;
+
+        $scope.categories = allChildCategoryFactory.query();
 
         $scope.$on("categoryBroadcastToList", function (event, args) {
             $scope.addGoodsCategory = args.categoryToList;

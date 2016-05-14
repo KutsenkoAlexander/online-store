@@ -14,13 +14,12 @@ import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
-@RequestMapping("/product")
 public class ProductController {
 
     @Autowired
     ProductRepository productRepository;
 
-    @RequestMapping(value = "/sort/{categoryId}", method = RequestMethod.GET, produces = {"application/json"})
+    @RequestMapping(value = "/product/sort/{categoryId}", method = RequestMethod.GET, produces = {"application/json"})
     public PagedResources<Product> sortProduct(@PathVariable("categoryId") Integer categoryId,
                                                @PathParam("consumerId") Long consumerId,
                                                @PathParam("typeId") Integer typeId,
@@ -33,7 +32,7 @@ public class ProductController {
         return assembler.toResource(products);
     }
 
-    @RequestMapping("/product_id/{id}")
+    @RequestMapping("/product/product_id/{id}")
     public Product findByIdProduct(@PathVariable("id") Long id) {
         Product product = productRepository.findByIdProduct(id);
         SprCategory sprCategory = product.getSprCategory();
@@ -41,7 +40,7 @@ public class ProductController {
         return product;
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET, produces = {"application/json"})
+    @RequestMapping(value = "/product/all", method = RequestMethod.GET, produces = {"application/json"})
     public PagedResources<Product> getAllProductsForEdit(Pageable pageable, PagedResourcesAssembler assembler) {
         Page<Product> products = productRepository.findAllOrderByTitle(pageable);
         for (Product p : products){
@@ -52,7 +51,7 @@ public class ProductController {
         return assembler.toResource(products);
     }
 
-    @RequestMapping(value = "/category/{id}", method = RequestMethod.GET, produces = {"application/json"})
+    @RequestMapping(value = "/product/category/{id}", method = RequestMethod.GET, produces = {"application/json"})
     public PagedResources<Product> getProducts(@PathVariable("id") Integer id, Pageable pageable, PagedResourcesAssembler assembler) {
         Page<Product> products = productRepository.findProductBySprCategoryIdCategory(id, pageable);
         for (Product p : products){
@@ -62,14 +61,19 @@ public class ProductController {
         return assembler.toResource(products);
     }
 
-    @RequestMapping("/search")
+    @RequestMapping("/product/search")
     public List<Product> searchProductByName(@PathParam(value="name") String name) {
         return productRepository.findTitleLikeName(name);
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/save", method = RequestMethod.POST)
     public Product saveProduct(@RequestBody Product product){
         return productRepository.save(product);
+    }
+
+    @RequestMapping(value = "/admin/delete/{id}", method = RequestMethod.DELETE)
+    public void deleteProduct(@PathVariable Long id){
+        productRepository.delete(id);
     }
 
 }

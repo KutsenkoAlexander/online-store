@@ -1,3 +1,48 @@
 <div ng-class="currentPath === '/categories' ? 'page-header admin_page_header' : ''">
     <h1 class="admin_sub_header">Управление категориями</h1>
+    <button ng-hide="editableGoodsState || newGood || fastEdit"
+            class="btn btn-default admin_add_new_good"
+            ng-click="addCategory();">Новая категория
+    </button>
+</div>
+<div class="table-responsive">
+    <div>
+        <div ng-show="isCategoryAdd"
+             ng-include=" 'admin/categories/categories.html' "></div>
+        <!--<div ng-show="isCategoryAdd" ng-include=" 'admin/categories/categories.html' "></div>-->
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Наименование категорий</th>
+                    <th style="text-align: right;">Опции</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="categoryItem in categories">
+                    <td>
+                        {{categoryItem.idCategory}}
+                    </td>
+                    <td>
+                        <p>{{categoryItem.name}}</p>
+                    </td>
+                    <td>
+                        <img src="../../static/img/delete-icon.png"
+                             class="edit_page_btn"
+                             alt="Удалить"
+                             title="Удалить"
+                             ng-click=""/>
+                        <img src="../../static/img/edit.png"
+                             class="edit_page_btn"
+                             alt="Редактировать"
+                             title="Редактировать"
+                             ng-click=""/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!---->
+    </div>
 </div>

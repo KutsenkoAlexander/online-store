@@ -5,7 +5,7 @@
         <th>Наименование</th>
         <th>Цена</th>
         <th>Наличие</th>
-        <th></th>
+        <th>Опции</th>
     </tr>
     </thead>
     <tbody>
@@ -35,7 +35,13 @@
                    type="checkbox"/>
         </td>
         <td class="admin_table_edit_text_center">
-            <img src="../../static/img/edit.jpg"
+            <img src="../../static/img/delete-icon.png"
+                 class="edit_page_btn"
+                 alt="Удалить"
+                 title="Удалить"
+                 ng-click="deleteProduct(product.idProduct, page.number, product.title)"
+                 ng-show="(product.exist || !product.exist) && editItem !== product.idProduct"/>
+            <img src="../../static/img/edit.png"
                  class="edit_page_btn"
                  alt="Редактировать"
                  title="Полное редактирование"
@@ -43,7 +49,7 @@
                  ng-show="(product.exist || !product.exist) && editItem !== product.idProduct"/>
             <button class="btn btn-success fast_edit_btn"
                     ng-show="fastEdit && editItem === product.idProduct"
-                    ng-click="saveFastEditGood(price, exist, product)">OK
+                    ng-click="saveFastEditGood(price, exist, product)">ok
             </button>
         </td>
     </tr>
@@ -68,7 +74,7 @@
             <input type="checkbox" ng-show="fastEdit" ng-model="editableProductExist"/>
         </td>
         <td class="admin_table_edit_text_center">
-            <img src="../../static/img/edit.jpg"
+            <img src="../../static/img/edit.png"
                  class="edit_page_btn"
                  alt="Редактировать"
                  title="Полное редактирование"
