@@ -105,11 +105,11 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
             };
             saveCategoryFactory.save(category);
             $scope.categories = allChildCategoryFactory.query();
-            $scope.name_category = '';
-            $scope.savedImg = null;
             $scope.isCategoryAdd = false;
-            $scope.newGood = true;
+            $scope.name_category = '';
+            $scope.f = null;
             $scope.img_category = null;
+            $scope.savedImg = null;
         };
 
     });
