@@ -1,4 +1,4 @@
-<ul class="pagination" ng-hide="editableGoodsState || newGood || page.totalPages < 2" >
+<ul class="pagination" ng-hide="editableGoodsState || newGood || page.totalPages < 1" >
     <li ng-class="{disabled: page.number === 0}">
         <a ng-show="page.number !== 0"
            ng-click="setPageAndSizeAdmin(0)">&laquo;</a>
@@ -8,7 +8,8 @@
         <a ng-show="page.number !== 0" ng-click="setPageAndSizeAdmin(page.number-1)">Пред.</a>
         <span ng-show="page.number === 0">Пред.</span>
     </li>
-    <li ng-repeat="n in [] | adminPages: page.number:page.totalPages:5" ng-class="{active: n === page.number}">
+    <li ng-repeat="n in [] | pages: page.totalPages"
+        ng-class="{active: n === page.number}">
         <a ng-show="page.number !== n" ng-click="setPageAndSizeAdmin(n)">{{n + 1}}</a>
         <span ng-show="page.number === n">{{n + 1}}</span>
     </li>

@@ -34,14 +34,6 @@
                         <img ng-show="savedIdProductImg.image"
                              ng-src="data:image/jpeg; base64,{{savedIdProductImg.image}}"
                              class="admin_single_product_img"/>
-                        <img ng-show="savedIdCategoryImg.image"
-                             ng-hide="savedIdProductImg.image"
-                             ng-src="data:image/jpeg; base64,{{savedIdCategoryImg.image}}"
-                             class="admin_single_product_img"/>
-                        <img ng-hide="savedIdCategoryImg.image || newGood || savedIdProductImg.image"
-                             src="../../static/img/no-image.png"
-                             type="image/jpeg"
-                             class="single_product_img"/>
                     </div>
                 </div>
                 <div class="row">
