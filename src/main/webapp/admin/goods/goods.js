@@ -51,7 +51,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
 
         var search = $location.search();
         var page = search.page || 0;
-        var size = search.size || 5;
+        var size = search.size || 15;
         var sort = search.sort || 'type,desc';
 
         $scope.setPageAndSizeAdmin = function (page) {

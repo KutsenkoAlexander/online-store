@@ -21,7 +21,7 @@
             <p ng-show="editItem !== product.idProduct">{{product.price | number:2}}</p>
             <input ng-show="fastEdit && editItem === product.idProduct"
                    ng-model="price"
-                   type="text"
+                   type="number"
                    class="form-control width_input_fast_edit"/>
         </td>
         <td ng-click="fastEditGood(product.idProduct, product.price, product.exist)"
