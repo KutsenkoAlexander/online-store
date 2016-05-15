@@ -8,7 +8,7 @@
                 <table style="width: 100%;">
                     <tr>
                         <td class="col-xs-4">
-                            <p>Родительская категория</p>
+                            <p>Раздел</p>
                         </td>
                         <td class="col-xs-8">
                             <select ng-model="category"
@@ -52,7 +52,7 @@
                     </tr>
                     <tr>
                         <td class="col-xs-4">
-                            <p>Введите название дочерней категории</p>
+                            <p>Название категории</p>
                         </td>
                         <td class="col-xs-8">
                             <input type="text" ng-model="name_category" name="name" class="form-control admin_add_input" placeholder="Введите название дочерней категории"/>
@@ -63,14 +63,10 @@
         </div>
     </div>
     <button type="submit"
-            ng-show="category && img_category && name_category"
+            ng-show="category && savedImg && name_category"
             class="btn btn-success admin_save_edit_btn"
-            ng-click="saveCategory(name_category, category.idCategory);
-                      category = null;
-                      savedImg = null;">Сохранить</button>
+            ng-click="saveCategory(name_category, category.idCategory, idCategoryForSave);">Сохранить</button>
     <button type="reset"
             class="btn btn-default admin_cancel_edit_btn"
-            ng-click="cancelAddCategory();
-                      category = null;
-                      savedImg = null;">Отмена</button>
+            ng-click="cancelAddCategory();">Отмена</button>
 </div>

@@ -104,8 +104,9 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
             $scope.savedImg = null;
         };
 
-        $scope.saveCategory = function(name, parentId){
+        $scope.saveCategory = function(name, parentId, idCategory){
             var category = {
+                "idCategory": idCategory,
                 "name": name,
                 "parentId": parentId,
                 "image": $scope.savedImg
@@ -115,6 +116,7 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
                     //success callback
                     $scope.categories = allChildCategoryFactory.query();
                     $scope.isCategoryAdd = false;
+                    $scope.isCategoryEdit = false;
                     $scope.name_category = '';
                     $scope.f = null;
                     $scope.img_category = null;
@@ -128,15 +130,22 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
 
         $scope.editCategory = function(id){
             $scope.isCategoryEdit = true;
+            $scope.idCategoryForSave = id;
             var editableCategory = getCategoryByIdFactory.query({id:id});
             editableCategory.$promise.then(function(data){
-                console.log(data);
-                $scope.category = data.parentId;
                 $scope.parenCategories = pageCacheFactory.get('parenCategories');
                 if(!$scope.parenCategories){
                     $scope.parenCategories = allParentCategoryFactory.query();
                     pageCacheFactory.put('parenCategories', $scope.parenCategories);
                 }
+
+                $scope.parenCategories.$promise.then(function(parentCategoryData){
+                    angular.forEach(parentCategoryData, function(value, key) {
+                        if(value.idCategory === data.parentId){
+                            $scope.category = $scope.parenCategories[key];
+                        }
+                    });
+                });
                 $scope.savedImg = data.image;
                 $scope.name_category = data.name;
             });
