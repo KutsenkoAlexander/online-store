@@ -4,7 +4,7 @@
 <div class="panel panel-default">
     <form class="panel-heading row"
           style="margin: 0"
-          ng-submit="saveConsumer(null, nameConsumer)">
+          ng-submit="saveNewConsumer(null, nameConsumer)">
         <div class="col-xs-3" style="position: relative;top: 7px;">Добавить производителя</div>
         <div class="col-xs-7">
             <input type="text"
@@ -19,24 +19,24 @@
             <button type="submit"
                     title="Сохранить"
                     class="btn btn-success"
-                    style="float: right;">Сохранить</button>
+                    style="float: right;">Сохранить
+            </button>
         </div>
     </form>
     <table class="table table-striped">
         <thead>
         <tr>
-            <!--<th>#</th>-->
             <th>Наименование производителя</th>
             <th style="text-align: right;">Опции</th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="consumerItem in consumerList | orderBy: 'name'" class="editable_goods_tree">
-            <!--<td class="editable_goods_second"-->
-                <!--ng-click="editConsumer(consumerItem.idConsumer)">{{$index+1}}-->
-            <!--</td>-->
+        <tr ng-repeat="consumerItem in consumerList | orderBy: 'name'"
+            class="editable_goods_tree">
             <td class="editable_goods_second"
-                ng-click="editConsumer(consumerItem.idConsumer)">
+                ng-click="editConsumer(consumerItem.idConsumer)"
+                ng-controller="secondConsumerCtrl"
+                style="width: 88%;">
                 <p ng-hide="fastEditConsumer && editConsumerItem === consumerItem.idConsumer">{{consumerItem.name}}</p>
                 <input ng-show="fastEditConsumer && editConsumerItem === consumerItem.idConsumer"
                        ng-model="consumerName"
@@ -55,7 +55,7 @@
                      ng-hide="fastEditConsumer && editConsumerItem === consumerItem.idConsumer"
                      ng-click="deleteConsumer(consumerItem.idConsumer, consumerItem.name)"/>
                 <button ng-show="fastEditConsumer && editConsumerItem === consumerItem.idConsumer"
-                        ng-click="saveConsumer(consumerItem.idConsumer, consumerName)"
+                        ng-click="saveEditableConsumer(consumerItem.idConsumer)"
                         style="float: right;"
                         class="btn btn-success fast_edit_btn"
                         type="submit"
@@ -66,7 +66,7 @@
                         type="button"
                         style="float: right; margin-right: 3px; padding-top: 1px;"
                         ng-show="fastEditConsumer && editConsumerItem === consumerItem.idConsumer"
-                        ng-click="cancelConsumer();">Отмена
+                        ng-click="cancelConsumer(consumerName);">Отмена
                 </button>
             </td>
         </tr>

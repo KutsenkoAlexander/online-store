@@ -35,6 +35,8 @@ angular.module('monolitApp.admin.consumer', ['ui.router', 'ngResource'])
                                                deleteConsumerFactory) {
         $scope.fastEditConsumer = false;
 
+        var editableName;
+
         $scope.consumerList = getAllConsumersFactory.query();
 
         $scope.selectConsumerFromList = function(adminConsumerCtrl){
@@ -50,10 +52,23 @@ angular.module('monolitApp.admin.consumer', ['ui.router', 'ngResource'])
         $scope.editConsumer = function(id){
             $scope.fastEditConsumer = true;
             $scope.editConsumerItem = id;
-            $scope.consumerName = $scope.consumerList[id-1].name;
+
+            $scope.consumerList.$promise.then(function(data){
+                angular.forEach(data, function(value, key) {
+                    if(id === value.idConsumer){
+                        $scope.consumerName = value.name;
+                    }
+                });
+            });
+
+
+
+            $scope.$on("saveEditConsumerBroadcast", function (event, args) {
+                editableName = args.saveConsumerBroadcast;
+            });
         };
 
-        $scope.saveConsumer = function(id, name){
+        $scope.saveNewConsumer = function(id, name){
             if( name === null ||
                 name === '' ||
                 name === 0 ||
@@ -65,7 +80,6 @@ angular.module('monolitApp.admin.consumer', ['ui.router', 'ngResource'])
                     "idConsumer": id,
                     "name": name
                 };
-                console.log(consumer);
                 saveConsumerFactory.save(consumer,
                     function (resp, headers) {
                         //success callback
@@ -75,13 +89,35 @@ angular.module('monolitApp.admin.consumer', ['ui.router', 'ngResource'])
                     },
                     function (err) {
                         // error callback
-                        confirm("Ошибка сохранения производителя!");
+                        alert(err.statusText);
                     });
             }
         };
 
-        $scope.cancelConsumer = function(){
+        $scope.saveEditableConsumer = function(id){
+            var consumer = {
+                "idConsumer": id,
+                "name": editableName
+            };
+            saveConsumerFactory.save(consumer,
+                function (resp, headers) {
+                    //success callback
+                    $scope.consumerList = getAllConsumersFactory.query();
+                    $scope.nameConsumer = null;
+                    $scope.fastEditConsumer = false;
+                },
+                function (err) {
+                    // error callback
+                    alert(err.statusText);
+                });
+        };
+
+        $scope.cancelConsumer = function(consumerName){
             $scope.fastEditConsumer = false;
+            $scope.nameConsumer = null;
+            $rootScope.$broadcast('cancelEditConsumerBroadcast',{
+                editBroadcast: consumerName
+            })
         };
 
         $scope.deleteConsumer = function(id, name){
@@ -100,8 +136,18 @@ angular.module('monolitApp.admin.consumer', ['ui.router', 'ngResource'])
             }
         };
 
+    })
+
+    .controller('secondConsumerCtrl', function($rootScope, $scope){
+        $scope.$on('cancelEditConsumerBroadcast', function (event, args) {
+            $scope.consumerName = args.editBroadcast;
+        });
+
         $scope.$watch('consumerName', function () {
-            $scope.consumerNameTest = angular.element("#consumerName").val();
+            $rootScope.$broadcast('saveEditConsumerBroadcast',{
+                saveConsumerBroadcast: angular.element('#consumerName').val()
+            });
         });
 
     });
+
