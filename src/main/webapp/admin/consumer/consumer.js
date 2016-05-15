@@ -61,8 +61,6 @@ angular.module('monolitApp.admin.consumer', ['ui.router', 'ngResource'])
                 });
             });
 
-
-
             $scope.$on("saveEditConsumerBroadcast", function (event, args) {
                 editableName = args.saveConsumerBroadcast;
             });
@@ -95,21 +93,29 @@ angular.module('monolitApp.admin.consumer', ['ui.router', 'ngResource'])
         };
 
         $scope.saveEditableConsumer = function(id){
-            var consumer = {
-                "idConsumer": id,
-                "name": editableName
-            };
-            saveConsumerFactory.save(consumer,
-                function (resp, headers) {
-                    //success callback
-                    $scope.consumerList = getAllConsumersFactory.query();
-                    $scope.nameConsumer = null;
-                    $scope.fastEditConsumer = false;
-                },
-                function (err) {
-                    // error callback
-                    alert(err.statusText);
-                });
+            if( editableName === null ||
+                editableName === '' ||
+                editableName === 0 ||
+                editableName === NaN ||
+                angular.isUndefined(editableName)){
+                alert("Введите корректные данные!");
+            } else {
+                var consumer = {
+                    "idConsumer": id,
+                    "name": editableName
+                };
+                saveConsumerFactory.save(consumer,
+                    function (resp, headers) {
+                        //success callback
+                        $scope.consumerList = getAllConsumersFactory.query();
+                        $scope.nameConsumer = null;
+                        $scope.fastEditConsumer = false;
+                    },
+                    function (err) {
+                        // error callback
+                        alert(err.statusText);
+                    });
+            }
         };
 
         $scope.cancelConsumer = function(consumerName){
@@ -144,6 +150,7 @@ angular.module('monolitApp.admin.consumer', ['ui.router', 'ngResource'])
         });
 
         $scope.$watch('consumerName', function () {
+            console.log(angular.element('#consumerName').val());
             $rootScope.$broadcast('saveEditConsumerBroadcast',{
                 saveConsumerBroadcast: angular.element('#consumerName').val()
             });
