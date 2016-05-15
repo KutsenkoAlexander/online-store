@@ -2,7 +2,7 @@
     <h1 class="admin_sub_header">Управление категориями</h1>
     <button ng-hide="isCategoryEdit || isCategoryAdd"
             class="btn btn-default admin_add_new_good"
-            ng-click="addCategory();category = null;savedImg = null;">Новая категория
+            ng-click="addCategory();">Новая категория
     </button>
 </div>
 <div class="table-responsive">
@@ -28,7 +28,7 @@
                              class="edit_page_btn"
                              alt="Удалить"
                              title="Удалить"
-                             ng-click=""/>
+                             ng-click="deleteCategory(categoryItem.idCategory, categoryItem.name)"/>
                         <img src="../../static/img/edit.png"
                              class="edit_page_btn"
                              alt="Редактировать"

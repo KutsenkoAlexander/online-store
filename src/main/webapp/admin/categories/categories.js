@@ -32,6 +32,10 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
         return $resource('/admin/category/save', {},{'save': {method:'POST'}});
     })
 
+    .factory('deleteCategoryFactory', function ($resource) {
+        return $resource('/admin/category/delete/:id', {id: '@id'},{'delete': { method: 'DELETE' }});
+    })
+
     .controller('adminCategoryCtrl', function($scope, $rootScope,
                                               allParentCategoryFactory,
                                               allChildCategoryFactory,
@@ -39,7 +43,8 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
                                               Upload,
                                               $timeout,
                                               pageCacheFactory,
-                                              getCategoryByIdFactory){
+                                              getCategoryByIdFactory,
+                                              deleteCategoryFactory){
         $scope.categories = allChildCategoryFactory.query();
 
         $scope.uploadFiles = function(file, errFiles) {
@@ -86,6 +91,8 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
         };
 
         $scope.addCategory = function(){
+            $scope.category = null;
+            $scope.savedImg = null;
             $scope.isCategoryAdd = true;
             $scope.parenCategories = pageCacheFactory.get('parenCategories');
             if(!$scope.parenCategories){
@@ -149,5 +156,22 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
                 $scope.savedImg = data.image;
                 $scope.name_category = data.name;
             });
-        }
+        };
+
+        $scope.deleteCategory = function(id, name){
+            var result = confirm('Удалить \"'+name+'\" ?');
+            if(result){
+                deleteCategoryFactory.delete({id:id},
+                    function (resp, headers) {
+                        //success callback
+                        $scope.categories = allChildCategoryFactory.query();
+                    },
+                    function (err) {
+                        // error callback
+                        confirm("Ошибка удаления категории!");
+                    }
+                );
+            }
+        };
+
     });

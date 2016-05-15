@@ -58,4 +58,9 @@ public class ProductCategoryController {
         return categoryRepository.saveAndFlush(category);
     }
 
+    @RequestMapping(value = "/admin/category/delete/{id}", method = RequestMethod.DELETE)
+    public void deleteCategory(@PathVariable Integer id){
+        categoryRepository.delete(id);
+    }
+
 }
