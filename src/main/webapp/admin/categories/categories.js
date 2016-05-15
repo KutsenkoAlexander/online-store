@@ -168,7 +168,7 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
                     },
                     function (err) {
                         // error callback
-                        confirm("Ошибка удаления категории!");
+                        alert("Ошибка удаления категории!");
                     }
                 );
             }

@@ -8,25 +8,29 @@ import ua.kay.monolit.repositories.ConsumerRepository;
 import java.util.List;
 
 @RestController
-@RequestMapping("/consumer")
 public class ConsumerController {
 
     @Autowired
     ConsumerRepository consumerRepository;
 
-    @RequestMapping("/all")
+    @RequestMapping("/consumer/all")
     public List<SprConsumer> findAllConsumers(){
         return consumerRepository.findAll();
     }
 
-    @RequestMapping("/{id}")
+    @RequestMapping("/consumer/{id}")
     public List<SprConsumer> getProductConsumers(@PathVariable("id") Integer id) {
         return consumerRepository.findConsumerByProductCategoryId(id);
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/consumer/save", method = RequestMethod.POST)
     public SprConsumer saveConsumer(@RequestBody SprConsumer sprConsumer){
         return consumerRepository.saveAndFlush(sprConsumer);
+    }
+
+    @RequestMapping(value = "/admin/consumer/delete/{id}", method = RequestMethod.DELETE)
+    public void deleteConsumer(@PathVariable Long id){
+        consumerRepository.delete(id);
     }
 
 }

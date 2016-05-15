@@ -53,6 +53,7 @@
             </button>
         </td>
     </tr>
+    <!--found product-->
     <tr ng-show="editableProduct" class="editable_goods">
         <td ng-click="fastEditSingleGood(editableProduct.idProduct, editableProduct.price, editableProduct.exist)">
             {{$index+1}}
@@ -79,7 +80,7 @@
                  alt="Удалить"
                  title="Удалить"
                  ng-click="deleteProduct(editableProduct.idProduct, page.number, editableProduct.title)"
-                 ng-show="(product.exist || !product.exist) && editItem !== product.idProduct"/>
+                 ng-hide="fastEdit"/>
             <img src="../../static/img/edit.png"
                  class="edit_page_btn"
                  alt="Редактировать"

@@ -1,3 +1,75 @@
 <div ng-class="currentPath === '/consumer' ? 'page-header admin_page_header' : ''">
     <h1 class="admin_sub_header">Управление производителями</h1>
 </div>
+<div class="panel panel-default">
+    <form class="panel-heading row"
+          style="margin: 0"
+          ng-submit="saveConsumer(null, nameConsumer)">
+        <div class="col-xs-3" style="position: relative;top: 7px;">Добавить производителя</div>
+        <div class="col-xs-7">
+            <input type="text"
+                   class="form-control admin_add_input"
+                   name="nameConsumer"
+                   id="nameConsumer"
+                   ng-model="nameConsumer"
+                   placeholder="Введите название производителя"
+                   required/>
+        </div>
+        <div class="col-xs-2">
+            <button type="submit"
+                    title="Сохранить"
+                    class="btn btn-success"
+                    style="float: right;">Сохранить</button>
+        </div>
+    </form>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Наименование производителя</th>
+            <th style="text-align: right;">Опции</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="consumerItem in consumerList | orderBy: 'name'" class="editable_goods_tree">
+            <td class="editable_goods_second"
+                ng-click="editConsumer(consumerItem.idConsumer)">{{$index+1}}
+            </td>
+            <td class="editable_goods_second"
+                ng-click="editConsumer(consumerItem.idConsumer)">
+                <p ng-hide="fastEditConsumer && editConsumerItem === consumerItem.idConsumer">{{consumerItem.name}}</p>
+                <input ng-show="fastEditConsumer && editConsumerItem === consumerItem.idConsumer"
+                       ng-model="consumerName"
+                       id="consumerName"
+                       name="consumerName"
+                       type="text"
+                       required
+                       style="width: 100%; margin: 0;"
+                       class="form-control admin_add_input"/>
+            </td>
+            <td>
+                <img src="../../static/img/delete-icon.png"
+                     class="edit_page_btn"
+                     alt="Удалить"
+                     title="Удалить"
+                     ng-hide="fastEditConsumer && editConsumerItem === consumerItem.idConsumer"
+                     ng-click="deleteConsumer(consumerItem.idConsumer, consumerItem.name)"/>
+                <button ng-show="fastEditConsumer && editConsumerItem === consumerItem.idConsumer"
+                        ng-click="saveConsumer(consumerItem.idConsumer, consumerName)"
+                        style="float: right;"
+                        class="btn btn-success fast_edit_btn"
+                        type="submit"
+                        title="Сохранить">ok
+                </button>
+                <button class="btn btn-default fast_edit_btn"
+                        title="Отмена"
+                        type="button"
+                        style="float: right; margin-right: 3px; padding-top: 1px;"
+                        ng-show="fastEditConsumer && editConsumerItem === consumerItem.idConsumer"
+                        ng-click="cancelConsumer();">Отмена
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

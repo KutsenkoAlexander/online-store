@@ -133,6 +133,22 @@ tbody > tr.editable_goods:hover {
     background-color: #E2E2E2;
 }
 
+.editable_goods_second{
+    vertical-align: middle;
+}
+
+.editable_goods_second:hover {
+    cursor: pointer;
+}
+
+tbody > tr.editable_goods_tree > td{
+    vertical-align: middle;
+}
+
+tbody > tr.editable_goods_tree:hover {
+    background-color: #E2E2E2;
+}
+
 tbody > tr.editable_goods > td > input {
     width: auto;
     padding: 3px 9px;
