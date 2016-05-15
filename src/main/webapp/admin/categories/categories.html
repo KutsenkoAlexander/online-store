@@ -14,14 +14,14 @@
         <table ng-hide="isCategoryAdd || isCategoryEdit" class="table table-striped">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <!--<th>#</th>-->
                     <th>Наименование категории</th>
                     <th style="text-align: right;">Опции</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="categoryItem in categories">
-                    <td>{{$index+1}}</td>
+                    <!--<td>{{$index+1}}</td>-->
                     <td>{{categoryItem.name}}</td>
                     <td>
                         <img src="../../static/img/delete-icon.png"

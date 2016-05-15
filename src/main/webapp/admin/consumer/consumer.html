@@ -25,16 +25,16 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>#</th>
+            <!--<th>#</th>-->
             <th>Наименование производителя</th>
             <th style="text-align: right;">Опции</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="consumerItem in consumerList | orderBy: 'name'" class="editable_goods_tree">
-            <td class="editable_goods_second"
-                ng-click="editConsumer(consumerItem.idConsumer)">{{$index+1}}
-            </td>
+            <!--<td class="editable_goods_second"-->
+                <!--ng-click="editConsumer(consumerItem.idConsumer)">{{$index+1}}-->
+            <!--</td>-->
             <td class="editable_goods_second"
                 ng-click="editConsumer(consumerItem.idConsumer)">
                 <p ng-hide="fastEditConsumer && editConsumerItem === consumerItem.idConsumer">{{consumerItem.name}}</p>
