@@ -4,7 +4,7 @@
             <h3 class="panel-title">Редактирование категории</h3>
         </div>
         <div class="panel-body">
-            <div class="row wrapper_panel_body_content">
+            <div class="row wrapper_panel_body_content" ng-controller="secondAdminCategoryCtrl">
                 <table style="width: 100%;">
                     <tr>
                         <td class="col-xs-4">
@@ -55,7 +55,11 @@
                             <p>Название категории</p>
                         </td>
                         <td class="col-xs-8">
-                            <input type="text" ng-model="name_category" name="name" class="form-control admin_add_input" placeholder="Введите название категории"/>
+                            <input type="text"
+                                   ng-model="name_category"
+                                   name="name"
+                                   class="form-control admin_add_input"
+                                   placeholder="Введите название категории"/>
                         </td>
                     </tr>
                 </table>

@@ -149,12 +149,19 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
                 $scope.parenCategories.$promise.then(function(parentCategoryData){
                     angular.forEach(parentCategoryData, function(value, key) {
                         if(value.idCategory === data.parentId){
+                            $rootScope.$broadcast('cancelCategoryBroadcast', {
+                                categoryBroadcast: $scope.parenCategories[key]
+                            });
                             $scope.category = $scope.parenCategories[key];
                         }
                     });
                 });
                 $scope.savedImg = data.image;
+
                 $scope.name_category = data.name;
+                $rootScope.$broadcast('nameCategoryBroadcast', {
+                    nameCategoryBroadcast: data.name
+                });
             });
         };
 
@@ -173,5 +180,17 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
                 );
             }
         };
+
+    })
+
+    .controller('secondAdminCategoryCtrl', function($rootScope, $scope){
+
+        $scope.$on("cancelCategoryBroadcast", function(event, args){
+            $scope.category = args.categoryBroadcast;
+        });
+
+        $scope.$on("nameCategoryBroadcast", function(event, args){
+            $scope.name_category = args.nameCategoryBroadcast;
+        });
 
     });
