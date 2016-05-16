@@ -109,15 +109,20 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
             $scope.f = null;
             $scope.img_category = null;
             $scope.savedImg = null;
+            $rootScope.$broadcast('cancelCategoryBroadcast', {
+                categoryBroadcast: null
+            });
         };
 
         $scope.saveCategory = function(name, parentId, idCategory){
+
             var category = {
                 "idCategory": idCategory,
                 "name": name,
                 "parentId": parentId,
                 "image": $scope.savedImg
             };
+
             saveCategoryFactory.save(category,
                 function (resp, headers) {
                     //success callback
@@ -131,7 +136,7 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
                 },
                 function (err) {
                     // error callback
-                    confirm("Ошибка сохранения категории!");
+                    alert(err.statusText);
                 });
         };
 
@@ -162,6 +167,12 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
                 $rootScope.$broadcast('nameCategoryBroadcast', {
                     nameCategoryBroadcast: data.name
                 });
+                $scope.$on('saveEditCategoryNameBroadcast', function(event, args){
+                    $scope.name_category = args.saveEditCategoryNameBroadcast;
+                });
+                $scope.$on('saveEditCategoryParentBroadcast', function(event, args){
+                    $scope.category = args.saveEditCategoryParentBroadcast;
+                });
             });
         };
 
@@ -191,6 +202,18 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
 
         $scope.$on("nameCategoryBroadcast", function(event, args){
             $scope.name_category = args.nameCategoryBroadcast;
+        });
+
+        $scope.$watch('name_category', function () {
+            $rootScope.$broadcast('saveEditCategoryNameBroadcast',{
+                saveEditCategoryNameBroadcast: $scope.name_category
+            });
+        });
+
+        $scope.$watch('category', function () {
+            $rootScope.$broadcast('saveEditCategoryParentBroadcast',{
+                saveEditCategoryParentBroadcast: $scope.category
+            });
         });
 
     });
