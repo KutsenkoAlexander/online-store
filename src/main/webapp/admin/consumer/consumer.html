@@ -4,7 +4,7 @@
 <div class="panel panel-default">
     <form class="panel-heading row"
           style="margin: 0"
-          ng-submit="saveNewConsumer(null, nameConsumer)">
+          ng-submit="saveNewConsumer(nameConsumer)">
         <div class="col-xs-3" style="position: relative;top: 7px;">Добавить производителя</div>
         <div class="col-xs-7">
             <input type="text"
@@ -34,14 +34,14 @@
         <tr ng-repeat="consumerItem in consumerList | orderBy: 'name'"
             class="editable_goods_tree">
             <td class="editable_goods_second"
-                ng-click="editConsumer(consumerItem.idConsumer)"
+                ng-click="editConsumer(consumerItem.idConsumer, consumerItem.name)"
                 ng-controller="secondConsumerCtrl"
                 style="width: 88%;">
                 <p ng-hide="fastEditConsumer && editConsumerItem === consumerItem.idConsumer">{{consumerItem.name}}</p>
                 <input ng-show="fastEditConsumer && editConsumerItem === consumerItem.idConsumer"
                        ng-model="consumerName"
-                       id="consumerName"
                        name="consumerName"
+                       minlength="1"
                        type="text"
                        required
                        style="width: 100%; margin: 0;"

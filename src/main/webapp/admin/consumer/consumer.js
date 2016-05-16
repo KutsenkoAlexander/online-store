@@ -36,6 +36,7 @@ angular.module('monolitApp.admin.consumer', ['ui.router', 'ngResource'])
         $scope.fastEditConsumer = false;
 
         var editableName;
+        var prevName;
 
         $scope.consumerList = getAllConsumersFactory.query();
 
@@ -49,24 +50,20 @@ angular.module('monolitApp.admin.consumer', ['ui.router', 'ngResource'])
             $scope.adminConsumerSelect = args.consumerToList;
         });
 
-        $scope.editConsumer = function(id){
+        $scope.editConsumer = function(id, name){
+            $rootScope.$broadcast('cancelEditConsumerBroadcast', {
+                editBroadcast: name
+            });
             $scope.fastEditConsumer = true;
             $scope.editConsumerItem = id;
-
-            $scope.consumerList.$promise.then(function(data){
-                angular.forEach(data, function(value, key) {
-                    if(id === value.idConsumer){
-                        $scope.consumerName = value.name;
-                    }
-                });
-            });
+            $scope.consumerName = name;
 
             $scope.$on("saveEditConsumerBroadcast", function (event, args) {
                 editableName = args.saveConsumerBroadcast;
             });
         };
 
-        $scope.saveNewConsumer = function(id, name){
+        $scope.saveNewConsumer = function(name){
             if( name === null ||
                 name === '' ||
                 name === 0 ||
@@ -75,7 +72,7 @@ angular.module('monolitApp.admin.consumer', ['ui.router', 'ngResource'])
                 alert("Введите корректные данные!");
             } else {
                 var consumer = {
-                    "idConsumer": id,
+                    "idConsumer": null,
                     "name": name
                 };
                 saveConsumerFactory.save(consumer,
@@ -150,9 +147,8 @@ angular.module('monolitApp.admin.consumer', ['ui.router', 'ngResource'])
         });
 
         $scope.$watch('consumerName', function () {
-            console.log(angular.element('#consumerName').val());
             $rootScope.$broadcast('saveEditConsumerBroadcast',{
-                saveConsumerBroadcast: angular.element('#consumerName').val()
+                saveConsumerBroadcast: $scope.consumerName
             });
         });
 
