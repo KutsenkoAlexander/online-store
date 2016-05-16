@@ -1,3 +1,75 @@
 <div ng-class="currentPath === '/type' ? 'page-header admin_page_header' : ''">
     <h1 class="admin_sub_header">Управление типами</h1>
 </div>
+<div class="panel panel-default">
+    <form class="panel-heading row"
+          style="margin: 0"
+          ng-submit="saveNewType(nameType)">
+        <div class="col-xs-3" style="position: relative;top: 7px;">Добавить тип</div>
+        <div class="col-xs-7">
+            <input type="text"
+                   class="form-control admin_add_input"
+                   name="nameType"
+                   id="nameType"
+                   ng-model="nameType"
+                   placeholder="Введите название типа"
+                   required/>
+        </div>
+        <div class="col-xs-2">
+            <button type="submit"
+                    title="Сохранить"
+                    class="btn btn-success"
+                    style="float: right;">Сохранить
+            </button>
+        </div>
+    </form>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Наименование типа</th>
+            <th style="text-align: right;">Опции</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="typeItem in typeList | orderBy: 'name'"
+            class="editable_goods_tree">
+            <td class="editable_goods_second"
+                ng-click="editType(typeItem.idSprType, typeItem.name)"
+                ng-controller="secondTypeCtrl"
+                style="width: 88%;">
+                <p ng-hide="fastEditType && editTypeItem === typeItem.idSprType">{{typeItem.name}}</p>
+                <input ng-show="fastEditType && editTypeItem === typeItem.idSprType"
+                       ng-model="typeName"
+                       name="typeName"
+                       minlength="1"
+                       type="text"
+                       required
+                       style="width: 100%; margin: 0;"
+                       class="form-control admin_add_input"/>
+            </td>
+            <td>
+                <img src="../../static/img/delete-icon.png"
+                     class="edit_page_btn"
+                     alt="Удалить"
+                     title="Удалить"
+                     ng-hide="fastEditType && editTypeItem === typeItem.idSprType"
+                     ng-click="deleteType(typeItem.idSprType, typeItem.name)"/>
+                <button ng-show="fastEditType && editTypeItem === typeItem.idSprType"
+                        ng-click="saveEditableType(typeItem.idSprType)"
+                        style="float: right;"
+                        class="btn btn-success fast_edit_btn"
+                        type="submit"
+                        title="Сохранить">ok
+                </button>
+                <button class="btn btn-default fast_edit_btn"
+                        title="Отмена"
+                        type="button"
+                        style="float: right; margin-right: 3px; padding-top: 1px;"
+                        ng-show="fastEditType && editTypeItem === typeItem.idSprType"
+                        ng-click="cancelType(typeName);">Отмена
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

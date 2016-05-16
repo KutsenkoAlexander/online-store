@@ -1,29 +1,36 @@
 package ua.kay.monolit.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ua.kay.monolit.models.SprSize;
 import ua.kay.monolit.repositories.SizeRepository;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/size")
 public class SizeController {
 
     @Autowired
     SizeRepository sizeRepository;
 
-    @RequestMapping("/all")
+    @RequestMapping("/size/all")
     public List<SprSize> findAllSizes(){
         return sizeRepository.findAll();
     }
 
-    @RequestMapping("/{id}")
+    @RequestMapping("/size/{id}")
     public List<SprSize> getProductSizes(@PathVariable("id") Integer id) {
         return sizeRepository.findSizesByProductCategoryId(id);
+    }
+
+    @RequestMapping(value = "/admin/size/save", method = RequestMethod.POST)
+    public SprSize saveSize(@RequestBody SprSize sprSize){
+        return sizeRepository.saveAndFlush(sprSize);
+    }
+
+    @RequestMapping(value = "/admin/size/delete/{id}", method = RequestMethod.DELETE)
+    public void deleteSize(@PathVariable Integer id){
+        sizeRepository.delete(id);
     }
 
 }

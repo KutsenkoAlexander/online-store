@@ -7,7 +7,7 @@ import ua.kay.monolit.models.SprColor;
 
 import java.util.List;
 
-public interface ColorRepository extends JpaRepository<SprColor, Long> {
+public interface ColorRepository extends JpaRepository<SprColor, Integer> {
     @Async
     @Query("select p.sprColor from Product p where p.sprCategory.idCategory = ?1 group by p.sprColor.name")
     List<SprColor> findColorsByProductCategoryId(Integer categoryId);

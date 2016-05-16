@@ -36,7 +36,6 @@ angular.module('monolitApp.admin.consumer', ['ui.router', 'ngResource'])
         $scope.fastEditConsumer = false;
 
         var editableName;
-        var prevName;
 
         $scope.consumerList = getAllConsumersFactory.query();
 

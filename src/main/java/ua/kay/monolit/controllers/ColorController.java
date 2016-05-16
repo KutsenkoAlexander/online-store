@@ -1,29 +1,36 @@
 package ua.kay.monolit.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ua.kay.monolit.models.SprColor;
 import ua.kay.monolit.repositories.ColorRepository;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/color")
 public class ColorController {
 
     @Autowired
     ColorRepository colorRepository;
 
-    @RequestMapping("/all")
+    @RequestMapping("/color/all")
     public List<SprColor> findAllColors(){
         return colorRepository.findAll();
     }
 
-    @RequestMapping("/{id}")
+    @RequestMapping("/color/{id}")
     public List<SprColor> getProductColors(@PathVariable("id") Integer id) {
         return colorRepository.findColorsByProductCategoryId(id);
+    }
+
+    @RequestMapping(value = "/admin/color/save", method = RequestMethod.POST)
+    public SprColor saveColor(@RequestBody SprColor sprColor){
+        return colorRepository.saveAndFlush(sprColor);
+    }
+
+    @RequestMapping(value = "/admin/color/delete/{id}", method = RequestMethod.DELETE)
+    public void deleteColor(@PathVariable Integer id){
+        colorRepository.delete(id);
     }
 
 }

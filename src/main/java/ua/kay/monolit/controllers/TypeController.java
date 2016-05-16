@@ -1,29 +1,36 @@
 package ua.kay.monolit.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ua.kay.monolit.models.SprType;
 import ua.kay.monolit.repositories.TypeRepository;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/type")
 public class TypeController {
 
     @Autowired
     TypeRepository typeRepository;
 
-    @RequestMapping("/all")
+    @RequestMapping("/type/all")
     public List<SprType> findAllTypes(){
         return typeRepository.findAll();
     }
 
-    @RequestMapping("/{id}")
+    @RequestMapping("/type/{id}")
     public List<SprType> getProductTypes(@PathVariable("id") Integer id) {
         return typeRepository.findTypesByProductCategoryId(id);
+    }
+
+    @RequestMapping(value = "/admin/type/save", method = RequestMethod.POST)
+    public SprType saveType(@RequestBody SprType sprType){
+        return typeRepository.saveAndFlush(sprType);
+    }
+
+    @RequestMapping(value = "/admin/type/delete/{id}", method = RequestMethod.DELETE)
+    public void deleteType(@PathVariable Integer id){
+        typeRepository.delete(id);
     }
 
 }

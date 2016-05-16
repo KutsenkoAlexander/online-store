@@ -7,7 +7,7 @@ import ua.kay.monolit.models.SprType;
 
 import java.util.List;
 
-public interface TypeRepository extends JpaRepository<SprType, Long> {
+public interface TypeRepository extends JpaRepository<SprType, Integer> {
     @Async
     @Query("select p.sprType from Product p where p.sprCategory.idCategory = ?1 group by p.sprType.name")
     List<SprType> findTypesByProductCategoryId(Integer categoryId);

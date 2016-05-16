@@ -7,7 +7,7 @@ import ua.kay.monolit.models.SprSize;
 
 import java.util.List;
 
-public interface SizeRepository extends JpaRepository<SprSize, Long> {
+public interface SizeRepository extends JpaRepository<SprSize, Integer> {
     @Async
     @Query("select p.sprSize from Product p where p.sprCategory.idCategory = ?1 group by p.sprSize.name")
     List<SprSize> findSizesByProductCategoryId(Integer categoryId);

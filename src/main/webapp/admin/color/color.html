@@ -1,3 +1,75 @@
 <div ng-class="currentPath === '/color' ? 'page-header admin_page_header' : ''">
     <h1 class="admin_sub_header">Управление цветами</h1>
 </div>
+<div class="panel panel-default">
+    <form class="panel-heading row"
+          style="margin: 0"
+          ng-submit="saveNewColor(nameColor)">
+        <div class="col-xs-3" style="position: relative;top: 7px;">Добавить цвет</div>
+        <div class="col-xs-7">
+            <input type="text"
+                   class="form-control admin_add_input"
+                   name="nameColor"
+                   id="nameColor"
+                   ng-model="nameColor"
+                   placeholder="Введите название цвета"
+                   required/>
+        </div>
+        <div class="col-xs-2">
+            <button type="submit"
+                    title="Сохранить"
+                    class="btn btn-success"
+                    style="float: right;">Сохранить
+            </button>
+        </div>
+    </form>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Наименование цвета</th>
+            <th style="text-align: right;">Опции</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="colorItem in colorList | orderBy: 'name'"
+            class="editable_goods_tree">
+            <td class="editable_goods_second"
+                ng-click="editColor(colorItem.idSprColors, colorItem.name)"
+                ng-controller="secondColorCtrl"
+                style="width: 88%;">
+                <p ng-hide="fastEditColor && editColorItem === colorItem.idSprColors">{{colorItem.name}}</p>
+                <input ng-show="fastEditColor && editColorItem === colorItem.idSprColors"
+                       ng-model="colorName"
+                       name="colorName"
+                       minlength="1"
+                       type="text"
+                       required
+                       style="width: 100%; margin: 0;"
+                       class="form-control admin_add_input"/>
+            </td>
+            <td>
+                <img src="../../static/img/delete-icon.png"
+                     class="edit_page_btn"
+                     alt="Удалить"
+                     title="Удалить"
+                     ng-hide="fastEditColor && editColorItem === colorItem.idSprColors"
+                     ng-click="deleteColor(colorItem.idSprColors, colorItem.name)"/>
+                <button ng-show="fastEditColor && editColorItem === colorItem.idSprColors"
+                        ng-click="saveEditableColor(colorItem.idSprColors)"
+                        style="float: right;"
+                        class="btn btn-success fast_edit_btn"
+                        type="submit"
+                        title="Сохранить">ok
+                </button>
+                <button class="btn btn-default fast_edit_btn"
+                        title="Отмена"
+                        type="button"
+                        style="float: right; margin-right: 3px; padding-top: 1px;"
+                        ng-show="fastEditColor && editColorItem === colorItem.idSprColors"
+                        ng-click="cancelColor(colorName);">Отмена
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
