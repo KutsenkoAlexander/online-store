@@ -3,7 +3,7 @@
     <div class="wrapper_search_admin" ng-hide="editableGoodsState || newGood">
         <div class="search_admin">
             <angucomplete type="search"
-                          class="inpt_search"
+                          class="input_search"
                           id="search"
                           placeholder="Введите название товара..."
                           pause="200"
@@ -13,8 +13,12 @@
                           inputclass="form-control form-control-small goods_search"/>
         </div>
     </div>
-    <button ng-hide="editableGoodsState || newGood || fastEdit" class="btn btn-default admin_add_new_good" ng-click="addGood();">Новый товар</button>
-    <button ng-show="fastEdit" class="btn btn-default admin_add_new_good" ng-click="cancelFastEditGoods()">Отмена</button>
+    <button ng-hide="editableGoodsState || newGood || fastEdit"
+            class="btn btn-default admin_add_new_good"
+            ng-click="addGood();">Новый товар</button>
+    <button ng-show="fastEdit"
+            class="btn btn-default admin_add_new_good"
+            ng-click="cancelFastEditGoods()">Отмена</button>
 </div>
 <div class="table-responsive" ng-controller="adminCategoryCtrl">
     <div>

@@ -50,6 +50,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
         var page = search.page || 0;
         var size = search.size || 15;
         var sort = search.sort || 'type,desc';
+        var existProduct;
 
         $scope.setPageAndSizeAdmin = function (page) {
             $http({method: 'GET', url: '/product/all?page=' + page + '&size=' + size})
@@ -420,20 +421,6 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             setEmptyAllFieldsAfterCloseOrSaveProduct();
         };
 
-        $scope.fastEditGood = function (id, price, exist) {
-            $scope.editItem = id;
-            $scope.price = price;
-            switch (exist) {
-                case 1 :
-                    $scope.exist = true;
-                    break;
-                case 0:
-                    $scope.exist = false;
-                    break;
-            }
-            $scope.fastEdit = true;
-        };
-
         $scope.fastEditSingleGood = function (id, price, exist) {
             if (!$scope.fastEdit) {
                 $scope.editSingleItem = id;
@@ -448,6 +435,22 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                 }
                 $scope.fastEdit = true;
             }
+        };
+
+        $scope.fastEditGood = function (id, price, exist) {
+            $scope.editItem = id;
+            $scope.price = price;
+            switch (exist) {
+                case 1 :
+                    $scope.exist = true;
+                    existProduct = true;
+                    break;
+                case 0:
+                    $scope.exist = false;
+                    existProduct = false;
+                    break;
+            }
+            $scope.fastEdit = true;
         };
 
         $scope.cancelFastEditGoods = function () {

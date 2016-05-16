@@ -3,14 +3,12 @@
     <table class="table table-striped" ng-if="!isEditable">
         <thead>
         <tr>
-            <th>#</th>
             <th>Описание страницы</th>
             <th style="text-align: right;">Опции</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="page in dataPage">
-            <td>{{$index+1}}</td>
             <td>{{page.description}}</td>
             <td><img src="../../static/img/edit.png"
                      class="edit_page_btn"

@@ -1,7 +1,6 @@
 <table class="table table-striped" ng-hide="editableGoodsState || newGood">
     <thead>
     <tr>
-        <!--<th>#</th>-->
         <th>Наименование товара</th>
         <th>Цена</th>
         <th>Наличие</th>
@@ -10,10 +9,6 @@
     </thead>
     <tbody>
     <tr ng-hide="editableProduct" ng-repeat="product in editableProducts" class="editable_goods">
-        <!--<td ng-click="fastEditGood(product.idProduct, product.price, product.exist)">{{$index+1}}</td>-->
-        <!--<td ng-click="fastEditGood(product.idProduct, product.price, product.exist)">-->
-            <!--{{product.idProduct}}-->
-        <!--</td>-->
         <td ng-click="fastEditGood(product.idProduct, product.price, product.exist)">
             <p>{{product.title}}</p>
         </td>
@@ -53,7 +48,7 @@
             </button>
         </td>
     </tr>
-    <!--found product-->
+    <!--found single product-->
     <tr ng-show="editableProduct" class="editable_goods">
         <!--<td ng-click="fastEditSingleGood(editableProduct.idProduct, editableProduct.price, editableProduct.exist)">-->
             <!--{{$index+1}}-->

@@ -63,7 +63,6 @@ angular.module('monolitApp.admin.type', ['ui.router', 'ngResource'])
         };
 
         $scope.saveNewType = function(name){
-            console.log(name);
             if( name === null ||
                 name === '' ||
                 name === 0 ||
