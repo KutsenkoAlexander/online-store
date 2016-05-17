@@ -230,6 +230,31 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                 $scope.productExist = args.productExistBroadcast;
             });
 
+            //category
+            $rootScope.$broadcast('categoryBroadcastToList', {
+                categoryToList: ''
+            });
+
+            //consumer
+            $rootScope.$broadcast('consumerBroadcastToList', {
+                consumerToList: ''
+            });
+
+            //color
+            $rootScope.$broadcast('colorBroadcastToList', {
+                colorToList: ''
+            });
+
+            //type
+            $rootScope.$broadcast('typeBroadcastToList', {
+                typeToList: ''
+            });
+
+            //size
+            $rootScope.$broadcast('sizeBroadcastToList', {
+                sizeToList: ''
+            });
+
             $scope.categories = allChildCategoryFactory.query();
         };
 
@@ -286,7 +311,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                 var price = data.price.toFixed(2);
                 var index = price.indexOf(".");
                 if (index > -1) {
-                    priceUah = price.substring(0, index);
+                    priceUah = parseInt(price.substring(0, index));
                     priceCent = parseInt(price.substring(index + 1));
                     $scope.$on('priceUahBroadcast', function (event, args) {
                         $scope.uah = args.priceUahBroadcast;

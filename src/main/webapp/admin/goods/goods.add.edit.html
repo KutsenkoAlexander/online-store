@@ -50,6 +50,7 @@
                         </div>
                         <div class="col-xs-10" ng-controller="adminCategoryCtrl">
                             <select ng-model="addGoodsCategory"
+                                    id="addGoodsCategory"
                                     ng-click="selectCategoryFromList(addGoodsCategory)"
                                     class="form-control admin_category_select"
                                     ng-options="category.name for category in categories | orderBy: 'name' track by category.idCategory"
@@ -58,9 +59,6 @@
                                 <option value="">Выбрать</option>
                             </select>
                         </div>
-                        <!--<div class="col-xs-7 admin_padding_left_ten_element">-->
-                            <!--<button class="btn btn-default admin_add_category_btn" ng-click="addCategory()">Новая категория</button>-->
-                        <!--</div>-->
                     </div>
                     <div class="row">
                         <div class="col-xs-2">
@@ -108,22 +106,26 @@
                             <p>Цена</p>
                         </div>
                         <div class="col-xs-6" ng-controller="goodsTxtInputCtrl">
-                            <input type="text"
+                            <input type="number"
+                                   ng-model="priceUah"
                                    class="form-control admin_add_input"
                                    id="priceUah"
                                    name="priceUah"
-                                   ng-model="priceUah"
+                                   min="1"
+                                   max="9999999999999999999"
                                    required/>
                         </div>
                         <div class="col-xs-1">
                             <p style="margin: 6px 0 0 10px; font-size: 15px;">гривен</p>
                         </div>
                         <div class="col-xs-2" ng-controller="goodsTxtInputCtrl">
-                            <input type="text"
-                                   maxlength="2"
+                            <input type="number"
+                                   ng-model="priceCent"
                                    class="form-control admin_add_input"
                                    id="priceCent"
-                                   ng-model="priceCent"/>
+                                   name="priceCent"
+                                   min="1"
+                                   max="99"/>
                         </div>
                         <div class="col-xs-1">
                             <p style="margin: 6px 0 0 10px; font-size: 15px;">коп.</p>
@@ -155,9 +157,6 @@
                                 <option value="">Выбрать</option>
                             </select>
                         </div>
-                        <!--<div class="col-xs-7 admin_padding_left_ten_element">-->
-                            <!--<button class="btn btn-default admin_add_category_btn">Новый производитель</button>-->
-                        <!--</div>-->
                     </div>
                     <div class="row" style="margin-bottom: 5px;">
                         <div class="col-xs-2">
@@ -171,9 +170,6 @@
                                 <option value="">Выбрать</option>
                             </select>
                         </div>
-                        <!--<div class="col-xs-7 admin_padding_left_ten_element">-->
-                            <!--<button class="btn btn-default admin_add_category_btn">Новый цвет</button>-->
-                        <!--</div>-->
                     </div>
                     <div class="row" style="margin-bottom: 5px;">
                         <div class="col-xs-2">
@@ -187,9 +183,6 @@
                                 <option value="">Выбрать</option>
                             </select>
                         </div>
-                        <!--<div class="col-xs-7 admin_padding_left_ten_element">-->
-                            <!--<button class="btn btn-default admin_add_category_btn">Новый тип</button>-->
-                        <!--</div>-->
                     </div>
                     <div class="row" style="margin-bottom: 5px;">
                         <div class="col-xs-2">
@@ -203,9 +196,6 @@
                                 <option value="">Выбрать</option>
                             </select>
                         </div>
-                        <!--<div class="col-xs-7 admin_padding_left_ten_element">-->
-                            <!--<button class="btn btn-default admin_add_category_btn">Новый размер</button>-->
-                        <!--</div>-->
                     </div>
                 </div>
             </div>

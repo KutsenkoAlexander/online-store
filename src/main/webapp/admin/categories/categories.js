@@ -191,7 +191,6 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
                 );
             }
         };
-
     })
 
     .controller('secondAdminCategoryCtrl', function($rootScope, $scope){
