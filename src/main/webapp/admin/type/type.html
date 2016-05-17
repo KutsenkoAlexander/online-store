@@ -34,7 +34,7 @@
         <tr ng-repeat="typeItem in typeList | orderBy: 'name'"
             class="editable_goods_tree">
             <td class="editable_goods_second"
-                ng-click="editType(typeItem.idSprType, typeItem.name)"
+                ng-click="fastEditType ? false : editType(typeItem.idSprType, typeItem.name)"
                 ng-controller="secondTypeCtrl"
                 style="width: 88%;">
                 <p ng-hide="fastEditType && editTypeItem === typeItem.idSprType">{{typeItem.name}}</p>
@@ -53,7 +53,7 @@
                      alt="Удалить"
                      title="Удалить"
                      ng-hide="fastEditType && editTypeItem === typeItem.idSprType"
-                     ng-click="deleteType(typeItem.idSprType, typeItem.name)"/>
+                     ng-click="fastEditType ? false : deleteType(typeItem.idSprType, typeItem.name)"/>
                 <button ng-show="fastEditType && editTypeItem === typeItem.idSprType"
                         ng-click="saveEditableType(typeItem.idSprType)"
                         style="float: right;"

@@ -34,7 +34,7 @@
         <tr ng-repeat="sizeItem in sizeList | orderBy: 'name'"
             class="editable_goods_tree">
             <td class="editable_goods_second"
-                ng-click="editSize(sizeItem.idSprSize, sizeItem.name)"
+                ng-click="fastEditSize ? false : editSize(sizeItem.idSprSize, sizeItem.name)"
                 ng-controller="secondSizeCtrl"
                 style="width: 88%;">
                 <p ng-hide="fastEditSize && editSizeItem === sizeItem.idSprSize">{{sizeItem.name}}</p>
@@ -53,7 +53,7 @@
                      alt="Удалить"
                      title="Удалить"
                      ng-hide="fastEditSize && editSizeItem === sizeItem.idSprSize"
-                     ng-click="deleteSize(sizeItem.idSprSize, sizeItem.name)"/>
+                     ng-click="fastEditSize ? false : deleteSize(sizeItem.idSprSize, sizeItem.name)"/>
                 <button ng-show="fastEditSize && editSizeItem === sizeItem.idSprSize"
                         ng-click="saveEditableSize(sizeItem.idSprSize)"
                         style="float: right;"

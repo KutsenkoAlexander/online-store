@@ -34,7 +34,7 @@
         <tr ng-repeat="consumerItem in consumerList | orderBy: 'name'"
             class="editable_goods_tree">
             <td class="editable_goods_second"
-                ng-click="editConsumer(consumerItem.idConsumer, consumerItem.name)"
+                ng-click="fastEditConsumer ? false : editConsumer(consumerItem.idConsumer, consumerItem.name)"
                 ng-controller="secondConsumerCtrl"
                 style="width: 88%;">
                 <p ng-hide="fastEditConsumer && editConsumerItem === consumerItem.idConsumer">{{consumerItem.name}}</p>
@@ -53,7 +53,7 @@
                      alt="Удалить"
                      title="Удалить"
                      ng-hide="fastEditConsumer && editConsumerItem === consumerItem.idConsumer"
-                     ng-click="deleteConsumer(consumerItem.idConsumer, consumerItem.name)"/>
+                     ng-click="fastEditConsumer ? false : deleteConsumer(consumerItem.idConsumer, consumerItem.name)"/>
                 <button ng-show="fastEditConsumer && editConsumerItem === consumerItem.idConsumer"
                         ng-click="saveEditableConsumer(consumerItem.idConsumer)"
                         style="float: right;"

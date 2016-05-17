@@ -34,7 +34,7 @@
         <tr ng-repeat="colorItem in colorList | orderBy: 'name'"
             class="editable_goods_tree">
             <td class="editable_goods_second"
-                ng-click="editColor(colorItem.idSprColors, colorItem.name)"
+                ng-click="fastEditColor ? false : editColor(colorItem.idSprColors, colorItem.name)"
                 ng-controller="secondColorCtrl"
                 style="width: 88%;">
                 <p ng-hide="fastEditColor && editColorItem === colorItem.idSprColors">{{colorItem.name}}</p>
@@ -53,7 +53,7 @@
                      alt="Удалить"
                      title="Удалить"
                      ng-hide="fastEditColor && editColorItem === colorItem.idSprColors"
-                     ng-click="deleteColor(colorItem.idSprColors, colorItem.name)"/>
+                     ng-click="fastEditColor ? false : deleteColor(colorItem.idSprColors, colorItem.name)"/>
                 <button ng-show="fastEditColor && editColorItem === colorItem.idSprColors"
                         ng-click="saveEditableColor(colorItem.idSprColors)"
                         style="float: right;"
