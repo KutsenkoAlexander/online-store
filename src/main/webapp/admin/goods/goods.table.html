@@ -11,7 +11,7 @@
         <tr ng-hide="editableProduct"
             ng-repeat="product in editableProducts"
             class="editable_goods"
-            ng-controller="fastEditPriceProductCtrl">
+            ng-controller="fastEditProductCtrl">
             <td ng-click="fastEdit ? false : fastEditGood(product.idProduct, product.price, product.exist)">
                 <p>{{product.title}}</p>
             </td>
@@ -23,8 +23,7 @@
                        class="form-control width_input_fast_edit"/>
             </td>
             <td ng-click="fastEdit ? false : fastEditGood(product.idProduct, product.price, product.exist)"
-                class="admin_table_edit_text_center"
-                ng-controller="fastEditExistProductCtrl">
+                class="admin_table_edit_text_center">
                 <p ng-show="editItem !== product.idProduct"
                    ng-class="product.exist ? 'product_exist' : 'product_not_exist'">
                     {{product.exist ? 'Да' : 'Нет'}}
@@ -61,42 +60,52 @@
             </td>
         </tr>
         <!--found single product-->
-        <tr ng-show="editableProduct" class="editable_goods">
-        <td ng-click="fastEditSingleGood(editableProduct.idProduct, editableProduct.price, editableProduct.exist)">
-            <p>{{editableProduct.title}}</p>
-        </td>
-        <td ng-click="fastEditSingleGood(editableProduct.idProduct, editableProduct.price, editableProduct.exist)">
-            <p ng-hide="fastEdit">{{editableProduct.price}}</p>
-            <input ng-show="fastEdit"
-                   ng-model="editableProductPrice"
-                   type="text"
-                   class="form-control width_input_fast_edit"/>
-        </td>
-        <td ng-click="fastEditSingleGood(editableProduct.idProduct, editableProduct.price, editableProduct.exist)"
-            class="admin_table_edit_text_center">
-            <p ng-hide="fastEdit" ng-class="editableProduct.exist ? 'product_exist' : 'product_not_exist'">
-                {{editableProduct.exist ? 'Да' : 'Нет'}}</p>
-            <input type="checkbox" ng-show="fastEdit" ng-model="editableProductExist"/>
-        </td>
-        <td class="admin_table_edit_text_center">
-            <img src="../../static/img/delete-icon.png"
-                 class="edit_page_btn"
-                 alt="Удалить"
-                 title="Удалить"
-                 ng-click="deleteProduct(editableProduct.idProduct, page.number, editableProduct.title)"
-                 ng-hide="fastEdit"/>
-            <img src="../../static/img/edit.png"
-                 class="edit_page_btn"
-                 alt="Редактировать"
-                 title="Полное редактирование"
-                 ng-click="editGood(editableProduct.idProduct)"
-                 ng-hide="fastEdit"/>
-            <button class="btn btn-success fast_edit_btn"
-                    ng-show="fastEdit"
-                    ng-click="saveFastEditGood(editableProductPrice, editableProductExist, editableProduct)">OK
-            </button>
-        </td>
-    </tr>
+        <tr ng-show="editableProduct"
+            class="editable_goods"
+            ng-controller="fastEditSingleProductCtrl">
+            <td ng-click="fastEdit ? false : fastEditSingleGood(editableProduct.idProduct, editableProduct.price, editableProduct.exist)">
+                <p>{{editableProduct.title}}</p>
+            </td>
+            <td ng-click="fastEdit ? false : fastEditSingleGood(editableProduct.idProduct, editableProduct.price, editableProduct.exist)">
+                <p ng-hide="fastEdit">{{editableProduct.price}}</p>
+                <input ng-show="fastEdit"
+                       ng-model="editableProductPrice"
+                       type="text"
+                       class="form-control width_input_fast_edit"/>
+            </td>
+            <td ng-click="fastEditSingleGood(editableProduct.idProduct, editableProduct.price, editableProduct.exist)"
+                class="admin_table_edit_text_center">
+                <p ng-hide="fastEdit" ng-class="editableProduct.exist ? 'product_exist' : 'product_not_exist'">
+                    {{editableProduct.exist ? 'Да' : 'Нет'}}</p>
+                <input type="checkbox" ng-show="fastEdit" ng-model="editableProductExist"/>
+            </td>
+            <!--buttons-->
+            <td class="admin_table_edit_text_center">
+                <img src="../../static/img/delete-icon.png"
+                     class="edit_page_btn"
+                     alt="Удалить"
+                     title="Удалить"
+                     ng-click="deleteProduct(editableProduct.idProduct, page.number, editableProduct.title)"
+                     ng-hide="fastEdit"/>
+                <img src="../../static/img/edit.png"
+                     class="edit_page_btn"
+                     alt="Редактировать"
+                     title="Полное редактирование"
+                     ng-click="editGood(editableProduct.idProduct)"
+                     ng-hide="fastEdit"/>
+                <button class="btn btn-default fast_edit_btn"
+                        title="Отмена"
+                        type="button"
+                        style="float: left; margin-right: 3px; padding: 2px 3px; font-size: 13px;"
+                        ng-show="fastEdit"
+                        ng-click="cancelFastEditGoods();">Отмена
+                </button>
+                <button class="btn btn-success fast_edit_btn"
+                        ng-show="fastEdit"
+                        ng-click="saveFastEditGood(editableProductPrice, editableProductExist, editableProduct)">OK
+                </button>
+            </td>
+        </tr>
     </tbody>
 </table>
 

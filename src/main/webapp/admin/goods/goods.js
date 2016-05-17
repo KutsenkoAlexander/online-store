@@ -425,30 +425,36 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             if (!$scope.fastEdit) {
                 $scope.fastEdit = true;
                 $scope.editSingleItem = id;
-
-                $scope.editableProductPrice = price;
-                switch (exist) {
-                    case 1 :
-                        $scope.editableProductExist = true;
-                        break;
-                    case 0:
-                        $scope.editableProductExist = false;
-                        break;
-                }
+                //price
+                $rootScope.$broadcast('priceProductBroadcast',{
+                    priceProduct: price
+                });
+                $scope.$on('fastEditPriceProductBroadcast',function(event, args){
+                    $scope.editableProductPrice = args.fastEditPriceProductBroadcast;
+                });
+                //exist
+                $rootScope.$broadcast('existProductBroadcast',{
+                    existProduct: exist
+                });
+                $scope.$on('fastEditExistProductBroadcast',function(event, args){
+                    $scope.editableProductExist = args.fastEditExistProductBroadcast;
+                });
             }
         };
 
         $scope.fastEditGood = function (id, price, exist) {
             $scope.fastEdit = true;
             $scope.editItem = id;
+            //price
             $rootScope.$broadcast('priceProductBroadcast',{
                 priceProduct: price
             });
-            $rootScope.$broadcast('existProductBroadcast',{
-                existProduct: exist
-            });
             $scope.$on('fastEditPriceProductBroadcast',function(event, args){
                 $scope.price = args.fastEditPriceProductBroadcast;
+            });
+            //exist
+            $rootScope.$broadcast('existProductBroadcast',{
+                existProduct: exist
             });
             $scope.$on('fastEditExistProductBroadcast',function(event, args){
                 $scope.exist = args.fastEditExistProductBroadcast;
@@ -530,19 +536,17 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
 
     })
 
-    .controller('fastEditPriceProductCtrl', function($rootScope, $scope){
+    .controller('fastEditProductCtrl', function($rootScope, $scope){
+        //price
         $scope.$on('priceProductBroadcast',function(event, args){
             $scope.price = args.priceProduct;
         });
-
         $scope.$watch('price', function(){
             $rootScope.$broadcast('fastEditPriceProductBroadcast',{
                 fastEditPriceProductBroadcast: $scope.price
             });
         });
-    })
-
-    .controller('fastEditExistProductCtrl', function($rootScope, $scope){
+        //exist
         $scope.$on('existProductBroadcast',function(event, args){
             switch (args.existProduct) {
                 case 1 :
@@ -553,10 +557,37 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                     break;
             }
         });
-
         $scope.$watch('exist', function(){
             $rootScope.$broadcast('fastEditExistProductBroadcast',{
                 fastEditExistProductBroadcast: $scope.exist
+            });
+        });
+    })
+
+    .controller('fastEditSingleProductCtrl', function($rootScope, $scope){
+        //price
+        $scope.$on('priceProductBroadcast',function(event, args){
+            $scope.editableProductPrice = args.priceProduct;
+        });
+        $scope.$watch('editableProductPrice', function(){
+            $rootScope.$broadcast('fastEditPriceProductBroadcast',{
+                fastEditPriceProductBroadcast: $scope.editableProductPrice
+            });
+        });
+        //exist
+        $scope.$on('existProductBroadcast',function(event, args){
+            switch (args.existProduct) {
+                case 1 :
+                    $scope.editableProductExist = true;
+                    break;
+                case 0:
+                    $scope.editableProductExist = false;
+                    break;
+            }
+        });
+        $scope.$watch('editableProductExist', function(){
+            $rootScope.$broadcast('fastEditExistProductBroadcast',{
+                fastEditExistProductBroadcast: $scope.editableProductExist
             });
         });
     });
