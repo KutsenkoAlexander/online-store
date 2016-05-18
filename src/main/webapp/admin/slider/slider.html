@@ -4,10 +4,7 @@
         <li ng-repeat="slideItem in slides" class="row">
             <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">
-                    <img ng-src="data:image/jpeg; base64,{{slideItem.image.image}}"
-                         ng-hide="savedSlide.idImage === slideItem.image.idImage"/>
-                    <img ng-show="savedSlide.idImage === slideItem.image.idImage"
-                         ng-src="data:image/jpeg; base64,{{savedSlide.image}}"/>
+                    <img ng-src="data:image/jpeg; base64,{{slideItem.image.image}}"/>
                     <div class="caption">
                         <p>
                             <button type="file"
@@ -16,8 +13,7 @@
                                     accept="image/*"
                                     ngf-max-height="1000"
                                     ngf-max-size="2MB"
-                                    ng-hide="img_category">Выберите изображение
-                            </button>
+                                    ng-hide="img_category">Выберите изображение</button>
                         </p>
                     </div>
                 </div>

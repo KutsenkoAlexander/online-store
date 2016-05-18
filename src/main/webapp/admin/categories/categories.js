@@ -47,13 +47,13 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
                                               deleteCategoryFactory){
         $scope.categories = allChildCategoryFactory.query();
 
-        $scope.uploadFiles = function(file, errFiles) {
+        $scope.uploadFiles = function(file, errFiles, idImage) {
             $scope.img_category = file;
             $scope.errFile = errFiles && errFiles[0];
             if (file) {
                 file.upload = Upload.upload({
                     url: '/image/save',
-                    data: {file: file}
+                    data: {file: file, idImage: idImage}
                 });
 
                 file.upload.then(function (response) {

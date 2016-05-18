@@ -44,7 +44,6 @@ public class ProductController {
     public PagedResources<Product> getAllProductsForEdit(Pageable pageable, PagedResourcesAssembler assembler) {
         Page<Product> products = productRepository.findAllOrderByTitle(pageable);
         for (Product p : products){
-            p.setImage(null);
             SprCategory sprCategory = p.getSprCategory();
             sprCategory.setImage(null);
         }

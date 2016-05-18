@@ -504,6 +504,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             }
             product.price = price;
             product.exist = productExist;
+            console.log(product);
             var result = saveProductFactory.save(product);
             $scope.editItem = null;
             $scope.fastEdit = false;
@@ -516,13 +517,13 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.setPageAndSizeAdmin(0);
         };
 
-        $scope.uploadImageProduct = function (file, errFiles) {
+        $scope.uploadImageProduct = function (file, errFiles, idImage) {
             $scope.img_product = file;
             $scope.errFile = errFiles && errFiles[0];
             if (file) {
                 file.upload = Upload.upload({
                     url: '/image/save',
-                    data: {file: file}
+                    data: {file: file, idImage: idImage}
                 });
 
                 file.upload.then(function (response) {
