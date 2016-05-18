@@ -14,7 +14,9 @@
                         ngf-max-size="2MB"
                         ng-hide="img_category">Выберите изображение</button>
             </div>
-            <textarea class="col-xs-7" style="height: 158px; width: 58%; float: right"></textarea>
+            <textarea class="col-xs-7"
+                      style="height: 158px; width: 58%; float: right"
+                      ng-bind="slideItem.text"></textarea>
         </li>
     </ul>
     <div style="margin-top: 10px;">
