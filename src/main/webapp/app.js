@@ -31,6 +31,7 @@ var monolit = angular.module('monolitApp', [
     'monolitApp.admin.color',
     'monolitApp.admin.type',
     'monolitApp.admin.goods.code',
+    'monolitApp.login',
     'monolitApp.admin.size'
 ]);
 
