@@ -167,7 +167,7 @@ monolit.directive('subCategory', function(){
                         'text-decoration': 'none',
                         'position': 'relative',
                         'top': '-200px',
-                        'padding': '30px 0px',
+                        'padding': '30px 0px'
                         //'background-color': 'rgb(255, 255, 255)',
                         //'background-color': 'rgba(255, 255, 255, 0.3)'
                     });

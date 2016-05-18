@@ -296,3 +296,29 @@ tbody > tr.editable_goods > td > input:focus {
 .red_border{
     border-color: red;
 }
+
+.admin_slider{
+    list-style: none;
+}
+
+.admin_slider li {
+    margin: 5px 0 0 0;
+}
+
+.slider_btn{
+    width: auto;
+    opacity: 0;
+    position: relative;
+    left: -400px;
+    /*top: 5px;*/
+    padding: 53px 5px;
+    border: none;
+    font-size: 35px;
+    background: inherit;
+    outline:none;
+    border: 0;
+}
+
+.edit_slider{
+    height: 0;
+}

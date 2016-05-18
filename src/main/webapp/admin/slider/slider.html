@@ -1,2 +1,27 @@
 <h1 class="page-header">Управление слайдером</h1>
+<form action="saveSlider()">
+    <ul class="admin_slider">
+        <li ng-repeat="slideItem in slides" class="row">
+            <div class="edit_slider">
+                <img ng-src="data:image/jpeg; base64,{{slideItem.image.image}}"
+                     class="col-xs-5 slide_img"
+                     slide-img="slide-img"/>
+                <button type="file"
+                        class="slider_btn"
+                        ngf-select="uploadFiles($file, $invalidFiles)"
+                        accept="image/*"
+                        ngf-max-height="1000"
+                        ngf-max-size="2MB"
+                        ng-hide="img_category">Выберите изображение</button>
+            </div>
+            <textarea class="col-xs-7" style="height: 158px; width: 58%; float: right"></textarea>
+        </li>
+    </ul>
+    <div style="margin-top: 10px;">
+        <button type="submit" class="btn btn-success admin_save_edit_btn">Сохранить</button>
+        <button type="reset"
+                class="btn btn-default admin_cancel_edit_btn"
+                ng-click="cancelSlider()">Отмена</button>
+    </div>
+</form>
 
