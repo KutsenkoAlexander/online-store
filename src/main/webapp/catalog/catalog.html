@@ -1,3 +1,10 @@
+<h2 style="height: 100%;
+               width: 100%;
+               font-weight: bold;
+               margin-top: 10%;
+               z-index: 9999;
+               text-align: center;"
+    ng-hide="catalog">Загрузка...</h2>
 <div ng-repeat="category in catalog">
     <a ui-sref="category({category : category.idCategory})"
        class="ng-cloak col-xs-4 parent_category"

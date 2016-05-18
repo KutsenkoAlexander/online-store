@@ -1,4 +1,11 @@
 <div class="row main_category">
+    <h2 style="height: 100%;
+               width: 100%;
+               font-weight: bold;
+               margin-top: 10%;
+               z-index: 9999;
+               text-align: center;"
+        ng-hide="categories">Загрузка...</h2>
     <div ng-repeat="category in categories">
         <a ui-sref="productList({productList : category.idCategory})"
            sub-category="sub-category"

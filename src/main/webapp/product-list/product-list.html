@@ -1,4 +1,11 @@
 <div class="ng-cloak main_category">
+    <h2 style="height: 100%;
+               width: 100%;
+               font-weight: bold;
+               margin-top: 10%;
+               z-index: 9999;
+               text-align: center;"
+        ng-hide="products">Загрузка...</h2>
     <div ng-show="products">
         <div ng-include="'../sort/sort.html'"></div>
         <div class="row products_list set_margin_zero"

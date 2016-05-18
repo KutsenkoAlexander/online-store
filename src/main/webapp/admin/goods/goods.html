@@ -18,6 +18,13 @@
             ng-click="addGood();">Новый товар</button>
 </div>
 <div class="table-responsive" ng-controller="adminCategoryCtrl">
+    <h2 style="height: 100%;
+               width: 100%;
+               font-weight: bold;
+               margin-top: 10%;
+               z-index: 9999;
+               text-align: center;"
+        ng-hide="editableProducts">Загрузка...</h2>
     <div>
         <div ng-hide="isCategoryAdd || editableGoodsState" ng-include=" 'admin/goods/goods.table.html' "></div>
         <div ng-hide="isCategoryAdd" ng-include=" 'admin/goods/goods.add.edit.html' "></div>

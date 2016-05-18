@@ -5058,7 +5058,7 @@ a.badge:focus {
   }
 }
 .thumbnail {
-  display: block;
+  display: inline-block;
   padding: 4px;
   margin-bottom: 20px;
   line-height: 1.42857143;
@@ -5071,6 +5071,8 @@ a.badge:focus {
 }
 .thumbnail > img,
 .thumbnail a > img {
+  width: 312px;
+  height: auto;
   margin-right: auto;
   margin-left: auto;
 }

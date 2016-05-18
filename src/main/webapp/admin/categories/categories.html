@@ -6,6 +6,13 @@
 </div>
 <div class="table-responsive">
     <div>
+        <h2 style="height: 100%;
+               width: 100%;
+               font-weight: bold;
+               margin-top: 10%;
+               z-index: 9999;
+               text-align: center;"
+            ng-hide="categories">Загрузка...</h2>
         <div ng-show="isCategoryAdd"
              ng-include=" 'admin/categories/add.category.html' "></div>
         <div ng-show="isCategoryEdit"

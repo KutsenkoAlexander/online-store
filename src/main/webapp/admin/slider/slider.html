@@ -1,4 +1,11 @@
 <h1 class="page-header">Управление слайдером</h1>
+<h2 style="height: 100%;
+               width: 100%;
+               font-weight: bold;
+               margin-top: 10%;
+               z-index: 9999;
+               text-align: center;"
+    ng-hide="slides">Загрузка...</h2>
 <form ng-submit="saveSlider()">
     <ul class="admin_slider">
         <li ng-repeat="slideItem in slides" class="row">
@@ -13,7 +20,7 @@
                                     accept="image/*"
                                     ngf-max-height="1000"
                                     ngf-max-size="2MB"
-                                    ng-hide="img_category">Выберите изображение</button>
+                                    ng-hide="img_category">Новое изображение</button>
                         </p>
                     </div>
                 </div>

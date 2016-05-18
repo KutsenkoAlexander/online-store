@@ -1,5 +1,12 @@
+<h2 style="height: 100%;
+               width: 100%;
+               font-weight: bold;
+               margin-top: 10%;
+               z-index: 9999;
+               text-align: center;"
+    ng-hide="product">Загрузка...</h2>
 <div class="ng-cloak main_category">
-    <div ng-hide="!product" class="single_product">
+    <div class="single_product">
         <img ng-src="data:image/jpeg; base64,{{product.image.image}}" class="single_product_img"/>
         <img ng-show="!product.image.image" src="../static/img/no-image.png" type="image/jpeg" class="single_product_img"/>
         <div class="describe_product">

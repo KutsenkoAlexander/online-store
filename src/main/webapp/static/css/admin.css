@@ -302,15 +302,11 @@ tbody > tr.editable_goods > td > input:focus {
 }
 
 .admin_slider li {
-    margin: 5px 0 0 0;
+    margin: 5px 2px;
+    width: 320px;
+    display: inline-block;
 }
 
 .admin_slider li textarea:focus {
     outline:none;
 }
-
-.thumbnail{
-    width: 790px;
-}
-
-

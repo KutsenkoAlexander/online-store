@@ -1,5 +1,7 @@
-<table class="table table-striped" ng-hide="editableGoodsState || newGood">
-    <thead>
+<table class="table table-striped"
+       ng-show="editableProducts"
+       ng-hide="editableGoodsState || newGood">
+    <thead ng-show="editableProducts">
         <tr>
             <th>Наименование товара</th>
             <th>Цена</th>

@@ -1,6 +1,13 @@
 <div ng-class="currentPath === '/color' ? 'page-header admin_page_header' : ''">
     <h1 class="admin_sub_header">Управление цветами</h1>
 </div>
+<h2 style="height: 100%;
+               width: 100%;
+               font-weight: bold;
+               margin-top: 10%;
+               z-index: 9999;
+               text-align: center;"
+    ng-hide="colorList">Загрузка...</h2>
 <div class="panel panel-default">
     <form class="panel-heading row"
           style="margin: 0"
