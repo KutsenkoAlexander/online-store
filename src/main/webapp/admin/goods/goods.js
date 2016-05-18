@@ -411,7 +411,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                     productExist = 0;
                     break;
             }
-            if (angular.isUndefined(priceCent)) {
+            if (angular.isUndefined(priceCent) || priceCent === null) {
                 priceCent = 00;
             }
             var price = priceUah + "." + priceCent;
@@ -437,7 +437,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                 },
                 function (err) {
                     // error callback
-                    confirm("Пустые поля или не верные данные!");
+                    alert(err.data.message);
                 }
             );
         };
