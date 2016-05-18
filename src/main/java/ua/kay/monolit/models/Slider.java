@@ -18,10 +18,6 @@ public class Slider implements Serializable {
     @Column(name = "id_slider", nullable = false, insertable = true, updatable = true)
     private Integer idSlider;
 
-    @Basic
-    @Column(name = "text")
-    private String text;
-
     @ManyToOne
     @JoinColumn(name = "image_id", nullable = true)
     private Image image;
@@ -38,14 +34,6 @@ public class Slider implements Serializable {
         this.idSlider = idSlider;
     }
 
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
     public Image getImage() {
         return image;
     }
@@ -56,7 +44,7 @@ public class Slider implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(idSlider, text, image);
+        return Objects.hash(idSlider, image);
     }
 
     @Override
@@ -69,7 +57,6 @@ public class Slider implements Serializable {
         }
         final Slider other = (Slider) obj;
         return Objects.equals(this.idSlider, other.idSlider)
-                && Objects.equals(this.text, other.text)
                 && Objects.equals(this.image, other.image);
     }
 
