@@ -309,19 +309,8 @@ tbody > tr.editable_goods > td > input:focus {
     outline:none;
 }
 
-.slider_btn{
-    width: auto;
-    opacity: 0;
-    position: relative;
-    left: -400px;
-    padding: 50px 5px;
-    border: none;
-    font-size: 35px;
-    background: inherit;
-    outline:none;
-    border: 0;
+.thumbnail{
+    width: 790px;
 }
 
-.edit_slider{
-    height: 0;
-}
+

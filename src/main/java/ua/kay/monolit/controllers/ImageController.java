@@ -22,9 +22,11 @@ public class ImageController {
     ImageRepository imageRepository;
 
     @RequestMapping(value = "/image/save", method = RequestMethod.POST)
-    public Image saveImages(@RequestParam("file") MultipartFile file){
+    public Image saveImages(@RequestParam("file") MultipartFile file,
+                            @RequestParam("idImage") Long idImage){
         Image image = beanFactory.getBean(Image.class);
         try {
+            image.setIdImage(idImage);
             image.setImage(file.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
