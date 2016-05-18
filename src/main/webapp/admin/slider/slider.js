@@ -26,6 +26,41 @@ angular.module('monolitApp.admin.slider', ['ui.router', 'ngResource'])
 
     .controller('adminSliderCtrl', function($rootScope, $scope, getAllSlidesFactory){
         $scope.slides = getAllSlidesFactory.query();
+
+        $scope.uploadSlide = function(file, errFiles) {
+            $scope.img_slider = file;
+            $scope.errFile = errFiles && errFiles[0];
+            if (file) {
+                file.upload = Upload.upload({
+                    url: '/image/save',
+                    data: {file: file}
+                });
+
+                file.upload.then(function (response) {
+                    $scope.savedImg = response.data;
+                    $timeout(function () {
+                        file.result = response.data;
+                    });
+                }, function (response) {
+                    if (response.status > 0)
+                        $scope.errorMsg = response.status + ': ' + response.data;
+                }, function (evt) {
+                    file.progress = Math.min(100, parseInt(100.0 *
+                        evt.loaded / evt.total));
+                });
+            }
+        };
+
+        $scope.saveSlider = function(){
+            console.log("Save");
+            $scope.slides = getAllSlidesFactory.query();
+        };
+
+        $scope.cancelSlider = function(){
+            console.log("Cancel");
+            $scope.slides = getAllSlidesFactory.query();
+        };
+
     })
 
     .directive('slideImg', function(){

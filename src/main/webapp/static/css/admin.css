@@ -305,6 +305,10 @@ tbody > tr.editable_goods > td > input:focus {
     margin: 5px 0 0 0;
 }
 
+.admin_slider li textarea:focus {
+    outline:none;
+}
+
 .slider_btn{
     width: auto;
     opacity: 0;
