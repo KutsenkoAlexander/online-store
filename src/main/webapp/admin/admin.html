@@ -1,65 +1,67 @@
 <!--<div ng-cloak class="page_content">{{dataPage.content}}</div>-->
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="new_container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">
-                <img src="../static/img/MonolitLogo.png" class="admin_logo"/>
-            </a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="/" class="exit">Выйти</a></li>
-            </ul>
+<div ng-show="authenticated">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="new_container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img src="../static/img/MonolitLogo.png" class="admin_logo"/>
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/" class="exit">Выйти</a></li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="new_container-fluid">
-    <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-            <ul class="nav nav-sidebar">
-                <li ng-class="(currentPath === '/admin') ? 'active' : ''">
-                    <a ui-sref="admin">Главная</a>
-                </li>
-                <li ng-class="(currentPath === '/pages') ? 'active' : ''">
-                    <a ui-sref="admin.pages" ui-sref-active="active">Страницы</a>
-                </li>
-                <li ng-class="(currentPath === '/slider') ? 'active' : ''">
-                    <a ui-sref="admin.slider" ui-sref-active="active">Слайдер</a>
-                </li>
-            </ul>
-            <ul class="nav nav-sidebar">
-                <li ng-class="(currentPath === '/goods') ? 'active' : ''">
-                    <a ui-sref="admin.goods">Товары</a>
-                </li>
-                <li ng-class="(currentPath === '/categories') ? 'active' : ''">
-                    <a ui-sref="admin.categories" ui-sref-active="active">Категории</a>
-                </li>
-                <li ng-class="(currentPath === '/consumer') ? 'active' : ''">
-                    <a ui-sref="admin.consumer" ui-sref-active="active">Производители</a>
-                </li>
-                <li ng-class="(currentPath === '/color') ? 'active' : ''">
-                    <a ui-sref="admin.color" ui-sref-active="active">Цвета</a>
-                </li>
-                <li ng-class="(currentPath === '/size') ? 'active' : ''">
-                    <a ui-sref="admin.size" ui-sref-active="active">Размеры</a>
-                </li>
-                <li ng-class="(currentPath === '/type') ? 'active' : ''">
-                    <a ui-sref="admin.type" ui-sref-active="active">Типы</a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <div ng-show="currentPath === '/admin'">
-                <h1 class="page-header">Главная</h1>
+    <div class="new_container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li ng-class="(currentPath === '/admin') ? 'active' : ''">
+                        <a ui-sref="admin">Главная</a>
+                    </li>
+                    <li ng-class="(currentPath === '/pages') ? 'active' : ''">
+                        <a ui-sref="admin.pages" ui-sref-active="active">Страницы</a>
+                    </li>
+                    <li ng-class="(currentPath === '/slider') ? 'active' : ''">
+                        <a ui-sref="admin.slider" ui-sref-active="active">Слайдер</a>
+                    </li>
+                </ul>
+                <ul class="nav nav-sidebar">
+                    <li ng-class="(currentPath === '/goods') ? 'active' : ''">
+                        <a ui-sref="admin.goods">Товары</a>
+                    </li>
+                    <li ng-class="(currentPath === '/categories') ? 'active' : ''">
+                        <a ui-sref="admin.categories" ui-sref-active="active">Категории</a>
+                    </li>
+                    <li ng-class="(currentPath === '/consumer') ? 'active' : ''">
+                        <a ui-sref="admin.consumer" ui-sref-active="active">Производители</a>
+                    </li>
+                    <li ng-class="(currentPath === '/color') ? 'active' : ''">
+                        <a ui-sref="admin.color" ui-sref-active="active">Цвета</a>
+                    </li>
+                    <li ng-class="(currentPath === '/size') ? 'active' : ''">
+                        <a ui-sref="admin.size" ui-sref-active="active">Размеры</a>
+                    </li>
+                    <li ng-class="(currentPath === '/type') ? 'active' : ''">
+                        <a ui-sref="admin.type" ui-sref-active="active">Типы</a>
+                    </li>
+                </ul>
             </div>
-            <div ui-view="admin"></div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <div ng-show="currentPath === '/admin'">
+                    <h1 class="page-header">Главная</h1>
+                </div>
+                <div ui-view="admin"></div>
+            </div>
         </div>
     </div>
 </div>

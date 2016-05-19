@@ -63,7 +63,6 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                         if (value.rel === 'next') {
                             $scope.nextPageLink = value.href;
                         }
-
                         if (value.rel === 'prev') {
                             $scope.prevPageLink = value.href;
                         }
