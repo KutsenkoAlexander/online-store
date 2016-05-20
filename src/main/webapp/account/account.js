@@ -21,30 +21,36 @@ angular.module('monolitApp.login', ['ngResource'])
 
         var authenticate = function (credentials, callback) {
             var headers = credentials ? {
-                authorization: "Basic " + btoa(credentials.username + ":" + credentials.password)
+                Authorization: "Basic " + btoa(credentials.username + ":" + credentials.password)
             } : {};
-            console.log(headers);
-            $http.get('user', {headers: headers}).then(function (response) {
-                if (response.data.name) {
-                    $rootScope.authenticated = true;
-                } else {
+            $http.get('/user', {headers: headers}).then(
+                function (response) {
+                    console.log(response);
+                    if (response.data.name) {
+                        $rootScope.authenticated = true;
+                    } else {
+                        $rootScope.authenticated = false;
+                    }
+                    callback && callback();
+                }, function () {
+                    console.log(123);
                     $rootScope.authenticated = false;
+                    callback && callback();
                 }
-                callback && callback();
-            }, function () {
-                $rootScope.authenticated = false;
-                callback && callback();
-            });
-
+            );
         };
 
         authenticate();
         self.credentials = {};
         $scope.login = function () {
-            alert(1);
+            self.credentials = {
+                "username": $scope.username,
+                "password": $scope.password
+            };
             authenticate(self.credentials, function () {
+                console.log(self.credentials);
                 if ($rootScope.authenticated) {
-                    $location.path("/");
+                    $location.path("/admin");
                     self.error = false;
                 } else {
                     $location.path("/login");
