@@ -21,11 +21,11 @@ angular.module('monolitApp.admin.size', ['ui.router', 'ngResource'])
     })
 
     .factory('saveSizeFactory', function ($resource) {
-        return $resource('/admin/size/save', {}, {'save': {method: 'POST'}});
+        return $resource('/rest/size/save', {}, {'save': {method: 'POST'}});
     })
 
     .factory('deleteSizeFactory', function ($resource) {
-        return $resource('/admin/size/delete/:id', {id: '@id'},{'delete': { method: 'DELETE' }});
+        return $resource('/rest/size/delete/:id', {id: '@id'},{'delete': { method: 'DELETE' }});
     })
 
     .controller('adminSizeCtrl', function ($rootScope,

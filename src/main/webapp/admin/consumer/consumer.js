@@ -21,11 +21,11 @@ angular.module('monolitApp.admin.consumer', ['ui.router', 'ngResource'])
     })
 
     .factory('saveConsumerFactory', function ($resource) {
-        return $resource('/admin/consumer/save', {}, {'save': {method: 'POST'}});
+        return $resource('/rest/consumer/save', {}, {'save': {method: 'POST'}});
     })
 
     .factory('deleteConsumerFactory', function ($resource) {
-        return $resource('/admin/consumer/delete/:id', {id: '@id'},{'delete': { method: 'DELETE' }});
+        return $resource('/rest/consumer/delete/:id', {id: '@id'},{'delete': { method: 'DELETE' }});
     })
 
     .controller('adminConsumerCtrl', function ($rootScope,

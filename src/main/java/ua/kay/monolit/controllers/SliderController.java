@@ -21,7 +21,7 @@ public class SliderController  {
         return sliderRepository.findAllOrderByImage();
     }
 
-    @RequestMapping(value = "/admin/slide/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/rest/slide/save", method = RequestMethod.POST)
     public Slider saveSlide(@RequestBody Slider slider){
         return sliderRepository.saveAndFlush(slider);
     }

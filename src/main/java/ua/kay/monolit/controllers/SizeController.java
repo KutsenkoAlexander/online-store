@@ -23,12 +23,12 @@ public class SizeController {
         return sizeRepository.findSizesByProductCategoryId(id);
     }
 
-    @RequestMapping(value = "/admin/size/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/rest/size/save", method = RequestMethod.POST)
     public SprSize saveSize(@RequestBody SprSize sprSize){
         return sizeRepository.saveAndFlush(sprSize);
     }
 
-    @RequestMapping(value = "/admin/size/delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/rest/size/delete/{id}", method = RequestMethod.DELETE)
     public void deleteSize(@PathVariable Integer id){
         sizeRepository.delete(id);
     }

@@ -23,12 +23,12 @@ public class ConsumerController {
         return consumerRepository.findConsumerByProductCategoryId(id);
     }
 
-    @RequestMapping(value = "/admin/consumer/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/rest/consumer/save", method = RequestMethod.POST)
     public SprConsumer saveConsumer(@RequestBody SprConsumer sprConsumer){
         return consumerRepository.saveAndFlush(sprConsumer);
     }
 
-    @RequestMapping(value = "/admin/consumer/delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/rest/consumer/delete/{id}", method = RequestMethod.DELETE)
     public void deleteConsumer(@PathVariable Long id){
         consumerRepository.delete(id);
     }

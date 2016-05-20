@@ -25,7 +25,7 @@ angular.module('monolitApp.admin.page', ['ui.router', 'ngResource'])
     })
 
     .factory('savePageFactory', function ($resource) {
-        return $resource('/page', {},{'save': {method:'POST'}});
+        return $resource('/rest/page/save', {},{'save': {method:'POST'}});
     })
 
     .controller('adminPagesCtrl', function ($rootScope,

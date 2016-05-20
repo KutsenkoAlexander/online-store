@@ -21,11 +21,11 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
     })
 
     .factory('saveProductFactory', function ($resource) {
-        return $resource('/admin/product/save', {}, {'save': {method: 'POST'}});
+        return $resource('/rest/product/save', {}, {'save': {method: 'POST'}});
     })
 
     .factory('deleteProductFactory', function ($resource) {
-        return $resource('/admin/product/delete/:id', {id: '@id'},{'delete': { method: 'DELETE' }});
+        return $resource('/rest/product/delete/:id', {id: '@id'},{'delete': { method: 'DELETE' }});
     })
 
     .controller('adminGoodsCtrl', function ($rootScope,
@@ -521,7 +521,7 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             $scope.errFile = errFiles && errFiles[0];
             if (file) {
                 file.upload = Upload.upload({
-                    url: '/image/save',
+                    url: '/rest/image/save',
                     data: {file: file, idImage: idImage}
                 });
 

@@ -21,7 +21,7 @@ public class ImageController {
     @Autowired
     ImageRepository imageRepository;
 
-    @RequestMapping(value = "/image/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/rest/image/save", method = RequestMethod.POST)
     public Image saveImages(@RequestParam("file") MultipartFile file,
                             @RequestParam("idImage") Long idImage){
         Image image = beanFactory.getBean(Image.class);

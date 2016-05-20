@@ -53,12 +53,12 @@ public class ProductCategoryController {
         return categoryRepository.findByParentIdOrderByNameAsc(id);
     }
 
-    @RequestMapping(value = "/admin/category/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/rest/category/save", method = RequestMethod.POST)
     public SprCategory saveCategory(@RequestBody SprCategory category){
         return categoryRepository.saveAndFlush(category);
     }
 
-    @RequestMapping(value = "/admin/category/delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/rest/category/delete/{id}", method = RequestMethod.DELETE)
     public void deleteCategory(@PathVariable Integer id){
         categoryRepository.delete(id);
     }

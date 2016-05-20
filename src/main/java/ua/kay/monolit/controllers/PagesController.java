@@ -28,7 +28,7 @@ public class PagesController {
         return pagesRepositories.findById(id);
     }
 
-    @RequestMapping(value = "/page", method = RequestMethod.POST)
+    @RequestMapping(value = "/rest/page/save", method = RequestMethod.POST)
     public Pages savePage(@RequestBody Pages pages){
         return pagesRepositories.saveAndFlush(pages);
     }

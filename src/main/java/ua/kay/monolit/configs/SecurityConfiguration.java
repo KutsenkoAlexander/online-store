@@ -16,12 +16,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
             .authorizeRequests()
-                .antMatchers("/admin",
-                        "/admin/color",
-                        "/admin/color/save",
-                        "/admin/color/delete/*",
+                .antMatchers("/rest/**",
+                        "/admin",
                         "/admin/goods",
-                        "/admin/product/*").authenticated()
+                        "/admin/categories",
+                        "/admin/pages",
+                        "/admin/slider",
+                        "/admin/consumer",
+                        "/admin/color",
+                        "/admin/size",
+                        "/admin/type").authenticated()
                 .and()
             .formLogin()
                 .loginPage("/login")

@@ -23,12 +23,12 @@ public class ColorController {
         return colorRepository.findColorsByProductCategoryId(id);
     }
 
-    @RequestMapping(value = "/admin/color/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/rest/color/save", method = RequestMethod.POST)
     public SprColor saveColor(@RequestBody SprColor sprColor){
         return colorRepository.saveAndFlush(sprColor);
     }
 
-    @RequestMapping(value = "/admin/color/delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/rest/color/delete/{id}", method = RequestMethod.DELETE)
     public void deleteColor(@PathVariable Integer id){
         colorRepository.delete(id);
     }

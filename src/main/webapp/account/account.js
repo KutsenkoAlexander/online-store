@@ -6,7 +6,7 @@ angular.module('monolitApp.login', ['ngResource'])
                 url: "/login",
                 views: {
                     'content': {
-                        templateUrl: "admin/account/login.html",
+                        templateUrl: "account/login.html",
                         controller: 'accountCtrl'
                     }
                 },
@@ -23,6 +23,7 @@ angular.module('monolitApp.login', ['ngResource'])
             var headers = credentials ? {
                 authorization: "Basic " + btoa(credentials.username + ":" + credentials.password)
             } : {};
+            console.log(headers);
             $http.get('user', {headers: headers}).then(function (response) {
                 if (response.data.name) {
                     $rootScope.authenticated = true;

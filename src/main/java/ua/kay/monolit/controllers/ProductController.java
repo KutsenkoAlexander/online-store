@@ -65,12 +65,12 @@ public class ProductController {
         return productRepository.findTitleLikeName(name);
     }
 
-    @RequestMapping(value = "/admin/product/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/rest/product/save", method = RequestMethod.POST)
     public Product saveProduct(@RequestBody Product product){
         return productRepository.save(product);
     }
 
-    @RequestMapping(value = "/admin/product/delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/rest/product/delete/{id}", method = RequestMethod.DELETE)
     public void deleteProduct(@PathVariable Long id){
         productRepository.delete(id);
     }

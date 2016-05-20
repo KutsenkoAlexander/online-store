@@ -23,12 +23,12 @@ public class TypeController {
         return typeRepository.findTypesByProductCategoryId(id);
     }
 
-    @RequestMapping(value = "/admin/type/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/rest/type/save", method = RequestMethod.POST)
     public SprType saveType(@RequestBody SprType sprType){
         return typeRepository.saveAndFlush(sprType);
     }
 
-    @RequestMapping(value = "/admin/type/delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/rest/type/delete/{id}", method = RequestMethod.DELETE)
     public void deleteType(@PathVariable Integer id){
         typeRepository.delete(id);
     }

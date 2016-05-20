@@ -21,11 +21,11 @@ angular.module('monolitApp.admin.type', ['ui.router', 'ngResource'])
     })
 
     .factory('saveTypeFactory', function ($resource) {
-        return $resource('/admin/type/save', {}, {'save': {method: 'POST'}});
+        return $resource('/rest/type/save', {}, {'save': {method: 'POST'}});
     })
 
     .factory('deleteTypeFactory', function ($resource) {
-        return $resource('/admin/type/delete/:id', {id: '@id'},{'delete': { method: 'DELETE' }});
+        return $resource('/rest/type/delete/:id', {id: '@id'},{'delete': { method: 'DELETE' }});
     })
 
     .controller('adminTypeCtrl', function ($rootScope,

@@ -29,11 +29,11 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
     })
 
     .factory('saveCategoryFactory', function($resource){
-        return $resource('/admin/category/save', {},{'save': {method:'POST'}});
+        return $resource('/rest/category/save', {},{'save': {method:'POST'}});
     })
 
     .factory('deleteCategoryFactory', function ($resource) {
-        return $resource('/admin/category/delete/:id', {id: '@id'},{'delete': { method: 'DELETE' }});
+        return $resource('/rest/category/delete/:id', {id: '@id'},{'delete': { method: 'DELETE' }});
     })
 
     .controller('adminCategoryCtrl', function($scope, $rootScope,
@@ -52,7 +52,7 @@ angular.module('monolitApp.admin.categories', ['ngResource'])
             $scope.errFile = errFiles && errFiles[0];
             if (file) {
                 file.upload = Upload.upload({
-                    url: '/image/save',
+                    url: '/rest/image/save',
                     data: {file: file, idImage: idImage}
                 });
 

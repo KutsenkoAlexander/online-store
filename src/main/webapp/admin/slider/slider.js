@@ -21,7 +21,7 @@ angular.module('monolitApp.admin.slider', ['ui.router', 'ngResource'])
     })
 
     .factory('saveSlideFactory', function ($resource) {
-        return $resource('/admin/slide/save', {}, {'save': {method: 'POST'}});
+        return $resource('/rest/slide/save', {}, {'save': {method: 'POST'}});
     })
 
     .controller('adminSliderCtrl', function($rootScope,
@@ -36,7 +36,7 @@ angular.module('monolitApp.admin.slider', ['ui.router', 'ngResource'])
             $scope.errFile = errFiles && errFiles[0];
             if (file) {
                 file.upload = Upload.upload({
-                    url: '/image/save',
+                    url: '/rest/image/save',
                     data: {file: file, idImage: idImage}
                 });
 

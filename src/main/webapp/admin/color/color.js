@@ -21,11 +21,11 @@ angular.module('monolitApp.admin.color', ['ui.router', 'ngResource'])
     })
 
     .factory('saveColorFactory', function ($resource) {
-        return $resource('/admin/color/save', {}, {'save': {method: 'POST'}});
+        return $resource('/rest/color/save', {}, {'save': {method: 'POST'}});
     })
 
     .factory('deleteColorFactory', function ($resource) {
-        return $resource('/admin/color/delete/:id', {id: '@id'},{'delete': { method: 'DELETE' }});
+        return $resource('/rest/color/delete/:id', {id: '@id'},{'delete': { method: 'DELETE' }});
     })
 
     .controller('adminColorCtrl', function ($rootScope,
