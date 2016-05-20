@@ -310,3 +310,15 @@ tbody > tr.editable_goods > td > input:focus {
 .admin_slider li textarea:focus {
     outline:none;
 }
+
+.auth-form{
+    width: 33%;
+    position: relative;
+    top: 150px;
+    left: 35%
+}
+
+.admin_auth_input{
+    width: 52%;
+    float: right
+}
