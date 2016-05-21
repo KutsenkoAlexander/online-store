@@ -27,7 +27,8 @@ angular.module('monolitApp.login', ['ngResource'])
                 function (response) {
                     if (response) {
                         $rootScope.authenticated = true;
-                        console.log(response);
+                        console.log(response.data);
+                        localStorage.setItem("account", headers);
                     } else {
                         $rootScope.authenticated = false;
                     }

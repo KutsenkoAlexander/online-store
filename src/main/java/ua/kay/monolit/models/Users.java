@@ -1,10 +1,12 @@
 package ua.kay.monolit.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "users", schema = "", catalog = "monolit")
@@ -15,7 +17,7 @@ public class Users implements Serializable{
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
-    @Column(name = "id_user", nullable = false, insertable = true, updatable = true)
+    @Column(name = "id_users", nullable = false, insertable = true, updatable = true)
     private int idUsers;
 
     @Basic
@@ -29,6 +31,10 @@ public class Users implements Serializable{
     @Basic
     @Column(name = "enabled", nullable = false, insertable = true, updatable = true, length = 4)
     private int enabled;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "usersId", fetch = FetchType.LAZY)
+    private Set<UsersRoles> usersRoles;
 
     public int getIdUsers() {
         return idUsers;
@@ -62,9 +68,17 @@ public class Users implements Serializable{
         this.enabled = enabled;
     }
 
+    public Set<UsersRoles> getUsersRoles() {
+        return usersRoles;
+    }
+
+    public void setUsersRoles(Set<UsersRoles> usersRoles) {
+        this.usersRoles = usersRoles;
+    }
+
     @Override
     public int hashCode() {
-        return Objects.hash(idUsers, username, password, enabled);
+        return Objects.hash(idUsers, username, password, enabled, usersRoles);
     }
 
     @Override
@@ -79,7 +93,7 @@ public class Users implements Serializable{
         return Objects.equals(this.idUsers, other.idUsers)
                 && Objects.equals(this.username, other.username)
                 && Objects.equals(this.password, other.password)
-                && Objects.equals(this.enabled, other.enabled);
+                && Objects.equals(this.enabled, other.enabled)
+                && Objects.equals(this.usersRoles, other.usersRoles);
     }
-
 }
