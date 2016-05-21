@@ -8,20 +8,20 @@
         </div>
         <form role="form"  ng-submit="login()">
             <div class="form-group">
-                <label for="username" style="margin-top: 5px;">Имя пользователя:</label>
+                <label for="username" style="margin-top: 5px; font-weight: 100;">Имя пользователя:</label>
                 <input type="text"
                        class="form-control admin_add_input admin_auth_input"
                        id="username"
                        name="username"
-                       ng-model="username"/>
+                       ng-model="username" required autofocus/>
             </div>
             <div class="form-group">
-                <label for="password" style="margin-top: 5px;">Пароль:</label>
+                <label for="password" style="margin-top: 5px; font-weight: 100;">Пароль:</label>
                 <input type="password"
                        class="form-control admin_add_input admin_auth_input"
                        id="password"
                        name="password"
-                       ng-model="password"/>
+                       ng-model="password" required/>
             </div>
             <button type="submit" class="btn btn-primary" style="float: right;">Войти</button>
         </form>

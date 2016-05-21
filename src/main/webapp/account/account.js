@@ -21,26 +21,25 @@ angular.module('monolitApp.login', ['ngResource'])
 
         var authenticate = function (credentials, callback) {
             var headers = credentials ? {
-                Authorization: "Basic " + btoa(credentials.username + ":" + credentials.password)
+                authorization: btoa(credentials.username + ":" + credentials.password)
             } : {};
-            $http.get('/user', {headers: headers}).then(
+            $http.post('/user', null, {headers: headers}).then(
                 function (response) {
-                    console.log(response);
-                    if (response.data.name) {
+                    if (response) {
                         $rootScope.authenticated = true;
+                        console.log(response);
                     } else {
                         $rootScope.authenticated = false;
                     }
                     callback && callback();
-                }, function () {
-                    console.log(123);
+                }, function (err) {
                     $rootScope.authenticated = false;
                     callback && callback();
+                    alert(err.statusText);
                 }
             );
         };
 
-        authenticate();
         self.credentials = {};
         $scope.login = function () {
             self.credentials = {
@@ -48,7 +47,6 @@ angular.module('monolitApp.login', ['ngResource'])
                 "password": $scope.password
             };
             authenticate(self.credentials, function () {
-                console.log(self.credentials);
                 if ($rootScope.authenticated) {
                     $location.path("/admin");
                     self.error = false;

@@ -16,7 +16,7 @@ public class Users implements Serializable{
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id_user", nullable = false, insertable = true, updatable = true)
-    private int idUser;
+    private int idUsers;
 
     @Basic
     @Column(name = "username", nullable = false, insertable = true, updatable = true, length = 45)
@@ -30,12 +30,12 @@ public class Users implements Serializable{
     @Column(name = "enabled", nullable = false, insertable = true, updatable = true, length = 4)
     private int enabled;
 
-    public int getIdUser() {
-        return idUser;
+    public int getIdUsers() {
+        return idUsers;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setIdUsers(int idUsers) {
+        this.idUsers = idUsers;
     }
 
     public String getUsername() {
@@ -64,7 +64,7 @@ public class Users implements Serializable{
 
     @Override
     public int hashCode() {
-        return Objects.hash(idUser, username, password, enabled);
+        return Objects.hash(idUsers, username, password, enabled);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class Users implements Serializable{
             return false;
         }
         final Users other = (Users) obj;
-        return Objects.equals(this.idUser, other.idUser)
+        return Objects.equals(this.idUsers, other.idUsers)
                 && Objects.equals(this.username, other.username)
                 && Objects.equals(this.password, other.password)
                 && Objects.equals(this.enabled, other.enabled);

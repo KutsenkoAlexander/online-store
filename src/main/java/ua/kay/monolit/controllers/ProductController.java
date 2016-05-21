@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.PagedResources;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ua.kay.monolit.models.Product;
 import ua.kay.monolit.models.SprCategory;
@@ -65,11 +66,13 @@ public class ProductController {
         return productRepository.findTitleLikeName(name);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/rest/product/save", method = RequestMethod.POST)
     public Product saveProduct(@RequestBody Product product){
         return productRepository.save(product);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/rest/product/delete/{id}", method = RequestMethod.DELETE)
     public void deleteProduct(@PathVariable Long id){
         productRepository.delete(id);

@@ -319,6 +319,6 @@ tbody > tr.editable_goods > td > input:focus {
 }
 
 .admin_auth_input{
-    width: 52%;
+    width: 60%;
     float: right
 }

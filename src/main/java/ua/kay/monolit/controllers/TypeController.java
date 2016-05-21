@@ -1,6 +1,7 @@
 package ua.kay.monolit.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ua.kay.monolit.models.SprType;
 import ua.kay.monolit.repositories.TypeRepository;
@@ -23,11 +24,13 @@ public class TypeController {
         return typeRepository.findTypesByProductCategoryId(id);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/rest/type/save", method = RequestMethod.POST)
     public SprType saveType(@RequestBody SprType sprType){
         return typeRepository.saveAndFlush(sprType);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/rest/type/delete/{id}", method = RequestMethod.DELETE)
     public void deleteType(@PathVariable Integer id){
         typeRepository.delete(id);

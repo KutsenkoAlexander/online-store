@@ -1,6 +1,7 @@
 package ua.kay.monolit.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ua.kay.monolit.models.SprCategory;
 import ua.kay.monolit.repositories.ProductCategoryRepository;
@@ -53,11 +54,13 @@ public class ProductCategoryController {
         return categoryRepository.findByParentIdOrderByNameAsc(id);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/rest/category/save", method = RequestMethod.POST)
     public SprCategory saveCategory(@RequestBody SprCategory category){
         return categoryRepository.saveAndFlush(category);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/rest/category/delete/{id}", method = RequestMethod.DELETE)
     public void deleteCategory(@PathVariable Integer id){
         categoryRepository.delete(id);

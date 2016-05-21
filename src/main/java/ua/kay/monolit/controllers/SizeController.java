@@ -1,6 +1,7 @@
 package ua.kay.monolit.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ua.kay.monolit.models.SprSize;
 import ua.kay.monolit.repositories.SizeRepository;
@@ -23,11 +24,13 @@ public class SizeController {
         return sizeRepository.findSizesByProductCategoryId(id);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/rest/size/save", method = RequestMethod.POST)
     public SprSize saveSize(@RequestBody SprSize sprSize){
         return sizeRepository.saveAndFlush(sprSize);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/rest/size/delete/{id}", method = RequestMethod.DELETE)
     public void deleteSize(@PathVariable Integer id){
         sizeRepository.delete(id);

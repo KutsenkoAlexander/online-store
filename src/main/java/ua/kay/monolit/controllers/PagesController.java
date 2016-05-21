@@ -1,6 +1,7 @@
 package ua.kay.monolit.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ua.kay.monolit.models.Pages;
 import ua.kay.monolit.repositories.PagesRepositories;
@@ -28,6 +29,7 @@ public class PagesController {
         return pagesRepositories.findById(id);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/rest/page/save", method = RequestMethod.POST)
     public Pages savePage(@RequestBody Pages pages){
         return pagesRepositories.saveAndFlush(pages);

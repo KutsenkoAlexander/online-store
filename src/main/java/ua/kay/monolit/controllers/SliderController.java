@@ -1,6 +1,7 @@
 package ua.kay.monolit.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +22,7 @@ public class SliderController  {
         return sliderRepository.findAllOrderByImage();
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/rest/slide/save", method = RequestMethod.POST)
     public Slider saveSlide(@RequestBody Slider slider){
         return sliderRepository.saveAndFlush(slider);
