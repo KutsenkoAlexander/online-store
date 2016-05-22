@@ -37,12 +37,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/admin",
                         "/admin/pages",
                         "/admin/slider",
+                        "/admin/goods",
                         "/admin/categories",
                         "/admin/consumer",
                         "/admin/color",
                         "/admin/size",
-                        "/admin/type"
-                ).authenticated().and()
+                        "/admin/type").authenticated().and()
                 .csrf().csrfTokenRepository(csrfTokenRepository()).and()
                 .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
     }
