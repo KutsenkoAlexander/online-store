@@ -25,7 +25,7 @@ angular.module('monolitApp.login', ['ngResource'])
             } : {};
             $http.get('/user', {headers: headers}).then(
                 function (response) {
-                    if (response) {
+                    if (response.data) {
                         $rootScope.authenticated = true;
                     } else {
                         $rootScope.authenticated = false;

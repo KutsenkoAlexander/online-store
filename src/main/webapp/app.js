@@ -35,12 +35,11 @@ var monolit = angular.module('monolitApp', [
     'monolitApp.admin.size'
 ]);
 
-monolit.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider',
-    function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
-        $locationProvider.html5Mode(true);
-        $urlRouterProvider.otherwise('/');
-        $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
-}]);
+monolit.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+    $locationProvider.html5Mode(true);
+    $urlRouterProvider.otherwise('/');
+    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+});
 
 monolit.run(function($rootScope){
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
@@ -58,7 +57,7 @@ monolit.factory('pageCacheFactory', function ($cacheFactory) {
     return $cacheFactory('pageCache', {});
 });
 
-monolit.controller('mainCtrl', function($location){
+monolit.controller('mainCtrl', function(){
 
 });
 
@@ -120,7 +119,6 @@ monolit.directive('subNavigation', ['$document', function(){
                 } else {
                     $(".sub_navigate_bar").css({
                         'position': 'fixed',
-                        //'background-color':'#077AAA',
                         'background-color':'#ffffff',
                         'box-shadow': '0px 2px 40px rgba(0, 0, 0, 0.3)',
                         'z-index': '95',
@@ -170,8 +168,6 @@ monolit.directive('subCategory', function(){
                         'position': 'relative',
                         'top': '-200px',
                         'padding': '30px 0px'
-                        //'background-color': 'rgb(255, 255, 255)',
-                        //'background-color': 'rgba(255, 255, 255, 0.3)'
                     });
                     $(this).find("img").css({
                         'width': '88%',

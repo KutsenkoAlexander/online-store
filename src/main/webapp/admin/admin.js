@@ -1,6 +1,6 @@
 angular.module('monolitApp.admin', ['ui.router', 'ngResource'])
 
-    .config(function ($stateProvider, $httpProvider) {
+    .config(function ($stateProvider) {
         $stateProvider
             .state('admin', {
                 url: '/admin',
@@ -14,7 +14,8 @@ angular.module('monolitApp.admin', ['ui.router', 'ngResource'])
                     pageTitle: 'Управление магазином'
                 }
             });
-        $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
     })
 
-    .controller('adminCtrl', function($rootScope, $scope, $state){});
+    .controller('adminCtrl', function($rootScope, $scope, $state){
+
+    });
