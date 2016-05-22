@@ -6,8 +6,7 @@ angular.module('monolitApp.login', ['ngResource'])
                 url: "/login",
                 views: {
                     'content': {
-                        templateUrl: "account/login.html",
-                        controller: 'accountCtrl'
+                        templateUrl: "account/login.html"
                     }
                 },
                 data: {
@@ -16,27 +15,26 @@ angular.module('monolitApp.login', ['ngResource'])
             })
     })
 
+
     .controller('accountCtrl', function($rootScope, $http, $scope, $location) {
         var self = this;
-
         var authenticate = function (credentials, callback) {
+            var encoderAccount = btoa(credentials.username + ":" + credentials.password);
             var headers = credentials ? {
-                authorization: btoa(credentials.username + ":" + credentials.password)
+                authorization: "Basic "+encoderAccount
             } : {};
-            $http.post('/user', null, {headers: headers}).then(
+            $http.get('/user', {headers: headers}).then(
                 function (response) {
                     if (response) {
                         $rootScope.authenticated = true;
-                        console.log(response.data);
-                        localStorage.setItem("account", headers);
                     } else {
                         $rootScope.authenticated = false;
                     }
                     callback && callback();
-                }, function (err) {
+                }, function(err) {
+                    alert(err);
                     $rootScope.authenticated = false;
                     callback && callback();
-                    alert(err.statusText);
                 }
             );
         };
@@ -47,7 +45,7 @@ angular.module('monolitApp.login', ['ngResource'])
                 "username": $scope.username,
                 "password": $scope.password
             };
-            authenticate(self.credentials, function () {
+            authenticate(self.credentials, function() {
                 if ($rootScope.authenticated) {
                     $location.path("/admin");
                     self.error = false;

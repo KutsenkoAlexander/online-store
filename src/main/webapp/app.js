@@ -35,13 +35,14 @@ var monolit = angular.module('monolitApp', [
     'monolitApp.admin.size'
 ]);
 
-monolit.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
-    function ($stateProvider, $urlRouterProvider, $locationProvider) {
+monolit.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider',
+    function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise('/');
+        $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 }]);
 
-monolit.run(function($rootScope,$location){
+monolit.run(function($rootScope){
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
         $rootScope.pageTitle = toState.data.pageTitle;
         $rootScope.currentPath = toState.url;
@@ -57,7 +58,9 @@ monolit.factory('pageCacheFactory', function ($cacheFactory) {
     return $cacheFactory('pageCache', {});
 });
 
-monolit.controller('mainCtrl', function(){});
+monolit.controller('mainCtrl', function($location){
+
+});
 
 monolit.controller('currentPage', function(){});
 
