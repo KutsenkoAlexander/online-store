@@ -1,4 +1,4 @@
-<div>
+<div ng-controller="accountCtrl" ng-show="authenticated">
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="new_container-fluid">
             <div class="navbar-header">
@@ -11,6 +11,11 @@
                 <a class="navbar-brand" href="/">
                     <img src="../static/img/MonolitLogo.png" class="admin_logo"/>
                 </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="" ng-click="logout()" class="exit">Выйти</a></li>
+                </ul>
             </div>
         </div>
     </div>

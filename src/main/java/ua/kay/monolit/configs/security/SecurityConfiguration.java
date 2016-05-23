@@ -1,10 +1,12 @@
-package ua.kay.monolit.configs;
+package ua.kay.monolit.configs.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfToken;
@@ -22,29 +24,52 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Configuration
+@EnableWebSecurity
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private AuthFailure authFailure;
+
+    @Autowired
+    private AuthSuccess authSuccess;
+
+    @Autowired
+    private EntryPointUnauthorizedHandler unauthorizedHandler;
+
+    @Autowired
+    private UserDetailServiceImpl userDetailService;
+
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("user").password("pass").roles("ADMIN");
+//        auth.inMemoryAuthentication().withUser("user").password("pass").roles("ADMIN");
+        auth.userDetailsService(userDetailService);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic().and().authorizeRequests()
-                .antMatchers("/rest/**",
-                        "/admin",
-                        "/admin/pages",
-                        "/admin/slider",
-                        "/admin/goods",
-                        "/admin/categories",
-                        "/admin/consumer",
-                        "/admin/color",
-                        "/admin/size",
-                        "/admin/type").authenticated().and()
+        http
+                .exceptionHandling()
+                    .authenticationEntryPoint(unauthorizedHandler)
+                    .and()
+                .formLogin()
+                    .successHandler(authSuccess)
+                    .failureHandler(authFailure)
+                .and()
                 .csrf().csrfTokenRepository(csrfTokenRepository()).and()
-                .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
+                .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class)
+                .authorizeRequests()
+                    .antMatchers("/rest/**").authenticated()
+                    .antMatchers("/admin",
+                            "/admin/pages",
+                            "/admin/slider",
+                            "/admin/goods",
+                            "/admin/categories",
+                            "/admin/consumer",
+                            "/admin/color",
+                            "/admin/size",
+                            "/admin/type").permitAll()
+                .and();
     }
 
     private Filter csrfHeaderFilter() {

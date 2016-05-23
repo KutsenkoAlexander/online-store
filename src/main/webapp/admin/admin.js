@@ -16,6 +16,10 @@ angular.module('monolitApp.admin', ['ui.router', 'ngResource'])
             });
     })
 
-    .controller('adminCtrl', function($rootScope, $scope, $state){
-
+    .controller('adminCtrl', function($rootScope, $scope, $state, $http){
+        $http.get("/admin",null).then(
+            function(responce){
+                //console.log(responce);
+            }
+        )
     });
