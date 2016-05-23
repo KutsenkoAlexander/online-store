@@ -59,15 +59,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class)
                 .authorizeRequests()
                     .antMatchers("/rest/**").authenticated()
-                    .antMatchers("/admin",
-                            "/admin/pages",
-                            "/admin/slider",
-                            "/admin/goods",
-                            "/admin/categories",
-                            "/admin/consumer",
-                            "/admin/color",
-                            "/admin/size",
-                            "/admin/type").permitAll()
                 .and();
     }
 

@@ -19,7 +19,7 @@ public class AccountUserDetails implements UserDetails {
         GrantedAuthority authority = new GrantedAuthority() {
             @Override
             public String getAuthority() {
-                return "USER";
+                return "ADMIN";
             }
         };
 
