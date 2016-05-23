@@ -15,7 +15,6 @@ angular.module('monolitApp.login', ['ngResource'])
             })
     })
 
-
     .controller('accountCtrl', function($rootScope, $http, $scope, $state, $location) {
         var self = this;
 
