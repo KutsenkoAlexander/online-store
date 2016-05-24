@@ -1,5 +1,6 @@
 package ua.kay.monolit.models;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -43,7 +44,8 @@ public class Account implements Serializable {
     }
 
     public String getPassword() {
-        return password;
+        byte[] encodedPassword = Base64.decodeBase64(password);
+        return new String(encodedPassword);
     }
 
     public void setPassword(String password) {
