@@ -8,7 +8,7 @@
     <artifactId>ua-kay-monolit</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>monolit</name>
+    <name>ROOT</name>
     <description>Монолит</description>
 
     <packaging>war</packaging>
@@ -64,7 +64,7 @@
     </properties>
 
     <build>
-        <finalName>monolit</finalName>
+        <finalName>ROOT</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>

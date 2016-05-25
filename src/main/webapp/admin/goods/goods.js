@@ -503,7 +503,6 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
             }
             product.price = price;
             product.exist = productExist;
-            console.log(product);
             var result = saveProductFactory.save(product);
             $scope.editItem = null;
             $scope.fastEdit = false;
