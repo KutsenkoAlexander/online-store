@@ -42,8 +42,7 @@ monolit.config(function ($stateProvider, $urlRouterProvider, $locationProvider, 
 });
 
 monolit.run(function($rootScope,$location){
-    if($location.path().length > 1 &&
-        $location.path().substr($location.path().length - 1) === "/") {
+    if($location.path().length > 1 && $location.path().substr($location.path().length - 1) === "/") {
         $location.path($location.path().slice(0, -1))
     }
 

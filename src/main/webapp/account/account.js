@@ -26,6 +26,9 @@ angular.module('monolitApp.login', ['ngResource'])
             } else {
                 $location.path($location.path());
             }
+        } else if($location.path() === "/admin" ||
+            $location.path() === "/admin/"){
+            $location.path("/login");
         } else {
             $location.path("/login");
             self.error = true;
