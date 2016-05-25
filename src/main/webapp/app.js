@@ -42,9 +42,11 @@ monolit.config(function ($stateProvider, $urlRouterProvider, $locationProvider, 
 });
 
 monolit.run(function($rootScope,$location){
-    if($location.path() === "/admin/"){
-        $location.path("/admin");
+    if($location.path().length > 1 &&
+        $location.path().substr($location.path().length - 1) === "/") {
+        $location.path($location.path().slice(0, -1))
     }
+
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
         $rootScope.pageTitle = toState.data.pageTitle;
         $rootScope.currentPath = toState.url;
