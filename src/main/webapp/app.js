@@ -36,12 +36,16 @@ var monolit = angular.module('monolitApp', [
 ]);
 
 monolit.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true).hashPrefix('!');
     $urlRouterProvider.otherwise('/');
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 });
 
-monolit.run(function($rootScope){
+monolit.run(function($rootScope,$location){
+    if($location.path().length > 1 && $location.path().substr($location.path().length - 1) === "/") {
+        $location.path($location.path().slice(0, -1))
+    }
+
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
         $rootScope.pageTitle = toState.data.pageTitle;
         $rootScope.currentPath = toState.url;

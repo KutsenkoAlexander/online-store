@@ -7,3 +7,11 @@
 *.iml
 out
 gen
+
+.classpath
+.mvn/
+.project
+.settings/
+mvnw
+mvnw.cmd
+target/

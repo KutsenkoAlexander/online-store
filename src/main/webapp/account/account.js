@@ -21,11 +21,14 @@ angular.module('monolitApp.login', ['ngResource'])
         if (localStorage.getItem("session")) {
             $scope.authenticated = true;
             self.error = false;
-            if($location.path() === "/login"){
+            if ($location.path() === "/login") {
                 $location.path("/admin");
             } else {
                 $location.path($location.path());
             }
+        } else if($location.path() === "/admin" ||
+            $location.path() === "/admin/"){
+            $location.path("/login");
         } else {
             $location.path("/login");
             self.error = true;

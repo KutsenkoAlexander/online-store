@@ -8,6 +8,7 @@ import ua.kay.monolit.repositories.PagesRepositories;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class PagesController {
 
