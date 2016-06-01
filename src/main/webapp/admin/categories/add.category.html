@@ -28,7 +28,7 @@
                         <td class="col-xs-8" style="padding-left: 5px;">
                             <button type="file"
                                     class="btn btn-default add_file"
-                                    ngf-select="uploadFiles($file, $invalidFiles)"
+                                    ngf-select="uploadFiles($file, $invalidFiles, 0)"
                                     accept="image/*"
                                     ngf-max-height="1000"
                                     ngf-max-size="2MB"
@@ -45,17 +45,21 @@
                                       </div>
                                   </span>
                                 </div>
-                                {{errorMsg}}
+                                <span style="color: red;">{{errorMsg}}</span>
                             </div>
                             <img ng-show="savedImg.image" ng-src="data:image/jpeg; base64,{{savedImg.image}}" class="admin_single_product_img"/>
                         </td>
                     </tr>
-                    <tr ng-show="img_category && category">
+                    <tr ng-show="img_category && category && !errorMsg">
                         <td class="col-xs-4">
                             <p>Название категории</p>
                         </td>
                         <td class="col-xs-8">
-                            <input type="text" ng-model="name_category" name="name" class="form-control admin_add_input" placeholder="Введите название категории"/>
+                            <input type="text"
+                                   ng-model="name_category"
+                                   name="name"
+                                   class="form-control admin_add_input"
+                                   placeholder="Введите название категории"/>
                         </td>
                     </tr>
                 </table>

@@ -4,6 +4,9 @@ angular.module('monolitApp.admin.goods.code', [])
 
         $scope.$on("goodsTxtInputBroadcast", function (event, args) {
             $scope.addGoodsCode = args.goodsCode;
+            $scope.addGoodsCode2 = args.goodsCode2;
+            $scope.addGoodsCode3 = args.goodsCode3;
+            $scope.addGoodsCode4 = args.goodsCode4;
             $scope.name_product = args.nameProduct;
             $scope.description = args.descriptionProduct;
             $scope.priceUah = args.priceUahProduct;
@@ -14,6 +17,24 @@ angular.module('monolitApp.admin.goods.code', [])
         $scope.$watch('addGoodsCode', function () {
             $rootScope.$broadcast('codeBroadcast', {
                 goodsCode: $scope.addGoodsCode
+            })
+        });
+
+        $scope.$watch('addGoodsCode2', function () {
+            $rootScope.$broadcast('codeBroadcast2', {
+                goodsCode2: $scope.addGoodsCode2
+            })
+        });
+
+        $scope.$watch('addGoodsCode3', function () {
+            $rootScope.$broadcast('codeBroadcast3', {
+                goodsCode3: $scope.addGoodsCode3
+            })
+        });
+
+        $scope.$watch('addGoodsCode4', function () {
+            $rootScope.$broadcast('codeBroadcast4', {
+                goodsCode4: $scope.addGoodsCode4
             })
         });
 
