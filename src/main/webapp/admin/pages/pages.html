@@ -3,13 +3,15 @@
     <table class="table table-striped" ng-if="!isEditable">
         <thead>
         <tr>
-            <th>Описание страницы</th>
+            <th>Название страницы</th>
             <th style="text-align: right;">Опции</th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="page in dataPage">
-            <td>{{page.description}}</td>
+        <tr ng-repeat="page in dataPage" ng-hide="page.description === 'Авторизация' ||
+                                                    page.description === 'Управление сайтом'">
+            <td ng-show="page.description === 'Монолит'">Главная</td>
+            <td ng-hide="page.description === 'Монолит'">{{page.description}}</td>
             <td><img src="../../static/img/edit.png"
                      class="edit_page_btn"
                      alt="Редактировать"

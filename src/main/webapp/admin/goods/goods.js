@@ -292,14 +292,12 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                 $scope.savedIdProductImg = data.image;
 
                 //code
-                //$scope.$on('codeBroadcast', function (event, args) {
-                //    $scope.goodsCode = args.goodsCode;
-                //});
-                //$scope.$watch('addGoodsCode', function () {
-                //    angular.element('#addGoodsCode').val(data.productCode);
-                //});
-
-                parseCodeProduct(data.productCode);
+                $scope.$on('codeBroadcast', function (event, args) {
+                    $scope.goodsCode = args.goodsCode;
+                });
+                $scope.$watch('addGoodsCode', function () {
+                    angular.element('#addGoodsCode').val($scope.addGoodsCode);
+                });
 
                 //title
                 $scope.$on('titleBroadcast', function (event, args) {
@@ -574,35 +572,6 @@ angular.module('monolitApp.admin.goods', ['ui.router', 'ngResource'])
                 );
             }
         };
-
-        var parseCodeProduct = function(code){
-            console.log("code: "+code);
-            var i;
-            var count = 0;
-            var start = 0;
-            for(i = 0; i < code.length; i++){
-                if(code[i] === "."){
-                    if(count === 1){
-                        $scope.addGoodsCode = code.substring(start, i);
-                    }
-                    if(count === 2){
-                        $scope.addGoodsCode2 = code.substring(start, i);
-                    }
-                    //console.log(code.substring(start, i));
-                    start = i+1;
-                    if(code.lastIndexOf('.') === i){
-                        if(count === 3){
-                            $scope.addGoodsCode3 = code.substring(code.lastIndexOf('.')+1, code.length);
-                        } else {
-                            $scope.addGoodsCode4 = code.substring(code.lastIndexOf('.')+1, code.length);
-                        }
-                        //console.log(code.substring(code.lastIndexOf('.')+1, code.length));
-                    }
-                    count++;
-                }
-            }
-        };
-
     })
 
     .controller('fastEditProductCtrl', function($rootScope, $scope){

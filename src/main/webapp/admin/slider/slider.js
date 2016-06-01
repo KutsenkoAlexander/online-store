@@ -41,7 +41,6 @@ angular.module('monolitApp.admin.slider', ['ui.router', 'ngResource'])
                 });
 
                 file.upload.then(function (response) {
-                    console.log(response);
                     $scope.savedSlide = response.data;
                     $timeout(function () {
                         file.result = response.data;
