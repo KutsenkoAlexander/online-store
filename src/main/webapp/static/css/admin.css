@@ -311,7 +311,7 @@ tbody > tr.editable_goods > td > input:focus {
     outline:none;
 }
 
-.auth-form{
+.auth-form {
     width: 33%;
     position: relative;
     top: 150px;
@@ -321,4 +321,13 @@ tbody > tr.editable_goods > td > input:focus {
 .admin_auth_input{
     width: 60%;
     float: right
+}
+
+.code_product{
+    float: right;
+    padding-top: 10px;
+}
+
+.code_product_input {
+    width: 90%;
 }

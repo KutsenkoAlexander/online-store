@@ -22,7 +22,7 @@ public class ImageController {
     @Autowired
     ImageRepository imageRepository;
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/rest/image/save", method = RequestMethod.POST)
     public Image saveImages(@RequestParam("file") MultipartFile file,
                             @RequestParam("idImage") Long idImage){

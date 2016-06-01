@@ -19,7 +19,7 @@ public class Product implements Serializable {
     private long idProduct;
 
     @Column(name = "product_code")
-    private long productCode;
+    private String productCode;
 
     @Column(name = "title")
     private String title;
@@ -66,11 +66,11 @@ public class Product implements Serializable {
         this.idProduct = idProduct;
     }
 
-    public long getProductCode() {
+    public String getProductCode() {
         return productCode;
     }
 
-    public void setProductCode(long productCode) {
+    public void setProductCode(String productCode) {
         this.productCode = productCode;
     }
 
