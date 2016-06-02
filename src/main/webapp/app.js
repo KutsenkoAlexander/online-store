@@ -108,10 +108,10 @@ monolit.directive('subNavigation', function(){
                 //sub_bar
                 if (top < 103) {
                     $(".sub_navigate_bar").css({
-                        'transform': 'translate(0,-150px)',
-                        '-webkit-transform': 'translate(0,-150px)',
-                        '-o-transform': 'translate(0,-150px)',
-                        '-moz-transform': 'translate(0,-150px)'
+                        'transform': 'translate(0,-140px)',
+                        '-webkit-transform': 'translate(0,-140px)',
+                        '-o-transform': 'translate(0,-140px)',
+                        '-moz-transform': 'translate(0,-140px)'
                     });
                 } else {
                     $(".sub_navigate_bar").css({
@@ -122,10 +122,10 @@ monolit.directive('subNavigation', function(){
                         'width': '100%',
                         'min-height':'40px',
                         'height':'auto',
-                        'transform': 'translate(0,50px)',
-                        '-webkit-transform': 'translate(0,50px)',
-                        '-o-transform': 'translate(0,50px)',
-                        '-moz-transform': 'translate(0,50px)'
+                        'transform': 'translate(0,40px)',
+                        '-webkit-transform': 'translate(0,40px)',
+                        '-o-transform': 'translate(0,40px)',
+                        '-moz-transform': 'translate(0,40px)'
                     });
                 }
             });
