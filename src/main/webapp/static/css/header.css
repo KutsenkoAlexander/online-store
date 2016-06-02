@@ -113,14 +113,6 @@ nav ul a:visited{
     text-decoration: none;
 }
 
-.nav_menu{
-    max-width: 1500px;
-}
-
-.nav_menu_right{
-    float: right;
-}
-
 .main_header{
     background: #55ddff;
     background: radial-gradient(#55ddff, #0081b5);
