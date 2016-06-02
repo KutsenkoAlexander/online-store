@@ -11,59 +11,58 @@
         <img ng-show="!product.image.image" src="../static/img/no-image.png" type="image/jpeg" class="single_product_img"/>
         <div class="describe_product">
             <h1>{{product.title}}</h1>
-            <table>
-                <tr>
-                    <td class="set_width_100px"><p class="set_font_weight_bold">Описание:</p></td>
-                    <td><p class="set_font_weight_100" ng-bind="product.description"/></td>
-                </tr>
-                <tr>
-                    <td class="set_width_100px"><p class="set_font_weight_bold">Код товара:</p></td>
-                    <td><p class="set_font_weight_100" ng-bind="product.productCode"/></td>
-                </tr>
-                <tr>
-                    <td class="set_width_100px"><p class="set_font_weight_bold">Цена:</p></td>
-                    <td><p class="set_font_weight_100" ng-bind="product.price | number:2"/></td>
-                </tr>
-                <tr>
-                    <td class="set_width_100px"><p class="set_font_weight_bold">Наличие:</p></td>
-                    <td>
-                        <p ng-if="product.exist === 1">
-                            <span class="product_exist">есть в наличии</span>
-                        </p>
-                        <p ng-if="product.exist === 0">
-                            <span class="product_not_exist">нет в наличии</span>
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="set_width_100px"><p class="set_font_weight_bold">Производитель:</p></td>
-                    <td>
-                        <p class="set_font_weight_100" ng-bind="product.sprConsumer.name"/>
-                        <p ng-if="product.consumerId === null" class="set_font_weight_100">-</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="set_width_100px"><p class="set_font_weight_bold">Цвет:</p></td>
-                    <td>
-                        <p class="set_font_weight_100" ng-bind="product.sprColor.name"/>
-                        <p ng-if="product.sprColor === null" class="set_font_weight_100">-</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="set_width_100px"><p class="set_font_weight_bold">Размер:</p></td>
-                    <td>
-                        <p class="set_font_weight_100" ng-bind="product.sprSize.name"/>
-                        <p ng-if="product.sprSize=== null" class="set_font_weight_100">-</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="set_width_100px"><p class="set_font_weight_bold">Тип:</p></td>
-                    <td>
-                        <p class="set_font_weight_100" ng-bind="product.sprType.name"/>
-                        <p ng-if="product.sprType === null" class="set_font_weight_100">-</p>
-                    </td>
-                </tr>
-            </table>
+            <div class="row set_margin_zero">
+                <div class="col-xs-9">
+                    <table>
+                        <tr>
+                            <td class="set_width_100px"><p class="set_font_weight_bold">Цвет:</p></td>
+                            <td>
+                                <p class="set_font_weight_100" ng-bind="product.sprColor.name"/>
+                                <p ng-if="product.sprColor === null" class="set_font_weight_100">-</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="set_width_100px"><p class="set_font_weight_bold">Размер:</p></td>
+                            <td>
+                                <p class="set_font_weight_100" ng-bind="product.sprSize.name"/>
+                                <p ng-if="product.sprSize=== null" class="set_font_weight_100">-</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="set_width_100px"><p class="set_font_weight_bold">Тип:</p></td>
+                            <td>
+                                <p class="set_font_weight_100" ng-bind="product.sprType.name"/>
+                                <p ng-if="product.sprType === null" class="set_font_weight_100">-</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="set_width_100px"><p class="set_font_weight_bold">Описание:</p></td>
+                            <td><p class="set_font_weight_100" style="text-align: justify;" ng-bind="product.description"/></td>                        </tr>
+                    </table>
+                </div>
+                <!--product digits-->
+                <div class="col-xs-2 set_text_align_center" style="float: right">
+                    <div class="product_digits_single_product">
+                        <div class="code">
+                            <p class="product_description_text">Код товара:</p>
+                            <p class="product_description_digits">{{product.productCode}}</p>
+                        </div>
+                        <div class="price">
+                            <p class="product_description_text">Цена:</p>
+                            <p class="product_description_digits">{{product.price | number:2}}</p>
+                        </div>
+                        <div ng-if="product.exist === 1" class="exist_yes">
+                            <p class="exist_text">Наличие:</p>
+                            <p class="product_exist">есть в наличии</p>
+                        </div>
+                        <div ng-if="product.exist === 0" class="exist_no">
+                            <p class="exist_text">Наличие:</p>
+                            <p class="product_not_exist">нет в наличии</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-1"></div>
+            </div>
         </div>
     </div>
 </div>

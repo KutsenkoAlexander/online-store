@@ -9,3 +9,11 @@
 .single_product{
     margin-top: 20px;
 }
+
+.product_digits_single_product{
+    width: 150px;
+    text-align: center;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 190px;
+}
