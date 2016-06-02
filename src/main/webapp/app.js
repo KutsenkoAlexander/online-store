@@ -70,7 +70,7 @@ monolit.controller('currentPage', function(){});
 /*
  *  DERECTIVES
  */
-monolit.directive('subNavigation', ['$document', function(){
+monolit.directive('subNavigation', function(){
     return {
         link: function(scope, element, attr, ctrl){
             $(window).scroll(function () {
@@ -98,17 +98,10 @@ monolit.directive('subNavigation', ['$document', function(){
                         'transition': 'opacity 0.5s ease 0.0s'
                     });
                     $("nav").css({
-                        'transform': 'translate(1px,0)',
-                        '-webkit-transform': 'translate(1px,0)',
-                        '-o-transform': 'translate(1px,0)',
-                        '-moz-transform': 'translate(1px,0)'
-                    });
-                    $(".nav_search_form").css({
-                        "opacity": "1",
-                        '-webkit-transition': 'opacity 0.5s ease 0.0s',
-                        '-moz-transition': 'opacity 0.5s ease 0.0s',
-                        '-o-transition': 'opacity 0.5s ease 0.0s',
-                        'transition': 'opacity 0.5s ease 0.0s'
+                        'transform': 'translate(0,0)',
+                        '-webkit-transform': 'translate(0,0)',
+                        '-o-transform': 'translate(0,0)',
+                        '-moz-transform': 'translate(0,0)'
                     });
                 }
 
@@ -138,7 +131,7 @@ monolit.directive('subNavigation', ['$document', function(){
             });
         }
     }
-}]);
+});
 
 monolit.directive('subCategory', function(){
     return {

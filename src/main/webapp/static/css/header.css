@@ -3,7 +3,7 @@
     min-height: 100% !important;
 }
 
-.wrapnav{
+.wrapper_navigation {
     margin: auto;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     width: 100%;
@@ -12,7 +12,7 @@
     z-index: 99;
 }
 
-.header_color{
+.main_header_color {
     background-color: #0d3653;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#172E3E), to(#0d3653));
     background-image: -webkit-linear-gradient(top, #172E3E, #0d3653);
@@ -23,26 +23,18 @@
     filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#172E3E, endColorstr=#0d3653);
 }
 
-.fix {
-    min-width: 960px;
-    width: 100%;
-    margin-left: 0;
-}
-
 .img_nav{
-    width: 35px;
+    width: 33px;
     float: left;
     height: 30px;
     opacity: 0;
     vertical-align: middle;
-    margin: 5px 5px 0 0px;
+    margin: 5px 5px 0 0;
 }
-
 
 nav{
     width: 100%;
     min-width: 750px;
-    height: 40px;
     transition: all 0.2s ease-in-out;
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
@@ -60,10 +52,10 @@ nav ul{
 
 nav ul li{
     list-style: none;
-    height: 40px;
     float: left;
     padding: 9px 10px;
     margin: 0;
+    height: 40px;
     -webkit-transition-duration: 0.3s;
     -o-transition-duration: 0.3s;
     -moz-transition-duration: 0.3s;
@@ -224,7 +216,6 @@ input[name="btn_search"] {
     width: 20px; /* Ширина кнопки */
     height: 22px; /* Высота кнопки */
     border: none; /* Убираем рамку */
-    background: url(../img/search.png) 50% 50% no-repeat; /* Параметры фона */
     cursor: pointer;
     padding: 0;
     vertical-align: middle;

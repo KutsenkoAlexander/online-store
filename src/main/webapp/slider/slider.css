@@ -1,10 +1,6 @@
 #slides_control > div{
     height: 200px;
 }
-img{
-    margin:auto;
-    width: 400px;
-}
 #slides_control {
     position: absolute;
     width: 780px;
