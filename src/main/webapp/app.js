@@ -61,8 +61,8 @@ monolit.factory('pageCacheFactory', function ($cacheFactory) {
     return $cacheFactory('pageCache', {});
 });
 
-monolit.controller('mainCtrl', function(){
-
+monolit.controller('mainCtrl', function($locale){
+    $locale.NUMBER_FORMATS.GROUP_SEP = ' ';
 });
 
 monolit.controller('currentPage', function(){});
