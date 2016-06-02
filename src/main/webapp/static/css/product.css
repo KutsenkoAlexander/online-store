@@ -15,5 +15,6 @@
     text-align: center;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
     position: fixed;
-    top: 190px;
+    top: 160px;
+    z-index: 99;
 }
