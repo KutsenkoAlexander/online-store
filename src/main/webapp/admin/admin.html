@@ -25,8 +25,11 @@
             <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-sidebar">
                     <li ng-class="(currentPath === '/goods') ? 'active' : ''">
-                        <a ui-sref="admin.goods">Товары</a>
+                        <a ui-sref="admin.goods">Товар</a>
                     </li>
+                </ul>
+                <h1 style="font-weight: bold; font-size:14px; text-decoration: underline;">Характеристики</h1>
+                <ul class="nav nav-sidebar">
                     <li ng-class="(currentPath === '/categories') ? 'active' : ''">
                         <a ui-sref="admin.categories" ui-sref-active="active">Категории</a>
                     </li>
@@ -43,6 +46,7 @@
                         <a ui-sref="admin.type" ui-sref-active="active">Типы</a>
                     </li>
                 </ul>
+                <h1 style="font-weight: bold; font-size:14px; text-decoration: underline;">Дополнительно</h1>
                 <ul class="nav nav-sidebar">
                     <li ng-hide="authenticated" ng-class="(currentPath === '/admin') ? 'active' : ''">
                         <a ui-sref="admin">Главная</a>

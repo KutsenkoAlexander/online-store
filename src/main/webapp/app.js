@@ -86,9 +86,6 @@ monolit.directive('subNavigation', function(){
                         '-o-transform': 'translate(-45px,0)',
                         '-moz-transform': 'translate(-45px,0)'
                     });
-                    $(".nav_search_form").css({
-                        'opacity': '0'
-                    });
                 } else {
                     $(".img_nav").css({
                         "opacity": "1",
