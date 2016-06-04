@@ -17,8 +17,6 @@
 }
 #footer > div {
     float:left;
-    max-width: 345px;
-    /*min-width: 220px;*/
     width: 33%;
     height:100%;
     padding-top: 35px;
