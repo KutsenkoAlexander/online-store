@@ -19,11 +19,11 @@ public class AccountUserDetails implements UserDetails {
         GrantedAuthority authority = new GrantedAuthority() {
             @Override
             public String getAuthority() {
-                return "ADMIN";
+                return "ROLE_ADMIN";
             }
         };
 
-        ArrayList<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+        ArrayList<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(authority);
         return authorities;
     }

@@ -38,7 +38,6 @@ var monolit = angular.module('monolitApp', [
 monolit.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $locationProvider.html5Mode(true).hashPrefix('!');
     $urlRouterProvider.otherwise('/');
-    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 });
 
 monolit.run(function($rootScope,$location){
