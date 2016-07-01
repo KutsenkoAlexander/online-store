@@ -35,9 +35,11 @@ var monolit = angular.module('monolitApp', [
     'monolitApp.admin.size'
 ]);
 
-monolit.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+monolit.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $compileProvider) {
     $locationProvider.html5Mode(true).hashPrefix('!');
     $urlRouterProvider.otherwise('/');
+    $httpProvider.useApplyAsync(true);
+    $compileProvider.debugInfoEnabled(false);
 });
 
 monolit.run(function($rootScope,$location){
