@@ -5,6 +5,9 @@
             <div id="carousel">
                 <div ng-controller="carouselCtrl" id="slides_control">
                     <div>
+                        <img ng-show="slides.length === 0"
+                             src="../static/img/Loading_icon.gif"
+                             id="loaderImg">
                         <carousel interval="myInterval">
                             <slide ng-repeat="slide in slides" active="slide.active">
                                 <img ng-src="data:image/jpeg; base64,{{slide.image.image}}"/>

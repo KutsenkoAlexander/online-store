@@ -1,4 +1,4 @@
-angular.module('monolitApp.breadcrumbs', [])
+angular.module('monolitApp.breadcrumbs', ['ngResource'])
 
     .factory('categoryNameByIdFactory', function($resource){
         return $resource('/catalog/category/name/:id', {id: '@id'},{'query': { method: 'GET' }});
@@ -12,13 +12,13 @@ angular.module('monolitApp.breadcrumbs', [])
         $scope.$on('page', function (event, data) {
             $scope.stateNavigation = [];
             if(data.currentUrl !== '/') {
-                //refresh a page catalog
+                //refresh page catalog
                 if($scope.stateNavigation.length === 0 && data.nesting === 2) {
                     $scope.stateNavigation.push({
                         url: data.currentUrl, name: data.name, nesting: data.nesting
                     });
                 }
-                //refresh a page category
+                //refresh page category
                 if ($scope.stateNavigation.length === 0 && data.nesting === 3) {
                     $scope.stateNavigation.push({
                         url: '/catalog',
@@ -26,14 +26,14 @@ angular.module('monolitApp.breadcrumbs', [])
                         nesting: 2
                     });
                 }
-                //refresh a page list goods
+                //refresh page list goods
                 if ($scope.stateNavigation.length === 0 && data.nesting === 4) {
                     $scope.stateNavigation.push(
                         {url: '/catalog', name: 'Каталог', nesting: 2},
                         {url: '/catalog/'+data.category, name: data.categoryName, nesting: 3}
                     );
                 }
-                //refresh a page single good
+                //refresh page single good
                 if ($scope.stateNavigation.length === 0 && data.nesting === 5) {
                     $scope.stateNavigation.push(
                         {url: '/catalog', name: 'Каталог', nesting: 2},

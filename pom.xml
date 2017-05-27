@@ -8,10 +8,10 @@
     <artifactId>ua-kay-monolit</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>ROOT</name>
-    <description>Монолит</description>
+    <name>Monolit</name>
+    <description>Monolit</description>
 
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -43,6 +43,11 @@
             <artifactId>c3p0</artifactId>
             <version>0.9.1.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-ehcache</artifactId>
+            <version>4.3.6.Final</version>
+        </dependency>
         <!--For Web MVC in Spring Boot-->
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
@@ -64,7 +69,7 @@
     </properties>
 
     <build>
-        <finalName>ROOT</finalName>
+        <finalName>monolit</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>

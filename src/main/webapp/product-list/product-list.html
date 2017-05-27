@@ -5,7 +5,9 @@
                margin-top: 10%;
                z-index: 9999;
                text-align: center;"
-        ng-hide="products">Загрузка...</h2>
+        ng-hide="products">
+            <img src="../static/img/Loading_icon.gif" width="50" height="50">
+    </h2>
     <div ng-show="products">
         <div ng-include="'../sort/sort.html'"></div>
         <div class="row products_list set_margin_zero"

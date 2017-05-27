@@ -1,4 +1,4 @@
-angular.module('monolitApp.login', ['ngResource'])
+angular.module('monolitApp.login', ['ui.router','ngResource'])
 
     .config(function ($stateProvider) {
         $stateProvider

@@ -12,8 +12,15 @@
     padding: 2px 3px;
 }
 
-#cancelFilter:hover{
-    cursor: pointer;
-    background-color: #ff5c43;
-    color: #fff;
+.loadResponse{
+    min-width: 100% !important;
+    min-height: 100% !important;
+    opacity: 0.4;
+    background: url(../static/img/Loading_icon.gif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 50px 50px;
+    z-index: 999999 !important;
+    cursor: default;
+    pointer-events: none;
 }

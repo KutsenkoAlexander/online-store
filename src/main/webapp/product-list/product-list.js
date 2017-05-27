@@ -56,6 +56,7 @@ angular.module('monolitApp.productList', ['ui.router', 'ngResource'])
             });
         }
         $scope.$on("filterEvent", function(event, args){
+            angular.element( document.querySelector( 'body' )).removeClass('loadResponse');
             $scope.products = args.products;
             $scope.page = args.page;
         });

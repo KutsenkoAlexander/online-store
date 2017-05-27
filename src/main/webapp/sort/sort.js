@@ -17,7 +17,8 @@ angular.module('monolitApp.sort', ['ui.router', 'ngResource'])
     })
 
     .factory('sortFactory', function($resource){
-        return $resource('/product/sort/:id', {id: '@id'}, {'query': {method: 'GET', isArray:false}});
+        // return $resource('http://monolit-kutsenko.rhcloud.com/product/sort/:id', {id: '@id'}, {'query': {method: 'GET', isArray:false}});
+        return $resource('product/sort/:id', {id: '@id'}, {'query': {method: 'GET', isArray:false}});
     })
 
     .factory('sortCacheFactory', function ($cacheFactory) {
@@ -67,9 +68,9 @@ angular.module('monolitApp.sort', ['ui.router', 'ngResource'])
                 $scope.sortConsumers.push(item);
                 $scope.sortConsumers = _.sortBy($scope.sortConsumers, 'name', 'default');
             });
-            if ($location.search().consumerId === null) {
+            if ($location.search().consumerId === null){
                 $scope.consumer = $scope.sortConsumers[0];
-            } else {
+            }else{
                 angular.forEach($scope.sortConsumers, function (item) {
                     if (angular.isDefined(item.idConsumer)) {
                         if (item.idConsumer == $location.search().consumerId) {
@@ -92,6 +93,9 @@ angular.module('monolitApp.sort', ['ui.router', 'ngResource'])
             paramsFactory.page = null;
             $location.search("page", null);
             $location.search("consumerId", idConsumer);
+            if(!getResultSortQuery(paramsFactory)){
+                angular.element( document.querySelector( 'body' )).addClass('loadResponse');
+            }
             getResultSortQuery(paramsFactory);
         };
 
@@ -108,8 +112,7 @@ angular.module('monolitApp.sort', ['ui.router', 'ngResource'])
             });
             if($location.search().typeId === null){
                 $scope.type = $scope.sortTypes[0];
-            }
-            else {
+            }else{
                 angular.forEach($scope.sortTypes, function (item) {
                     if (angular.isDefined(item.idSprType)) {
                         if (item.idSprType == $location.search().typeId) {
@@ -131,6 +134,9 @@ angular.module('monolitApp.sort', ['ui.router', 'ngResource'])
             paramsFactory.page = null;
             $location.search("page", null);
             $location.search("typeId", idType);
+            if(!getResultSortQuery(paramsFactory)){
+                angular.element( document.querySelector( 'body' )).addClass('loadResponse');
+            }
             getResultSortQuery(paramsFactory);
         };
 
@@ -147,8 +153,7 @@ angular.module('monolitApp.sort', ['ui.router', 'ngResource'])
             });
             if($location.search().sizeId === null){
                 $scope.size = $scope.sortSizes[0];
-            }
-            else{
+            }else{
                 angular.forEach($scope.sortSizes, function (item) {
                     if (angular.isDefined(item.idSprSize)) {
                         if (item.idSprSize == $location.search().sizeId) {
@@ -170,6 +175,9 @@ angular.module('monolitApp.sort', ['ui.router', 'ngResource'])
             paramsFactory.page = null;
             $location.search("page", null);
             $location.search("sizeId", idSize);
+            if(!getResultSortQuery(paramsFactory)){
+                angular.element( document.querySelector( 'body' )).addClass('loadResponse');
+            }
             getResultSortQuery(paramsFactory);
         };
 
@@ -186,8 +194,7 @@ angular.module('monolitApp.sort', ['ui.router', 'ngResource'])
             });
             if($location.search().colorId === null){
                 $scope.color = $scope.sortColors[0];
-            }
-            else{
+            }else{
                 angular.forEach($scope.sortColors, function (item) {
                     if (angular.isDefined(item.idSprColors)) {
                         if (item.idSprColors == $location.search().colorId) {
@@ -209,6 +216,9 @@ angular.module('monolitApp.sort', ['ui.router', 'ngResource'])
             paramsFactory.page = null;
             $location.search("page", null);
             $location.search("colorId", idColor);
+            if(!getResultSortQuery(paramsFactory)){
+                angular.element( document.querySelector( 'body' )).addClass('loadResponse');
+            }
             getResultSortQuery(paramsFactory);
         };
 
@@ -241,10 +251,16 @@ angular.module('monolitApp.sort', ['ui.router', 'ngResource'])
             switch (price){
                 case 1:
                     paramsFactory.sort = 'price,asc';
+                    if(!getResultSortQuery(paramsFactory)){
+                        angular.element( document.querySelector( 'body' )).addClass('loadResponse');
+                    }
                     getResultSortQuery(paramsFactory);
                     break;
                 case 2:
                     paramsFactory.sort = 'price,desc';
+                    if(!getResultSortQuery(paramsFactory)){
+                        angular.element( document.querySelector( 'body' )).addClass('loadResponse');
+                    }
                     getResultSortQuery(paramsFactory);
                     break;
                 default:
@@ -252,6 +268,9 @@ angular.module('monolitApp.sort', ['ui.router', 'ngResource'])
                     paramsFactory.price = null;
                     paramsFactory.page = null;
                     $location.search("page", null);
+                    if(!getResultSortQuery(paramsFactory)){
+                        angular.element( document.querySelector( 'body' )).addClass('loadResponse');
+                    }
                     getResultSortQuery(paramsFactory);
                     break;
             }
@@ -275,6 +294,9 @@ angular.module('monolitApp.sort', ['ui.router', 'ngResource'])
                 exist = null;
             }
             $location.search("exist", exist);
+            if(!getResultSortQuery(paramsFactory)){
+                angular.element( document.querySelector( 'body' )).addClass('loadResponse');
+            }
             getResultSortQuery(paramsFactory);
         };
 
@@ -310,6 +332,10 @@ angular.module('monolitApp.sort', ['ui.router', 'ngResource'])
 
             paramsFactory.page = null;
             $location.search("page", null);
+
+            if(!getResultSortQuery(paramsFactory)){
+                angular.element( document.querySelector( 'body' )).addClass('loadResponse');
+            }
 
             getResultSortQuery(paramsFactory);
         };

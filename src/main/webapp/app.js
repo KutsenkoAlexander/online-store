@@ -1,4 +1,4 @@
-var monolit = angular.module('monolitApp', [
+var monolit = angular.module('monolitApp',[
     'ui.router',
     'ngResource',
     'angucomplete',
@@ -32,15 +32,14 @@ var monolit = angular.module('monolitApp', [
     'monolitApp.admin.type',
     'monolitApp.admin.goods.code',
     'monolitApp.login',
-    'monolitApp.admin.size'
-]);
+    'monolitApp.admin.size']);
 
-monolit.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+monolit.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $locationProvider.html5Mode(true).hashPrefix('!');
     $urlRouterProvider.otherwise('/');
 });
 
-monolit.run(function($rootScope,$location){
+monolit.run(function($rootScope, $location){
     if($location.path().length > 1 && $location.path().substr($location.path().length - 1) === "/") {
         $location.path($location.path().slice(0, -1))
     }

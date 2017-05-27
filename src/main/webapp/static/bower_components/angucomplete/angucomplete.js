@@ -53,15 +53,15 @@ angular.module('angucomplete', [])
                             'ng-mousedown="selectResult(result)" ' +
                             'ng-mouseover="hoverRow()" ' +
                             'ng-class="{\'angucomplete-selected-row\': $index == currentIndex}">' +
-                        '<div ng-if="imageField" class="angucomplete-image-holder">' +
-                            '<img ng-if="result.image && result.image != \'\'" ' +
-                                    'ng-src="{{result.image}}" ' +
-                                    'class="angucomplete-image"/>' +
-                            '<div ng-if="!result.image && result.image != \'\'" class="angucomplete-image-default"></div>' +
-                        '</div>' +
+                        // '<div ng-if="imageField" class="angucomplete-image-holder">' +
+                        //     '<img ng-if="result.image && result.image != \'\'" ' +
+                        //             'ng-src="{{result.image}}" ' +
+                        //             'class="angucomplete-image"/>' +
+                        //     '<div ng-if="!result.image && result.image != \'\'" class="angucomplete-image-default"></div>' +
+                        // '</div>' +
                         '<div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>' +
                         '<div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>' +
-                        '<div ng-if="result.description && result.description != \'\'" class="angucomplete-description">{{result.description}}</div>' +
+                        // '<div ng-if="result.description && result.description != \'\'" class="angucomplete-description">{{result.description}}</div>' +
                     '</div>' +
                 '</div>' +
             '</div>',

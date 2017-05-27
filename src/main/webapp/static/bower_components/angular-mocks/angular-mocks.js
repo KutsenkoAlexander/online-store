@@ -1143,7 +1143,7 @@ angular.mock.dump = function(object) {
 
          // Get hold of a scope (i.e. the root scope)
          $rootScope = $injector.get('$rootScope');
-         // The $controller service is used to create instances of controllers
+         // The $controller service is used to create instances of controller
          var $controller = $injector.get('$controller');
 
          createController = function() {
@@ -2103,7 +2103,7 @@ angular.mock.$RootElementProvider = function() {
  * @name $controller
  * @description
  * A decorator for {@link ng.$controller} with additional `bindings` parameter, useful when testing
- * controllers of directives that use {@link $compile#-bindtocontroller- `bindToController`}.
+ * controller of directives that use {@link $compile#-bindtocontroller- `bindToController`}.
  *
  *
  * ## Example
@@ -2172,7 +2172,7 @@ angular.mock.$ControllerDecorator = ['$delegate', function($delegate) {
  * @ngdoc service
  * @name $componentController
  * @description
- * A service that can be used to create instances of component controllers.
+ * A service that can be used to create instances of component controller.
  * <div class="alert alert-info">
  * Be aware that the controller will be instantiated and attached to the scope as specified in
  * the component definition object. That means that you must always provide a `$scope` object
