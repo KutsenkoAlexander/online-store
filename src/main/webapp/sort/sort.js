@@ -51,8 +51,18 @@ angular.module('monolitApp.sort', ['ui.router', 'ngResource'])
             sortFactory.query(params).$promise.then(function(data){
                 $rootScope.$broadcast("filterEvent", {
                     products: data.content,
-                    page: data.page,
-                    links: data.links
+                    page: {
+                        sort: data.pageable.sort,
+                        offset: data.pageable.offset,
+                        number: data.pageable.pageNumber,
+                        size: data.pageable.pageSize,
+                        paged: data.pageable.paged,
+                        totalElements: data.totalElements,
+                        totalPages: data.totalPages,
+                        empty: data.empty,
+                        first: data.first,
+                        last: data.last
+                    }
                 });
             });
         };

@@ -27,13 +27,24 @@ angular.module('monolitApp.pagination', ['ngResource','monolitApp.sort'])
             });
         }
         $scope.setPageAndSize = function(page){
-            paramsFactory.page = page;
             $location.search("page", page || null);
+            paramsFactory.page = page;
             sortFactory.query(paramsFactory).$promise.then(function (data) {
                 $rootScope.$broadcast("paginationProducts", {
                     products: data.content
                 });
-                $scope.page = data.page;
+                $scope.page = {
+                    sort: data.pageable.sort,
+                    offset: data.pageable.offset,
+                    number: data.pageable.pageNumber,
+                    size: data.pageable.pageSize,
+                    paged: data.pageable.paged,
+                    totalElements: data.totalElements,
+                    totalPages: data.totalPages,
+                    empty: data.empty,
+                    first: data.first,
+                    last: data.last
+                };
                 $scope.idCategoryProducts = paramsFactory.id;
                 angular.forEach(data.links, function (value) {
                     if (value.rel === 'next') {

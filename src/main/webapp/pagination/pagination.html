@@ -15,8 +15,8 @@
     <li ng-repeat="n in [] | pages: page.totalPages"
         ng-class="{active: n === page.number}">
         <a ng-show="page.number !== n"
-           ng-click="setPageAndSize(n)">{{n + 1}}</a>
-        <span ng-show="page.number === n">{{n + 1}}</span>
+           ng-click="setPageAndSize(n)">{{n}}</a>
+        <span ng-show="page.number === n">{{n}}</span>
     </li>
     <li ng-class="{disabled: page.number === page.totalPages - 1}">
         <a ng-show="page.number !== page.totalPages - 1"
