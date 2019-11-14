@@ -48,6 +48,12 @@
             <artifactId>hibernate-ehcache</artifactId>
             <version>5.4.4.Final</version>
         </dependency>
+        <!--For Web MVC in Spring Boot-->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <properties>
