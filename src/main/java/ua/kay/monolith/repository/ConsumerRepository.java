@@ -3,16 +3,19 @@ package ua.kay.monolith.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.scheduling.annotation.Async;
-import ua.kay.monolith.model.SprConsumer;
+import org.springframework.stereotype.Repository;
+import ua.kay.monolith.model.Consumer;
 
-import java.util.List;
+import java.util.stream.Stream;
 
-public interface ConsumerRepository extends JpaRepository<SprConsumer, Long> {
+@Repository
+public interface ConsumerRepository extends JpaRepository<Consumer, Long> {
+
+    @Query("select p.consumer from Product p " +
+            "where p.category.id = ?1 " +
+            "group by p.consumer.name, p.consumer.id")
+    Stream<Consumer> findConsumerByProductCategoryId(Long id);
+
     @Async
-    @Query("select p.sprConsumer from Product p " +
-            "where p.sprCategory.idCategory = ?1 " +
-            "group by p.sprConsumer.name, p.sprConsumer.idConsumer")
-    List<SprConsumer> findConsumerByProductCategoryId(Integer categoryId);
-
-    void deleteByIdConsumer(Long id);
+    void deleteById(Long id);
 }

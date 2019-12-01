@@ -1,7 +1,6 @@
 package ua.kay.monolith.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.GenericGenerator;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -15,15 +14,9 @@ import java.util.Set;
 @Scope("prototype")
 @Entity
 @Table(name = "image")
-public class Image implements Serializable {
+public class Image extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 8794364830985023953L;
-
-    @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
-    @Column(name = "id_image", nullable = false)
-    private long idImage;
 
     @Column(name = "image", nullable = false)
     @NotNull
@@ -31,28 +24,19 @@ public class Image implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "image", fetch = FetchType.LAZY)
-    private Set<SprCategory> sprCategories;
+    private Set<Category> categories;
 
     @JsonIgnore
     @OneToMany(mappedBy = "image", fetch = FetchType.LAZY)
-    private Set<Product> product;
+    private Set<Product> products;
 
-    public Set<SprCategory> getSprCategories() {
-        return sprCategories;
+    public Set<Category> getCategories() {
+        return categories;
     }
 
-    public void setSprCategories(Set<SprCategory> sprCategories) {
-        this.sprCategories = sprCategories;
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
-
-    public long getIdImage() {
-        return idImage;
-    }
-
-    public void setIdImage(long idImage) {
-        this.idImage = idImage;
-    }
-
 
     public byte[] getImage() {
         return image;

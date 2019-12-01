@@ -40,7 +40,7 @@
 #### Bug Fixes
 
 * **coverage:** Gruntfile -- coverage back to 100% and fixed the banner. ([55f2c9a3](https://github.com/fraywing/textAngular/commit/55f2c9a3))
-* **gitcommit:** Demo pages was not being included ([aa570e87](https://github.com/fraywing/textAngular/commit/aa570e87))
+* **gitcommit:** Demo page was not being included ([aa570e87](https://github.com/fraywing/textAngular/commit/aa570e87))
 * **textAngular:**
   * Fix(main): tests weren't running without requireJS ([e40874ad](https://github.com/fraywing/textAngular/commit/e40874ad)
   * Fix issue with two baners being included in the build ([776db53](https://github.com/fraywing/textAngular/commit/776db53))
@@ -54,7 +54,7 @@
 #### Features
 
 * **textAngular:** Full support for commonjs (Closes #737, #712, #713, #716, #708, #709, #853) ([a0a84553](https://github.com/fraywing/textAngular/commit/a0a84553))
-* **demo:** Updated the demo pages to 1.4.3 ([ddd000df](https://github.com/fraywing/textAngular/commit/ddd000df))
+* **demo:** Updated the demo page to 1.4.3 ([ddd000df](https://github.com/fraywing/textAngular/commit/ddd000df))
 
 
 <a name"1.4.3"></a>
@@ -632,7 +632,7 @@ The minimum required versions of AngularJS is 1.3 and Rangy is 1.3.
 
 2013-12-05 v1.1.2-alpha (v1.1.2-pre1)
 
-- Added bundled demo pages.
+- Added bundled demo page.
 - Fixed Escaping of < and > #30
 - Fixed stripping of style and class attributes and other parsing issues whilst maintaining the chrome fixes. #35 #30 #5
 - Fixed two-way-binding not working #38

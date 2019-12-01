@@ -1,7 +1,5 @@
 package ua.kay.monolith.model;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -9,15 +7,9 @@ import java.io.Serializable;
 @Cacheable
 @Entity
 @Table(name = "product")
-public class Product implements Serializable {
+public class Product extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = -7651298149649100262L;
-
-    @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
-    @Column(name = "id_product", nullable = false)
-    private long idProduct;
 
     @Column(name = "product_code", unique = true, nullable = false)
     @NotNull
@@ -42,32 +34,24 @@ public class Product implements Serializable {
     private Image image;
 
     @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
-    private SprCategory sprCategory;
+    @JoinColumn(name = "category_id", nullable = false)//could be ManyToMany since product could related to several categories
+    private Category category;
 
     @ManyToOne
     @JoinColumn(name = "color_id")
-    private SprColor sprColor;
+    private Color color;
 
     @ManyToOne
     @JoinColumn(name = "consumer_id")
-    private SprConsumer sprConsumer;
+    private Consumer consumer;
 
     @ManyToOne
     @JoinColumn(name = "size_id")
-    private SprSize sprSize;
+    private Size size;
 
     @ManyToOne
     @JoinColumn(name = "type_id")
-    private SprType sprType;
-
-    public long getIdProduct() {
-        return idProduct;
-    }
-
-    public void setIdProduct(long idProduct) {
-        this.idProduct = idProduct;
-    }
+    private Type type;
 
     public String getProductCode() {
         return productCode;
@@ -117,44 +101,44 @@ public class Product implements Serializable {
         this.image = image;
     }
 
-    public SprCategory getSprCategory() {
-        return sprCategory;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setSprCategory(SprCategory sprCategory) {
-        this.sprCategory = sprCategory;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public SprColor getSprColor() {
-        return sprColor;
+    public Color getColor() {
+        return color;
     }
 
-    public void setSprColor(SprColor sprColor) {
-        this.sprColor = sprColor;
+    public void setColor(Color color) {
+        this.color = color;
     }
 
-    public SprConsumer getSprConsumer() {
-        return sprConsumer;
+    public Consumer getConsumer() {
+        return consumer;
     }
 
-    public void setSprConsumer(SprConsumer sprConsumer) {
-        this.sprConsumer = sprConsumer;
+    public void setConsumer(Consumer consumer) {
+        this.consumer = consumer;
     }
 
-    public SprSize getSprSize() {
-        return sprSize;
+    public Size getSize() {
+        return size;
     }
 
-    public void setSprSize(SprSize sprSize) {
-        this.sprSize = sprSize;
+    public void setSize(Size size) {
+        this.size = size;
     }
 
-    public SprType getSprType() {
-        return sprType;
+    public Type getType() {
+        return type;
     }
 
-    public void setSprType(SprType sprType) {
-        this.sprType = sprType;
+    public void setType(Type type) {
+        this.type = type;
     }
 
 }

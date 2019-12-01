@@ -1,24 +1,20 @@
 package ua.kay.monolith.model;
 
 import org.apache.tomcat.util.codec.binary.Base64;
-import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import javax.persistence.Cacheable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Cacheable
 @Entity
 @Table(name = "account")
-public class Account implements Serializable {
+public class Account extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = -4756418699652703026L;
-
-    @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
-    @Column(name = "id_account", nullable = false)
-    private Long idAccount;
 
     @Column(name = "name", unique = true, nullable = false)
     @NotNull
@@ -27,14 +23,6 @@ public class Account implements Serializable {
     @Column(name = "password", nullable = false)
     @NotNull
     private String password;
-
-    public Long getIdAccount() {
-        return idAccount;
-    }
-
-    public void setIdAccount(Long idAccount) {
-        this.idAccount = idAccount;
-    }
 
     public String getName() {
         return name;

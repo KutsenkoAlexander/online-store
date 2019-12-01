@@ -3,16 +3,19 @@ package ua.kay.monolith.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.scheduling.annotation.Async;
-import ua.kay.monolith.model.SprColor;
+import org.springframework.stereotype.Repository;
+import ua.kay.monolith.model.Color;
 
-import java.util.List;
+import java.util.stream.Stream;
 
-public interface ColorRepository extends JpaRepository<SprColor, Integer> {
+@Repository
+public interface ColorRepository extends JpaRepository<Color, Long> {
+
+    @Query("select p.color from Product p " +
+            "where p.category.id = ?1 " +
+            "group by p.color.name, p.color.id")
+    Stream<Color> findColorsByProductCategoryId(Long id);
+
     @Async
-    @Query("select p.sprColor from Product p " +
-            "where p.sprCategory.idCategory = ?1 " +
-            "group by p.sprColor.name, p.sprColor.idSprColors")
-    List<SprColor> findColorsByProductCategoryId(Integer categoryId);
-
-    void deleteByIdSprColors(Integer id);
+    void deleteById(Long id);
 }

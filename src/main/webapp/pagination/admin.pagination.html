@@ -8,7 +8,7 @@
         <a ng-show="page.number !== 0" ng-click="setPageAndSizeAdmin(page.number-1)">Пред.</a>
         <span ng-show="page.number === 0">Пред.</span>
     </li>
-    <li ng-repeat="n in [] | pages: page.totalPages"
+    <li ng-repeat="n in [] | page: page.totalPages"
         ng-class="{active: n === page.number}">
         <a ng-show="page.number !== n" ng-click="setPageAndSizeAdmin(n)">{{n + 1}}</a>
         <span ng-show="page.number === n">{{n + 1}}</span>

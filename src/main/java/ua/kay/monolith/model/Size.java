@@ -1,7 +1,6 @@
 package ua.kay.monolith.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,32 +9,18 @@ import java.util.Set;
 
 @Cacheable
 @Entity
-@Table(name = "spr_consumer")
-public class SprConsumer implements Serializable {
+@Table(name = "spr_size")
+public class Size extends BaseEntity implements Serializable {
 
-    private static final long serialVersionUID = 7004225799224057164L;
-
-    @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
-    @Column(name = "id_consumer", nullable = false)
-    private long idConsumer;
+    private static final long serialVersionUID = 2227948084905830907L;
 
     @Column(name = "name", nullable = false, unique = true)
     @NotNull
     private String name;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "sprConsumer", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "size", fetch = FetchType.LAZY)
     private Set<Product> products;
-
-    public long getIdConsumer() {
-        return idConsumer;
-    }
-
-    public void setIdConsumer(long idConsumer) {
-        this.idConsumer = idConsumer;
-    }
 
     public String getName() {
         return name;

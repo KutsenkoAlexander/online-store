@@ -1,12 +1,13 @@
-package ua.kay.monolith.controller;
+package ua.kay.monolith.controller.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import ua.kay.monolith.model.SprType;
+import ua.kay.monolith.model.Type;
 import ua.kay.monolith.repository.TypeRepository;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @RestController
 public class TypeController {
@@ -15,25 +16,25 @@ public class TypeController {
     TypeRepository typeRepository;
 
     @RequestMapping("/type/all")
-    public List<SprType> findAllTypes(){
+    public List<Type> findAllTypes(){
         return typeRepository.findAll();
     }
 
     @RequestMapping("/type/{id}")
-    public List<SprType> getProductTypes(@PathVariable("id") Integer id) {
+    public Stream<Type> getProductTypes(@PathVariable("id") Long id) {
         return typeRepository.findTypesByProductCategoryId(id);
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/rest/type/save", method = RequestMethod.POST)
-    public SprType saveType(@RequestBody SprType sprType){
-        return typeRepository.saveAndFlush(sprType);
+    public Type saveType(@RequestBody Type type){
+        return typeRepository.saveAndFlush(type);
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/rest/type/delete/{id}", method = RequestMethod.DELETE)
-    public void deleteType(@PathVariable Integer id){
-        typeRepository.deleteByIdSprType(id);
+    public void deleteType(@PathVariable Long id){
+        typeRepository.deleteById(id);
     }
 
 }

@@ -1,40 +1,36 @@
 package ua.kay.monolith.model;
 
-import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
-import javax.persistence.*;
+import javax.persistence.Cacheable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Cacheable
 @Entity
 @Table(name = "pages")
-public class Pages implements Serializable {
+public class Page extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 2870463497495545664L;
 
-    @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
-    @Column(name = "id", nullable = false)
-    private long id;
-
     @Column(name = "url", unique = true, nullable = false)
     private String url;
+
+    @Column(name = "title", unique = true, nullable = false)
+    private String title;
 
     @Column(name = "description")
     private String description;
 
     @NotNull
-    @Column(name = "content", nullable = false, length = 65535)
+    @Column(name = "content", nullable = false)
+    @Type(type = "text")
     private String content;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public Page() {
     }
 
     public String getUrl() {
@@ -59,5 +55,22 @@ public class Pages implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Override
+    public String toString() {
+        return "Page{" +
+                "id = " + getId() + '\'' +
+                "url='" + url + '\'' +
+                ", title='" + title + '\'' +
+                '}';
     }
 }

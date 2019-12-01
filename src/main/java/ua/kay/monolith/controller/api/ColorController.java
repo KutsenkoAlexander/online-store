@@ -1,46 +1,44 @@
-package ua.kay.monolith.controller;
+package ua.kay.monolith.controller.api;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import ua.kay.monolith.model.SprColor;
+import ua.kay.monolith.model.Color;
 import ua.kay.monolith.repository.ColorRepository;
-import ua.kay.monolith.service.ColorService;
+import ua.kay.monolith.service.ColorServiceImpl;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @RestController
 public class ColorController {
 
     private ColorRepository colorRepository;
-    private ColorService colorService;
+    private ColorServiceImpl colorServiceImpl;
 
-    @Autowired
-    public ColorController(ColorRepository colorRepository, ColorService colorService) {
+    public ColorController(ColorRepository colorRepository, ColorServiceImpl colorServiceImpl) {
         this.colorRepository = colorRepository;
-        this.colorService = colorService;
+        this.colorServiceImpl = colorServiceImpl;
     }
 
     @RequestMapping("/color/all")
-    public List<SprColor> findAllColors(){
+    public List<Color> findAllColors(){
         return colorRepository.findAll();
     }
 
     @RequestMapping("/color/{id}")
-    public List<SprColor> getProductColors(@PathVariable("id") Integer id) {
+    public Stream<Color> getProductColors(@PathVariable("id") Long id) {
         return colorRepository.findColorsByProductCategoryId(id);
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/rest/color/save", method = RequestMethod.POST)
-    public SprColor saveColor(@RequestBody SprColor sprColor){
-        return colorRepository.saveAndFlush(sprColor);
+    public Color saveColor(@RequestBody Color color){
+        return colorRepository.saveAndFlush(color);
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/rest/color/delete/{id}", method = RequestMethod.DELETE)
-    public void deleteColor(@PathVariable Integer id){
-        colorService.delete(id);
+    public void deleteColor(@PathVariable Long id){
+        colorServiceImpl.deleteById(id);
     }
-
 }

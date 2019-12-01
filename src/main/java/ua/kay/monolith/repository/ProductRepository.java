@@ -5,41 +5,41 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Repository;
 import ua.kay.monolith.dto.SearchResultProductDto;
 import ua.kay.monolith.model.Product;
 
-import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
+@Repository
 public interface ProductRepository extends PagingAndSortingRepository<Product, Long> {
 
-    @Async
-    @Query("select p from Product p where (p.sprCategory.idCategory = ?1 or ?1 is null) " +
-                                    "and (p.sprConsumer.idConsumer = ?2  or ?2 is null) " +
-                                    "and (p.sprType.idSprType = ?3 or ?3 is null) " +
-                                    "and (p.sprSize.idSprSize = ?4 or ?4 is null) " +
-                                    "and (p.sprColor.idSprColors = ?5 or ?5 is null) " +
+    @Query("select p from Product p where (p.category.id = ?1 or ?1 is null) " +
+                                    "and (p.consumer.id = ?2  or ?2 is null) " +
+                                    "and (p.type.id = ?3 or ?3 is null) " +
+                                    "and (p.size.id = ?4 or ?4 is null) " +
+                                    "and (p.color.id = ?5 or ?5 is null) " +
                                     "and (p.exist = ?6 or ?6 is null)")
-    Page<Product> sortProduct(Integer categoryId,
+    Page<Product> sortProduct(Long categoryId,
                               Long consumerId,
-                              Integer typeId,
-                              Integer sizeId,
-                              Integer colorId,
+                              Long typeId,
+                              Long sizeId,
+                              Long colorId,
                               Byte exist,
                               Pageable pageable);
 
-    @Async
-    Product findByIdProduct(Long productId);
+    Optional<Product> findById(Long id);
 
-    @Async
-    Page<Product> findProductBySprCategoryIdCategory(Integer idCategory, Pageable pageable);
+    Page<Product> findProductByCategoryId(Long id, Pageable pageable);
 
-    @Async
     @Query("select p from Product p order by p.title")
     Page<Product> findAllOrderByTitle(Pageable pageable);
 
-    @Async
-    @Query("select new ua.kay.monolith.dto.SearchResultProductDto(p.idProduct, p.title) from Product p where p.title like %?1%")
-    List<SearchResultProductDto> findTitleLikeName(String name);
+    @Query("select new ua.kay.monolith.dto.SearchResultProductDto(p.id, p.title) " +
+            "from Product p where p.title like %?1%")
+    Stream<SearchResultProductDto> findTitleLikeName(String name);
 
-    void deleteByIdProduct(Long id);
+    @Async
+    void deleteById(Long id);
 }

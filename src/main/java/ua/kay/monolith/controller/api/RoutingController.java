@@ -1,4 +1,4 @@
-package ua.kay.monolith.controller;
+package ua.kay.monolith.controller.api;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

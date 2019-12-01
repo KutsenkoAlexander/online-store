@@ -4,29 +4,29 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class BreadcrumbsDto {
     @JsonProperty("idCategory")
-    private int idCategory;
+    private Long id;
 
     @JsonProperty("name")
     private String name;
 
     @JsonProperty("parentId")
-    private int parentId;
+    private Long parentId;
 
     public BreadcrumbsDto() {
     }
 
-    public BreadcrumbsDto(int idCategory, String name, int parentId) {
-        this.idCategory = idCategory;
+    public BreadcrumbsDto(Long id, String name, Long parentId) {
+        this.id = id;
         this.name = name;
         this.parentId = parentId;
     }
 
-    public int getIdCategory() {
-        return idCategory;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdCategory(int idCategory) {
-        this.idCategory = idCategory;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -37,18 +37,18 @@ public class BreadcrumbsDto {
         this.name = name;
     }
 
-    public int getParentId() {
+    public Long getParentId() {
         return parentId;
     }
 
-    public void setParentId(int parentId) {
+    public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
 
     @Override
     public String toString() {
         return "BreadcrumbsDto{" +
-                "idCategory=" + idCategory +
+                "idCategory=" + id +
                 ", name='" + name + '\'' +
                 ", parentId=" + parentId +
                 '}';

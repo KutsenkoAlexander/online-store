@@ -1,7 +1,6 @@
-package ua.kay.monolith.controller;
+package ua.kay.monolith.controller.api;
 
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,11 +15,13 @@ import java.io.IOException;
 @RestController
 public class ImageController {
 
-    @Autowired
-    BeanFactory beanFactory;
+    private BeanFactory beanFactory;
+    private ImageRepository imageRepository;
 
-    @Autowired
-    ImageRepository imageRepository;
+    public ImageController(BeanFactory beanFactory, ImageRepository imageRepository) {
+        this.beanFactory = beanFactory;
+        this.imageRepository = imageRepository;
+    }
 
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/rest/image/save", method = RequestMethod.POST)
@@ -28,13 +29,11 @@ public class ImageController {
                             @RequestParam("idImage") Long idImage){
         Image image = beanFactory.getBean(Image.class);
         try {
-            image.setIdImage(idImage);
+            image.setId(idImage);
             image.setImage(file.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Image savedImage = imageRepository.saveAndFlush(image);
-        return savedImage;
+        return imageRepository.saveAndFlush(image);
     }
-
 }

@@ -3,16 +3,19 @@ package ua.kay.monolith.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.scheduling.annotation.Async;
-import ua.kay.monolith.model.SprType;
+import org.springframework.stereotype.Repository;
+import ua.kay.monolith.model.Type;
 
-import java.util.List;
+import java.util.stream.Stream;
 
-public interface TypeRepository extends JpaRepository<SprType, Integer> {
+@Repository
+public interface TypeRepository extends JpaRepository<Type, Long> {
+
+    @Query("select p.type from Product p " +
+            "where p.category.id = ?1 " +
+            "group by p.type.name, p.type.id")
+    Stream<Type> findTypesByProductCategoryId(Long categoryId);
+
     @Async
-    @Query("select p.sprType from Product p " +
-            "where p.sprCategory.idCategory = ?1 " +
-            "group by p.sprType.name, p.sprType.idSprType")
-    List<SprType> findTypesByProductCategoryId(Integer categoryId);
-
-    void deleteByIdSprType(Integer id);
+    void deleteById(Long id);
 }

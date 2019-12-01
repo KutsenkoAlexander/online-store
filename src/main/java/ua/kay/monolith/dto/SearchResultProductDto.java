@@ -3,8 +3,8 @@ package ua.kay.monolith.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SearchResultProductDto {
-    @JsonProperty("idProduct")
-    private long idProduct;
+    @JsonProperty("id")
+    private Long id;
 
     @JsonProperty("title")
     private String title;
@@ -12,17 +12,17 @@ public class SearchResultProductDto {
     public SearchResultProductDto() {
     }
 
-    public SearchResultProductDto(long idProduct, String title) {
-        this.idProduct = idProduct;
+    public SearchResultProductDto(long id, String title) {
+        this.id = id;
         this.title = title;
     }
 
-    public long getIdProduct() {
-        return idProduct;
+    public long getId() {
+        return id;
     }
 
-    public void setIdProduct(long idProduct) {
-        this.idProduct = idProduct;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getTitle() {

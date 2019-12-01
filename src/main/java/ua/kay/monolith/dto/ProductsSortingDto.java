@@ -1,11 +1,11 @@
 package ua.kay.monolith.dto;
 
 public class ProductsSortingDto {
-    private Integer categoryId;
+    private Long categoryId;
     private Long consumerId;
-    private Integer typeId;
-    private Integer sizeId;
-    private Integer colorId;
+    private Long typeId;
+    private Long sizeId;
+    private Long colorId;
     private Byte exist;
 
 
