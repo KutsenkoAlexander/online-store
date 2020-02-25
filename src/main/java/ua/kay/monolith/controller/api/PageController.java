@@ -19,26 +19,24 @@ public class PageController {
     }
 
     @GetMapping
-    @ResponseBody
     public Stream<Page> findAll() {
         return pageService.findAll();
     }
 
     @GetMapping
-    @ResponseBody
+    @RequestMapping(params = "url")
     public Page getPageData(@RequestParam("url") String url) {
         return pageService.findByUrl(url);
     }
 
     @GetMapping
-    @ResponseBody
+    @RequestMapping(params = "id")
     public Page findPageById(@RequestParam("id:[\\\\d]+") Long id) {
         return pageService.findById(id);
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
-    @ResponseBody
     public Page savePage(@RequestBody Page page){
         return pageService.save(page);
     }

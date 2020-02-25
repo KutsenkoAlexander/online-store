@@ -28,12 +28,12 @@ public class ImageController {
     public Image saveImages(@RequestParam("file") MultipartFile file,
                             @RequestParam("idImage") Long idImage){
         Image image = beanFactory.getBean(Image.class);
-        try {
+//        try {
             image.setId(idImage);
-            image.setImage(file.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//            image.setImage(file.getBytes());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         return imageRepository.saveAndFlush(image);
     }
 }

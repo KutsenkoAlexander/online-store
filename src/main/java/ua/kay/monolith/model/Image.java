@@ -10,17 +10,15 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Cacheable
-@Component
-@Scope("prototype")
 @Entity
-@Table(name = "image")
+@Table
 public class Image extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 8794364830985023953L;
 
-    @Column(name = "image", nullable = false)
     @NotNull
-    private byte[] image;
+    @Column(nullable = false, unique = true)
+    private String url;
 
     @JsonIgnore
     @OneToMany(mappedBy = "image", fetch = FetchType.LAZY)
@@ -38,11 +36,11 @@ public class Image extends BaseEntity implements Serializable {
         this.categories = categories;
     }
 
-    public byte[] getImage() {
-        return image;
+    public String getImage() {
+        return url;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setImage(String url) {
+        this.url = url;
     }
 }

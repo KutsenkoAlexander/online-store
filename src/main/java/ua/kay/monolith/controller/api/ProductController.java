@@ -1,6 +1,5 @@
 package ua.kay.monolith.controller.api;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,7 +18,6 @@ public class ProductController {
 
     private ProductServiceImpl productServiceImpl;
 
-    @Autowired
     public ProductController(ProductServiceImpl productServiceImpl) {
         this.productServiceImpl = productServiceImpl;
     }
