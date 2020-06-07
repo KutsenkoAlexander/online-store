@@ -2,7 +2,6 @@ package ua.kay.online.store.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
 import ua.kay.online.store.model.Type;
 
@@ -18,6 +17,5 @@ public interface TypeRepository extends JpaRepository<Type, Long> {
             "group by p.type.name, p.type.id")
     Stream<Type> findTypesByProductCategoryId(Long categoryId);
 
-    @Async
     void deleteById(Long id);
 }
