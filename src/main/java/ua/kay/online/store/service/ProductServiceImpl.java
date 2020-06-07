@@ -6,12 +6,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ua.kay.online.store.dto.SearchResultProductDto;
 import ua.kay.online.store.exception.ObjectNotFoundException;
-import ua.kay.online.store.model.Product;
 import ua.kay.online.store.model.Category;
+import ua.kay.online.store.model.Product;
 import ua.kay.online.store.repository.ProductRepository;
 
 import javax.transaction.Transactional;
-import java.util.stream.Stream;
+import java.util.List;
 
 @AllArgsConstructor
 @Service
@@ -49,7 +49,7 @@ public class ProductServiceImpl {
         return products;
     }
 
-    public Stream<SearchResultProductDto> findTitleLikeName(String name) {
+    public List<SearchResultProductDto> findTitleLikeName(String name) {
         return productRepository.findTitleLikeName(name);
     }
 

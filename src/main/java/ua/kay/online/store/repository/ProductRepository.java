@@ -4,13 +4,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
 import ua.kay.online.store.dto.SearchResultProductDto;
 import ua.kay.online.store.model.Product;
 
 import javax.transaction.Transactional;
-import java.util.stream.Stream;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -37,8 +36,7 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, L
 
     @Query("select new ua.kay.online.store.dto.SearchResultProductDto(p.id, p.title) " +
             "from Product p where p.title like %?1%")
-    Stream<SearchResultProductDto> findTitleLikeName(String name);
+    List<SearchResultProductDto> findTitleLikeName(String name);
 
-    @Async
     void deleteById(Long id);
 }

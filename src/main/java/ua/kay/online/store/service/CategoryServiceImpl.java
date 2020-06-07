@@ -51,6 +51,7 @@ public class CategoryServiceImpl implements CrudService<Category> {
 
     public List<Category> getByParentIdOrderByNameAsc(Long id) {
         return categoryRepository.findByParentIdOrderByNameAsc(id)
+                .stream()
                 .peek(e -> e.setImage(null))
                 .collect(Collectors.toList());
     }
