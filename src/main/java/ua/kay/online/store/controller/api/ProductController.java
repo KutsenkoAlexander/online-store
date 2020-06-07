@@ -11,6 +11,7 @@ import ua.kay.online.store.model.Product;
 import ua.kay.online.store.service.ProductServiceImpl;
 
 import javax.websocket.server.PathParam;
+import java.util.List;
 import java.util.stream.Stream;
 
 @AllArgsConstructor
@@ -43,7 +44,7 @@ public class ProductController {
     }
 
     @RequestMapping("/search")
-    public Stream<SearchResultProductDto> searchProductByName(@PathParam(value="name") String name) {
+    public List<SearchResultProductDto> searchProductByName(@PathParam(value="name") String name) {
         return productServiceImpl.findTitleLikeName(name);
     }
 
