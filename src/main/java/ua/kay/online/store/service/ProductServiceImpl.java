@@ -1,5 +1,6 @@
 package ua.kay.online.store.service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -12,14 +13,11 @@ import ua.kay.online.store.repository.ProductRepository;
 import javax.transaction.Transactional;
 import java.util.stream.Stream;
 
+@AllArgsConstructor
 @Service
 public class ProductServiceImpl {
 
-    private ProductRepository productRepository;
-
-    public ProductServiceImpl(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
+    private final ProductRepository productRepository;
 
     public Page<Product> sortProduct(Long categoryId, Long consumerId, Long typeId, Long sizeId, Long colorId, Byte exist, Pageable pageable) {
         return productRepository.sortProduct(categoryId, consumerId, typeId, sizeId, colorId, exist, pageable);

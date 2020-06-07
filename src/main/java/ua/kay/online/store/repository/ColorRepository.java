@@ -6,10 +6,11 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
 import ua.kay.online.store.model.Color;
 
+import javax.transaction.Transactional;
 import java.util.Set;
-import java.util.stream.Stream;
 
 @Repository
+@Transactional
 public interface ColorRepository extends JpaRepository<Color, Long> {
 
     @Query("select p.color from Product p " +

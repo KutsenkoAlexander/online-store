@@ -6,9 +6,11 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
 import ua.kay.online.store.model.Consumer;
 
+import javax.transaction.Transactional;
 import java.util.stream.Stream;
 
 @Repository
+@Transactional
 public interface ConsumerRepository extends JpaRepository<Consumer, Long> {
 
     @Query("select p.consumer from Product p " +

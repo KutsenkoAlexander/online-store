@@ -1,39 +1,37 @@
 package ua.kay.online.store.controller.api;
 
+import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import ua.kay.online.store.model.Size;
-import ua.kay.online.store.repository.SizeRepository;
 import ua.kay.online.store.service.SizeService;
 
 import java.util.List;
-import java.util.stream.Stream;
 
+@AllArgsConstructor
 @RestController
 public class SizeController {
 
-    private SizeRepository sizeRepository;
-    private SizeService sizeService;
-
-    public SizeController(SizeRepository sizeRepository, SizeService sizeService) {
-        this.sizeRepository = sizeRepository;
-        this.sizeService = sizeService;
-    }
+    private final SizeService sizeService;
 
     @RequestMapping("/size/all")
     public List<Size> findAllSizes(){
-        return sizeRepository.findAll();
+        return sizeService.findAll();
     }
 
     @RequestMapping("/size/{id}")
-    public Stream<Size> getProductSizes(@PathVariable("id") Long id) {
-        return sizeRepository.findSizesByProductCategoryId(id);
+    public List<Size> getProductSizes(@PathVariable("id") Long id) {
+        return sizeService.findSizesByProductCategoryId(id);
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/rest/size/save", method = RequestMethod.POST)
     public Size saveSize(@RequestBody Size size){
-        return sizeRepository.saveAndFlush(size);
+        return sizeService.save(size);
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")

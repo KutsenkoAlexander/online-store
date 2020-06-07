@@ -6,15 +6,17 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
 import ua.kay.online.store.model.Size;
 
-import java.util.stream.Stream;
+import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
+@Transactional
 public interface SizeRepository extends JpaRepository<Size, Long> {
 
     @Query("select p.size from Product p " +
             "where p.category.id = ?1 " +
             "group by p.size.name, p.size.id")
-    Stream<Size> findSizesByProductCategoryId(Long categoryId);
+    List<Size> findSizesByProductCategoryId(Long categoryId);
 
     @Async
     void deleteById(Long id);

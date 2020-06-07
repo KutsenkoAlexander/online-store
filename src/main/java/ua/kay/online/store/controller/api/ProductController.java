@@ -1,5 +1,6 @@
 package ua.kay.online.store.controller.api;
 
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,15 +13,12 @@ import ua.kay.online.store.service.ProductServiceImpl;
 import javax.websocket.server.PathParam;
 import java.util.stream.Stream;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
 
-    private ProductServiceImpl productServiceImpl;
-
-    public ProductController(ProductServiceImpl productServiceImpl) {
-        this.productServiceImpl = productServiceImpl;
-    }
+    private final ProductServiceImpl productServiceImpl;
 
     @CrossOrigin
     @RequestMapping(value = "/sort/{id}", method = RequestMethod.GET, produces = {"application/json"})

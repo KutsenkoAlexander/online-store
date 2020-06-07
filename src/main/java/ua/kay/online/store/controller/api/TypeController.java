@@ -1,5 +1,6 @@
 package ua.kay.online.store.controller.api;
 
+import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ua.kay.online.store.model.Type;
@@ -8,10 +9,11 @@ import ua.kay.online.store.repository.TypeRepository;
 import java.util.List;
 import java.util.stream.Stream;
 
+@AllArgsConstructor
 @RestController
 public class TypeController {
 
-    TypeRepository typeRepository;
+    private final TypeRepository typeRepository;
 
     @RequestMapping("/type/all")
     public List<Type> findAllTypes(){

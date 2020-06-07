@@ -1,23 +1,19 @@
 package ua.kay.online.store.service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ua.kay.online.store.exception.ObjectNotFoundException;
 import ua.kay.online.store.model.Color;
 import ua.kay.online.store.repository.ColorRepository;
-import javax.transaction.Transactional;
+
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Stream;
 
-@Transactional
+@AllArgsConstructor
 @Service
 public class ColorServiceImpl implements CrudService<Color> {
 
     private final ColorRepository colorRepository;
-
-    public ColorServiceImpl(ColorRepository colorRepository) {
-        this.colorRepository = colorRepository;
-    }
 
     @Override
     public List<Color> findAll() {

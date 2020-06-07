@@ -1,22 +1,18 @@
 package ua.kay.online.store.service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ua.kay.online.store.exception.ObjectNotFoundException;
 import ua.kay.online.store.model.Consumer;
 import ua.kay.online.store.repository.ConsumerRepository;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
+@AllArgsConstructor
 @Service
-@Transactional
 public class ConsumerServiceImpl implements CrudService<Consumer> {
 
     private final ConsumerRepository consumerRepository;
-
-    public ConsumerServiceImpl(ConsumerRepository consumerRepository) {
-        this.consumerRepository = consumerRepository;
-    }
 
     @Override
     public List<Consumer> findAll() { return consumerRepository.findAll(); }

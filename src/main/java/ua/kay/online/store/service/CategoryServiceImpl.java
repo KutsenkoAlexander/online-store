@@ -1,25 +1,22 @@
 package ua.kay.online.store.service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ua.kay.online.store.dto.BreadcrumbsDto;
 import ua.kay.online.store.exception.ObjectNotFoundException;
 import ua.kay.online.store.model.Category;
 import ua.kay.online.store.repository.CategoryRepository;
-import javax.transaction.Transactional;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
+@AllArgsConstructor
 @Service
-@Transactional
 public class CategoryServiceImpl implements CrudService<Category> {
 
     private static final Long PARENT_ID = 0L;
 
     private final CategoryRepository categoryRepository;
-
-    public CategoryServiceImpl(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
-    }
 
     @Override
     public List<Category> findAll() {

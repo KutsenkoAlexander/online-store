@@ -1,5 +1,6 @@
 package ua.kay.online.store.controller.api;
 
+import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ua.kay.online.store.dto.BreadcrumbsDto;
@@ -9,15 +10,12 @@ import ua.kay.online.store.service.CategoryServiceImpl;
 
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/categories")
 public class ProductCategoryController {
 
-    private CategoryServiceImpl categoryService;
-
-    public ProductCategoryController(CategoryServiceImpl categoryService) {
-        this.categoryService = categoryService;
-    }
+    private final CategoryServiceImpl categoryService;
 
     @RequestMapping("/parent/{id}")
     public List<Category> getByParentIdOrderByNameAsc(@PathVariable("id") Long id) {

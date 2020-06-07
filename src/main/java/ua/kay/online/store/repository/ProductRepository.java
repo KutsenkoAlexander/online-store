@@ -9,10 +9,11 @@ import org.springframework.stereotype.Repository;
 import ua.kay.online.store.dto.SearchResultProductDto;
 import ua.kay.online.store.model.Product;
 
-import java.util.Optional;
+import javax.transaction.Transactional;
 import java.util.stream.Stream;
 
 @Repository
+@Transactional
 public interface ProductRepository extends PagingAndSortingRepository<Product, Long> {
 
     @Query("select p from Product p where (p.category.id = ?1 or ?1 is null) " +
@@ -28,8 +29,6 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, L
                               Long colorId,
                               Byte exist,
                               Pageable pageable);
-
-    Optional<Product> findById(Long id);
 
     Page<Product> findProductByCategoryId(Long id, Pageable pageable);
 

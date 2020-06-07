@@ -1,5 +1,6 @@
 package ua.kay.online.store.controller.api;
 
+import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,10 +11,11 @@ import ua.kay.online.store.repository.SliderRepository;
 
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 public class SliderController  {
 
-    SliderRepository sliderRepository;
+    private final SliderRepository sliderRepository;
 
     @RequestMapping("/slide/all")
     public List<Slider> findAllSlide(){

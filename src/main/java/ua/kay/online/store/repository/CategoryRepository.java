@@ -6,10 +6,13 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
 import ua.kay.online.store.dto.BreadcrumbsDto;
 import ua.kay.online.store.model.Category;
+
+import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.stream.Stream;
 
 @Repository
+@Transactional
 public interface CategoryRepository extends JpaRepository<Category, Long> {
     Stream<Category> findByParentIdOrderByNameAsc(Long id);
 

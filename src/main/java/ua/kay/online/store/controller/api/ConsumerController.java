@@ -1,5 +1,6 @@
 package ua.kay.online.store.controller.api;
 
+import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ua.kay.online.store.model.Consumer;
@@ -8,14 +9,11 @@ import ua.kay.online.store.repository.ConsumerRepository;
 import java.util.List;
 import java.util.stream.Stream;
 
+@AllArgsConstructor
 @RestController
 public class ConsumerController {
 
-    private ConsumerRepository consumerRepository;
-
-    public ConsumerController(ConsumerRepository consumerRepository) {
-        this.consumerRepository = consumerRepository;
-    }
+    private final ConsumerRepository consumerRepository;
 
     @RequestMapping("/consumer/all")
     public List<Consumer> findAllConsumers(){
