@@ -1,11 +1,16 @@
 package ua.kay.monolith.controller.api;
 
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import ua.kay.monolith.model.Page;
 import ua.kay.monolith.service.PageServiceImpl;
-
-import java.util.stream.Stream;
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -19,7 +24,7 @@ public class PageController {
     }
 
     @GetMapping
-    public Stream<Page> findAll() {
+    public List<Page> findAll() {
         return pageService.findAll();
     }
 

@@ -4,7 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ua.kay.monolith.dto.SearchResultProductDto;
-import ua.kay.monolith.exceptions.ObjectNotFoundException;
+import ua.kay.monolith.exception.ObjectNotFoundException;
 import ua.kay.monolith.model.Product;
 import ua.kay.monolith.model.Category;
 import ua.kay.monolith.repository.ProductRepository;

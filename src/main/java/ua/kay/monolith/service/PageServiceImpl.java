@@ -1,11 +1,11 @@
 package ua.kay.monolith.service;
 
 import org.springframework.stereotype.Service;
-import ua.kay.monolith.exceptions.PageNotFoundException;
+import ua.kay.monolith.exception.PageNotFoundException;
 import ua.kay.monolith.model.Page;
 import ua.kay.monolith.repository.PageRepositories;
 
-import java.util.stream.Stream;
+import java.util.List;
 
 @Service
 public class PageServiceImpl implements CrudService<Page> {
@@ -17,8 +17,8 @@ public class PageServiceImpl implements CrudService<Page> {
     }
 
     @Override
-    public Stream<Page> findAll() {
-        return pageRepositories.findAll().stream();
+    public List<Page> findAll() {
+        return pageRepositories.findAll();
     }
 
     @Override

@@ -1,11 +1,10 @@
 package ua.kay.monolith.service;
 
-import ua.kay.monolith.exceptions.ObjectNotFoundException;
-
-import java.util.stream.Stream;
+import ua.kay.monolith.exception.ObjectNotFoundException;
+import java.util.List;
 
 public interface CrudService<T> {
-    Stream<T> findAll();
+    List<T> findAll();
 
     T findById(Long id) throws ObjectNotFoundException;
 

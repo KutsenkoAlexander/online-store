@@ -1,7 +1,7 @@
 package ua.kay.monolith.service;
 
 import org.springframework.stereotype.Service;
-import ua.kay.monolith.exceptions.ObjectNotFoundException;
+import ua.kay.monolith.exception.ObjectNotFoundException;
 import ua.kay.monolith.model.Color;
 import ua.kay.monolith.repository.ColorRepository;
 

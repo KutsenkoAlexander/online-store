@@ -2,7 +2,7 @@ package ua.kay.monolith.service;
 
 import org.springframework.stereotype.Service;
 import ua.kay.monolith.dto.BreadcrumbsDto;
-import ua.kay.monolith.exceptions.ObjectNotFoundException;
+import ua.kay.monolith.exception.ObjectNotFoundException;
 import ua.kay.monolith.model.Category;
 import ua.kay.monolith.repository.CategoryRepository;
 

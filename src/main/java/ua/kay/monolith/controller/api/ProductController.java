@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ua.kay.monolith.dto.SearchResultProductDto;
-import ua.kay.monolith.exceptions.ObjectNotFoundException;
+import ua.kay.monolith.exception.ObjectNotFoundException;
 import ua.kay.monolith.model.Product;
 import ua.kay.monolith.service.ProductServiceImpl;
 
