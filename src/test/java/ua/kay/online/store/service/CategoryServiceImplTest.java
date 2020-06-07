@@ -9,9 +9,10 @@ import ua.kay.online.store.model.Category;
 import ua.kay.online.store.repository.CategoryRepository;
 
 import java.util.List;
-import java.util.stream.Stream;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.testng.Assert.assertEquals;
 
 @SpringBootTest
@@ -33,7 +34,7 @@ class CategoryServiceImplTest {
         Long parentId = 0L;
         Category category = new Category();
         category.setParentId(parentId);
-        when(categoryRepository.findByParentIdOrderByNameAsc(parentId)).thenReturn(Stream.of(category));
+        when(categoryRepository.findByParentIdOrderByNameAsc(parentId)).thenReturn(List.of(category));
         List<Category> categories = productCategoryService.getRootCategory();
         assertEquals(categories.size(), 1);
         verify(categoryRepository, times(1)).findByParentIdOrderByNameAsc(parentId);
