@@ -22,13 +22,14 @@ public class PageServiceImpl implements CrudService<Page> {
         return pageRepositories.findAll();
     }
 
-    @Override
-    public Page findById(Long id) {
-        return pageRepositories.findById(id).orElseThrow(() -> new TestException(""));
+    public Page findByUrl(String url) throws PageNotFoundException {
+        return pageRepositories.findByUrl(url).orElseThrow(() ->  new PageNotFoundException("Page wasn't found by url: ", url));
     }
 
-    public Page findByUrl(String url) {
-        return pageRepositories.findByUrl(url).orElseThrow(() ->  new PageNotFoundException("Page wasn't found by url: ", url));
+    @Override
+    public Page findById(Long id) throws PageNotFoundException {
+        System.out.println(">>>>>>>>>>");
+        return pageRepositories.findById(id).orElseThrow(() -> new PageNotFoundException("Page wasn't found by id: ", id));
     }
 
     @Override

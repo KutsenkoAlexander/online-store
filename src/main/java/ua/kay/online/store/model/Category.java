@@ -1,6 +1,7 @@
 package ua.kay.online.store.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,6 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "spr_category")
+@RequiredArgsConstructor
 public class Category extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = -1444840323390519960L;

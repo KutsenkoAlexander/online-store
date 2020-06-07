@@ -36,7 +36,7 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, L
     @Query("select p from Product p order by p.title")
     Page<Product> findAllOrderByTitle(Pageable pageable);
 
-    @Query("select new ua.kay.monolith.dto.SearchResultProductDto(p.id, p.title) " +
+    @Query("select new ua.kay.online.store.dto.SearchResultProductDto(p.id, p.title) " +
             "from Product p where p.title like %?1%")
     Stream<SearchResultProductDto> findTitleLikeName(String name);
 

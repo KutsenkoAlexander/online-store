@@ -4,21 +4,24 @@ import org.springframework.stereotype.Service;
 import ua.kay.online.store.exception.ObjectNotFoundException;
 import ua.kay.online.store.model.Color;
 import ua.kay.online.store.repository.ColorRepository;
-
+import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
+@Transactional
 @Service
 public class ColorServiceImpl implements CrudService<Color> {
 
-    private ColorRepository colorRepository;
+    private final ColorRepository colorRepository;
 
     public ColorServiceImpl(ColorRepository colorRepository) {
         this.colorRepository = colorRepository;
     }
 
     @Override
-    public Stream<Color> findAll() {
-        return colorRepository.findAll().stream();
+    public List<Color> findAll() {
+        return colorRepository.findAll();
     }
 
     @Override
@@ -29,7 +32,7 @@ public class ColorServiceImpl implements CrudService<Color> {
 
     @Override
     public Color save(Color color) {
-        return colorRepository.save(color);
+        return colorRepository.saveAndFlush(color);
     }
 
     @Override
@@ -40,5 +43,9 @@ public class ColorServiceImpl implements CrudService<Color> {
     @Override
     public void deleteById(Long id) {
         colorRepository.deleteById(id);
+    }
+
+    public Set<Color> findColorsByProductCategoryId(Long id) {
+        return colorRepository.findColorsByProductCategoryId(id);
     }
 }

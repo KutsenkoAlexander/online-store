@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import ua.kay.online.store.exception.PageNotFoundException;
 import ua.kay.online.store.model.Page;
 import ua.kay.online.store.service.PageServiceImpl;
 import java.util.List;
@@ -28,15 +29,13 @@ public class PageController {
         return pageService.findAll();
     }
 
-    @GetMapping
-    @RequestMapping(params = "url")
-    public Page getPageData(@RequestParam("url") String url) {
+    @GetMapping("/url")
+    public Page getPageData(@RequestParam("url") String url) throws PageNotFoundException {
         return pageService.findByUrl(url);
     }
 
-    @GetMapping
-    @RequestMapping(params = "id")
-    public Page findPageById(@RequestParam("id:[\\\\d]+") Long id) {
+    @GetMapping("/id")
+    public Page findPageById(@RequestParam("id") Long id) {
         return pageService.findById(id);
     }
 
