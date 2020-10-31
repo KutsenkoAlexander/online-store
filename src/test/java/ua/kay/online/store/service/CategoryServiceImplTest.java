@@ -10,9 +10,7 @@ import ua.kay.online.store.repository.CategoryRepository;
 
 import java.util.List;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.testng.Assert.assertEquals;
 
 @SpringBootTest

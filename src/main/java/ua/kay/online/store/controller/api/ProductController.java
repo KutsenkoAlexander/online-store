@@ -12,7 +12,6 @@ import ua.kay.online.store.service.ProductServiceImpl;
 
 import javax.websocket.server.PathParam;
 import java.util.List;
-import java.util.stream.Stream;
 
 @AllArgsConstructor
 @RestController

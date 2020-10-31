@@ -2,11 +2,7 @@ package ua.kay.online.store.controller.api;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ua.kay.online.store.model.Size;
 import ua.kay.online.store.service.SizeService;
 

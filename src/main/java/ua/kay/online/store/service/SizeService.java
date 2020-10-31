@@ -6,7 +6,6 @@ import ua.kay.online.store.model.Size;
 import ua.kay.online.store.repository.SizeRepository;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 @Service
 @AllArgsConstructor
